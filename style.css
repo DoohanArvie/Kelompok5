@@ -1,0 +1,28 @@
+body {
+    background-color: whitesmoke;
+    padding: 1rem;
+}
+.form-group {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+
+label {
+    min-width: 120px;
+    align-items: center;
+    vertical-align: middle !important;
+}
+table {
+    text-align: center;
+}
+thead, th {
+    background-color: black !important;
+    color: white !important;
+    vertical-align: middle !important;
+}
+
+td {
+    vertical-align: middle !important;
+}
