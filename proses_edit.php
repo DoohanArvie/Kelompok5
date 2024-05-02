@@ -2,7 +2,7 @@
     session_start();
     include("config.php");
 
-    // cek apakah tombol sudah diklik atau belum?
+    // cek apakah tombol sudah diklik atau belum? belum
     if(isset($_POST['simpan'])){
         
         // ambil data dari formulir edit
