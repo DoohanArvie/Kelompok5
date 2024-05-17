@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,60 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
+Route::get('/', [\App\http\Controllers\Frontend\HomepageController::class,'index'])->name('homepage');
+Route::get('daftar-mobil', [\App\http\Controllers\Frontend\CarController::class,'index'])->name('car.index');
+Route::get('daftar-mobil/{car}', [\App\http\Controllers\Frontend\CarController::class,'show'])->name('car.show');
+Route::post('daftar-mobil', [\App\http\Controllers\Frontend\CarController::class,'store'])->name('car.store');
+Route::get('blog', [\App\http\Controllers\Frontend\BlogController::class,'index'])->name('blog.index');
+Route::get('blog/{blog:slug}', [\App\http\Controllers\Frontend\BlogController::class,'show'])->name('blog.show');
+Route::get('tentang-kami',[\App\http\Controllers\Frontend\AboutController::class,'index']);
+Route::get('kontak', [\App\http\Controllers\Frontend\ContactController::class,'index']);
+Route::post('kontak', [\App\http\Controllers\Frontend\ContactController::class,'store'])->name('contact.store');
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SessionsController;
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
-Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
-Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
-Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest')->name('login');
-Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest');
-Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
-Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
-Route::get('verify', function () {
-	return view('sessions.password.verify');
-})->middleware('guest')->name('verify');
-Route::get('/reset-password/{token}', function ($token) {
-	return view('sessions.password.reset', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
+Route::group(['middleware' => ['auth','is_admin'],'prefix' => 'admin','as' => 'admin.'],function () {
+    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 
-Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
-Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
-Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('billing', function () {
-		return view('pages.billing');
-	})->name('billing');
-	Route::get('tables', function () {
-		return view('pages.tables');
-	})->name('tables');
-	Route::get('rtl', function () {
-		return view('pages.rtl');
-	})->name('rtl');
-	Route::get('virtual-reality', function () {
-		return view('pages.virtual-reality');
-	})->name('virtual-reality');
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-	Route::get('static-sign-in', function () {
-		return view('pages.static-sign-in');
-	})->name('static-sign-in');
-	Route::get('static-sign-up', function () {
-		return view('pages.static-sign-up');
-	})->name('static-sign-up');
-	Route::get('user-management', function () {
-		return view('pages.laravel-examples.user-management');
-	})->name('user-management');
-	Route::get('user-profile', function () {
-		return view('pages.laravel-examples.user-profile');
-	})->name('user-profile');
+    Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::resource('cars', \App\Http\Controllers\Admin\CarController::class);
+    Route::resource('types', \App\Http\Controllers\Admin\TypeController::class);
+    Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
+    Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
+    Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index','store','update']);
+    Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index','destroy']);
+    Route::resource('bookings', \App\Http\Controllers\Admin\BookingController::class)->only(['index','destroy']);
+    Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class);
 });
