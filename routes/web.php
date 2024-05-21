@@ -42,6 +42,8 @@ Route::post('password/reset', 'App\Http\Controllers\Auth\ResetPasswordController
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('is_admin');
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 
     Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('users', [UserController::class, 'index'])->name('users.index');
