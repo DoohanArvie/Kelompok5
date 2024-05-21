@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CarRental &mdash; Free Website Template by Colorlib</title>
+    <title>CarRental &mdash; Free Website Template by Colorlb</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <style>
+    /* CSS to remove underline from nav links */
+    .nav-link {
+        text-decoration: none !important;
+    }
+</style>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
@@ -66,6 +72,53 @@
                   <li><a href="{{ url('blog') }}" class="nav-link">Blog</a></li>
                   <li><a href="{{ url('tentang-kami') }}" class="nav-link">Tentang Kami</a></li>
                   <li><a href="{{ url('kontak') }}" class="nav-link">Kontak</a></li>
+                  @auth
+                  @if(auth()->user()->is_admin)
+                      <!-- Jika pengguna adalah admin, tampilkan dropdown dengan nama pengguna dan opsi logout
+                      <li class="nav-item dropdown">
+                          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {{ Auth::user()->name }}
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                  Logout
+                              </a>
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                  @csrf
+                              </form>
+                          </div>
+                      </li>
+                      -->
+
+                      <li class="nav-item">
+                          <a class="nav-link" href="{{ route('home') }}" role="button" aria-haspopup="true" aria-expanded="false">
+                              Dashboard
+                          </a>
+                      </li>
+                  @else
+                      <!-- Jika pengguna bukan admin, tampilkan dropdown dengan tautan ke halaman profil dan opsi logout -->
+                      <li class="nav-item dropdown">
+                          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{ Auth::user()->name }}
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#">
+                                  Profile
+                              </a>
+                              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                  Logout
+                              </a>
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                  @csrf
+                              </form>
+                          </div>
+                      </li>
+                  @endif
+              @else
+                  <!-- Jika pengguna belum login, tampilkan tautan login -->
+                  <li><a href="{{ route('login') }}" class="nav-link">Login</a></li>
+              @endauth
+
                 </ul>
               </nav>
             </div>

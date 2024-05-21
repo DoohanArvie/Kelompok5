@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-6 mr-auto">
-                                        <button type="submit" class="btn btn-block btn-primary text-white py-3 px-5" ><i class="fa-solid fa-paper-plane"></i>  Kirim Pesan</button>
+                                        <button type="submit" class="btn btn-block btn-primary text-white py-3 px-5" > Kirim Pesan</button>
                                     </div>
                                 </div>
                             </form>
