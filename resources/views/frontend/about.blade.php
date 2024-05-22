@@ -66,20 +66,23 @@
 <!-- Team Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <h1 class="mb-3">Team Kami</h1>
-            <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+            <h2 class="mb-3">Selamat Datang di Website DeMobil</h2>
+            <p>
+                Di DeMobil, kami menciptakan pengalaman digital yang luar biasa di dunia otomotif. Dengan tim ahli yang berpengalaman dan berdedikasi, kami menghadirkan teknologi mutakhir, desain menarik, strategi pemasaran efektif, dan konten informatif untuk memenuhi kebutuhan Anda. Kami berkomitmen untuk terus berinovasi dan memberikan solusi terbaik bagi Anda. Mari berkenalan dengan Tim Pengembang Website DeMobil:
+            </p>
         </div>
         <div class="row g-4">
             @foreach ($teams as $team)
-            <div class="col-lg-2 col-md-6 wow fadeInUp mx-auto" data-wow-delay="0.1s">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="team-item rounded overflow-hidden">
                     <div class="position-relative">
                         <img class="img-fluid" src="{{ Storage::url($team->photo) }}" alt="">
                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-square mx-1" href="{{ $team->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href="{{ $team->twitter }}"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href="{{ $team->instagram }}"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="text-center p-4 mt-3">
@@ -93,4 +96,5 @@
     </div>
 </div>
 <!-- Team End -->
+
 @endsection
