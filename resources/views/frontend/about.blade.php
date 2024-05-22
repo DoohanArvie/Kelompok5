@@ -70,10 +70,10 @@
             <h1 class="mb-3">Team Kami</h1>
             <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
         </div>
-        <div class="row g-4">
+        <div class="row g-4 align-items-stretch">
             @foreach ($teams as $team)
             <div class="col-lg-2 col-md-6 wow fadeInUp mx-auto" data-wow-delay="0.1s">
-                <div class="team-item rounded overflow-hidden">
+                <div class="team-item rounded overflow-hidden h-100">
                     <div class="position-relative">
                         <img class="img-fluid" src="{{ Storage::url($team->photo) }}" alt="">
                         <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
@@ -92,5 +92,6 @@
         </div>
     </div>
 </div>
+
 <!-- Team End -->
 @endsection
