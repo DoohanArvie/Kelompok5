@@ -15,13 +15,13 @@
             <div class="col-md-6 animated fadeIn">
                 <div class="owl-carousel header-carousel">
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/images/carousel/1fortuner.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-1.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/images/carousel/2calya.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-calya.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/images/carousel/3innova.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-innova.jpg') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -138,35 +138,35 @@
                 $tipekendaraan = [
                     [
                         'title' => 'SUV',
-                        'icons' => 'frontend/images/icon/suv.png',
+                        'icons' => 'frontend/img/icon/icon-suv.png',
                     ],
                     [
                         'title' => 'MPV',
-                        'icons' => 'frontend/images/icon/mpv.png',
+                        'icons' => 'frontend/img/icon/icon-mpv.png',
                     ],
                     [
                         'title' => 'Sedan',
-                        'icons' => 'frontend/images/icon/sedan.png',
+                        'icons' => 'frontend/img/icon/icon-sedan.png',
                     ],
                     [
                         'title' => 'Hatchback',
-                        'icons' => 'frontend/images/icon/hatchback.png',
+                        'icons' => 'frontend/img/icon/icon-hatchback.png',
                     ],
                     [
                         'title' => 'Elektrik',
-                        'icons' => 'frontend/images/icon/elektrik.png',
+                        'icons' => 'frontend/img/icon/icon-elektrik.png',
                     ],
                     [
                         'title' => 'Matic',
-                        'icons' => 'frontend/images/icon/matic.png',
+                        'icons' => 'frontend/img/icon/icon-matic.png',
                     ],
                     [
                         'title' => 'Bebek',
-                        'icons' => 'frontend/images/icon/bebek.png',
+                        'icons' => 'frontend/img/icon/icon-bebek.png',
                     ],
                     [
                         'title' => 'Sport',
-                        'icons' => 'frontend/images/icon/sport.png',
+                        'icons' => 'frontend/img/icon/icon-sport.png',
                     ],
                 ];
             @endphp
@@ -194,7 +194,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="frontend/images/img_3.jpg">
+                        <img class="img-fluid w-100" src="frontend/img/assets/assets-dedikasi.jpg">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -471,7 +471,7 @@
                 <div class="bg-white rounded p-4" style="border: 1px solid rgba(0, 0, 0, .05);">
                     <div class="row g-5 align-items-center">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid rounded w-100" src="{{ asset('frontend/images/post_6.jpg') }}" alt="">
+                            <img class="img-fluid rounded w-100" src="{{ asset('frontend/img/assets/assets-contact.jpg') }}" alt="">
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="mb-4">
