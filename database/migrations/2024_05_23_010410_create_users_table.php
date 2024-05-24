@@ -18,6 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_admin')->default(false);
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
+            $table->string('ktp')->nullable();
+            $table->string('sim')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
