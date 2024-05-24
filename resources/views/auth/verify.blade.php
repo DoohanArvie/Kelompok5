@@ -1,25 +1,54 @@
-@extends('layouts.app')
+@extends('frontend.layout')
 
 @section('content')
-    <div class="card-body login-card-body">
-        <p class="login-box-msg">{{ __('Verify Your Email Address') }}</p>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h4 class="text-white">{{ __('Verifikasi Alamat Email Anda') }}</h4>
+                    </div>
+                    <div class="card-body login-card-body">
+                        @if (session('resent'))
+                            <div class="alert alert-success" role="alert">
+                                {{ __('Tautan verifikasi baru telah dikirim ke alamat email Anda.') }}
+                            </div>
+                        @endif
 
-        @if (session('resent'))
-            <div class="alert alert-success" role="alert">
-                {{ __('A fresh verification link has been sent to your email address.') }}
-            </div>
-        @endif
-
-        {{ __('Before proceeding, please check your email for a verification link.') }}
-        {{ __('If you did not receive the email') }},
-        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-            @csrf
-            <div class="row">
-                <div class="col-12">
-                    <button type="submit"
-                            class="btn btn-primary btn-block">{{ __('click here to request another') }}</button>
+                        <p>{{ __('Sebelum melanjutkan, harap periksa email Anda untuk tautan verifikasi.') }}</p>
+                        <p>{{ __('Jika Anda tidak menerima email') }},</p>
+                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button id="resend-button" type="submit" class="btn btn-primary" disabled>
+                                        {{ __('Mohon tunggu sebentar...') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var countdown = 3; // Set your countdown time in seconds
+            var resendButton = document.getElementById('resend-button');
+
+            var countdownInterval = setInterval(function () {
+                if (countdown > 0) {
+                    resendButton.textContent = `Mohon tunggu sebentar, ${countdown}`;
+                    countdown--;
+                } else {
+                    clearInterval(countdownInterval);
+                    resendButton.textContent = 'Klik di sini untuk meminta yang lain';
+                    resendButton.disabled = false;
+                }
+            }, 1000); // Interval set to 1 second
+        });
+    </script>
 @endsection
