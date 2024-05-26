@@ -76,15 +76,11 @@
                 <div class="team-item rounded overflow-hidden h-100">
                     <div class="position-relative">
                         <img class="img-fluid" src="{{ Storage::url($team->photo) }}" alt="">
-                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                        </div>
                     </div>
-                    <div class="text-center p-4 mt-3">
-                        <h5 class="fw-bold mb-0">{{ $team->nama }}</h5>
-                        <small>{{ $team->jabatan }}</small>
+                    <div class="container-fluid text-center p-4 mt-3">
+                        <h5 class="fw-bold mb-3">{{ $team->nama }}</h5>
+                        <h6 class="mb-2"><i>{{ $team->jabatan }}</i></h6>
+                        <p class="fw-bold mb-3">{{ $team->bio }}</p>
                     </div>
                 </div>
             </div>
