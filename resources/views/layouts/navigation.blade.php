@@ -14,91 +14,61 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('home') ? 'active bg-primary text-white' : '' }}" href="{{ route('home') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-house text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Dashboard') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.users.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-user text-warning text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Users') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.types.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.types.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-credit-card text-success text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-list text-success text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Kategori') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.cars.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.cars.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-car text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Mobil') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.testimonials.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-quote-left text-danger text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Testimonial') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.blogs.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.blogs.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-square-rss text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Blog') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.teams.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.teams.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-user-group text-success text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Team') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.settings.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-gears text-warning text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Settings') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.contacts.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.contacts.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-envelope text-danger text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Pesan') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.bookings.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.bookings.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-calendar text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Booking') }}</span>
                 </a>
             </li>
@@ -113,27 +83,19 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-dark text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-user text-dark text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ Auth::user()->name }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.settings.index') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-copy-04 text-warning text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-gears text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Settings') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-collection text-info text-lg opacity-10"></i>
-                    </div>
+                    <i class="fa-solid fa-arrow-right-from-bracket text-danger text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Logout') }}</span>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
