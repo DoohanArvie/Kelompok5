@@ -1,3 +1,16 @@
+<style>
+    .nav-treeview {
+  transition: max-height 0.5s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.nav-item.has-treeview:hover .nav-treeview {
+  max-height: 500px; /* Atur sesuai kebutuhan tinggi maksimum sub-menu */
+}
+
+</style>
+
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
     id="sidenav-main">
     <div class="sidenav-header">
@@ -24,18 +37,55 @@
                     <span class="nav-link-text ms-1">{{ __('Users') }}</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.types.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.types.index') }}">
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                     <i class="fa-solid fa-list text-success text-lg opacity-10"></i>
-                    <span class="nav-link-text ms-1">{{ __('Kategori') }}</span>
+                    <span>
+                        {{ __('Kategori') }}
+                        <i class="right fas fa-angle-left"></i>
+                    </span>
                 </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.typemotorcycles.index') }}" class="nav-link {{ request()->routeIs('admin.typesmotorcycles.index') ? 'active bg-primary text-white' : '' }}">
+                            <i class="fa-solid fa-motorcycle text-success text-lg opacity-10"></i>
+                            <span>Kategori Motor</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.types.index') }}" class="nav-link {{ request()->routeIs('admin.types.index') ? 'active bg-primary text-white' : '' }}">
+                            <i class="fa-solid fa-car text-success text-lg opacity-10"></i>
+                            <span>Kategori Mobil</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.cars.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.cars.index') }}">
-                    <i class="fa-solid fa-car text-info text-lg opacity-10"></i>
-                    <span class="nav-link-text ms-1">{{ __('Mobil') }}</span>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-ring text-info text-lg opacity-10"></i>
+                    <span class="nav-link-text ms-1">
+                        Kendaraan
+                        <i class="fas fa-angle-left"></i>
+                    </span>
                 </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.motorcycles.index') }}" class="nav-link {{ request()->routeIs('admin.motorcycles.index') ? 'active bg-primary text-white' : '' }}">
+                            <i class="fa-solid fa-motorcycle text-info text-lg opacity-10"></i>
+                            <span class="nav-link-text ms-1">Motor</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.cars.index') }}" class="nav-link {{ request()->routeIs('admin.cars.index') ? 'active bg-primary text-white' : '' }}">
+                            <i class="fa-solid fa-car text-info text-lg opacity-10"></i>
+                            <span class="nav-link-text ms-1">Mobil</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
+
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.testimonials.index') }}">
                     <i class="fa-solid fa-quote-left text-danger text-lg opacity-10"></i>

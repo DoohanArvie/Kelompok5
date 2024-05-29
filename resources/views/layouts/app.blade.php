@@ -364,6 +364,30 @@
             Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
         }
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var treeviewItems = document.querySelectorAll('.has-treeview > a');
+
+        treeviewItems.forEach(function(item) {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                var parent = this.parentElement;
+                var submenu = parent.querySelector('.nav-treeview');
+                var icon = parent.querySelector('.fas.fa-angle-left');
+
+                parent.classList.toggle('menu-open');
+
+                if (submenu.style.display === 'none' || submenu.style.display === '') {
+                    submenu.style.display = 'block';
+                    icon.classList.replace('fa-angle-left', 'fa-angle-down');
+                } else {
+                    submenu.style.display = 'none';
+                    icon.classList.replace('fa-angle-down', 'fa-angle-left');
+                }
+            });
+        });
+    });
+</script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->

@@ -50,7 +50,9 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::get('users', [UserController::class, 'index'])->name('users.index');
 
     Route::resource('cars', \App\Http\Controllers\Admin\CarController::class);
+    Route::resource('motorcycles', \App\Http\Controllers\Admin\MotorcycleController::class);
     Route::resource('types', \App\Http\Controllers\Admin\TypeController::class);
+    Route::resource('typemotorcycles', \App\Http\Controllers\Admin\TypeMotorcycleController::class);
     Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
     Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
     Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index','store','update']);
