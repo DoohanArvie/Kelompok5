@@ -4,7 +4,8 @@
     <div class="container-fluid header bg-white p-0">
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
-                <h1 class="display-5 animated fadeIn mb-4"><span class="text-primary">DeMobil</span> Solusi Perjalanan Anda!</h1>
+                <h1 class="display-5 animated fadeIn mb-4"><span class="text-primary">OtoRent</span> Solusi Perjalanan Anda!
+                </h1>
                 <h5 class="animated fadeIn pb-2">Temukan Mobil dan Motor terbaik untuk setiap perjalanan Anda!</h5>
                 <h5 class="animated fadeIn pb-2">Sewa sekarang dan rasakan kenyamanannya!</h5>
                 <h4><i class="fa fa-check text-primary me-3"></i>Mudah</h4>
@@ -21,7 +22,8 @@
                         <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-calya.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-innova.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-innova.jpg') }}"
+                            alt="">
                     </div>
                 </div>
             </div>
@@ -92,15 +94,18 @@
                 $steps = [
                     [
                         'title' => 'Pilih Mobil',
-                        'description' => 'Pilih mobil yang sesuai dengan kebutuhan dan keinginan Anda dari berbagai pilihan yang tersedia.',
+                        'description' =>
+                            'Pilih mobil yang sesuai dengan kebutuhan dan keinginan Anda dari berbagai pilihan yang tersedia.',
                     ],
                     [
                         'title' => 'Isi Form',
-                        'description' => 'Lengkapi formulir dengan informasi pribadi dan detail pemesanan Anda untuk melanjutkan proses.',
+                        'description' =>
+                            'Lengkapi formulir dengan informasi pribadi dan detail pemesanan Anda untuk melanjutkan proses.',
                     ],
                     [
                         'title' => 'Pembayaran',
-                        'description' => 'Lakukan pembayaran melalui metode yang tersedia untuk menyelesaikan proses pemesanan mobil Anda.',
+                        'description' =>
+                            'Lakukan pembayaran melalui metode yang tersedia untuk menyelesaikan proses pemesanan mobil Anda.',
                     ],
                 ];
             @endphp
@@ -199,7 +204,8 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">Dedikasi Kami Untuk Anda</h1>
-                    <p class="mb-4" style="text-align: justify">Kami percaya bahwa perjalanan Anda layak mendapatkan yang
+                    <p class="mb-4" style="text-align: justify">Kami percaya bahwa perjalanan Anda layak mendapatkan
+                        yang
                         terbaik. Dengan armada yang berkualitas dan layanan pelanggan yang profesional, kami berkomitmen
                         untuk menghadirkan pengalaman berkendara yang luar biasa. Nikmati kenyamanan dan kemudahan dalam
                         setiap perjalanan Anda bersama kami dengan :</p>
@@ -239,26 +245,33 @@
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
                         @foreach ($cars as $car)
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="col-lg-4 col-md-6 car-item" data-category="{{ $car->type->nama }}" data-passenger="{{ $car->penumpang }}">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <a href=""><img class="img-fluid" src="{{ Storage::url($car->image) }}"
-                                                alt=""></a>
-                                        {{-- <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div> --}}
-                                        <div
-                                            class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                            {{ $car->type->nama }}</div>
+                                        <img class="img-fluid" src="{{ Storage::url($car->image) }}" alt="gambar-mobil">
+                                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                            {{ $car->type->nama }}
+                                        </div>
                                     </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">Rp. {{ number_format($car->price) }} / hari</h5>
+                                    <div class="p-4 property-content">
+                                        <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari</h5>
                                         <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
-                                        <p><i class="text-primary me-2"></i>{{ $car->description }}</p>
+                                        <p style="text-align: justify"></i>{{ $car->description }}</p>
                                     </div>
-                                    <div class="d-flex border-top">
-                                        <div class="flex-fill text-center border-end py-3">
-                                            <i class="fa-solid fa-person text-primary me-2"></i>{{ $car->penumpang }} Penumpang</div>
-                                        <div class="flex-fill text-center border-end py-3">
-                                            <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $car->pintu }} Pintu</div>
+                                    <div class="property-footer">
+                                        <div class="d-flex justify-content-end p-4 pb-0">
+                                            <a href="{{ route('car.show', $car->id) }}" class="btn btn-primary btn-pesan btn-lg">Pesan</a>
+                                        </div>
+                                        <div class="d-flex border-top mt-3">
+                                            <div class="flex-fill text-center border-end py-3">
+                                                <i class="fa-solid fa-person text-primary me-2"></i>{{ $car->penumpang }}
+                                                Penumpang
+                                            </div>
+                                            <div class="flex-fill text-center py-3">
+                                                <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $car->pintu }}
+                                                Pintu
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -271,27 +284,33 @@
                 <div id="tab-2" class="tab-pane fade show p-0">
                     <div class="row g-4">
                         @foreach ($cars as $car)
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6 car-item" data-category="{{ $car->type->nama }}" data-passenger="{{ $car->penumpang }}">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <a href=""><img class="img-fluid" src="{{ Storage::url($car->image) }}"
-                                                alt=""></a>
-                                        {{-- <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">For Sell</div> --}}
-                                        <div
-                                            class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                            {{ $car->type->nama }}</div>
+                                        <img class="img-fluid" src="{{ Storage::url($car->image) }}" alt="gambar-mobil">
+                                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                            {{ $car->type->nama }}
+                                        </div>
                                     </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">Rp. {{ number_format($car->price) }} / hari</h5>
+                                    <div class="p-4 property-content">
+                                        <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari</h5>
                                         <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
-                                        <p><i class="text-primary me-2"></i>{{ $car->description }}</p>
+                                        <p style="text-align: justify"></i>{{ $car->description }}</p>
                                     </div>
-                                    <div class="d-flex border-top">
-                                        <small class="flex-fill text-center border-end py-2"><i
-                                                class="fa fa-ruler-combined text-primary me-2"></i>{{ $car->penumpang }}
-                                            Penumpang</small>
+                                    <div class="property-footer">
+                                        <div class="d-flex justify-content-end p-4 pb-0">
+                                            <a href="{{ route('car.show', $car->id) }}" class="btn btn-primary btn-pesan btn-lg">Pesan</a>
+                                        </div>
+                                        <div class="d-flex border-top mt-3">
                                             <div class="flex-fill text-center border-end py-3">
-                                                <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $car->pintu }} Pintu</div>
+                                                <i class="fa-solid fa-person text-primary me-2"></i>{{ $car->penumpang }}
+                                                Penumpang
+                                            </div>
+                                            <div class="flex-fill text-center py-3">
+                                                <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $car->pintu }}
+                                                Pintu
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -335,44 +354,55 @@
     </div>
     <!-- Testimonial End -->
 
-    <!-- Faq Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="mb-3">Pertanyaan Umum</h1>
-            </div>
-            <div class="accordion wow fadeInUp" data-wow-delay="0.1s" id="accordionExample">
-                <div class="accordion-item">
+  <!-- Faq Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5">
+            <h1 class="mb-3">Pertanyaan Umum</h1>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <!-- Accordion Item 1 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Bagaimana cara melakukan pemesanan mobil?
+                            <span class="accordion-title">1. Bagaimana cara melakukan pemesanan mobil?</span>
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                        <div class="accordion-body bs-primary-border-subtle">
-                            Kunjungi halaman pemesanan kami, Pilih jenis mobil yang diinginkan, pilih tanggal dan waktu sewa. Setelah mengisi formulir pemesanan, Anda harus membayar biaya sewa dan admin akan mengkonfirmasi sewa.
+                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Kunjungi halaman pemesanan kami, Pilih jenis mobil yang diinginkan, pilih tanggal dan waktu
+                            sewa. Setelah mengisi formulir pemesanan, Anda harus membayar biaya sewa dan admin akan
+                            mengkonfirmasi sewa.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 2 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Apa syarat dan ketentuan untuk menyewa mobil?
+                            <span class="accordion-title">2. Apa syarat dan ketentuan untuk menyewa mobil?</span>
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Anda harus memiliki usia minimal 21 tahun. Memiliki SIM yang masih berlaku. Menyediakan identitas yang valid, seperti KTP.
+                            Anda harus memiliki usia minimal 21 tahun. Memiliki SIM yang masih berlaku. Menyediakan
+                            identitas yang valid, seperti KTP.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 3 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Bagaimana metode pembayaran yang diterima?
+                            <span class="accordion-title">3. Bagaimana metode pembayaran yang diterima?</span>
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -381,24 +411,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 4 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Apakah ada biaya tambahan yang harus saya bayar?
+                            <span class="accordion-title">4. Apakah ada biaya tambahan yang harus saya bayar?</span>
                         </button>
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Biaya sewa mobil sudah termasuk dalam harga yang tertera. Namun, biaya seperti, biaya pengemudi tambahan dan biaya bahan bakar kendaraan ditanggung penyewa.
+                            Biaya sewa mobil sudah termasuk dalam harga yang tertera. Namun, biaya seperti, biaya pengemudi
+                            tambahan dan biaya bahan bakar kendaraan ditanggung penyewa.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 5 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Bagaimana kebijakan pembatalan?
+                            <span class="accordion-title">5. Bagaimana kebijakan pembatalan?</span>
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -407,11 +444,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 6 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            Apakah ada batasan jarak perjalanan?
+                            <span class="accordion-title">6. Apakah ada batasan jarak perjalanan?</span>
                         </button>
                     </h2>
                     <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -420,40 +460,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 7 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                            Apa yang harus dilakukan jika mobil mengalami masalah selama penyewaan?
+                            <span class="accordion-title">7. Apakah saya dapat mengubah atau membatalkan pemesanan saya?</span>
                         </button>
                     </h2>
                     <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Kami menyediakan layanan bantuan darurat 24 jam. Hubungi nomor yang tercantum di konfirmasi pemesanan Anda untuk mendapatkan bantuan segera.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                            Bagaimana saya dapat mengubah atau membatalkan pemesanan saya?
-                        </button>
-                    </h2>
-                    <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             Untuk mengubah atau membatalkan pemesanan, silakan hubungi tim dukungan kami melalui email atau telepon.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 8 -->
+            <div class="accordion-item">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                            Bagaimana cara menghubungi tim dukungan pelanggan?
+                            data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            <span class="accordion-title">8. Bagaimana cara menghubungi tim dukungan pelanggan?</span>
                         </button>
                     </h2>
-                    <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="collapseEight" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             Anda dapat menghubungi tim dukungan kami melalui nomor telepon atau email yang tercantum di halaman kontak kami.
                         </div>
@@ -462,7 +496,12 @@
             </div>
         </div>
     </div>
-    <!-- Faq End -->
+</div>
+<!-- Faq End -->
+
+
+
+
 
     <!-- Call to Action Start -->
     <div class="container-xxl py-5">
@@ -471,15 +510,20 @@
                 <div class="bg-white rounded p-4" style="border: 1px solid rgba(0, 0, 0, .05);">
                     <div class="row g-5 align-items-center">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid rounded w-100" src="{{ asset('frontend/img/assets/assets-contact.jpg') }}" alt="">
+                            <img class="img-fluid rounded w-100"
+                                src="{{ asset('frontend/img/assets/assets-contact.jpg') }}" alt="">
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="mb-4">
                                 <h1 class="mb-3">Hubungi Kami</h1>
-                                <p style="text-align: justify">Kami siap membantu Anda merencanakan perjalanan dengan armada terbaik dan layanan pelanggan yang ramah dan profesional. Nikmati kenyamanan dan keamanan dengan kendaraan yang terawat dan pemesanan yang mudah bersama kami.</p>
+                                <p style="text-align: justify">Kami siap membantu Anda merencanakan perjalanan dengan
+                                    armada terbaik dan layanan pelanggan yang ramah dan profesional. Nikmati kenyamanan dan
+                                    keamanan dengan kendaraan yang terawat dan pemesanan yang mudah bersama kami.</p>
                             </div>
-                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
-                            <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat Pemesanan</a>
+                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i
+                                    class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
+                            <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat
+                                Pemesanan</a>
                         </div>
                     </div>
                 </div>
@@ -487,5 +531,21 @@
         </div>
     </div>
     <!-- Call to Action End -->
-    
 @endsection
+@push('style-alt')
+    <style>
+        .property-item {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .property-content {
+            flex-grow: 1;
+        }
+
+        .property-footer {
+            margin-top: auto;
+        }
+    </style>
+@endpush

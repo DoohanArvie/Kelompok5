@@ -1,3 +1,16 @@
+<style>
+    .nav-treeview {
+  transition: max-height 0.5s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.nav-item.has-treeview:hover .nav-treeview {
+  max-height: 500px; /* Atur sesuai kebutuhan tinggi maksimum sub-menu */
+}
+
+</style>
+
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
     id="sidenav-main">
     <div class="sidenav-header">
@@ -25,17 +38,53 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.types.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.types.index') }}">
+                <a href="#kategoriCollapse" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="kategoriCollapse">
                     <i class="fa-solid fa-list text-success text-lg opacity-10"></i>
-                    <span class="nav-link-text ms-1">{{ __('Kategori') }}</span>
+                    <span>
+                        {{ __('Kategori') }}
+                        
+                    </span>
                 </a>
+                <div class="collapse" id="kategoriCollapse">
+                    <div class="nav-item">
+                        <a href="{{ route('admin.typemotorcycles.index') }}" class="nav-link {{ request()->routeIs('admin.typesmotorcycles.index') ? 'active bg-primary text-white' : '' }}">
+                            <i class="fa-solid fa-motorcycle text-success text-lg opacity-10"></i>
+                            <span>Kategori Motor</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{{ route('admin.types.index') }}" class="nav-link {{ request()->routeIs('admin.types.index') ? 'active bg-primary text-white' : '' }}">
+                            <i class="fa-solid fa-car text-success text-lg opacity-10"></i>
+                            <span>Kategori Mobil</span>
+                        </a>
+                    </div>
+                </div>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.cars.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.cars.index') }}">
-                    <i class="fa-solid fa-car text-info text-lg opacity-10"></i>
-                    <span class="nav-link-text ms-1">{{ __('Mobil') }}</span>
+                <a href="#kendaraanCollapse" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="kendaraanCollapse">
+                    <i class="fa-solid fa-ring text-info text-lg opacity-10"></i>
+                    <span class="nav-link-text ms-1">
+                        Kendaraan
+                    </span>
                 </a>
+                <div class="collapse" id="kendaraanCollapse">
+                    <div class="nav-item">
+                        <a href="{{ route('admin.motorcycles.index') }}" class="nav-link {{ request()->routeIs('admin.motorcycles.index') ? 'active bg-primary text-white' : '' }}">
+                            <i class="fa-solid fa-motorcycle text-info text-lg opacity-10"></i>
+                            <span class="nav-link-text ms-1">Motor</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a href="{{ route('admin.cars.index') }}" class="nav-link {{ request()->routeIs('admin.cars.index') ? 'active bg-primary text-white' : '' }}">
+                            <i class="fa-solid fa-car text-info text-lg opacity-10"></i>
+                            <span class="nav-link-text ms-1">Mobil</span>
+                        </a>
+                    </div>
+                    </div>
             </li>
+
+
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.testimonials.index') }}">
                     <i class="fa-solid fa-quote-left text-danger text-lg opacity-10"></i>

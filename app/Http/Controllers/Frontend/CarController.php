@@ -22,9 +22,10 @@ class CarController extends Controller
         return view('frontend.car.index', compact('cars'));
     }
 
-    public function show(Car $car)
+    public function show($id)
     {
-        return view('frontend.car.show', compact('car'));
+        $cars = Car::findorFail($id);
+        return view('frontend.car.show', compact('cars'));
     }
 
     public function store(BookingRequest $request)
