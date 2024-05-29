@@ -24,7 +24,7 @@ use App\Http\Controllers\Frontend\ProfileController;
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('daftar-mobil', [CarController::class, 'index'])->name('car.index');
-Route::get('daftar-mobil/{car}', [CarController::class, 'show'])->name('car.show');
+Route::get('/daftar-mobil/{car}', [CarController::class, 'show'])->name('car.show');
 Route::post('daftar-mobil', [CarController::class, 'store'])->name('car.store');
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/{blog:slug}', [BlogController::class, 'show'])->name('blog.show');
@@ -50,7 +50,9 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::get('users', [UserController::class, 'index'])->name('users.index');
 
     Route::resource('cars', \App\Http\Controllers\Admin\CarController::class);
+    Route::resource('motorcycles', \App\Http\Controllers\Admin\MotorcycleController::class);
     Route::resource('types', \App\Http\Controllers\Admin\TypeController::class);
+    Route::resource('typemotorcycles', \App\Http\Controllers\Admin\TypeMotorcycleController::class);
     Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
     Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
     Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index','store','update']);

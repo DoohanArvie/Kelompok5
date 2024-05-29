@@ -1527,8 +1527,8 @@ h5,
 }
 
 .slide {
-    height: 100vh;
-    min-height: 900px;
+    /* height: 100vh; */
+    /* min-height: 900px; */
     background-size: cover;
 }
 
@@ -2553,7 +2553,7 @@ h5,
 /*** Category ***/
 .cat-item div {
     background: #ffffff;
-    border: 1px dashed rgba(0, 185, 142, 0.3);
+    border: 1px dashed var(--primary);
     transition: 0.5s;
 }
 
@@ -2593,11 +2593,11 @@ h5,
 }
 
 .property-item .border-top {
-    border-top: 1px dashed rgba(0, 185, 142, 0.3) !important;
+    border-top: 1px dashed var(--primary) !important;
 }
 
 .property-item .border-end {
-    border-right: 1px dashed rgba(0, 185, 142, 0.3) !important;
+    border-right: 1px dashed var(--primary) !important;
 }
 
 /*** Team ***/
@@ -2631,25 +2631,25 @@ h5,
 
 /*** Testimonial ***/
 .testimonial-carousel {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    /* padding-left: 1.5rem;
+    padding-right: 1.5rem; */
 }
 
 @media (min-width: 576px) {
     .testimonial-carousel {
-        padding-left: 4rem;
-        padding-right: 4rem;
+        /* padding-left: 4rem;
+        padding-right: 4rem; */
     }
 }
 
 .testimonial-carousel .testimonial-item .border {
-    border: 1px dashed rgba(0, 185, 142, 0.3) !important;
+    border: 1px dashed var(--primary) !important;
 }
 
 .testimonial-carousel .owl-nav {
     position: absolute;
     width: 100%;
-    height: 40px;
+    height: auto;
     top: calc(50% - 20px);
     left: 0;
     display: flex;

@@ -10,7 +10,7 @@
                             <div class="col-8">
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                       Menunggu Pembayaran
+                                        Menunggu Pembayaran
                                     </p>
                                     <h5 class="font-weight-bolder">150</h5>
                                     <p class="mb-0">
@@ -35,7 +35,7 @@
                             <div class="col-8">
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                       Menunggu Konfirmasi
+                                        Menunggu Konfirmasi
                                     </p>
                                     <h5 class="font-weight-bolder">50</h5>
                                     <p class="mb-0">
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-         <div class="row mt-4">
+        <div class="row mt-4">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                 <div class="card">
                     <div class="card-body p-3">
@@ -112,7 +112,7 @@
                             <div class="col-8">
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                      Jumlah Kendaraan
+                                        Jumlah Kendaraan
                                     </p>
                                     <h5 class="font-weight-bolder">150</h5>
                                     <p class="mb-0">
@@ -137,7 +137,7 @@
                             <div class="col-8">
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                       Total Sewa
+                                        Total Sewa
                                     </p>
                                     <h5 class="font-weight-bolder">200</h5>
                                     <p class="mb-0">
@@ -187,7 +187,7 @@
                             <div class="col-8">
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                       Hubungi Kami
+                                        Hubungi Kami
                                     </p>
                                     <h5 class="font-weight-bolder">530</h5>
                                     <p class="mb-0">
@@ -197,8 +197,8 @@
                                 </div>
                             </div>
                             <div class="col-4 text-end">
-                               <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                  <i class="fa-solid fa-phone-volume  text-lg opacity-10" aria-hidden="true"></i>
+                                <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-phone-volume  text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
