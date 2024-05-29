@@ -30,8 +30,6 @@
         </div>
     </div>
     <!-- Header End -->
-
-
     <!-- Search Start -->
     <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;">
         <div class="container">
@@ -80,58 +78,47 @@
             </div>
         </div>
     </div>
-
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-4"><strong>Cara Pemesanan</strong></h1>
-                <p class="lead mb-5">Langkah yang mudah untuk menyewa mobil</p>
-            </div>
-        </div>
-
-        <div class="row text-center">
-            @php
-                $steps = [
-                    [
-                        'title' => 'Pilih Mobil',
-                        'description' =>
-                            'Pilih mobil yang sesuai dengan kebutuhan dan keinginan Anda dari berbagai pilihan yang tersedia.',
-                    ],
-                    [
-                        'title' => 'Isi Form',
-                        'description' =>
-                            'Lengkapi formulir dengan informasi pribadi dan detail pemesanan Anda untuk melanjutkan proses.',
-                    ],
-                    [
-                        'title' => 'Pembayaran',
-                        'description' =>
-                            'Lakukan pembayaran melalui metode yang tersedia untuk menyelesaikan proses pemesanan mobil Anda.',
-                    ],
-                ];
-            @endphp
-            @foreach ($steps as $index => $step)
-                <div class="col-lg-4 mb-5">
-                    <div class="card text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="card-header">
-                            <div class="fs-1 text-primary">{{ $index + 1 }}</div>
-                        </div>
-                        <div class="card-body">
-                            <h3>{{ $step['title'] }}</h3>
-                            <p>{{ $step['description'] }}</p>
-                        </div>
-                    </div>
-                </div>
-                {{-- <div class="col-lg-4 mb-5">
-                    <div class="fs-1 text-primary">{{ $index + 1 }}</div>
-                    <h3>{{ $step['title'] }}</h3>
-                    <p>{{ $step['description'] }}</p>
-                </div> --}}
-            @endforeach
-            <hr>
+<!-- Cara Pemesanan -->
+    <<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="mb-4"><strong>Cara Pemesanan</strong></h1>
+            <p class="lead mb-5">Ikuti Langkah Mudah Ini untuk Menyewa di OtoRent</p>
         </div>
     </div>
 
-
+    <div class="row text-center">
+        @php
+            $steps = [
+                [
+                    'title' => 'Pilih Mobil',
+                    'description' => 'Pilih mobil yang sesuai dengan kebutuhan dan keinginan Anda dari berbagai pilihan yang tersedia.',
+                ],
+                [
+                    'title' => 'Isi Form',
+                    'description' => 'Lengkapi formulir dengan informasi pribadi dan detail pemesanan Anda untuk melanjutkan proses.',
+                ],
+                [
+                    'title' => 'Pembayaran',
+                    'description' => 'Lakukan pembayaran melalui metode yang tersedia untuk menyelesaikan proses pemesanan mobil Anda.',
+                ],
+            ];
+        @endphp
+        @foreach ($steps as $index => $step)
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-header bg-primary text-white">
+                        <div class="fs-1">{{ $index + 1 }}</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ $step['title'] }}</h3>
+                        <p class="card-text">{{ $step['description'] }}</p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
     <!-- Category Start -->
     <div class="container-xxl py-5">
         <div class="container">

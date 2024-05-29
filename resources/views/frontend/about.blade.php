@@ -68,7 +68,7 @@
     <div class="container">
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" >
             <h1 class="mb-3">Team Kami</h1>
-            <p>Di DeMobil, kami menciptakan pengalaman digital yang luar biasa di dunia otomatif. Dengan tim ahli yang berpengalaman dan berdidikasi, kami menghadirkan teknologi mutakhir, desain menarik, strategi pemasaran efektif, dan konten informatif untuk memenuhi kebutuhan Anda. Kami berkomitmen  untuk terus berinovasi dan memberikan solusi terbaik  bagi Anda. Mari berkenalan dengan Tim Pengembang Website DeMobil</p>
+            <p>OtoRent menciptakan pengalaman digital yang luar biasa di dunia otomatif. Dengan tim ahli yang berpengalaman dan berdidikasi, kami menghadirkan teknologi persewaan rental, desain website menarik, dan konten informatif untuk memenuhi kebutuhan Anda. Kami berkomitmen  untuk terus berinovasi dan memberikan solusi terbaik  bagi Anda. Mari berkenalan dengan Tim Pengembang Website OtoRent</p>
         </div>
         <div class="row g-4 align-items-stretch">
             @foreach ($teams as $team)
