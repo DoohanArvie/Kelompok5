@@ -24,7 +24,7 @@ use App\Http\Controllers\Frontend\ProfileController;
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('daftar-mobil', [CarController::class, 'index'])->name('car.index');
-Route::get('daftar-mobil/{car}', [CarController::class, 'show'])->name('car.show');
+Route::get('/daftar-mobil/{car}', [CarController::class, 'show'])->name('car.show');
 Route::post('daftar-mobil', [CarController::class, 'store'])->name('car.store');
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/{blog:slug}', [BlogController::class, 'show'])->name('blog.show');

@@ -52,7 +52,7 @@
 
                         <div class="mb-3">
                             <label for="sim" class="form-label">{{ __('SIM') }}</label>
-                            <input type="file" id="sim" name="sim" class="form-control" accept=".pdf,.jpg,.jpeg,.png" {{ $user->hasUpdatedProfile() ? 'disabled' : 'required' }}>
+                            <input type="file" id="sim" name="sim" class="form-control form-control-lg" accept=".pdf,.jpg,.jpeg,.png" {{ $user->hasUpdatedProfile() ? 'disabled' : 'required' }}>
                             @if ($user->sim)
                                 <div>
                                     <a href="{{ Storage::url('sim/' . $user->sim) }}">{{ $user->sim }}</a>
