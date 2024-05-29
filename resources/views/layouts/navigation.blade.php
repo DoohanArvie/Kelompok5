@@ -37,52 +37,51 @@
                     <span class="nav-link-text ms-1">{{ __('Users') }}</span>
                 </a>
             </li>
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+            <li class="nav-item">
+                <a href="#kategoriCollapse" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="kategoriCollapse">
                     <i class="fa-solid fa-list text-success text-lg opacity-10"></i>
                     <span>
                         {{ __('Kategori') }}
-                        <i class="right fas fa-angle-left"></i>
+                        
                     </span>
                 </a>
-                <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
+                <div class="collapse" id="kategoriCollapse">
+                    <div class="nav-item">
                         <a href="{{ route('admin.typemotorcycles.index') }}" class="nav-link {{ request()->routeIs('admin.typesmotorcycles.index') ? 'active bg-primary text-white' : '' }}">
                             <i class="fa-solid fa-motorcycle text-success text-lg opacity-10"></i>
                             <span>Kategori Motor</span>
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </div>
+                    <div class="nav-item">
                         <a href="{{ route('admin.types.index') }}" class="nav-link {{ request()->routeIs('admin.types.index') ? 'active bg-primary text-white' : '' }}">
                             <i class="fa-solid fa-car text-success text-lg opacity-10"></i>
                             <span>Kategori Mobil</span>
                         </a>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </li>
 
-            <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+            <li class="nav-item">
+                <a href="#kendaraanCollapse" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="kendaraanCollapse">
                     <i class="fa-solid fa-ring text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">
                         Kendaraan
-                        <i class="fas fa-angle-left"></i>
                     </span>
                 </a>
-                <ul class="nav nav-treeview" style="display: none;">
-                    <li class="nav-item">
+                <div class="collapse" id="kendaraanCollapse">
+                    <div class="nav-item">
                         <a href="{{ route('admin.motorcycles.index') }}" class="nav-link {{ request()->routeIs('admin.motorcycles.index') ? 'active bg-primary text-white' : '' }}">
                             <i class="fa-solid fa-motorcycle text-info text-lg opacity-10"></i>
                             <span class="nav-link-text ms-1">Motor</span>
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </div>
+                    <div class="nav-item">
                         <a href="{{ route('admin.cars.index') }}" class="nav-link {{ request()->routeIs('admin.cars.index') ? 'active bg-primary text-white' : '' }}">
                             <i class="fa-solid fa-car text-info text-lg opacity-10"></i>
                             <span class="nav-link-text ms-1">Mobil</span>
                         </a>
-                    </li>
-                </ul>
+                    </div>
+                    </div>
             </li>
 
 
