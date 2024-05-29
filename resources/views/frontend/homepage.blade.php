@@ -4,7 +4,7 @@
     <div class="container-fluid header bg-white p-0">
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
-                <h1 class="display-5 animated fadeIn mb-4"><span class="text-primary">DeMobil</span> Solusi Perjalanan Anda!
+                <h1 class="display-5 animated fadeIn mb-4"><span class="text-primary">OtoRent</span> Solusi Perjalanan Anda!
                 </h1>
                 <h5 class="animated fadeIn pb-2">Temukan Mobil dan Motor terbaik untuk setiap perjalanan Anda!</h5>
                 <h5 class="animated fadeIn pb-2">Sewa sekarang dan rasakan kenyamanannya!</h5>
@@ -354,33 +354,38 @@
     </div>
     <!-- Testimonial End -->
 
-    <!-- Faq Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="mb-3">Pertanyaan Umum</h1>
-            </div>
-            <div class="accordion wow fadeInUp" data-wow-delay="0.1s" id="accordionExample">
-                <div class="accordion-item">
+  <!-- Faq Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5">
+            <h1 class="mb-3">Pertanyaan Umum</h1>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <!-- Accordion Item 1 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Bagaimana cara melakukan pemesanan mobil?
+                            <span class="accordion-title">1. Bagaimana cara melakukan pemesanan mobil?</span>
                         </button>
                     </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                        <div class="accordion-body bs-primary-border-subtle">
+                    <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
                             Kunjungi halaman pemesanan kami, Pilih jenis mobil yang diinginkan, pilih tanggal dan waktu
                             sewa. Setelah mengisi formulir pemesanan, Anda harus membayar biaya sewa dan admin akan
                             mengkonfirmasi sewa.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 2 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Apa syarat dan ketentuan untuk menyewa mobil?
+                            <span class="accordion-title">2. Apa syarat dan ketentuan untuk menyewa mobil?</span>
                         </button>
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -390,11 +395,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 3 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Bagaimana metode pembayaran yang diterima?
+                            <span class="accordion-title">3. Bagaimana metode pembayaran yang diterima?</span>
                         </button>
                     </h2>
                     <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -403,11 +411,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 4 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Apakah ada biaya tambahan yang harus saya bayar?
+                            <span class="accordion-title">4. Apakah ada biaya tambahan yang harus saya bayar?</span>
                         </button>
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -417,11 +428,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 5 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Bagaimana kebijakan pembatalan?
+                            <span class="accordion-title">5. Bagaimana kebijakan pembatalan?</span>
                         </button>
                     </h2>
                     <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -430,11 +444,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 6 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            Apakah ada batasan jarak perjalanan?
+                            <span class="accordion-title">6. Apakah ada batasan jarak perjalanan?</span>
                         </button>
                     </h2>
                     <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -443,52 +460,48 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 7 -->
+            <div class="accordion-item mb-3">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                            Apa yang harus dilakukan jika mobil mengalami masalah selama penyewaan?
+                            <span class="accordion-title">7. Apakah saya dapat mengubah atau membatalkan pemesanan saya?</span>
                         </button>
                     </h2>
                     <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Kami menyediakan layanan bantuan darurat 24 jam. Hubungi nomor yang tercantum di konfirmasi
-                            pemesanan Anda untuk mendapatkan bantuan segera.
+                            Untuk mengubah atau membatalkan pemesanan, silakan hubungi tim dukungan kami melalui email atau telepon.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item">
+            </div>
+            <!-- Accordion Item 8 -->
+            <div class="accordion-item">
+                <div class="accordion-card card shadow-sm">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                            Bagaimana saya dapat mengubah atau membatalkan pemesanan saya?
+                            <span class="accordion-title">8. Bagaimana cara menghubungi tim dukungan pelanggan?</span>
                         </button>
                     </h2>
-                    <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div id="collapseEight" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Untuk mengubah atau membatalkan pemesanan, silakan hubungi tim dukungan kami melalui email atau
-                            telepon.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                            Bagaimana cara menghubungi tim dukungan pelanggan?
-                        </button>
-                    </h2>
-                    <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Anda dapat menghubungi tim dukungan kami melalui nomor telepon atau email yang tercantum di
-                            halaman kontak kami.
+                            Anda dapat menghubungi tim dukungan kami melalui nomor telepon atau email yang tercantum di halaman kontak kami.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Faq End -->
+</div>
+<!-- Faq End -->
+
+
+
+
 
     <!-- Call to Action Start -->
     <div class="container-xxl py-5">
