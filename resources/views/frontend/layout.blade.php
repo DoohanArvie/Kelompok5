@@ -127,11 +127,11 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-6 col-md-6">
-                    <h1 class="text-white mb-4">DeMobil</h1>
+                    <h1 class="text-white mb-4">OtoRent</h1>
                     <p>{{ $setting->footer_description }}</p>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jln. Pemuda No 1</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+628 123 456 789</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>demobil@example.com</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>otorent05@gmail.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href="{{ $setting->facebook }}"><i
                                 class="fab fa-facebook-f"></i></a>
@@ -157,8 +157,8 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">DeMobil</a>, All Right Reserved.
-                        Designed By Kelompok 5
+                        &copy; <a class="border-bottom" href="#">OtoRent</a>, All Right Reserved.
+                        Designed By  Ankavi Team
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
