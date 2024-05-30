@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomepageController;
 use App\Http\Controllers\Frontend\CarController;
+use App\Http\Controllers\Frontend\MotoController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Frontend\ProfileController;
+use App\Models\Motorcycle;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +25,13 @@ use App\Http\Controllers\Frontend\ProfileController;
 */
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+// mobil
 Route::get('daftar-mobil', [CarController::class, 'index'])->name('car.index');
 Route::get('/daftar-mobil/{car}', [CarController::class, 'show'])->name('car.show');
+// motor
+Route::get('daftar-motor', [MotoController::class, 'index'])->name('moto.index');
+Route::get('/daftar-motor/{moto}', [MotoController::class, 'show'])->name('moto.show');
+
 Route::post('daftar-mobil', [CarController::class, 'store'])->name('car.store');
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/{blog:slug}', [BlogController::class, 'show'])->name('blog.show');
