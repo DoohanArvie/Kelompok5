@@ -20,7 +20,10 @@ return new class extends Migration
             $table->integer('pintu');
             $table->integer('penumpang');
             $table->text('description');
-            $table->text('image');
+            $table->text('image1')->nullable();
+            $table->text('image2')->nullable();
+            $table->text('image3')->nullable();
+            $table->text('image4')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
         });

@@ -2,112 +2,173 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Motorcycle;
 use App\Models\TypeMotorcycle;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
-use App\Http\Requests\Admin\MotorcycleRequest;
-
+use Illuminate\Support\Facades\Storage;
 class MotorcycleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $motorcycles = Motorcycle::get();
-
         return view('admin.motorcycles.index', compact('motorcycles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $statuses = Motorcycle::statuses();
-        $types = TypeMotorcycle::get(['id','nama']);
-
-        return view('admin.motorcycles.create', compact('statuses','types'));
+        $types = TypeMotorcycle::get(['id', 'nama']);
+        return view('admin.motorcycles.create', compact('statuses', 'types'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(MotorcycleRequest $request)
+    public function store(Request $request)
     {
-        if($request->validated()) {
-            $image = $request->file('image')->store(
-                'motorcycles/images', 'public'
-            );
-            $slug = Str::slug($request->nama_motor, '-');
+        $request->validate([
+            'nama_motor' => 'required|string|max:255',
+            'type_id' => 'required|integer',
+            'price' => 'required|numeric',
+            'image1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image2' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image3' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image4' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'nullable|string',
+            'status' => 'required|integer',
+        ]);
 
-            Motorcycle::create($request->except('image') + ['image' => $image, 'slug' => $slug]);
+        $motorcycle = new Motorcycle();
+        $motorcycle->nama_motor = $request->nama_motor;
+        $motorcycle->type_id = $request->type_id;
+        $motorcycle->price = $request->price;
+        $motorcycle->slug = Str::slug($request->nama_motor, '-');
+
+        if ($request->hasFile('image1')) {
+            $motorcycle->image1 = $request->file('image1')->store('motorcycles/images', 'public');
+        }
+        if ($request->hasFile('image2')) {
+            $motorcycle->image2 = $request->file('image2')->store('motorcycles/images', 'public');
+        }
+        if ($request->hasFile('image3')) {
+            $motorcycle->image3 = $request->file('image3')->store('motorcycles/images', 'public');
+        }
+        if ($request->hasFile('image4')) {
+            $motorcycle->image4 = $request->file('image4')->store('motorcycles/images', 'public');
         }
 
-        return redirect()->route('admin.motorcycles.index')->with([
-            'message' => 'Motorcycle berhasil dibuat',
-            'alert-type' => 'success'
-        ]);
+        $motorcycle->description = $request->description;
+        $motorcycle->status = $request->status;
+        $motorcycle->save();
+
+        return redirect()->route('admin.motorcycles.index')->with('success', 'Motorcycle created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $motorcycle = Motorcycle::findOrFail($id);
         return view('admin.motorcycles.show', compact('motorcycle'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Motorcycle $motorcycle)
     {
         $statuses = Motorcycle::statuses();
-        $types = TypeMotorcycle::get(['id','nama']);
-
-        return view('admin.motorcycles.edit', compact('motorcycle','types','statuses'));
+        $types = TypeMotorcycle::get(['id', 'nama']);
+        return view('admin.motorcycles.edit', compact('motorcycle', 'types', 'statuses'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(MotorcycleRequest $request, Motorcycle $motorcycle)
+    public function update(Request $request, Motorcycle $motorcycle)
     {
-        if($request->validated()){
-            $slug = Str::slug($request->nama_motor, '-');
-            if($request->image) {
-                File::delete('storage/' . $motorcycle->image);
-                $image = $request->file('image')->store(
-                    'motorcycles/images', 'public'
-                );
-                $motorcycle->update($request->except('image') + ['image' => $image, 'slug' => $slug]);
-            }else {
-                $motorcycle->update($request->validated() + ['slug' => $slug]);
+        $request->validate([
+            'nama_motor' => 'required|string|max:255',
+            'type_id' => 'required|integer',
+            'price' => 'required|numeric',
+            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'nullable|string',
+            'status' => 'required|integer',
+        ]);
+
+        $motorcycle->nama_motor = $request->nama_motor;
+        $motorcycle->type_id = $request->type_id;
+        $motorcycle->price = $request->price;
+        $motorcycle->slug = Str::slug($request->nama_motor, '-');
+
+        if ($request->hasFile('image1')) {
+            if ($motorcycle->image1) {
+                Storage::disk('public')->delete($motorcycle->image1);
             }
+            $motorcycle->image1 = $request->file('image1')->store('motorcycles/images', 'public');
+        }
+        if ($request->hasFile('image2')) {
+            if ($motorcycle->image2) {
+                Storage::disk('public')->delete($motorcycle->image2);
+            }
+            $motorcycle->image2 = $request->file('image2')->store('motorcycles/images', 'public');
+        }
+        if ($request->hasFile('image3')) {
+            if ($motorcycle->image3) {
+                Storage::disk('public')->delete($motorcycle->image3);
+            }
+            $motorcycle->image3 = $request->file('image3')->store('motorcycles/images', 'public');
+        }
+        if ($request->hasFile('image4')) {
+            if ($motorcycle->image4) {
+                Storage::disk('public')->delete($motorcycle->image4);
+            }
+            $motorcycle->image4 = $request->file('image4')->store('motorcycles/images', 'public');
         }
 
-        return redirect()->route('admin.motorcycles.index')->with([
-            'message' => 'Motorcycle berhasil diedit',
-            'alert-type' => 'info'
-        ]);
+        $motorcycle->description = $request->description;
+        $motorcycle->status = $request->status;
+        $motorcycle->save();
+
+        return redirect()->route('admin.motorcycles.index')->with('success', 'Motorcycle updated successfully.');
+    }
+    public function editImage($id, $image)
+    {
+        $motorcycle = Motorcycle::findOrFail($id);
+        return view('admin.motorcycles.edit_image', compact('motorcycle', 'image'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function updateImage(Request $request, $id, $image)
+    {
+        $request->validate([
+            $image => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $motorcycle = Motorcycle::findOrFail($id);
+
+        if ($request->hasFile($image)) {
+            if ($motorcycle->$image) {
+                Storage::disk('public')->delete($motorcycle->$image);
+            }
+            $motorcycle->$image = $request->file($image)->store('motorcycles/images', 'public');
+        }
+
+        $motorcycle->save();
+
+        return redirect()->route('admin.motorcycles.edit', $motorcycle)->with('success', 'Gambar berhasil diperbarui.');
+    }
+
     public function destroy(Motorcycle $motorcycle)
     {
-        File::delete('storage/' . $motorcycle->image);
+        if ($motorcycle->image1) {
+            Storage::disk('public')->delete($motorcycle->image1);
+        }
+        if ($motorcycle->image2) {
+            Storage::disk('public')->delete($motorcycle->image2);
+        }
+        if ($motorcycle->image3) {
+            Storage::disk('public')->delete($motorcycle->image3);
+        }
+        if ($motorcycle->image4) {
+            Storage::disk('public')->delete($motorcycle->image4);
+        }
+
         $motorcycle->delete();
 
-        return redirect()->back()->with([
-            'message' => 'Motorcycle berhasil dihapus',
-            'alert-type' => 'danger'
-        ]);
+        return redirect()->back()->with('success', 'Motorcycle deleted successfully.');
     }
 }

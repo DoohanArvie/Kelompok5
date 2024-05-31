@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string('slug');
             $table->foreignId('type_id');
             $table->decimal('price', 15, 2);
-            $table->integer('penumpang');
             $table->text('description');
-            $table->text('image');
+            $table->text('image1')->nullable();
+            $table->text('image2')->nullable();
+            $table->text('image3')->nullable();
+            $table->text('image4')->nullable();
             $table->integer('status')->nullable();
             $table->timestamps();
         });

@@ -7,16 +7,16 @@
                 <div id="carouselExample" class="carousel slide carousel-fade wow fadeInUp" data-wow-delay="0.1s">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ Storage::url($cars->image) }}" class="d-block img-fluid w-100" alt="...">
+                            <img src="{{ asset('storage/' . $cars->image1) }}" class="d-block img-fluid w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ Storage::url($cars->image) }}" class="d-block img-fluid w-100" alt="...">
+                            <img src="{{ asset('storage/' . $cars->image2) }}" class="d-block img-fluid w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ Storage::url($cars->image) }}" class="d-block img-fluid w-100" alt="...">
+                            <img src="{{ asset('storage/' . $cars->image3) }}" class="d-block img-fluid w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ Storage::url($cars->image) }}" class="d-block img-fluid w-100" alt="...">
+                            <img src="{{ asset('storage/' . $cars->image4) }}" class="d-block img-fluid w-100" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -32,19 +32,19 @@
                 </div>
                 <div class="row mt-2 wow slideInLeft" data-wow-delay="0.1s">
                     <div class="col-3 thumbnail">
-                        <img src="{{ Storage::url($cars->image) }}" class="img-fluid" data-bs-target="#carouselExample"
+                        <img src="{{ asset('storage/' . $cars->image1) }}" class="img-fluid" data-bs-target="#carouselExample"
                             data-bs-slide-to="0" alt="...">
                     </div>
                     <div class="col-3 thumbnail">
-                        <img src="{{ Storage::url($cars->image) }}" class="img-fluid" data-bs-target="#carouselExample"
+                        <img src="{{ asset('storage/' . $cars->image2) }}" class="img-fluid" data-bs-target="#carouselExample"
                             data-bs-slide-to="1" alt="...">
                     </div>
                     <div class="col-3 thumbnail">
-                        <img src="{{ Storage::url($cars->image) }}" class="img-fluid" data-bs-target="#carouselExample"
+                        <img src="{{ asset('storage/' . $cars->image3) }}" class="img-fluid" data-bs-target="#carouselExample"
                             data-bs-slide-to="2" alt="...">
                     </div>
                     <div class="col-3 thumbnail">
-                        <img src="{{ Storage::url($cars->image) }}" class="img-fluid" data-bs-target="#carouselExample"
+                        <img src="{{ asset('storage/' . $cars->image4) }}" class="img-fluid" data-bs-target="#carouselExample"
                             data-bs-slide-to="3" alt="...">
                     </div>
                 </div>

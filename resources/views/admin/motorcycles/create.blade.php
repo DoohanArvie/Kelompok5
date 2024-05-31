@@ -42,24 +42,30 @@
                                             value="{{ old('price') }}" id="price">
                                     </div>
                                 </div>
-                                <!--<div class="form-group row border-bottom pb-4">
-                                    <label for="mesin" class="col-sm-2 col-form-label">Mesin</label>
-                                    <div class="col-sm-12">
-                                        <input type="number" class="form-control" name="mesin"
-                                            value="{{ old('mesin') }}" id="mesin">
-                                    </div>
-                                </div>-->
                                 <div class="form-group row border-bottom pb-4">
-                                    <label for="penumpang" class="col-sm-2 col-form-label">Jumlah Penumpang</label>
+                                    <label for="image1" class="col-sm-2 col-form-label">Gambar-1</label>
                                     <div class="col-sm-12">
-                                        <input type="number" class="form-control" name="penumpang"
-                                            value="{{ old('penumpang') }}" id="penumpang">
+                                        <input type="file" class="form-control" id="image1" name="image1" required>
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
-                                    <label for="image" class="col-sm-2 col-form-label">Gambar</label>
+                                    <label for="image2" class="col-sm-2 col-form-label">Gambar-2</label>
                                     <div class="col-sm-12">
-                                        <input type="file" class="form-control" id="image" name="image" required>
+                                        <input type="file" class="form-control" id="image2" name="image2" required>
+                                    </div>
+                                </div>
+                                <!-- Tambahkan input file untuk Gambar-3 -->
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="image3" class="col-sm-2 col-form-label">Gambar-3</label>
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" id="image3" name="image3" required>
+                                    </div>
+                                </div>
+                                <!-- Tambahkan input file untuk Gambar-4 -->
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="image4" class="col-sm-2 col-form-label">Gambar-4</label>
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" id="image4" name="image4" required>
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">

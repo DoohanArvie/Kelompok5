@@ -165,7 +165,7 @@
                             data-passenger="{{ $car->penumpang }}">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
-                                    <img class="img-fluid" src="{{ Storage::url($car->image) }}" alt="gambar-mobil">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $car->image1) }}" alt="gambar-mobil">
                                     <div
                                         class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                         {{ $car->type->nama }}

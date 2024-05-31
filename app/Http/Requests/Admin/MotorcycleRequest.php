@@ -9,42 +9,26 @@ class MotorcycleRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize()
     {
-        return true; 
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    public function rules(): array
+    public function rules()
     {
-        switch($this->method()){
-            case 'POST' : {
-                return [
-                    'nama_motor' => 'required|string|max:255|unique:motorcycles',
-                    'type_id' => 'required|numeric',
-                    'price' => 'required|numeric',
-                    'penumpang' => 'required|numeric',
-                    'description' => 'required',
-                    'image' => ['required','image','mimes:jpeg,png,jpg,gif','max:4096'],
-                    'status' =>  ['required']
-                ];
-            }
-            case 'PUT' :
-            case 'PATCH' : {
-                return [
-                    'nama_motor' => ['required', 'max:255', 'unique:motorcycles,nama_motor,'. $this->route()->motorcycle->id],
-                    'type_id' => 'required|numeric',
-                    'price' => 'required|numeric',
-                    'penumpang' => 'required|numeric',
-                    'description' => 'required',
-                    'image' =>  ['image','mimes:jpeg,png,jpg,gif','max:4096'],
-                    'status' =>  ['required']
-                ];
-            }
-        }
+        return [
+            'nama_motor' => 'required|string|max:255',
+            'type_id' => 'required|exists:type_motorcycles,id',
+            'price' => 'required|numeric',
+            'image1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image4' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'required|string|max:5000',
+            'status' => 'required|in:active,inactive',
+        ];
     }
 }
