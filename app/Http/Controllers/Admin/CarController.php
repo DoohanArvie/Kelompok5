@@ -2,113 +2,181 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Type;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
-use App\Http\Requests\Admin\CarRequest;
-
+use Illuminate\Support\Facades\Storage;
 class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $cars = Car::get();
-
-        return view('admin.cars.index', compact('cars'));
+        $car = Car::get();
+        return view('admin.cars.index', compact('car'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $statuses = Car::statuses();
-        $types = Type::get(['id','nama']);
-
-        return view('admin.cars.create', compact('statuses','types'));
+        $types = Type::get(['id', 'nama']);
+        return view('admin.cars.create', compact('statuses', 'types'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(CarRequest $request)
+    public function store(Request $request)
     {
-        if($request->validated()) {
-            $image = $request->file('image')->store(
-                'cars/images', 'public'
-            );
-            $slug = Str::slug($request->nama_mobil, '-');
+        $request->validate([
+            'nama_mobil' => 'required|string|max:255',
+            'type_id' => 'required|integer',
+            'price' => 'required|numeric',
+            'penumpang' => 'required|integer',
+            'pintu' => 'required|integer',
+            'image1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image2' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image3' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image4' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'nullable|string',
+            'status' => 'required|integer',
+        ]);
 
-            Car::create($request->except('image') + ['image' => $image,'slug' => $slug]);
+        $car = new Car();
+        $car->nama_mobil = $request->nama_mobil;
+        $car->type_id = $request->type_id;
+        $car->price = $request->price;
+        $car->penumpang = $request->penumpang;
+        $car->pintu= $request->pintu;
+        $car->slug = Str::slug($request->nama_mobil, '-');
+
+        if ($request->hasFile('image1')) {
+            $car->image1 = $request->file('image1')->store('cars/images', 'public');
+        }
+        if ($request->hasFile('image2')) {
+            $car->image2 = $request->file('image2')->store('cars/images', 'public');
+        }
+        if ($request->hasFile('image3')) {
+            $car->image3 = $request->file('image3')->store('cars/images', 'public');
+        }
+        if ($request->hasFile('image4')) {
+            $car->image4 = $request->file('image4')->store('cars/images', 'public');
         }
 
-        return redirect()->route('admin.cars.index')->with([
-            'message' => 'berhasil di buat',
-            'alert-type' => 'success'
-        ]);
+        $car->description = $request->description;
+        $car->status = $request->status;
+        $car->save();
+
+        return redirect()->route('admin.cars.index')->with('success', 'cars created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
-        //
-        $car = Car::with('types')->find($id);
-        return view('car.show', compact('car'));
+        $car = Car::findOrFail($id);
+        return view('admin.cars.show', compact('car'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Car $car)
     {
         $statuses = Car::statuses();
-        $types = Type::get(['id','nama']);
-
-        return view('admin.cars.edit', compact('car','types','statuses'));
+        $types = Type::get(['id', 'nama']);
+        return view('admin.cars.edit', compact('car', 'types', 'statuses'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(CarRequest $request, Car $car)
+    public function update(Request $request, Car $car)
     {
-        if($request->validated()){
-            $slug = Str::slug($request->nama_mobil, '-');
-            if($request->image) {
-                File::delete('storage/' . $car->image);
-                $image = $request->file('image')->store(
-                    'cars/images', 'public'
-                );
-                $car->update($request->except('image') + ['image' => $image, 'slug' => $slug]);
-            }else {
-                $car->update($request->validated() + ['slug' => $slug]);
+        $request->validate([
+            'nama_mobil' => 'required|string|max:255',
+            'type_id' => 'required|integer',
+            'price' => 'required|numeric',
+            'penumpang' => 'required|integer',
+            'pintu' => 'required|integer',
+            'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image4' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'nullable|string',
+            'status' => 'required|integer',
+        ]);
+
+        $car->nama_mobil = $request->nama_mobil;
+        $car->type_id = $request->type_id;
+        $car->price = $request->price;
+        $car->pintu= $request->pintu;
+        $car->penumpang = $request->penumpang;
+        $car->slug = Str::slug($request->nama_mobil, '-');
+
+        if ($request->hasFile('image1')) {
+            if ($car->image1) {
+                Storage::disk('public')->delete($car->image1);
             }
+            $car->image1 = $request->file('image1')->store('cars/images', 'public');
+        }
+        if ($request->hasFile('image2')) {
+            if ($car->image2) {
+                Storage::disk('public')->delete($car->image2);
+            }
+            $car->image2 = $request->file('image2')->store('cars/images', 'public');
+        }
+        if ($request->hasFile('image3')) {
+            if ($car->image3) {
+                Storage::disk('public')->delete($car->image3);
+            }
+            $car->image3 = $request->file('image3')->store('cars/images', 'public');
+        }
+        if ($request->hasFile('image4')) {
+            if ($car->image4) {
+                Storage::disk('public')->delete($car->image4);
+            }
+            $car->image4 = $request->file('image4')->store('cars/images', 'public');
         }
 
-        return redirect()->route('admin.cars.index')->with([
-            'message' => 'berhasil di edit',
-            'alert-type' => 'info'
-        ]);
+        $car->description = $request->description;
+        $car->status = $request->status;
+        $car->save();
+
+        return redirect()->route('admin.cars.index')->with('success', 'Car updated successfully.');
+    }
+    public function editImage($id, $image)
+    {
+        $car = Car::findOrFail($id);
+        return view('admin.cars.edit_image', compact('car', 'image'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function updateImage(Request $request, $id, $image)
+    {
+        $request->validate([
+            $image => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $car = Car::findOrFail($id);
+
+        if ($request->hasFile($image)) {
+            if ($car->$image) {
+                Storage::disk('public')->delete($car->$image);
+            }
+            $car->$image = $request->file($image)->store('cars/images', 'public');
+        }
+
+        $car->save();
+
+        return redirect()->route('admin.cars.edit', $car)->with('success', 'Gambar berhasil diperbarui.');
+    }
+
     public function destroy(Car $car)
     {
-        File::delete('storage/' . $car->image);
+        if ($car->image1) {
+            Storage::disk('public')->delete($car->image1);
+        }
+        if ($car->image2) {
+            Storage::disk('public')->delete($car->image2);
+        }
+        if ($car->image3) {
+            Storage::disk('public')->delete($car->image3);
+        }
+        if ($car->image4) {
+            Storage::disk('public')->delete($car->image4);
+        }
+
         $car->delete();
 
-        return redirect()->back()->with([
-            'message' => 'berhasil di hapus',
-            'alert-type' => 'danger'
-        ]);
+        return redirect()->back()->with('success', 'Car deleted successfully.');
     }
 }

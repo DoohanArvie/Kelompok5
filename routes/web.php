@@ -66,6 +66,10 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('cars', \App\Http\Controllers\Admin\CarController::class);
     Route::resource('motorcycles', \App\Http\Controllers\Admin\MotorcycleController::class);
+    Route::match(['get', 'post'], '/motorcycles/{motorcycle}/edit_image/{image}', [\App\Http\Controllers\Admin\MotorcycleController::class, 'editImage'])->name('motorcycles.edit_image');
+    Route::match(['get', 'post'], '/motorcycles/{motorcycle}/update_image/{image}', [\App\Http\Controllers\Admin\MotorcycleController::class, 'updateImage'])->name('motorcycles.update_image');
+    Route::match(['get', 'post'], '/cars/{car}/edit_image/{image}', [\App\Http\Controllers\Admin\CarController::class, 'editImage'])->name('cars.edit_image');
+    Route::match(['get', 'post'], '/cars/{car}/update_image/{image}', [\App\Http\Controllers\Admin\CarController::class, 'updateImage'])->name('cars.update_image');
     Route::resource('types', \App\Http\Controllers\Admin\TypeController::class);
     Route::resource('typemotorcycles', \App\Http\Controllers\Admin\TypeMotorcycleController::class);
     Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);

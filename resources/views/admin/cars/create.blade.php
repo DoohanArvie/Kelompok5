@@ -29,7 +29,7 @@
                                     <div class="col-sm-12">
                                         <select class="form-control" name="type_id" id="type_id">
                                             @foreach ($types as $type)
-                                                <option {{ old('type') == $type->id ? 'selected' : null }}
+                                                <option {{ old('type_id') == $type->id ? 'selected' : null }}
                                                     value="{{ $type->id }}">{{ $type->nama }}</option>
                                             @endforeach
                                         </select>
@@ -43,13 +43,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
-                                    <label for="pintu" class="col-sm-2 col-form-label">Jumlah Pintu</label>
-                                    <div class="col-sm-12">
-                                        <input type="number" class="form-control" name="pintu"
-                                            value="{{ old('pintu') }}" id="pintu">
-                                    </div>
-                                </div>
-                                <div class="form-group row border-bottom pb-4">
                                     <label for="penumpang" class="col-sm-2 col-form-label">Jumlah Penumpang</label>
                                     <div class="col-sm-12">
                                         <input type="number" class="form-control" name="penumpang"
@@ -57,9 +50,38 @@
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
-                                    <label for="image" class="col-sm-2 col-form-label">Gambar</label>
+                                    <label for="pintu" class="col-sm-2 col-form-label">Jumlah Pintu</label>
                                     <div class="col-sm-12">
-                                        <input type="file" class="form-control" id="image" name="image" required>
+                                        <input type="number" class="form-control" name="pintu"
+                                            value="{{ old('pintu') }}" id="pintu">
+                                    </div>
+                                </div>
+                                <!-- Tambahkan input file untuk Gambar-1 -->
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="image1" class="col-sm-2 col-form-label">Gambar-1</label>
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" id="image1" name="image1" required>
+                                    </div>
+                                </div>
+                                <!-- Tambahkan input file untuk Gambar-2 -->
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="image2" class="col-sm-2 col-form-label">Gambar-2</label>
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" id="image2" name="image2" required>
+                                    </div>
+                                </div>
+                                <!-- Tambahkan input file untuk Gambar-3 -->
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="image3" class="col-sm-2 col-form-label">Gambar-3</label>
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" id="image3" name="image3" required>
+                                    </div>
+                                </div>
+                                <!-- Tambahkan input file untuk Gambar-4 -->
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="image4" class="col-sm-2 col-form-label">Gambar-4</label>
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" id="image4" name="image4" required>
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
@@ -79,7 +101,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="submit" class="btn btn-success">Simpan</button>
                             </form>
                         </div>
                         <!-- /.card-body -->

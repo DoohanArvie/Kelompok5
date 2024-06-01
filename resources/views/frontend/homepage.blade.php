@@ -78,37 +78,98 @@
             </div>
         </div>
     </div>
+<!-- Kelebihan Jasa di OtoRent -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="mb-4"><strong>Kelebihan Jasa di OtoRent Dibandingkan Rental Lainnya</strong></h1>
+            <p class="lead mb-5">Temukan Alasan Mengapa OtoRent Menjadi Pilihan Terbaik Anda</p>
+        </div>
+    </div>
+    <div class="row text-center">
+        @php
+            $advantages = [
+                [
+                    'title' => 'Murah, Aman dan Nyaman',
+                    'icon' => 'fas fa-shield-alt',
+                ],
+                [
+                    'title' => 'Proses Mudah dan Cepat',
+                    'icon' => 'fas fa-tachometer-alt',
+                ],
+                [
+                    'title' => 'Antar Jemput ke Lokasi',
+                    'icon' => 'fas fa-shipping-fast',
+                ],
+                [
+                    'title' => 'Pembayaran Mudah',
+                    'icon' => 'fas fa-credit-card',
+                ],
+                [
+                    'title' => 'Banyak Pilihan',
+                    'icon' => 'fas fa-car',
+                ],
+                [
+                    'title' => 'Terpercaya',
+                    'icon' => 'fas fa-thumbs-up',
+                ],
+            ];
+        @endphp
+        @foreach ($advantages as $index => $advantage)
+            <div class="col-lg-2 mb-5">
+    <div class="d-flex flex-column align-items-center">
+        <div class="icon-container mb-3 bg-primary rounded-circle p-3">
+            <i class="{{ $advantage['icon'] }} fa-3x text-white"></i>
+        </div>
+        <h5 class="mt-3 text-center">{{ $advantage['title'] }}</h5>
+    </div>
+</div>
+        @endforeach
+    </div>
+</div>
+<!--End Kelebihan-->
 <!-- Cara Pemesanan -->
-    <<div class="container py-5">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8 text-center wow fadeInUp" data-wow-delay="0.1s">
             <h1 class="mb-4"><strong>Cara Pemesanan</strong></h1>
             <p class="lead mb-5">Ikuti Langkah Mudah Ini untuk Menyewa di OtoRent</p>
         </div>
     </div>
-
     <div class="row text-center">
         @php
             $steps = [
                 [
-                    'title' => 'Pilih Mobil',
-                    'description' => 'Pilih mobil yang sesuai dengan kebutuhan dan keinginan Anda dari berbagai pilihan yang tersedia.',
+                    'title' => 'Pilih Layanan dan Jadwal Rental',
+                    'description' => 'Pilih layanan yang Anda inginkan dan tentukan jadwal rental yang sesuai dengan kebutuhan Anda.',
+                    'icon' => 'fas fa-car',
+                    'color' => 'text-primary'
                 ],
                 [
-                    'title' => 'Isi Form',
-                    'description' => 'Lengkapi formulir dengan informasi pribadi dan detail pemesanan Anda untuk melanjutkan proses.',
+                    'title' => 'Melengkapi Data Diri',
+                    'description' => 'Isi formulir dengan data diri lengkap dan informasi yang diperlukan untuk proses pemesanan.',
+                    'icon' => 'fas fa-user',
+                    'color' => 'text-success'
                 ],
                 [
-                    'title' => 'Pembayaran',
-                    'description' => 'Lakukan pembayaran melalui metode yang tersedia untuk menyelesaikan proses pemesanan mobil Anda.',
+                    'title' => 'OtoRent Melakukan Konfirmasi Pesanan',
+                    'description' => 'Tunggu konfirmasi pesanan dari OtoRent melalui email atau pesan singkat.',
+                    'icon' => 'fas fa-check',
+                    'color' => 'text-warning'
+                ],
+                [
+                    'title' => 'Layanan Siap Digunakan Sesuai Jadwal',
+                    'description' => 'Nikmati layanan rental sesuai dengan jadwal yang telah Anda tentukan.',
+                    'icon' => 'fas fa-clock',
+                    'color' => 'text-danger'
                 ],
             ];
         @endphp
         @foreach ($steps as $index => $step)
-            <div class="col-lg-4 mb-5">
-                <div class="card h-100 shadow-sm border-0">
-                    <div class="card-header bg-primary text-white">
-                        <div class="fs-1">{{ $index + 1 }}</div>
+            <div class="col-lg-3 mb-5">
+                <div class="card h-100 shadow border-0" style="box-shadow: 0 0.5rem 1rem rgba(0, 0, 255, 0.2);">
+                    <div class="card-header bg-light">
+                        <div class="fs-1 {{ $step['color'] }}"><i class="{{ $step['icon'] }}"></i></div>
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">{{ $step['title'] }}</h3>
@@ -119,66 +180,6 @@
         @endforeach
     </div>
 </div>
-    <!-- Category Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="mb-3">Tipe Kendaraan</h1>
-                <p>Jelajahi beberapa tipe kendaraan yang tersedia di sini</p>
-            </div>
-            @php
-                $tipekendaraan = [
-                    [
-                        'title' => 'SUV',
-                        'icons' => 'frontend/img/icon/icon-suv.png',
-                    ],
-                    [
-                        'title' => 'MPV',
-                        'icons' => 'frontend/img/icon/icon-mpv.png',
-                    ],
-                    [
-                        'title' => 'Sedan',
-                        'icons' => 'frontend/img/icon/icon-sedan.png',
-                    ],
-                    [
-                        'title' => 'Hatchback',
-                        'icons' => 'frontend/img/icon/icon-hatchback.png',
-                    ],
-                    [
-                        'title' => 'Elektrik',
-                        'icons' => 'frontend/img/icon/icon-elektrik.png',
-                    ],
-                    [
-                        'title' => 'Matic',
-                        'icons' => 'frontend/img/icon/icon-matic.png',
-                    ],
-                    [
-                        'title' => 'Bebek',
-                        'icons' => 'frontend/img/icon/icon-bebek.png',
-                    ],
-                    [
-                        'title' => 'Sport',
-                        'icons' => 'frontend/img/icon/icon-sport.png',
-                    ],
-                ];
-            @endphp
-            <div class="row g-4">
-                @foreach ($tipekendaraan as $tipe)
-                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-                            <div class="rounded p-4">
-                                <div class="icon mb-3">
-                                    <img class="img-fluid" style="width: 50px;" src="{{ $tipe['icons'] }}" alt="Icon">
-                                </div>
-                                <h6>{{ $tipe['title'] }}</h6>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <!-- Category End -->
 
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -235,7 +236,7 @@
                             <div class="col-lg-4 col-md-6 car-item" data-category="{{ $car->type->nama }}" data-passenger="{{ $car->penumpang }}">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <img class="img-fluid" src="{{ Storage::url($car->image) }}" alt="gambar-mobil">
+                                        <img class="img-fluid" src="{{ Storage::url($car->image1) }}" alt="gambar-mobil">
                                         <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                             {{ $car->type->nama }}
                                         </div>
@@ -270,31 +271,31 @@
                 </div>
                 <div id="tab-2" class="tab-pane fade show p-0">
                     <div class="row g-4">
-                        @foreach ($cars as $car)
-                            <div class="col-lg-4 col-md-6 car-item" data-category="{{ $car->type->nama }}" data-passenger="{{ $car->penumpang }}">
+                        @foreach ($motorcycles as $motorcycle)
+                            <div class="col-lg-4 col-md-6 car-item" data-category="{{ $motorcycle->type->nama }}" data-passenger="{{ $motorcycle->penumpang }}">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <img class="img-fluid" src="{{ Storage::url($car->image) }}" alt="gambar-mobil">
+                                       <img class="img-fluid" src="{{ Storage::url($motorcycle->image1) }}" alt="gambar-mobil">
                                         <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                            {{ $car->type->nama }}
+                                            {{ $motorcycle->type->nama }}
                                         </div>
                                     </div>
                                     <div class="p-4 property-content">
-                                        <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari</h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
-                                        <p style="text-align: justify"></i>{{ $car->description }}</p>
+                                        <h5 class="text-primary mb-3 price">Rp. {{ number_format($motorcycle->price) }} / hari</h5>
+                                        <a class="d-block h5 mb-2" href="">{{ $motorcycle->nama_mobil }}</a>
+                                        <p style="text-align: justify"></i>{{ $motorcycle->description }}</p>
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
-                                            <a href="{{ route('car.show', $car->id) }}" class="btn btn-primary btn-pesan btn-lg">Pesan</a>
+                                            <a href="{{ route('moto.show', $motorcycle->id) }}" class="btn btn-primary btn-pesan btn-lg">Pesan</a>
                                         </div>
                                         <div class="d-flex border-top mt-3">
                                             <div class="flex-fill text-center border-end py-3">
-                                                <i class="fa-solid fa-person text-primary me-2"></i>{{ $car->penumpang }}
+                                                <i class="fa-solid fa-person text-primary me-2"></i>{{ $motorcycle->penumpang }}
                                                 Penumpang
                                             </div>
                                             <div class="flex-fill text-center py-3">
-                                                <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $car->pintu }}
+                                                <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $motorcycle->pintu }}
                                                 Pintu
                                             </div>
                                         </div>

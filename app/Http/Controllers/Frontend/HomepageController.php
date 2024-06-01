@@ -7,16 +7,18 @@ use App\Models\Type;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Motorcycle;
 
 class HomepageController extends Controller
 {
     public function index(Request $request)
     {
-   
-        $cars = Car::where('status',1)->get();
-        $testimonials = Testimonial::get();
-        $types = Type::get(['id','nama']);
 
-        return view('frontend.homepage', compact('cars','testimonials','types'));
+        $cars = Car::where('status', 1)->get();
+        $motorcycles = motorcycle::where('status', 1)->get();
+        $testimonials = Testimonial::get();
+        $types = Type::get(['id', 'nama']);
+
+        return view('frontend.homepage', compact('cars', 'motorcycles', 'testimonials', 'types'));
     }
 }

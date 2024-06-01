@@ -21,7 +21,6 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama</th>
-                                            <th>Gambar Mobil</th>
                                             <th>Type Mobil</th>
                                             <th>Harga Sewa</th>
                                             <th>Jumlah Penumpang</th>
@@ -31,33 +30,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($cars as $car)
+                                        @forelse($car as $cars)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $car->nama_mobil }}</td>
-                                                <td>
-                                                    <a target="_blank" href="{{ Storage::url($car->image) }}">
-                                                        <img width="80" src="{{ Storage::url($car->image) }}"
-                                                            alt="">
-                                                    </a>
-                                                </td>
+                                                <td>{{ $cars->nama_mobil }}</td>
                                                 <td>
                                                     <span class="badge bg-primary">
-                                                        {{ $car->type->nama }}
+                                                        {{ $cars->type->nama }}
                                                     </span>
                                                 </td>
-                                                <td>Rp{{ number_format($car->price, 0, ',', '.') }}</td>
-                                                <td>{{ $car->penumpang }}</td>
-                                                <td>{{ $car->pintu }}</td>
-                                                <td>{{ $car->statusLabel() }}</td>
+                                                <td>Rp{{ number_format($cars->price, 0, ',', '.') }}</td>
+                                                <td>{{ $cars->penumpang }}</td>
+                                                <td>{{ $cars->pintu }}</td>
+                                                <td>{{ $cars->statusLabel() }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-2">
-                                                        <a href="{{ route('admin.cars.edit', $car) }}"
+                                                        <a href="{{ route('admin.cars.edit', $cars) }}"
                                                             class="btn btn-primary">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
                                                         <form onclick="return confirm('are you sure !')"
-                                                            action="{{ route('admin.cars.destroy', $car) }}"
+                                                            action="{{ route('admin.cars.destroy', $cars) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
