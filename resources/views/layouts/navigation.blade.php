@@ -40,22 +40,21 @@
             <li class="nav-item">
                 <a href="#kategoriCollapse" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="kategoriCollapse">
                     <i class="fa-solid fa-list text-success text-lg opacity-10"></i>
-                    <span>
+                    <span class="nav-link-text ms-1">
                         {{ __('Kategori') }}
-                        
                     </span>
                 </a>
                 <div class="collapse" id="kategoriCollapse">
                     <div class="nav-item">
-                        <a href="{{ route('admin.typemotorcycles.index') }}" class="nav-link {{ request()->routeIs('admin.typesmotorcycles.index') ? 'active bg-primary text-white' : '' }}">
+                        <a href="{{ route('admin.typemotorcycles.index') }}" class="nav-link {{ request()->routeIs('admin.typemotorcycles.index') ? 'active bg-primary text-white' : '' }}">
                             <i class="fa-solid fa-motorcycle text-success text-lg opacity-10"></i>
-                            <span>Kategori Motor</span>
+                            <span class="nav-link-text ms-1">Kategori Motor</span>
                         </a>
                     </div>
                     <div class="nav-item">
                         <a href="{{ route('admin.types.index') }}" class="nav-link {{ request()->routeIs('admin.types.index') ? 'active bg-primary text-white' : '' }}">
                             <i class="fa-solid fa-car text-success text-lg opacity-10"></i>
-                            <span>Kategori Mobil</span>
+                            <span class="nav-link-text ms-1">Kategori Mobil</span>
                         </a>
                     </div>
                 </div>

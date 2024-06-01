@@ -163,7 +163,7 @@
                     @foreach ($cars as $car)
                         <div class="col-lg-3 col-md-6 car-item" data-category="{{ $car->type->nama }}"
                             data-passenger="{{ $car->penumpang }}">
-                            <div class="property-item rounded overflow-hidden">
+                            <div class="property-item rounded overflow-hidden wow fadeInUp" data-wow-delay="{{ $loop->iteration * 0.4 }}s">
                                 <div class="position-relative overflow-hidden">
                                     <img class="img-fluid" src="{{ asset('storage/' . $car->image1) }}" alt="gambar-mobil">
                                     <div

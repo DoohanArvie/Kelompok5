@@ -90,6 +90,9 @@
                                                     Dikembalikan</option>
                                                 <option value="Selesai"
                                                     {{ $booking->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
+                                                <option value="Dibatalkan"
+                                                    {{ $booking->status == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan
+                                                </option>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-success">Save</button>

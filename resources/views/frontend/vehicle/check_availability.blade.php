@@ -8,7 +8,14 @@
                 <img src="{{ Storage::url($vehicle->image1) }}" class="img-fluid" alt="">
             </div>
             <div class="col-6">
-                <h1 class="mb-4">Cek Ketersediaan</h1>
+                <div class="mb-4">
+                    <h1>Cek Ketersediaan </h1>
+                    @if ($vehicle_type === 'car')
+                        <h4>{{ $vehicle->nama_mobil }} - {{ $vehicle->type->nama }}</h4>
+                    @else
+                        <h4>{{ $vehicle->nama_motor }} - {{ $vehicle->type->nama }}</h4>
+                    @endif
+                </div>
                 <form
                     action="{{ route('check_vehicle_availability', ['vehicle_type' => $vehicle_type, 'vehicle_id' => $vehicle->id]) }}"
                     method="GET">
