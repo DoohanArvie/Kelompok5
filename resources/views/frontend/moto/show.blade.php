@@ -93,7 +93,7 @@
                     <hr>
                     @auth
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <a href="{{ url('/booking') }}" class="btn btn-primary">Cek Ketersedian</a>
+                        <a href="{{ route('check_availability', ['vehicle_type' => 'motorcycle', 'vehicle_id' => $motos->id]) }}" class="btn btn-primary">Cek Ketersediaan Motor</a>
                     </div>
                     @else
                     <div class="d-flex justify-content-between align-items-center mt-3">

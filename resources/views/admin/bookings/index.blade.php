@@ -9,19 +9,25 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Semua Data</h3>
+                            <h3 class="card-title">Data Sewa</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="data-table" class="table table-bordered table-striped table-hover text-nowrap table-responsive text-center align-middle w-100">
+                                <table id="data-table"
+                                    class="table table-bordered table-striped table-hover text-nowrap table-responsive text-center align-middle w-100">
                                     <thead class="bg-primary text-white">
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Lengkap</th>
-                                            <th>Alamat Lengkap</th>
-                                            <th>Nomer HP/Whatsap</th>
-                                            <th>Mobil</th>
+                                            <th>Nama</th>
+                                            <th>Jenis Kendaraan</th>
+                                            <th>Unit</th>
+                                            <th>Tanggal Mulai</th>
+                                            <th>Tanggal Selesai</th>
+                                            <th>Durasi</th>
+                                            <th>Pickup</th>
+                                            <th>Total Biaya</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -29,20 +35,30 @@
                                         @forelse($bookings as $booking)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $booking->nama_lengkap }}</td>
-                                                <td>{{ $booking->alamat_lengkap }}</td>
-                                                <td>
-                                                    <a href="telp:{{ $booking->nomer_wa }}">{{ $booking->nomer_wa }}</a>
-                                                </td>
-                                                <td>{{ $booking->car->nama_mobil }}</td>
+                                                <td>{{ $booking->user->name }}</td>
+                                                <td>{{ $booking->vehicle_type == 'car' ? 'Mobil' : 'Motor' }}</td>
+                                                <td>{{ $booking->vehicle_type == 'car' ? $booking->vehicle->nama_mobil : $booking->vehicle->nama_motor }} </td>
+                                                {{-- <td>{{ $booking->vehicle_type == 'car' ? $booking->vehicle->nama_mobil : $booking->vehicle->nama_motor }} - {{ $booking->vehicle->type->nama }}</td> --}}
+                                                <td>{{ $booking->start_date }}</td>
+                                                <td>{{ $booking->end_date }}</td>
+                                                <td>{{ $booking->days_count }} Hari</td>
+                                                <td>{{ $booking->pickup }}</td>
+                                                <td>Rp {{ number_format($booking->total_fee, 0, ',', '.') }}</td>
+                                                <td>{{ $booking->booking_status }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-2">
-                                                        <form onclick="return confirm('Are you sure?')"
+                                                        <a href="{{ route('admin.bookings.edit', $booking) }}"
+                                                            class="btn btn-primary">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        <form
+                                                            onsubmit="return confirm('Are you sure you want to delete this booking?')"
                                                             action="{{ route('admin.bookings.destroy', $booking) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i></button>
+                                                            <button class="btn btn-danger" type="submit"><i
+                                                                    class="fa fa-trash"></i></button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -52,7 +68,7 @@
                                                 <td class="text-center">Data Kosong!</td>
                                             </tr>
                                         @endforelse
-                                    </tbody>                                    
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

@@ -37,4 +37,9 @@ class Car extends Model
 	{
 		return $this->belongsTo(Type::class, 'type_id', 'id');
 	}
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

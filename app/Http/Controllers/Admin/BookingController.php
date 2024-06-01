@@ -13,7 +13,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::with('car')->get();
+        $bookings = Booking::all();
 
         return view('admin.bookings.index', compact('bookings'));
     }
@@ -48,6 +48,8 @@ class BookingController extends Controller
     public function edit(Booking $booking)
     {
         //
+
+        return view('admin.bookings.edit', compact('booking'));
     }
 
     /**
@@ -56,6 +58,13 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
         //
+        $validatedData = $request->validate([
+            'booking_status' => 'required',
+        ]);
+    
+        $booking->update($validatedData);
+    
+        return redirect()->route('admin.bookings.index')->with('success', 'Booking updated successfully.');
     }
 
     /**

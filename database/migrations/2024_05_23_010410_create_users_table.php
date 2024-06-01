@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('ktp')->nullable();
             $table->string('sim')->nullable();
+            $table->enum('account_status', ['Belum Terverifikasi', 'Menunggu Verifikasi', 'Terverifikasi'])->default('Belum Terverifikasi');
             $table->rememberToken();
             $table->timestamps();
         });

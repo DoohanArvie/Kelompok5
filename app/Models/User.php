@@ -25,6 +25,7 @@ class User extends Authenticatable
         'address', // Tambahkan kolom address
         'ktp', // Tambahkan kolom ktp untuk menyimpan path file KTP
         'sim', // Tambahkan kolom sim untuk menyimpan path file SIM
+        'account_status',
     ];
 
     /**
@@ -74,5 +75,10 @@ class User extends Authenticatable
     public function hasUpdatedProfile()
     {
         return !is_null($this->phone) && !is_null($this->address) && !is_null($this->ktp) && !is_null($this->sim);
+    }
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
     }
 }

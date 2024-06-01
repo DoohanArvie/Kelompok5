@@ -93,7 +93,8 @@
                     <hr>
                     @auth
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <a href="{{ url('/booking') }}" class="btn btn-primary">Cek Ketersedian</a>
+                        {{-- <a href="{{ route('check_availability', ['car_id' => $cars->id]) }}" class="btn btn-primary">Cek Ketersediaan</a> --}}
+                        <a href="{{ route('check_availability', ['vehicle_type' => 'car', 'vehicle_id' => $cars->id]) }}" class="btn btn-primary">Cek Ketersediaan Mobil</a>
                     </div>
                     @else
                     <div class="d-flex justify-content-between align-items-center mt-3">

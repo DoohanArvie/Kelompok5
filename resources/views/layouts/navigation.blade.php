@@ -121,6 +121,12 @@
                     <span class="nav-link-text ms-1">{{ __('Booking') }}</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.drivers.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.drivers.index') }}">
+                    <i class="fa-solid fa-users-gear text-warning text-lg opacity-10"></i>
+                    <span class="nav-link-text ms-1">{{ __('Driver') }}</span>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="sidenav-footer">

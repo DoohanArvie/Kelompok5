@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -12,7 +13,9 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('frontend.profile.index', compact('user'));
+        $bookings = Booking::where('user_id', $user->id)->get();
+
+        return view('frontend.profile.index', compact('user', 'bookings'));
     }
 
     public function update(Request $request)
@@ -38,6 +41,7 @@ class ProfileController extends Controller
 
         $user->phone = $request->phone;
         $user->address = $request->address;
+        $user->account_status = 'Menunggu Verifikasi';
         $user->save();
         
         return redirect()->back()->with('status', 'Profile updated!')->with('user', $user);

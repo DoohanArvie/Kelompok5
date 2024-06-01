@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomepageController;
@@ -9,9 +10,10 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Models\Motorcycle;
+use App\Http\Controllers\Frontend\BookingController;
+use App\Http\Controllers\DriverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,12 @@ Route::post('kontak', [ContactController::class, 'store'])->name('contact.store'
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('/check-availability/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showAvailabilityForm'])->name('check_availability');
+    Route::get('/check-vehicle-availability/{vehicle_type}/{vehicle_id}', [BookingController::class, 'checkVehicleAvailability'])->name('check_vehicle_availability');
+    Route::get('/booking-form/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingForm'])->name('booking_form');
+    Route::post('/book-vehicle/{vehicle_type}/{vehicle_id}', [BookingController::class, 'bookVehicle'])->name('book_vehicle');
+    Route::get('/booking-confirmation/{booking_code}/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingConfirmation'])->name('booking_confirmation');
 });
 
 Route::get('password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -54,8 +62,8 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('is_admin');
 
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
-
+    // Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('cars', \App\Http\Controllers\Admin\CarController::class);
     Route::resource('motorcycles', \App\Http\Controllers\Admin\MotorcycleController::class);
     Route::resource('types', \App\Http\Controllers\Admin\TypeController::class);
@@ -64,6 +72,7 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
     Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index','store','update']);
     Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index','destroy']);
-    Route::resource('bookings', \App\Http\Controllers\Admin\BookingController::class)->only(['index','destroy']);
+    Route::resource('bookings', \App\Http\Controllers\Admin\BookingController::class);
     Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class);
+    Route::resource('drivers', \App\Http\Controllers\Admin\DriverController::class);
 });
