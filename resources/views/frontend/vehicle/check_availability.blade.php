@@ -5,7 +5,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-6 text-center">
-                <img src="{{ Storage::url($vehicle->image) }}" class="img-fluid" alt="">
+                <img src="{{ Storage::url($vehicle->image1) }}" class="img-fluid" alt="">
             </div>
             <div class="col-6">
                 <h1 class="mb-4">Cek Ketersediaan</h1>
