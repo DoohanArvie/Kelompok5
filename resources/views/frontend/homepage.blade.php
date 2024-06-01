@@ -236,7 +236,7 @@
                             <div class="col-lg-4 col-md-6 car-item" data-category="{{ $car->type->nama }}" data-passenger="{{ $car->penumpang }}">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <img class="img-fluid" src="{{ Storage::url($car->image) }}" alt="gambar-mobil">
+                                        <img class="img-fluid" src="{{ Storage::url($car->image1) }}" alt="gambar-mobil">
                                         <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                             {{ $car->type->nama }}
                                         </div>
@@ -271,31 +271,31 @@
                 </div>
                 <div id="tab-2" class="tab-pane fade show p-0">
                     <div class="row g-4">
-                        @foreach ($cars as $car)
-                            <div class="col-lg-4 col-md-6 car-item" data-category="{{ $car->type->nama }}" data-passenger="{{ $car->penumpang }}">
+                        @foreach ($motorcycles as $motorcycle)
+                            <div class="col-lg-4 col-md-6 car-item" data-category="{{ $motorcycle->type->nama }}" data-passenger="{{ $motorcycle->penumpang }}">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <img class="img-fluid" src="{{ Storage::url($car->image) }}" alt="gambar-mobil">
+                                       <img class="img-fluid" src="{{ Storage::url($motorcycle->image1) }}" alt="gambar-mobil">
                                         <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                            {{ $car->type->nama }}
+                                            {{ $motorcycle->type->nama }}
                                         </div>
                                     </div>
                                     <div class="p-4 property-content">
-                                        <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari</h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
-                                        <p style="text-align: justify"></i>{{ $car->description }}</p>
+                                        <h5 class="text-primary mb-3 price">Rp. {{ number_format($motorcycle->price) }} / hari</h5>
+                                        <a class="d-block h5 mb-2" href="">{{ $motorcycle->nama_mobil }}</a>
+                                        <p style="text-align: justify"></i>{{ $motorcycle->description }}</p>
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
-                                            <a href="{{ route('car.show', $car->id) }}" class="btn btn-primary btn-pesan btn-lg">Pesan</a>
+                                            <a href="{{ route('moto.show', $motorcycle->id) }}" class="btn btn-primary btn-pesan btn-lg">Pesan</a>
                                         </div>
                                         <div class="d-flex border-top mt-3">
                                             <div class="flex-fill text-center border-end py-3">
-                                                <i class="fa-solid fa-person text-primary me-2"></i>{{ $car->penumpang }}
+                                                <i class="fa-solid fa-person text-primary me-2"></i>{{ $motorcycle->penumpang }}
                                                 Penumpang
                                             </div>
                                             <div class="flex-fill text-center py-3">
-                                                <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $car->pintu }}
+                                                <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $motorcycle->pintu }}
                                                 Pintu
                                             </div>
                                         </div>
