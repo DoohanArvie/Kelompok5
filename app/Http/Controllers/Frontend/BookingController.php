@@ -66,6 +66,11 @@ class BookingController extends Controller
             return redirect()->back()->with('error', 'Kendaraan tidak tersedia pada tanggal yang dipilih!');
         }
 
+        // Check if user is verified
+        if (auth()->user()->account_status !== 'Terverifikasi') {
+            return redirect()->back()->with('error', 'Akun harus terverifikasi dahulu agar bisa sewa!');
+        }
+
         return view('frontend.vehicle.check_availability', compact('isAvailable', 'startDate', 'endDate', 'with_driver', 'pickup', 'vehicle', 'vehicle_type'));
     }
 

@@ -88,7 +88,9 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p><strong>{{ session('error') }}</strong></p>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>{{ session('error') }}</strong>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
@@ -149,31 +151,15 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-primary">Sewa Sekarang</button>
                             </form>
-                            <!-- Tambahkan tombol atau tautan untuk melakukan tindakan (misalnya, pemesanan) -->
                         </div>
                     </div>
                 </div>
             </div>
         @endif
-
     </div>
 @endsection
 
 @push('script-alt')
-    {{-- @if (session('error'))
-        <script>
-            $(document).ready(function() {
-                $('#errorModal').modal('show');
-            });
-        </script>
-    @endif
-    @if ($isAvailable)
-    <script>
-        $(document).ready(function() {
-            $('#availabilityModal').modal('show');
-        });
-    </script>
-    @endif --}}
     <script>
         $(document).ready(function() {
             @if (session('error'))

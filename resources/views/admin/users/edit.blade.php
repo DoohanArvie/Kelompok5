@@ -36,10 +36,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row border-bottom pb-4">
-                                            <label for="phone" class="form-label">No Handphone</label>
+                                            <label for="phone" class="col-form-label">No Handphone</label>
                                             <div class="col-sm-12">
                                                 <input type="text" class="form-control" name="phone"
-                                                    value="{{ old('phone', $user->name) }}" id="phone" readonly>
+                                                    value="{{ old('phone', $user->phone) }}" id="phone" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row border-bottom pb-4">
@@ -54,7 +54,7 @@
                                             <div class="col-sm-12">
                                                 <select class="form-control" name="account_status" id="status_akun">
                                                     <option value="Belum Terverifikasi" {{ $user->account_status == 'Belum Terverifikasi' ? 'selected' : '' }}>Belum Terverifikasi</option>
-                                                    <option value="Menunggu Verifikasi" {{ $user->account_status == 'Menunggu Terverifikasi' ? 'selected' : '' }}>Menunggu Terverifikasi</option>
+                                                    <option value="Menunggu Verifikasi" {{ $user->account_status == 'Menunggu Verifikasi' ? 'selected' : '' }}>Menunggu Verifikasi</option>
                                                     <option value="Terverifikasi" {{ $user->account_status == 'Terverifikasi' ? 'selected' : '' }}>Terverifikasi</option>
                                                 </select>
                                             </div>
