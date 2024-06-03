@@ -68,52 +68,62 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
-                    <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ url('/') }}"
+                        class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Kendaraan</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="{{ url('daftar-mobil') }}" class="dropdown-item">Mobil</a>
-                            <a href="{{ url('daftar-motor') }}" class="dropdown-item">Motor</a>
+                        <a href="#"
+                            class="nav-link dropdown-toggle {{ request()->is('daftar-mobil', 'daftar-motor') ? 'active' : '' }}"
+                            data-bs-toggle="dropdown">Kendaraan</a>
+                        <div class="dropdown-menu">
+                            <a href="{{ url('daftar-mobil') }}" class="dropdown-item {{ request()->is('daftar-mobil') ? 'active' : '' }}">Mobil</a>
+                            <a href="{{ url('daftar-motor') }}" class="dropdown-item {{ request()->is('daftar-motor') ? 'active' : '' }}">Motor</a>
                         </div>
                     </div>
-                    <a href="{{ url('tentang-kami') }}" class="nav-item nav-link">Tentang Kami</a>
-                    <a href="{{ url('kontak') }}" class="nav-item nav-link">Kontak</a>
-                </div>
-                @auth
-                    @if (auth()->user()->is_admin)
-                        <li class="nav-item  px-3 d-none d-lg-flex">
-                            <a class="nav-link" href="{{ route('home') }}" role="button" aria-haspopup="true"
-                                aria-expanded="false">
+                    <a href="{{ url('tentang-kami') }}"
+                        class="nav-item nav-link {{ request()->is('tentang-kami') ? 'active' : '' }}">Tentang Kami</a>
+                    <a href="{{ url('kontak') }}"
+                        class="nav-item nav-link {{ request()->is('kontak') ? 'active' : '' }}">Kontak</a>
+                    @auth
+                        @if (auth()->user()->is_admin)
+                            <a class="nav-link" href="{{ route('home') }}" role="button" aria-haspopup="true" aria-expanded="false">
                                 Dashboard
                             </a>
-                        </li>
-                    @else
-                        <!-- Jika pengguna bukan admin, tampilkan dropdown dengan tautan ke halaman profil dan opsi logout -->
-                        <li class="nav-item dropdown  px-3 d-none d-lg-flex">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ Auth::user()->name }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('profile.index') }}">
-                                    Profile
+                        @else
+                            <!-- Jika pengguna bukan admin, tampilkan dropdown dengan tautan ke halaman profil dan opsi logout -->
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle {{ Request::is('profile', 'history') ? 'active' : '' }}"
+                                    href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    {{ Auth::user()->name }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item {{ Request::is('profile') ? 'active' : '' }}"
+                                        href="{{ route('profile.index') }}">
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item {{ Request::is('history') ? 'active' : '' }}"
+                                        href="{{ route('history.index') }}">
+                                        Riwayat Sewa
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
                             </div>
-                        </li>
+                    {{-- </div> --}}
                     @endif
                 @else
                     <!-- Jika pengguna belum login, tampilkan tautan login -->
-                    <a href="{{ route('login') }}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
+                    <div class="align-items-center d-none d-lg-flex">
+                        <a href="{{ route('login') }}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
+                    </div>
+                {{-- </div> --}}
                 @endauth
-
             </div>
         </nav>
     </div>
@@ -159,7 +169,7 @@
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                         &copy; <a class="border-bottom" href="#">OtoRent</a>, All Right Reserved.
-                        Designed By  Ankavi Team
+                        Designed By Ankavi Team
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">

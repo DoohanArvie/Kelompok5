@@ -4,7 +4,7 @@
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100">
+            <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Menunggu Pembayaran']) }}'">
                 <div class="card-body d-flex p-3">
                     <div class="row">
                         <div class="col-8">
@@ -12,7 +12,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                     Menunggu Pembayaran
                                 </p>
-                                <h5 class="font-weight-bolder">150</h5>
+                                <h5 class="font-weight-bolder">{{$countMenungguPembayaran}}</h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+55%</span>
                                     since yesterday
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100">
+           <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Menunggu Konfirmasi']) }}'">
                 <div class="card-body d-flex p-3">
                     <div class="row">
                         <div class="col-8">
@@ -37,7 +37,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                     Menunggu Konfirmasi
                                 </p>
-                                <h5 class="font-weight-bolder">50</h5>
+                                <h5 class="font-weight-bolder">{{$countMenungguKonfirmasi}}</h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+3%</span>
                                     since last week
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100">
+           <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Belum Dikembalikan']) }}'">
                 <div class="card-body d-flex p-3">
                     <div class="row">
                         <div class="col-8">
@@ -62,7 +62,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                     Belum dikembalikan
                                 </p>
-                                <h5 class="font-weight-bolder">35</h5>
+                                <h5 class="font-weight-bolder">{{$countBelumDikembalikan}}</h5>
                                 <p class="mb-0">
                                     <span class="text-danger text-sm font-weight-bolder">-2%</span>
                                     since last quarter
@@ -87,7 +87,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                     Jenis Kendaraan
                                 </p>
-                                <h5 class="font-weight-bolder">60</h5>
+                                <h5 class="font-weight-bolder">{{$countJenisKendaraan}}</h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+5%</span>
                                     than last month
@@ -114,7 +114,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                     Jumlah Kendaraan
                                 </p>
-                                <h5 class="font-weight-bolder">150</h5>
+                                <h5 class="font-weight-bolder">{{$countJumlahKendaraan}}</h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+55%</span>
                                     since yesterday
@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100">
+            <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index');}}'">
                 <div class="card-body d-flex p-3">
                     <div class="row">
                         <div class="col-8">
@@ -139,7 +139,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                     Total Sewa
                                 </p>
-                                <h5 class="font-weight-bolder">200</h5>
+                                <h5 class="font-weight-bolder">{{$countBooking}}</h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+3%</span>
                                     since last week
@@ -156,7 +156,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100">
+            <div class="card d-flex h-100" onclick="location.href='{{ route('admin.users.index');}}'">
                 <div class="card-body d-flex p-3">
                     <div class="row">
                         <div class="col-8">
@@ -164,7 +164,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                      User
                                 </p>
-                                <h5 class="font-weight-bolder">300</h5>
+                                <h5 class="font-weight-bolder">{{$countUser}}</h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+3%</span>
                                     since last week
@@ -181,7 +181,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100">
+           <div class="card d-flex h-100" onclick="location.href='{{ route('admin.contacts.index');}}'">
                 <div class="card-body d-flex p-3">
                     <div class="row">
                         <div class="col-8">
@@ -189,7 +189,7 @@
                                 <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                     Hubungi Kami
                                 </p>
-                                <h5 class="font-weight-bolder">530</h5>
+                                <h5 class="font-weight-bolder">{{$countHubungiKami}}</h5>
                                 <p class="mb-0">
                                     <span class="text-success text-sm font-weight-bolder">+3%</span>
                                     since last week
