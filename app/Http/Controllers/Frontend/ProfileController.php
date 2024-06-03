@@ -6,16 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Vehicle;
+
 
 class ProfileController extends Controller
 {
     public function index()
     {
         $user = auth()->user();
-        $bookings = Booking::where('user_id', $user->id)->get();
 
-        return view('frontend.profile.index', compact('user', 'bookings'));
+        return view('frontend.profile.index', compact('user'));
     }
 
     public function update(Request $request)
@@ -45,5 +47,28 @@ class ProfileController extends Controller
         $user->save();
         
         return redirect()->back()->with('status', 'Profile updated!')->with('user', $user);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        // Ambil user yang sedang login
+        $user = Auth::user();
+
+        // Cek apakah password saat ini benar
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Password saat ini salah']);
+        }
+
+        // Update password
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->back()->with('status', 'Password berhasil di ubah');
     }
 }

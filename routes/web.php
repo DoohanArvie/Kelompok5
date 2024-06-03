@@ -14,7 +14,12 @@ use App\Http\Controllers\Frontend\ProfileController;
 use App\Models\Motorcycle;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\DriverController;
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
+=======
+use App\Http\Controllers\Frontend\PasswordController;
+use App\Http\Controllers\Frontend\HistoryController;
+>>>>>>> origin/Branch_Kharafi-Dwi-Andika
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +50,8 @@ Route::post('kontak', [ContactController::class, 'store'])->name('contact.store'
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-
+    Route::post('/password-update', [ProfileController::class, 'updatePassword'])->name('password.update.custom');
+    Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
     Route::get('/check-availability/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showAvailabilityForm'])->name('check_availability');
     Route::get('/check-vehicle-availability/{vehicle_type}/{vehicle_id}', [BookingController::class, 'checkVehicleAvailability'])->name('check_vehicle_availability');
     Route::get('/booking-form/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingForm'])->name('booking_form');
