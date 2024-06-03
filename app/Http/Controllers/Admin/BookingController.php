@@ -6,14 +6,22 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+
 class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bookings = Booking::all();
+
+        $status = $request->input('status');
+
+        if ($status) {
+            $bookings = Booking::where('booking_status', $status)->get();
+        } else {
+            $bookings = Booking::all();
+        }
 
         return view('admin.bookings.index', compact('bookings'));
     }
@@ -61,9 +69,9 @@ class BookingController extends Controller
         $validatedData = $request->validate([
             'booking_status' => 'required',
         ]);
-    
+
         $booking->update($validatedData);
-    
+
         return redirect()->route('admin.bookings.index')->with('success', 'Booking updated successfully.');
     }
 
