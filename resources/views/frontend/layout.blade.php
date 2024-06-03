@@ -36,6 +36,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
         rel="stylesheet">
     @stack('style-alt')
+    @stack('styles')
 </head>
 
 <body>
@@ -200,6 +201,7 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     {{-- <script src="https://kit.fontawesome.com/41f5370a51.js" crossorigin="anonymous"></script> --}}
     @stack('script-alt')
+    @stack('scripts')
 </body>
 
 </html>

@@ -57,13 +57,22 @@
                             <p class="lead mb-0">Rp. {{ number_format($motos->price) }} / hari</p>
                         </div>
                         <div class="col">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-secondary"></i>
-                            <span class="ms-2">4.5</span>
-                        </div>
+                        @php
+                            $averageRating = $feedbacks->avg('rating');
+                            $roundedRating = round($averageRating);
+                        @endphp
+
+                        @for ($i = 1; $i <= 5; $i++)
+                            @if ($i <= $roundedRating)
+                                <i class="fas fa-star text-warning"></i>
+                            @else
+                                <i class="fas fa-star text-secondary"></i>
+                            @endif
+                        @endfor
+
+                        <span class="ms-2">{{ $averageRating }}</span>
+                    </div>
+
                     </div>
                     <div class="row mt-3">
                         <div class="row">
@@ -108,29 +117,35 @@
                     <h3>Ulasan Pelanggan Kami</h3>
                 </div>
                 <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                @foreach($feedbacks as $feedback)
                     <div class="testimonial-item rounded p-3">
                         <div class="bg-white border rounded p-4">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque id qui eius magnam voluptate nobis distinctio ea nulla cumque amet?</p>
+                            <p>{{ $feedback->feedback }}</p>
                             <div class="col mb-3">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-secondary"></i>
-                                <span class="ms-2">4.5</span>
+                                @for ($i = 0; $i < $feedback->rating; $i++)
+                                    <i class="fas fa-star text-warning"></i>
+                                @endfor
+                                @for ($i = $feedback->rating; $i < 5; $i++)
+                                    <i class="fas fa-star text-secondary"></i>
+                                @endfor
+                                <span class="ms-2">{{ $feedback->rating }}</span>
                             </div>
                             <div class="d-flex align-items-center">
                                 <img class="img-fluid flex-shrink-0 rounded"
                                     src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"
                                     alt="" style="width: 45px; height: 45px;">
                                 <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">Lorem, ipsum.</h6>
-                                    <small>Lorem, ipsum.</small>
+                                    <h6 class="fw-bold mb-1">{{ $feedback->user_name }}</h6>
+                                    <small>{{ $feedback->created_at->format('M d, Y') }}</small>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+            </div>
+
+
+
             </div>
         </div>
     </div>

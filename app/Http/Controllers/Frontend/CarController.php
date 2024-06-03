@@ -7,6 +7,7 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\BookingRequest;
+use App\Models\Feedback;
 
 class CarController extends Controller
 {
@@ -40,7 +41,8 @@ class CarController extends Controller
     public function show($id)
     {
         $cars = Car::findorFail($id);
-        return view('frontend.car.show', compact('cars'));
+        $feedbacks = Feedback::where('vehicle_type', 'car')->where('vehicle_id', $id)->get();
+        return view('frontend.car.show', compact('cars', 'feedbacks'));
     }
 
     public function store(BookingRequest $request)

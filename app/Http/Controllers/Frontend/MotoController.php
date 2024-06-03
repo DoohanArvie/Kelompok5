@@ -7,6 +7,7 @@ use App\Models\Motorcycle;
 use Illuminate\Http\Request;
 use App\Http\Requests\Frontend\BookingRequest;
 use App\Models\Booking;
+use App\Models\Feedback;
 
 class MotoController extends Controller
 {
@@ -45,7 +46,8 @@ class MotoController extends Controller
     public function show($id)
     {
         $motos = Motorcycle::findorFail($id);
-        return view('frontend.moto.show', compact('motos'));
+        $feedbacks = Feedback::where('vehicle_type', 'motorcycle')->where('vehicle_id', $id)->get();
+        return view('frontend.moto.show', compact('motos', 'feedbacks'));
     }
 
     /**

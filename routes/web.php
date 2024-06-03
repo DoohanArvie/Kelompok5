@@ -14,7 +14,7 @@ use App\Http\Controllers\Frontend\ProfileController;
 use App\Models\Motorcycle;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\DriverController;
-
+use App\Http\Controllers\Frontend\FeedbackController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/booking-form/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingForm'])->name('booking_form');
     Route::post('/book-vehicle/{vehicle_type}/{vehicle_id}', [BookingController::class, 'bookVehicle'])->name('book_vehicle');
     Route::get('/booking-confirmation/{booking_code}/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingConfirmation'])->name('booking_confirmation');
+    Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
 });
 
 Route::get('password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
