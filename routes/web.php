@@ -14,12 +14,9 @@ use App\Http\Controllers\Frontend\ProfileController;
 use App\Models\Motorcycle;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\DriverController;
-<<<<<<< HEAD
-use App\Http\Controllers\Admin\BookingController as AdminBookingController;
-=======
 use App\Http\Controllers\Frontend\PasswordController;
 use App\Http\Controllers\Frontend\HistoryController;
->>>>>>> origin/Branch_Kharafi-Dwi-Andika
+use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 
 /*
 |--------------------------------------------------------------------------
