@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('pickup', ['Ambil Sendiri', 'Diantar Sesuai Alamat']);
             $table->decimal('driver_fee', 10, 2)->nullable(); // biaya driver (bisa null jika tanpa driver)
             $table->decimal('total_fee', 10, 2); // total biaya
-            $table->enum('booking_status', ['Menunggu Pembayaran', 'Menunggu Konfirmasi', 'Sudah Dibayar', 'Belum Dikembalikan', 'Selesai', 'Dibatalkan']);
+            $table->enum('booking_status', ['Menunggu Pembayaran', 'Menunggu Konfirmasi', 'Sudah Dibayar', 'Pembayaran Terkonfirmasi', 'Belum Dikembalikan', 'Selesai', 'Dibatalkan']);
             $table->uuid('booking_code')->unique();
         
             // Kolom untuk mendukung jenis kendaraan

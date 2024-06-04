@@ -20,6 +20,7 @@
                                     <thead class="bg-primary text-white">
                                         <tr>
                                             <th>No</th>
+                                            <th>Gambar</th>
                                             <th>Nama</th>
                                             <th>Type Mobil</th>
                                             <th>Harga Sewa</th>
@@ -33,6 +34,9 @@
                                         @forelse($car as $cars)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <img src="{{ asset('storage/' . $cars->image1) }}" alt="image" class="img-fluid" width="100">
+                                                </td>
                                                 <td>{{ $cars->nama_mobil }}</td>
                                                 <td>
                                                     <span class="badge bg-primary">

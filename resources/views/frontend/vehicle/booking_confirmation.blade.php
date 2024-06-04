@@ -59,6 +59,13 @@
                 <h1>Pembayaran</h1>
             </div>
         </div>
+        @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger text-center" role="alert">
+                        <strong>{{ $error }}</strong>
+                    </div>
+                @endforeach
+            @endif
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="d-flex align-items-center mb-3" data-bs-toggle="collapse" href="#feedbackForm" aria-expanded="false">
@@ -71,9 +78,11 @@
                     <h2 class="mt-4">Form Feedback</h2>
                     <form action="{{ route('feedback.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="avatar" value="{{ Auth::user()->avatar }}">
                         <input type="hidden" name="booking_code" value="{{ $booking->booking_code }}">
                         <input type="hidden" name="vehicle_type" value="{{ $booking->vehicle_type }}">
                         <input type="hidden" name="vehicle_id" value="{{ $booking->vehicle_id }}">
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <div class="mb-3">
                             <label for="feedback">Feedback</label>
                             <textarea class="form-control" id="feedback" name="feedback" rows="3" required></textarea>

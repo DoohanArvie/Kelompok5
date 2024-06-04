@@ -70,7 +70,7 @@
                             @endif
                         @endfor
 
-                        <span class="ms-2">{{ $averageRating }}</span>
+                        <span class="ms-2">{{ number_format($averageRating, 1) }}</span>
                     </div>
 
                     </div>
@@ -132,7 +132,7 @@
                             </div>
                             <div class="d-flex align-items-center">
                                 <img class="img-fluid flex-shrink-0 rounded"
-                                    src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"
+                                src="{{ asset('storage/avatars/' . $feedback->avatar) }}"
                                     alt="" style="width: 45px; height: 45px;">
                                 <div class="ps-3">
                                     <h6 class="fw-bold mb-1">{{ $feedback->user_name }}</h6>

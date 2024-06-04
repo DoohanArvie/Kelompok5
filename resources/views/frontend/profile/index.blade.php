@@ -23,31 +23,54 @@
                         <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data"
                             id="profileForm">
                             @csrf
-                            <div class="mb-3">
-                                <label for="name" class="form-label">{{ __('Nama') }}</label>
-                                <input type="text" id="name" name="name" class="form-control bg-light"
-                                    value="{{ Auth::user()->name }}" required disabled>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">{{ __('Email') }}</label>
-                                <div class="input-group">
-                                    <input type="email" id="email" name="email" class="form-control bg-light"
-                                        value="{{ Auth::user()->email }}" required disabled>
-                                    <span class="input-group-text">
-                                        @if (!Auth::user()->hasVerifiedEmail())
-                                            <a href="{{ route('verification.notice') }}">Verify Email</a>
-                                        @else
-                                            <div class="container-fluidw"><i class="fas fa-check-circle text-success"></i>
-                                                Verified</div>
-                                        @endif
-                                    </span>
+                            <div class="row">
+                                <div class="col-md-5 d-flex flex-column mb-3">
+                                    <label for="avatar" class="form-label">{{ __('Foto Profil') }}</label>
+                                    @if (Auth::user()->avatar)
+                                        <div>
+                                            @if (in_array(pathinfo(Auth::user()->avatar, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                <img id="existingAvatarPreview" class="img-fluid"
+                                                    src="{{ Storage::url('avatars/' . Auth::user()->avatar) }}"
+                                                    alt="Avatar Preview" style="width: 100%;">
+                                            @endif
+                                        </div>
+                                    @endif
+                                    <div class="mt-auto">
+                                        <a href="{{ Storage::url('avatars/' . Auth::user()->avatar) }}">{{ Auth::user()->avatar }}</a>
+                                        <input type="file" id="avatar" name="avatar" class="form-control"
+                                            accept=".pdf,.jpg,.jpeg,.png">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">{{ __('Nomor Handphone') }}</label>
-                                <input type="text" id="phone" name="phone" class="form-control"
-                                    value="{{ $user->phone ?? '' }}">
-                                {{-- {{ $user->hasUpdatedProfile() ? 'disabled' : 'required' }}> --}}
+                                <div class="col-md-7 d-flex flex-column">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">{{ __('Nama') }}</label>
+                                        <input type="text" id="name" name="name" class="form-control bg-light"
+                                            value="{{ Auth::user()->name }}" required disabled>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">{{ __('Email') }}</label>
+                                        <div class="input-group">
+                                            <input type="email" id="email" name="email"
+                                                class="form-control bg-light" value="{{ Auth::user()->email }}" required
+                                                disabled>
+                                            <span class="input-group-text">
+                                                @if (!Auth::user()->hasVerifiedEmail())
+                                                    <a href="{{ route('verification.notice') }}">Verify Email</a>
+                                                @else
+                                                    <div class="container-fluidw"><i
+                                                            class="fas fa-check-circle text-success"></i>
+                                                        Verified</div>
+                                                @endif
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">{{ __('Nomor Handphone') }}</label>
+                                        <input type="text" id="phone" name="phone" class="form-control"
+                                            value="{{ $user->phone ?? '' }}">
+                                        {{-- {{ $user->hasUpdatedProfile() ? 'disabled' : 'required' }}> --}}
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">{{ __('Alamat') }}</label>
@@ -118,8 +141,8 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="current_password" class="form-label">{{ __('Password Sekarang') }}</label>
-                                <input type="password" id="current_password" name="current_password" class="form-control"
-                                    required>
+                                <input type="password" id="current_password" name="current_password"
+                                    class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">{{ __('Password Baru') }}</label>
