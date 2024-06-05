@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Feedback;
 use App\Http\Requests\Frontend\FeedbackRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Motorcycle;
+use Illuminate\Support\Facades\Log;
 
 class FeedbackController extends Controller
 {
@@ -15,15 +15,19 @@ class FeedbackController extends Controller
         $validated = $request->validated();
 
         // Debugging
-        \Log::info('Feedback received: ', $validated);
+        Log::info('Feedback received: ', $validated);
 
         // Simpan feedback ke dalam database
         Feedback::create($validated);
 
         // Mendapatkan nilai booking_code, vehicle_type, dan vehicle_id
+        $avatar = $request->input('avatar');
         $bookingCode = $request->input('booking_code');
         $vehicleType = $request->input('vehicle_type');
         $vehicleId = $request->input('vehicle_id');
+
+        // Simpan feedback ke dalam database
+
 
         // Redirect ke halaman lain atau tampilkan pesan sukses
         return redirect()->route('booking_confirmation', [

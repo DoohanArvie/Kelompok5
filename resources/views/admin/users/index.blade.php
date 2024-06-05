@@ -20,6 +20,7 @@
                                     <thead class="bg-primary text-white">
                                         <tr>
                                             <th scope="col">ID</th>
+                                            <th scope="col">Foto</th>
                                             <th scope="col">Nama</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">No HP</th>
@@ -34,6 +35,11 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <th scope="row">{{ $user->id }}</th>
+                                                <td>
+                                                    <a href="{{ Storage::url('avatars/' . $user->avatar) }}" target="_blank">
+                                                        <img src="{{ Storage::url('avatars/' . $user->avatar) }}" width="100" alt="{{ $user->name }} Avatar" class="img-fluid">
+                                                    </a>
+                                                </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->phone }}</td>

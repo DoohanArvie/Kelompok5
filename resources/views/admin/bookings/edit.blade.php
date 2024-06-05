@@ -85,6 +85,9 @@
                                                 <option value="Menunggu Konfirmasi"
                                                     {{ $booking->status == 'Menunggu Konfirmasi' ? 'selected' : '' }}>
                                                     Menunggu Konfirmasi</option>
+                                                <option value="Pembayaran Terkonfirmasi"
+                                                    {{ $booking->status == 'Pembayaran Terkonfirmasi' ? 'selected' : '' }}>
+                                                    Pembayaran Terkonfirmasi</option>
                                                 <option value="Belum Dikembalikan"
                                                     {{ $booking->status == 'Belum Dikembalikan' ? 'selected' : '' }}>Belum
                                                     Dikembalikan</option>

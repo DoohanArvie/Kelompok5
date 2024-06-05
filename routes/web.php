@@ -55,8 +55,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/booking-form/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingForm'])->name('booking_form');
     Route::post('/book-vehicle/{vehicle_type}/{vehicle_id}', [BookingController::class, 'bookVehicle'])->name('book_vehicle');
     Route::get('/booking-confirmation/{booking_code}/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingConfirmation'])->name('booking_confirmation');
+    Route::get('/booking-confirmation/success/{booking_code}', [BookingController::class, 'showBookingSuccess'])->name('booking_success');
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
-
 });
 
 Route::get('password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -81,6 +81,7 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('types', \App\Http\Controllers\Admin\TypeController::class);
     Route::resource('typemotorcycles', \App\Http\Controllers\Admin\TypeMotorcycleController::class);
     Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
+    Route::resource('feedbacks', \App\Http\Controllers\Admin\FeedbackController::class);
     Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
     Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index', 'store', 'update']);
     Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);

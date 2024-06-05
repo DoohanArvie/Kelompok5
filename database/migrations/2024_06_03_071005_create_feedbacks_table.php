@@ -15,11 +15,13 @@ class CreateFeedbacksTable extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
+            $table->string('avatar');
             $table->string('booking_code');
             $table->string('vehicle_type');
             $table->unsignedBigInteger('vehicle_id');
             $table->string('feedback');
             $table->integer('rating');
+            $table->unsignedBigInteger('user_id');
             $table->string('user_name');
             $table->timestamps();
         });

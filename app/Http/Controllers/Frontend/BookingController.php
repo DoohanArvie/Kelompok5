@@ -154,6 +154,34 @@ class BookingController extends Controller
         } else {
             $vehicle = Motorcycle::find($booking->vehicle_id);
         }
+
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => rand(),
+                'gross_amount' => $booking->total_fee,
+            ),
+            'customer_details' => array(
+                'first_name' => $booking->user->name,
+                'email' => $booking->user->email,
+            ),
+
+        );
+
+
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+        $booking->snap_token = $snapToken;
+        $booking->save();
+
         return view('frontend.vehicle.booking_confirmation', compact('booking', 'vehicle'));
     }
 
@@ -166,5 +194,14 @@ class BookingController extends Controller
         } else {
             throw new \Exception('Invalid vehicle type');
         }
+    }
+
+    public function showBookingSuccess($booking_code)
+    {
+        $booking = Booking::where('booking_code', $booking_code)->firstOrFail();
+
+        $booking->booking_status = 'Pembayaran Terkonfirmasi';
+        $booking->save();
+        return view('frontend.vehicle.booking_success', compact('booking'));
     }
 }
