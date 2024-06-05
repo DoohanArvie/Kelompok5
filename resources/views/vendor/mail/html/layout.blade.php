@@ -44,9 +44,44 @@ width: 100% !important;
 {{ $subcopy ?? '' }}
 </td>
 </tr>
+    <div style="background-color: #381C83;box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; text-align: center;">
+        <span style="box-sizing: border-box; font-family: 'Quicksand', sans-serif; color: white;">
+            <strong style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">Temukan Kami</strong>
+        </span>
+        <br><br>
+        <a href="https://www.facebook.com/">
+            <img src="https://i.ibb.co.com/RNqJcB9/1200px-Facebook-Logo-2023.png" alt="Facebook" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100%;border:none;color:#010101;margin-right:20px;width:35px">
+        </a>
+        <a href="https://www.instagram.com/">
+            <img src="https://i.ibb.co.com/NYMBsBy/1200px-Instagram-icon.png" alt="Instagram" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100%;border:none;color:#010101;margin-right:20px;width:35px">
+        </a>
+        <a href="https://twitter.com/">
+            <img src="https://i.ibb.co.com/gWHkWn8/Twitter-new-X-logo.png" alt="Twitter-new-X-logo" alt="Twitter" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100%;border:none;color:#010101;margin-right:20px;width:35px">
+        </a>
+        <a href="https://www.linkedin.com/">
+            <img src="https://i.ibb.co.com/SRGn8vd/Linked-In-logo-initials.png" alt="Linked-In-logo-initials" alt="LinkedIn" style="box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';max-width:100%;border:none;color:#010101;margin-right:20px;width:35px">
+        </a>
+
+
+        <br><br><br>
+        <span style="box-sizing: border-box; font-family: 'Quicksand', sans-serif; color: white;">
+            <strong style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">Keanggotaan & Berlangganan</strong>
+        </span>
+        <br><br>
+        <span style="box-sizing: border-box; font-family: 'Quicksand', sans-serif; color: white;">
+            Pesan ini dikirim karena Anda terdaftar dalam member/keanggotaan OtoRent
+        </span>
+        <br>
+        <hr style="color:white;box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">
+        <div style="box-sizing: border-box; text-align: center; font-family: 'Quicksand', sans-serif; color: white;">
+        <strong style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';">TERIMA KASIH</strong>
+    </div>
+    </div>
 </table>
 </td>
 </tr>
+
+
 
 {{ $footer ?? '' }}
 </table>
