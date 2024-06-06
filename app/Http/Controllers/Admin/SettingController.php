@@ -6,6 +6,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SettingRequest;
+use Illuminate\Support\Facades\File;
 
 class SettingController extends Controller
 {
@@ -15,8 +16,8 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        
-        if(!is_null($setting)) {
+
+        if (!is_null($setting)) {
             return view('admin.settings.edit', compact('setting'));
         }
 
@@ -64,14 +65,27 @@ class SettingController extends Controller
      * Update the specified resource in storage.
      */
     public function update(SettingRequest $request, Setting $setting)
-    {   
-        $setting->update($request->validated());
+    {
+
+        if($request->validated()){
+            if($request->logo){
+                File::delete('storage/' . $setting->logo);
+                $logo = $request->file('logo')->store(
+                    'frontend/img/logo', 'public'
+                );
+                $setting->update($request->except('logo') + ['logo' => $logo]);
+            } else {
+                $setting->update($request->validated());
+            }
+        }
 
         return redirect()->route('admin.settings.index')->with([
             'message' => 'berhasil di edit',
             'alert-type' => 'info'
         ]);
     }
+
+    
 
     /**
      * Remove the specified resource from storage.

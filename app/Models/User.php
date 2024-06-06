@@ -26,6 +26,7 @@ class User extends Authenticatable
         'ktp', // Tambahkan kolom ktp untuk menyimpan path file KTP
         'sim', // Tambahkan kolom sim untuk menyimpan path file SIM
         'account_status',
+        'is_admin',
     ];
 
     /**

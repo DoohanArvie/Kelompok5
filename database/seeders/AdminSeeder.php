@@ -17,7 +17,8 @@ class AdminSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('123'),
-            'is_admin' => true
+            'is_admin' => true,
+            'account_status' => 'Terverifikasi',
         ]);
     }
 }

@@ -8,13 +8,28 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\BookingRequest;
 use App\Models\Feedback;
+use App\Models\Type;
 
 class CarController extends Controller
 {
     public function index(Request $request)
     {
-        $cars = Car::all();
+        $query = Car::query();
 
+        if ($request->has('harga')) {
+            $hargaRange = explode('-', $request->harga);
+            $query->whereBetween('price', [$hargaRange[0], $hargaRange[1]]);
+        }
+
+        if ($request->has('category_id')) {
+            $query->where('type_id', $request->category_id);
+        }
+
+        if ($request->has('penumpang')) {
+            $query->where('penumpang', $request->penumpang);
+        }
+
+        $cars = $query->get();
         $availability = [];
 
         foreach ($cars as $car) {
@@ -35,7 +50,9 @@ class CarController extends Controller
             }
         }
 
-        return view('frontend.car.index', compact('cars', 'availability'));
+        $types = Type::select('nama')->distinct()->get();
+
+        return view('frontend.car.index', compact('cars', 'availability', 'types'));
     }
 
     public function show($id)

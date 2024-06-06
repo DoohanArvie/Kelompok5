@@ -5,7 +5,8 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5 wow fadeInLeft" data-wow-delay="0.1s">
                 <h1 class="display-5 animated fadeIn mb-4>
-                    <span class="text-primary">OtoRent</span> Solusi Perjalanan Anda!
+                    <span class="text-primary">OtoRent</span>
+                    Solusi Perjalanan Anda!
                 </h1>
                 <h5 class="animated fadeIn pb-2">Temukan Mobil dan Motor terbaik untuk setiap perjalanan Anda!</h5>
                 <h5 class="animated fadeIn pb-2">Sewa sekarang dan rasakan kenyamanannya!</h5>
@@ -34,49 +35,63 @@
     <!-- Search Start -->
     <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;">
         <div class="container">
-            <div class="row g-2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div class="row g-2">
-                                <div class="col-md-4">
-                                    <h4 class="text-white mb-3">Rentang Harga</h4>
-                                    <select class="form-select border-0 py-3">
-                                        <option value="" hidden>Pilih Rentang Harga</option>
-                                        <option value="200000-300000">Rp. 200.000 - Rp. 300.000</option>
-                                        <option value="300000-400000">Rp. 300.000 - Rp. 400.000</option>
-                                        <option value="400000-500000">Rp. 400.000 - Rp. 500.000</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4 class="text-white mb-3">Kategori</h4>
-                                    <select name="category_id" id="category_id" class="form-select border-0 py-3">
-                                        <option value="" hidden>Pilih Kategori Mobil</option>
-                                        @foreach ($types as $type)
-                                            <option value="{{ $type->id }}">{{ $type->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4 class="text-white mb-3">Jumlah Penumpang</h4>
-                                    <select class="form-select border-0 py-3">
-                                        <option value="" hidden>Jumlah Penumpang</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                    </select>
+            @if (session('status'))
+                <div class="alert alert-success text-center text-white">
+                    {{ session('status') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger text-white">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form id="searchForm" method="GET" action="{{ route('cari-kendaraan') }}">
+                <div class="row g-2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="row g-2">
+                                    <div class="col-md-3 mr-2">
+                                        <h5 class="text-white mb-3">Kendaraan</h5>
+                                        <select id="kendaraan" name="kendaraan" class="form-select border-0 py-3">
+                                            <option value="" hidden>Pilih Kendaraan</option>
+                                            <option value="Mobil">Mobil</option>
+                                            <option value="Motor">Motor</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mr-2">
+                                        <h5 class="text-white mb-3">Rentang Harga</h5>
+                                        <select id="harga" name="harga" class="form-select border-0 py-3">
+                                            <option value="" hidden>Pilih Rentang Harga</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mr-2">
+                                        <h5 class="text-white mb-3">Kategori</h5>
+                                        <select name="category_id" id="category_id" class="form-select border-0 py-3">
+                                            <option value="" hidden>Pilih Kategori</option>
+                                            <!-- Options akan diisi oleh JavaScript -->
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 mr-2">
+                                        <h5 class="text-white mb-3">Jumlah Penumpang</h5>
+                                        <select name="penumpang" class="form-select border-0 py-3">
+                                            <option value="" hidden>Pilih Jumlah Penumpang</option>
+                                            <!-- Options akan diisi oleh JavaScript -->
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2 d-flex align-items-end">
-                            <button class="btn btn-dark border-0 w-100 py-3">Cari</button>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button type="submit" id="searchButton" class="btn btn-dark border-0 w-100 py-3 mt-3 mt-md-0" disabled>Cari</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
+            </form>
         </div>
     </div>
     <!-- Kelebihan Jasa di OtoRent -->
@@ -238,7 +253,8 @@
                         @foreach ($cars as $car)
                             <div class="col-lg-4 col-md-6 car-item" data-category="{{ $car->type->nama }}"
                                 data-passenger="{{ $car->penumpang }}">
-                                <div class="property-item rounded overflow-hidden wow fadeInUp" data-wow-delay="{{ $loop->iteration * 0.2 }}s">
+                                <div class="property-item rounded overflow-hidden wow fadeInUp"
+                                    data-wow-delay="{{ $loop->iteration * 0.2 }}s">
                                     <div class="position-relative overflow-hidden">
                                         <img class="img-fluid" src="{{ Storage::url($car->image1) }}"
                                             alt="gambar-mobil">
@@ -283,7 +299,8 @@
                         @foreach ($motorcycles as $motorcycle)
                             <div class="col-lg-4 col-md-6 car-item" data-category="{{ $motorcycle->type->nama }}"
                                 data-passenger="{{ $motorcycle->penumpang }}">
-                                <div class="property-item rounded overflow-hidden wow fadeInUp" data-wow-delay="{{ $loop->iteration * 0.2 }}s">
+                                <div class="property-item rounded overflow-hidden wow fadeInUp"
+                                    data-wow-delay="{{ $loop->iteration * 0.2 }}s">
                                     <div class="position-relative overflow-hidden">
                                         <img class="img-fluid" src="{{ Storage::url($motorcycle->image1) }}"
                                             alt="gambar-mobil">
@@ -555,4 +572,177 @@
             margin-top: auto;
         }
     </style>
+@endpush
+@push('script-alt')
+    <script>
+        $(document).ready(function() {
+            var kendaraanSelect = $('#kendaraan');
+            var hargaSelect = $('#harga');
+            var categorySelect = $('#category_id');
+            var penumpangSelect = $('select[name="penumpang"]');
+            var searchButton = $('#searchButton');
+            var inputs = $('input, select');
+
+            inputs.on('input', function() {
+                toggleSearchButton();
+            });
+
+            function toggleSearchButton() {
+                var isInputEmpty = true;
+                inputs.each(function() {
+                    if ($(this).val().trim() !== '') {
+                        isInputEmpty = false;
+                    }
+                });
+
+                if (isInputEmpty) {
+                    searchButton.prop('disabled', true);
+                } else {
+                    searchButton.prop('disabled', false);
+                }
+            }
+
+            kendaraanSelect.on('change', function() {
+                var selectedKendaraan = $(this).val();
+                fetchCategories(selectedKendaraan);
+                updateHargaOptions(selectedKendaraan);
+                disablePenumpangSelect(selectedKendaraan);
+                updateJumlahPenumpang(selectedKendaraan);
+            });
+
+            function updateHargaOptions(kendaraan) {
+                hargaSelect.html('<option value="" hidden>Pilih Rentang Harga</option>');
+                var hargaOptions;
+
+                if (kendaraan === 'Mobil') {
+                    hargaOptions = [{
+                            value: '300000-400000',
+                            text: 'Rp. 300.000 - Rp. 400.000'
+                        },
+                        {
+                            value: '400000-500000',
+                            text: 'Rp. 400.000 - Rp. 500.000'
+                        },
+                        {
+                            value: '500000-600000',
+                            text: 'Rp. 500.000 - Rp. 600.000'
+                        },
+                        {
+                            value: '600000-700000',
+                            text: 'Rp. 600.000 - Rp. 700.000'
+                        },
+                        {
+                            value: '700000-800000',
+                            text: 'Rp. 700.000 - Rp. 800.000'
+                        },
+                        {
+                            value: '800000-1000000',
+                            text: 'Rp. 800.000 - Rp. 1.000.000'
+                        },
+                        {
+                            value: '1000000-1500000',
+                            text: 'Rp. 1.000.000 - Rp. 1.500.000'
+                        }
+                    ];
+                } else if (kendaraan === 'Motor') {
+                    hargaOptions = [{
+                            value: '0-100000',
+                            text: 'Rp. 0 - Rp. 100.000'
+                        },
+                        {
+                            value: '100000-200000',
+                            text: 'Rp. 100.000 - Rp. 200.000'
+                        },
+                        {
+                            value: '200000-300000',
+                            text: 'Rp. 200.000 - Rp. 300.000'
+                        }
+                    ];
+                } else {
+                    return;
+                }
+
+                $.each(hargaOptions, function(index, option) {
+                    hargaSelect.append($('<option>', {
+                        value: option.value,
+                        text: option.text
+                    }));
+                });
+            }
+
+            function updateJumlahPenumpang(kendaraan) {
+                penumpangSelect.html('<option value="" hidden>Pilih Jumlah Penumpang</option>');
+                var penumpangOptions;
+
+                if (kendaraan === 'Mobil') {
+                    penumpangOptions = [{
+                            value: '4',
+                            text: '4 Penumpang'
+                        },
+                        {
+                            value: '6',
+                            text: '6 Penumpang'
+                        },
+                        {
+                            value: '8',
+                            text: '8 Penumpang'
+                        },
+                        {
+                            value: '10',
+                            text: '10 Penumpang'
+                        },
+                        {
+                            value: '12',
+                            text: '12 Penumpang'
+                        },
+                        {
+                            value: '14',
+                            text: '14 Penumpang'
+                        },
+                        {
+                            value: '16',
+                            text: '16 Penumpang'
+                        }
+                    ];
+                }
+
+                $.each(penumpangOptions, function(index, option) {
+                    penumpangSelect.append($('<option>', {
+                        value: option.value,
+                        text: option.text
+                    }));
+                });
+            }
+
+            function disablePenumpangSelect(kendaraan) {
+                if (kendaraan === 'Motor') {
+                    penumpangSelect.prop('disabled', true).val('');
+                } else {
+                    penumpangSelect.prop('disabled', false);
+                }
+            }
+
+            function fetchCategories(kendaraan) {
+                categorySelect.html('<option value="" hidden>Pilih Kategori</option>');
+
+                var url;
+                if (kendaraan === 'Mobil') {
+                    url = '{{ route('car.categories') }}';
+                } else if (kendaraan === 'Motor') {
+                    url = '{{ route('motor.categories') }}';
+                } else {
+                    return;
+                }
+
+                $.get(url, function(data) {
+                    $.each(data, function(index, category) {
+                        categorySelect.append($('<option>', {
+                            value: category.id,
+                            text: category.nama
+                        }));
+                    });
+                });
+            }
+        });
+    </script>
 @endpush

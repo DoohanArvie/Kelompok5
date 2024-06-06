@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -86,5 +87,32 @@ class BookingController extends Controller
             'message' => 'berhasil di hapus !',
             'alert-type' => 'danger'
         ]);
+    }
+
+    // public function generatePdf()
+    // {
+    //     // $bookings = Booking::with(['user', 'vehicle'])->get();
+    //     $bookings = Booking::all();
+    //     $pdf = PDF::loadView('admin.bookings.pdf', compact('bookings'));
+    //     return $pdf->stream('data-sewa.pdf');
+    // }
+
+    public function generatePdf(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Query data sesuai rentang waktu yang dipilih
+        $bookings = Booking::whereBetween('start_date', [$startDate, $endDate])
+            ->orWhereBetween('end_date', [$startDate, $endDate])
+            ->get();
+
+        $current_time = Carbon::now('Asia/Jakarta');
+
+        $formattedDate = $current_time->format('d-m-Y H:i:s');
+
+        // Load view dan kirim data ke dalam PDF
+        $pdf = PDF::loadView('admin.bookings.pdf', compact('bookings', 'startDate', 'endDate', 'formattedDate'));
+        return $pdf->stream('data-sewa.pdf');
     }
 }

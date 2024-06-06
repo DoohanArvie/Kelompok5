@@ -21,36 +21,42 @@ class SettingRequest extends FormRequest
      */
     public function rules(): array
     {
-        switch($this->method()){
-            case 'POST' : {
-                return [
-                    'alamat' => 'required|string|max:255',
-                    'phone' => 'required',
-                    'email' => 'required|email',
-                    'footer_description' => 'required',
-                    'tentang_perusahaan' => 'required',
-                    'sejarah_perusahaan' => 'required',
-                    'facebook' => 'required',
-                    'twitter' => 'required',
-                    'instagram' => 'required',
-                    'linkedin' => 'required',
-                ];
-            }
-            case 'PUT' :
-            case 'PATCH' : {
-                return [
-                    'alamat' => 'required|string|max:255',
-                    'phone' => 'required',
-                    'email' => 'required|email|max:255',
-                    'footer_description' => 'required',
-                    'tentang_perusahaan' => 'required',
-                    'sejarah_perusahaan' => 'required',
-                    'facebook' => 'required|max:255',
-                    'twitter' => 'required|max:255',
-                    'instagram' => 'required|max:255',
-                    'linkedin' => 'required|max:255',
-                ];
-            }
+        switch ($this->method()) {
+            case 'POST': {
+                    return [
+                        'nama_perusahaan' => ['required', 'max:255', 'unique:settings,nama_perusahaan,' . $this->route()->setting->id],
+                        'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                        'alamat' => 'required|string|max:255',
+                        'phone' => 'required|string',
+                        'email' => 'required|email|max:255',
+                        'footer_description' => 'required|string|max:255',
+                        'tentang_perusahaan' => 'required|string|max:255',
+                        'sejarah_perusahaan' => 'required|string',
+                        'tentang_team' => 'nullable|string',
+                        'facebook' => 'nullable|url',
+                        'instagram' => 'nullable|url',
+                        'linkedin' => 'nullable|url',
+                        'twitter' => 'nullable|url',
+                    ];
+                }
+            case 'PUT':
+            case 'PATCH': {
+                    return [
+                        'nama_perusahaan' => 'required|string|max:255',
+                        'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                        'alamat' => 'required|string|max:255',
+                        'phone' => 'required|string',
+                        'email' => 'required|email|max:255',
+                        'footer_description' => 'required|string',
+                        'tentang_perusahaan' => 'required|string',
+                        'sejarah_perusahaan' => 'required|string',
+                        'tentang_team' => 'nullable|string',
+                        'facebook' => 'nullable|url',
+                        'instagram' => 'nullable|url',
+                        'linkedin' => 'nullable|url',
+                        'twitter' => 'nullable|url',
+                    ];
+                }
         }
     }
 }

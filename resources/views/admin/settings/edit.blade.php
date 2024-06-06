@@ -13,9 +13,34 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form method="post" action="{{ route('admin.settings.update', $setting) }}">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form action="{{ route('admin.settings.update', $setting->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
+                                {{-- <input type="hidden" name="id" value="{{ $setting->id }}"> --}}
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="nama_perusahaan" class="col-sm-2 col-form-label">Nama Perusahaan</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" name="nama_perusahaan"
+                                            value="{{ old('nama_perusahaan', $setting->nama_perusahaan) }}"
+                                            id="nama_perusahaan">
+                                    </div>
+                                </div>
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="logo" class="col-sm-2 col-form-label">Logo</label>
+                                    <div class="col-sm-12">
+                                        <input type="file" class="form-control" name="logo" id="logo">
+                                    </div>
+                                </div>
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-12">
@@ -56,6 +81,12 @@
                                         Perusahaan</label>
                                     <div class="col-sm-12">
                                         <textarea name="sejarah_perusahaan" id="sejarah_perusahaan" class="form-control" cols="30" rows="6">{{ old('sejarah_perusahaan', $setting->sejarah_perusahaan) }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="tentang_team" class="col-sm-2 col-form-label">Tentang Team</label>
+                                    <div class="col-sm-12">
+                                        <textarea name="tentang_team" id="tentang_team" class="form-control" cols="30" rows="6">{{ old('tentang_team', $setting->tentang_team) }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">

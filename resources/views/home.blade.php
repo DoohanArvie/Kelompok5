@@ -1,211 +1,215 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid py-4">
-    <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Menunggu Pembayaran']) }}'">
-                <div class="card-body d-flex p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                    Menunggu Pembayaran
-                                </p>
-                                <h5 class="font-weight-bolder">{{$countMenungguPembayaran}}</h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                    since yesterday
-                                </p>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card d-flex h-100"
+                    onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Menunggu Pembayaran']) }}'">
+                    <div class="card-body d-flex flex-column p-3">
+                        <div class="row">
+                            <div class="col-8 d-flex flex-column justify-content-between">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                                        Menunggu Pembayaran
+                                    </p>
+                                    <h5 class="font-weight-bolder">{{ $countMenungguPembayaran }}</h5>
+                                    <p class="mb-0">
+                                        <span class="text-success text-sm font-weight-bolder">+55%</span>
+                                        since yesterday
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 position-absolute end-0">
+                                <div
+                                    class="icon icon-shape bg-gradient-secondary shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-hourglass-start text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-secondary shadow-primary text-center rounded-circle">
-                                <i class="fa-solid fa-hourglass-start text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card d-flex h-100"
+                    onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Menunggu Konfirmasi']) }}'">
+                    <div class="card-body d-flex flex-column p-3">
+                        <div class="row">
+                            <div class="col-8 d-flex flex-column justify-content-between">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                                        Pembayaran Terkonfirmasi
+                                    </p>
+                                    <h5 class="font-weight-bolder">{{ $countPembayaranTerkonfirmasi }}</h5>
+                                    <p class="mb-0">
+                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
+                                        since last week
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 position-absolute end-0">
+                                <div class="icon icon-shape bg-gradient-warning shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-check-circle text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card d-flex h-100"
+                    onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Belum Dikembalikan']) }}'">
+                    <div class="card-body d-flex flex-column p-3">
+                        <div class="row">
+                            <div class="col-8 d-flex flex-column justify-content-between">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                                        Belum dikembalikan
+                                    </p>
+                                    <h5 class="font-weight-bolder">{{ $countBelumDikembalikan }}</h5>
+                                    <p class="mb-0 mt-auto">
+                                        <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                                        since last week
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 position-absolute end-0">
+                                <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-window-restore text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card d-flex h-100">
+                    <div class="card-body d-flex flex-column p-3">
+                        <div class="row">
+                            <div class="col-8 d-flex flex-column justify-content-between">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                                        Jenis Kendaraan
+                                    </p>
+                                    <h5 class="font-weight-bolder">{{ $countJenisKendaraan }}</h5>
+                                    <p class="mb-0">
+                                        <span class="text-success text-sm font-weight-bolder">+5%</span>
+                                        than last month
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 position-absolute end-0">
+                                <div class="icon icon-shape bg-gradient-dark shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-gauge  text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-           <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Menunggu Konfirmasi']) }}'">
-                <div class="card-body d-flex p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                    Menunggu Konfirmasi
-                                </p>
-                                <h5 class="font-weight-bolder">{{$countMenungguKonfirmasi}}</h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                    since last week
-                                </p>
+        <div class="row mt-4">
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card d-flex h-100">
+                    <div class="card-body d-flex flex-column p-3">
+                        <div class="row">
+                            <div class="col-8 d-flex flex-column justify-content-between">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                                        Jumlah Kendaraan
+                                    </p>
+                                    <h5 class="font-weight-bolder">{{ $countJumlahKendaraan }}</h5>
+                                    <p class="mb-0">
+                                        <span class="text-success text-sm font-weight-bolder">+55%</span>
+                                        since yesterday
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 position-absolute end-0">
+                                <div class="icon icon-shape bg-gradient-info shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-caravan text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-warning shadow-primary text-center rounded-circle">
-                                <i class="fa-solid fa-clock-rotate-left text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index') }}'">
+                    <div class="card-body d-flex flex-column p-3">
+                        <div class="row">
+                            <div class="col-8 d-flex flex-column justify-content-between">
+                                <div class="numbers bottom-0">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                                        Total Sewa
+                                    </p>
+                                    <h5 class="font-weight-bolder">{{ $countBooking }}</h5>
+                                    <p class="mb-0">
+                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
+                                        since last week
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 position-absolute end-0">
+                                <div class="icon icon-shape bg-gradient-success shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-rectangle-list text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card d-flex h-100" onclick="location.href='{{ route('admin.users.index') }}'">
+                    <div class="card-body d-flex flex-column p-3">
+                        <div class="row">
+                            <div class="col-8 d-flex flex-column justify-content-between">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                                        User
+                                    </p>
+                                    <h5 class="font-weight-bolder">{{ $countUser }}</h5>
+                                    <p class="mb-0">
+                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
+                                        since last week
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 position-absolute end-0">
+                                <div class="icon icon-shape bg-gradient-danger shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-rectangle-list text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="card d-flex h-100" onclick="location.href='{{ route('admin.contacts.index') }}'">
+                    <div class="card-body d-flex flex-column p-3">
+                        <div class="row">
+                            <div class="col-8 d-flex flex-column justify-content-between">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">
+                                        Pesan
+                                    </p>
+                                    <h5 class="font-weight-bolder">{{ $countHubungiKami }}</h5>
+                                    <p class="mb-0">
+                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
+                                        since last week
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4 position-absolute end-0">
+                                <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                    <i class="fa-solid fa-envelope text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-           <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Belum Dikembalikan']) }}'">
-                <div class="card-body d-flex p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                    Belum dikembalikan
-                                </p>
-                                <h5 class="font-weight-bolder">{{$countBelumDikembalikan}}</h5>
-                                <p class="mb-0">
-                                    <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                    since last quarter
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                <i class="fa-solid fa-window-restore text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100">
-                <div class="card-body d-flex p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                    Jenis Kendaraan
-                                </p>
-                                <h5 class="font-weight-bolder">{{$countJenisKendaraan}}</h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+5%</span>
-                                    than last month
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-dark shadow-primary text-center rounded-circle">
-                                <i class="fa-solid fa-gauge  text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100">
-                <div class="card-body d-flex p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                    Jumlah Kendaraan
-                                </p>
-                                <h5 class="font-weight-bolder">{{$countJumlahKendaraan}}</h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                    since yesterday
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow-primary text-center rounded-circle">
-                                <i class="fa-solid fa-caravan text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index');}}'">
-                <div class="card-body d-flex p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                    Total Sewa
-                                </p>
-                                <h5 class="font-weight-bolder">{{$countBooking}}</h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                    since last week
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-success shadow-primary text-center rounded-circle">
-                                <i class="fa-solid fa-rectangle-list text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card d-flex h-100" onclick="location.href='{{ route('admin.users.index');}}'">
-                <div class="card-body d-flex p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                     User
-                                </p>
-                                <h5 class="font-weight-bolder">{{$countUser}}</h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                    since last week
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-danger shadow-primary text-center rounded-circle">
-                                <i class="fa-solid fa-rectangle-list text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-           <div class="card d-flex h-100" onclick="location.href='{{ route('admin.contacts.index');}}'">
-                <div class="card-body d-flex p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">
-                                    Hubungi Kami
-                                </p>
-                                <h5 class="font-weight-bolder">{{$countHubungiKami}}</h5>
-                                <p class="mb-0">
-                                    <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                    since last week
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                <i class="fa-solid fa-rectangle-list text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-            
         <div class="row mt-4">
             <div class="col-lg-7 mb-lg-0 mb-4">
                 <div class="card z-index-2 h-100">
@@ -287,144 +291,73 @@
                 <div class="card">
                     <div class="card-header pb-0 p-3">
                         <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Feedback</h6>
+                            <h6 class="mb-2">Sewa Terbaru</h6>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table align-items-center">
+                    <div class="table-responsive p-3">
+                        <table class="table align-items-center mb-0" id="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-xs font-weight-bolder">
+                                        Nama
+                                    </th>
+                                    <th
+                                        class="text-uppercase text-xs font-weight-bolder">
+                                        Unit
+                                    </th>
+                                    <th
+                                        class="text-uppercase text-xs font-weight-bolder">
+                                        Durasi
+                                    </th>
+                                    <th
+                                        class="text-uppercase text-xs font-weight-bolder">
+                                        Total Biaya
+                                    </th>
+                                    <th
+                                        class="text-uppercase text-xs font-weight-bolder">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="../assets/img/icons/flags/US.png" alt="Country flag" />
+                                @forelse ($bookings as $booking)
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="{{ Storage::url('avatars/' . $booking->user->avatar) }}"
+                                                        class="avatar avatar-sm me-3">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-xs">{{ $booking->user->name }}</h6>
+                                                    <p class="text-xs mb-0">{{ $booking->user->email }}</p>
+                                                </div>
                                             </div>
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">
-                                                    Country:
-                                                </p>
-                                                <h6 class="text-sm mb-0">United States</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                            <h6 class="text-sm mb-0">2500</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                            <h6 class="text-sm mb-0">$230,900</h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">29.9%</h6>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="../assets/img/icons/flags/DE.png" alt="Country flag" />
-                                            </div>
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">
-                                                    Country:
-                                                </p>
-                                                <h6 class="text-sm mb-0">Germany</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                            <h6 class="text-sm mb-0">3.900</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                            <h6 class="text-sm mb-0">$440,000</h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">40.22%</h6>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="../assets/img/icons/flags/GB.png" alt="Country flag" />
-                                            </div>
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">
-                                                    Country:
-                                                </p>
-                                                <h6 class="text-sm mb-0">Great Britain</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                            <h6 class="text-sm mb-0">1.400</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                            <h6 class="text-sm mb-0">$190,700</h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">23.44%</h6>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="w-30">
-                                        <div class="d-flex px-2 py-1 align-items-center">
-                                            <div>
-                                                <img src="../assets/img/icons/flags/BR.png" alt="Country flag" />
-                                            </div>
-                                            <div class="ms-4">
-                                                <p class="text-xs font-weight-bold mb-0">
-                                                    Country:
-                                                </p>
-                                                <h6 class="text-sm mb-0">Brasil</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                                            <h6 class="text-sm mb-0">562</h6>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Value:</p>
-                                            <h6 class="text-sm mb-0">$143,960</h6>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle text-sm">
-                                        <div class="col text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                                            <h6 class="text-sm mb-0">32.14%</h6>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                {{ $booking->vehicle_type == 'car' ? $booking->vehicle->nama_mobil : $booking->vehicle->nama_motor }}
+                                            </p>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $booking->days_count }}
+                                                Hari</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span class="text-xs font-weight-bold">Rp
+                                                {{ number_format($booking->total_fee, 0, ',', '.') }}</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span
+                                                class="text-xs font-weight-bold">{{ $booking->booking_status }}</span>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="text-center">Data Kosong !</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -433,82 +366,49 @@
             <div class="col-lg-5">
                 <div class="card">
                     <div class="card-header pb-0 p-3">
-                        <h6 class="mb-0">Categories</h6>
+                        <h6 class="mb-0">Ulasan terbaru</h6>
                     </div>
-                    <div class="card-body p-3">
-                        <ul class="list-group">
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-mobile-button text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">Devices</h6>
-                                        <span class="text-xs">250 in stock,
-                                            <span class="font-weight-bold">346+ sold</span></span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button
-                                        class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                        <i class="ni ni-bold-right" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-tag text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">Tickets</h6>
-                                        <span class="text-xs">123 closed,
-                                            <span class="font-weight-bold">15 open</span></span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button
-                                        class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                        <i class="ni ni-bold-right" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-box-2 text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">Error logs</h6>
-                                        <span class="text-xs">1 is active,
-                                            <span class="font-weight-bold">40 closed</span></span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button
-                                        class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                        <i class="ni ni-bold-right" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                                        <i class="ni ni-satisfied text-white opacity-10"></i>
-                                    </div>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">Happy users</h6>
-                                        <span class="text-xs font-weight-bold">+ 430</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <button
-                                        class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto">
-                                        <i class="ni ni-bold-right" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="table-responsive p-3">
+                        <table class="table align-items-center mb-0" id="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-xs font-weight-bolder">
+                                        Nama
+                                    </th>
+                                    <th
+                                        class="text-uppercase text-xs font-weight-bolder">
+                                        Ulasan
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($feedbacks as $feedback)
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="{{ Storage::url('avatars/' . $feedback->avatar) }}"
+                                                        class="avatar avatar-sm me-3">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-xs">{{ $feedback->user_name }}</h6>
+                                                    <p class="text-xs mb-0">{{ $booking->user->email }}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                {{ $feedback->feedback }}
+                                            </p>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="text-center">Data Kosong !</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -522,65 +422,14 @@
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>
-                            , made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                                Tim</a>
-                            for a better web.
+                            <a href="{{ url('tentang-kami') }}" class="font-weight-bold" target="_blank">ANKAVI TEAM</a>
+                            Kelompok 5 MSIB Fullstack #4
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link text-muted"
-                                    target="_blank">Creative Tim</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
-                                    target="_blank">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted"
-                                    target="_blank">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
-                                    target="_blank">License</a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </footer>
     </div>
-
-    {{-- <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">{{ __('Dashboard') }}</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <p class="card-text">
-                                {{ __('You are logged in!') }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content --> --}}
 @endsection
+
+@include('layouts.datatable')

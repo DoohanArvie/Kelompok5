@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">{{ __('Nomor Handphone') }}</label>
-                                        <input type="text" id="phone" name="phone" class="form-control"
+                                        <input type="number" id="phone" name="phone" class="form-control"
                                             value="{{ $user->phone ?? '' }}">
                                         {{-- {{ $user->hasUpdatedProfile() ? 'disabled' : 'required' }}> --}}
                                     </div>
