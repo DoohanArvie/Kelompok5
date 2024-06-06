@@ -354,17 +354,41 @@
                 <p>Dengarkan apa yang pelanggan kami katakan:</p>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                @foreach ($testimonials as $testimonial)
+            @foreach($feedbacks as $feedback)
                     <div class="testimonial-item bg-light rounded p-3">
                         <div class="bg-white border rounded p-4">
-                            <p>{{ $testimonial->pesan }}</p>
+                        @if ($feedback->vehicle_type == 'car')
+                            @php
+                                $vehicle = $cars->where('id', $feedback->vehicle_id)->first();
+                            @endphp
+                            @if ($vehicle)
+                                <h3>{{ $vehicle->nama_mobil }} - {{ $vehicle->type->nama }}</h3>
+                            @endif
+                        @else
+                            @php
+                                $vehicle = $motorcycles->where('id', $feedback->vehicle_id)->first();
+                            @endphp
+                            @if ($vehicle)
+                                <h3>{{ $vehicle->nama_motor }} - {{ $vehicle->type->nama }}</h3>
+                            @endif
+                        @endif
+                            <p>{{ $feedback->feedback }}</p>
                             <div class="d-flex align-items-center">
+                            <div class="col mb-3">
+                                @for ($i = 0; $i < $feedback->rating; $i++)
+                                    <i class="fas fa-star text-warning"></i>
+                                @endfor
+                                @for ($i = $feedback->rating; $i < 5; $i++)
+                                    <i class="fas fa-star text-secondary"></i>
+                                @endfor
+                                <span class="ms-2">{{ $feedback->rating }}</span>
+                            </div>
                                 <img class="img-fluid flex-shrink-0 rounded"
-                                    src="{{ Storage::url($testimonial->profile) }}" alt=""
-                                    style="width: 45px; height: 45px;">
+                                src="{{ asset('storage/avatars/' . $feedback->avatar) }}"
+                                    alt="" style="width: 45px; height: 45px;">
                                 <div class="ps-3">
-                                    <h6 class="fw-bold mb-1">{{ $testimonial->name }}</h6>
-                                    <small>{{ $testimonial->pekerjaan }}</small>
+                                    <h6 class="fw-bold mb-1">{{ $feedback->user_name }}</h6>
+                                    <small>{{ $feedback->created_at->format('M d, Y') }}</small>
                                 </div>
                             </div>
                         </div>
