@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" href="{{ asset('favicon-96x96.png') }}" sizes="96x96" type="image/png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
-    <title>OtoRent | Ankavi Team</title>
+    <title>{{ $setting->nama_perusahaan }} | Ankavi Team</title>
     <!--     Fonts and icons     -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -259,6 +259,7 @@
     <script src="{{ asset('frontend/js/argon/plugins/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('frontend/js/argon/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('frontend/js/argon/plugins/chartjs.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     {{-- @vite('resources/js/app.js') --}}
     @stack('script-alt')
     <script>
@@ -285,7 +286,7 @@
                 ],
                 datasets: [
                     {
-                        label: "Mobile apps",
+                        label: "Total Sewa",
                         tension: 0.4,
                         borderWidth: 0,
                         pointRadius: 0,

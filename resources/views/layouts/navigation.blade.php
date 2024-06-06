@@ -17,9 +17,17 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href="{{ route('home') }}" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"
-                class="navbar-brand-img h-100" alt="main_logo" />
-            <span class="ms-1 font-weight-bold">Argon Dashboard 2</span>
+            @php
+                $settings = \App\Models\Setting::first();
+            @endphp
+
+            @if ($settings && $settings->logo)
+                <img src="{{ Storage::url($settings->logo) }}" class="navbar-brand-img h-100" alt="main_logo" />
+                <span class="ms-1 font-weight-bold">{{ $setting->nama_perusahaan }}</span>
+            @else
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"
+                    class="navbar-brand-img h-100" alt="main_logo" />
+            @endif
         </a>
     </div>
     <hr class="horizontal dark mt-0" />
@@ -36,7 +44,7 @@
                 <a class="nav-link {{ request()->routeIs('admin.users.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.users.index') }}">
                     <i class="fa-solid fa-user text-warning text-lg opacity-10"></i>
-                    <span class="nav-link-text ms-1">{{ __('Users') }}</span>
+                    <span class="nav-link-text ms-1">{{ __('Pengguna') }}</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -141,7 +149,7 @@
                 <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.settings.index') }}">
                     <i class="fa-solid fa-gears text-warning text-lg opacity-10"></i>
-                    <span class="nav-link-text ms-1">{{ __('Settings') }}</span>
+                    <span class="nav-link-text ms-1">{{ __('Pengaturan Web') }}</span>
                 </a>
             </li>
         </ul>
@@ -150,26 +158,26 @@
         <ul class="navbar-nav">
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">
-                    Account pages
+                    Akun Admin
                 </h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link {{ request()->routeIs('admin.admin.edit') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.admin.edit', Auth::user()->id) }}">
                     <i class="fa-solid fa-user text-dark text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ Auth::user()->name }}</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.settings.index') }}">
-                    <i class="fa-solid fa-gears text-info text-lg opacity-10"></i>
-                    <span class="nav-link-text ms-1">{{ __('Settings') }}</span>
+                <a class="nav-link {{ request()->routeIs('admin.admin.index') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.admin.index') }}">
+                    <i class="fa-solid fa-address-book text-success text-lg opacity-10"></i>
+                    <span class="nav-link-text ms-1">{{ __('Daftar Admin') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="fa-solid fa-arrow-right-from-bracket text-danger text-lg opacity-10"></i>
-                    <span class="nav-link-text ms-1">{{ __('Logout') }}</span>
+                    <span class="nav-link-text ms-1">{{ __('Keluar') }}</span>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

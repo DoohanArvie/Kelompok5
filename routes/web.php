@@ -18,7 +18,9 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\Frontend\PasswordController;
 use App\Http\Controllers\Frontend\HistoryController;
 use App\Http\Controllers\Admin\BookingController as AdminBookingController;
-
+use App\Http\Controllers\SearchController;
+use App\Models\Type;
+use App\Models\TypeMotorcycle;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +33,21 @@ use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 */
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+
+Route::get('/cari-kendaraan', [SearchController::class, 'cari'])->name('cari-kendaraan');
+
+Route::get('car/categories', function() {
+    return Type::all(['id', 'nama'])->toArray();
+})->name('car.categories');
+
+Route::get('motor/categories', function() {
+    return TypeMotorcycle::all(['id', 'nama'])->toArray();
+})->name('motor.categories');
+
+
+// Route::get('/daftar-mobil', [SearchController::class, 'daftarMobil'])->name('daftar-mobil');
+// Route::get('/daftar-motor', [SearchController::class, 'daftarMotor'])->name('daftar-motor');
+
 // mobil
 Route::get('daftar-mobil', [CarController::class, 'index'])->name('car.index');
 Route::get('/daftar-mobil/{car}', [CarController::class, 'show'])->name('car.show');
@@ -70,6 +87,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     // Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::resource('admin', \App\Http\Controllers\Admin\AdminController::class);
+    Route::post('/password-update', [\App\Http\Controllers\Admin\AdminController::class, 'updatePassword'])->name('password.update.custom');
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('cars', \App\Http\Controllers\Admin\CarController::class);
     Route::resource('motorcycles', \App\Http\Controllers\Admin\MotorcycleController::class);
@@ -83,9 +102,11 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
     Route::resource('feedbacks', \App\Http\Controllers\Admin\FeedbackController::class);
     Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
-    Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class)->only(['index', 'store', 'update']);
+    Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
     Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);
     Route::resource('bookings', \App\Http\Controllers\Admin\BookingController::class);
     Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class);
     Route::resource('drivers', \App\Http\Controllers\Admin\DriverController::class);
+    Route::get('/bookings/cetak/pdf', [AdminBookingController::class, 'generatePdf'])->name('bookings.pdf');
 });
+// Route::get('/bookings/pdf', [AdminBookingController::class, 'generatePdf'])->name('admin.bookings.pdf');

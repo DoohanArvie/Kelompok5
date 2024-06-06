@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Models\Feedback;
 
 class BookingController extends Controller
 {
@@ -110,7 +111,6 @@ class BookingController extends Controller
         }
 
         $vehicle = $this->getVehicleByType($vehicle_type, $vehicle_id);
-
         $startDate = $request->start_date;
         $endDate = $request->end_date;
         $daysCount = (new \DateTime($endDate))->diff(new \DateTime($startDate))->days + 1;
@@ -148,6 +148,7 @@ class BookingController extends Controller
     public function showBookingConfirmation($booking_code)
     {
         $booking = Booking::where('booking_code', $booking_code)->with('user')->firstOrFail();
+        $feedbacks = Feedback::where('booking_code', $booking_code)->get();
 
         if ($booking->vehicle_type == 'car') {
             $vehicle = Car::find($booking->vehicle_id);
@@ -182,7 +183,7 @@ class BookingController extends Controller
         $booking->snap_token = $snapToken;
         $booking->save();
 
-        return view('frontend.vehicle.booking_confirmation', compact('booking', 'vehicle'));
+        return view('frontend.vehicle.booking_confirmation', compact('booking', 'vehicle', 'feedbacks'));
     }
 
     private function getVehicleByType($vehicle_type, $vehicle_id)
@@ -198,10 +199,14 @@ class BookingController extends Controller
 
     public function showBookingSuccess($booking_code)
     {
+        $user = auth()->user();
         $booking = Booking::where('booking_code', $booking_code)->firstOrFail();
-
+        
         $booking->booking_status = 'Pembayaran Terkonfirmasi';
         $booking->save();
-        return view('frontend.vehicle.booking_success', compact('booking'));
+        $userHasGivenFeedback = Feedback::where('user_id', Auth::user()->id)
+        ->where('booking_code', $booking_code)
+        ->exists();
+        return view('frontend.vehicle.booking_success', compact('booking', 'userHasGivenFeedback'));
     }
 }

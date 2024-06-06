@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $guarded = ['id'];
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +27,7 @@ class User extends Authenticatable
         'ktp', // Tambahkan kolom ktp untuk menyimpan path file KTP
         'sim', // Tambahkan kolom sim untuk menyimpan path file SIM
         'account_status',
+        'is_admin',
     ];
 
     /**
@@ -34,6 +36,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'id',
         'password',
         'remember_token',
     ];

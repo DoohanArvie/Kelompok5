@@ -10,8 +10,7 @@ use App\Models\Car;
 use App\Models\Motorcycle;
 use App\Models\User;
 use App\Models\Contact;
-
-
+use App\Models\Feedback;
 
 class HomeController extends Controller
 {
@@ -34,7 +33,7 @@ class HomeController extends Controller
     {
         // Menghitung jumlah booking dengan status "Menunggu Pembayaran"
         $countMenungguPembayaran = Booking::where('booking_status', 'Menunggu Pembayaran')->count();
-        $countMenungguKonfirmasi = Booking::where('booking_status', 'Menunggu Konfirmasi')->count();
+        $countPembayaranTerkonfirmasi = Booking::where('booking_status', 'Pembayaran Terkonfirmasi')->count();
         $countBelumDikembalikan = Booking::where('booking_status', 'Belum Dikembalikan')->count();
 
         $countJenisMobil =  Type::count();
@@ -54,19 +53,24 @@ class HomeController extends Controller
         //Hubungi Kami 
         $countHubungiKami = Contact::count();
 
-
+        $bookings = Booking::orderBy('created_at', 'desc')->get();
+        $feedbacks = Feedback::orderBy('created_at', 'desc')->get();
+        $users = User::get();
         // Mengirim data ke view
         return view(
             'home',
             compact(
                 'countMenungguPembayaran',
-                'countMenungguKonfirmasi',
+                'countPembayaranTerkonfirmasi',
                 'countBelumDikembalikan',
                 'countJenisKendaraan',
                 'countJumlahKendaraan',
                 'countBooking',
                 'countUser',
                 'countHubungiKami',
+                'bookings',
+                'users',
+                'feedbacks'
             )
         );
     }

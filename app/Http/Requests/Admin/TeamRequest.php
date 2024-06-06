@@ -21,24 +21,24 @@ class TeamRequest extends FormRequest
      */
     public function rules(): array
     {
-        switch($this->method()){
-            case 'POST' : {
-                return [
-                    'nama' => 'required|string|max:255',
-                    'jabatan' => 'required',
-                    'photo' => ['required','image','mimes:jpeg,png,jpg,gif','max:4096'],
-                    'bio' => 'required',
-                ];
-            }
-            case 'PUT' :
-            case 'PATCH' : {
-                return [
-                    'nama' => ['required', 'max:255', 'unique:teams,nama,'. $this->route()->team->id],
-                    'jabatan' => 'required',
-                    'photo' => ['image','mimes:jpeg,png,jpg,gif','max:4096'],
-                    'bio' => 'required',
-                ];
-            }
+        switch ($this->method()) {
+            case 'POST': {
+                    return [
+                        'nama' => 'required|string|max:255',
+                        'jabatan' => 'required',
+                        'photo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:4096'],
+                        'bio' => 'required',
+                    ];
+                }
+            case 'PUT':
+            case 'PATCH': {
+                    return [
+                        'nama' => ['required', 'max:255', 'unique:teams,nama,' . $this->route()->team->id],
+                        'jabatan' => 'required',
+                        'photo' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:4096'],
+                        'bio' => 'required',
+                    ];
+                }
         }
     }
 }

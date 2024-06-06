@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <title>OtoRent | Ankavi Team</title>
+    <title>{{ $setting->nama_perusahaan }} | Ankavi Team</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet" /> --}}
-
+    <link rel="icon" href="{{ asset('favicon-96x96.png') }}" sizes="96x96" type="image/png">
     <link rel="stylesheet" href="{{ asset('frontend/fonts/icomoon/style.css') }}" />
 
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" />
@@ -54,13 +54,23 @@
     <div class="container-fluid nav-bar bg-transparent">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
             <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center text-center">
-                <div class="icon p-2 me-2">
-                    <img class="img-fluid"
-                        src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"
-                        alt="Icon" style="width: 50px; height: 50px;">
+                @php
+                    $settings = \App\Models\Setting::first();
+                @endphp
+
+                <div class="p-2 me-2">
+                    @if ($settings && $settings->logo)
+                        <img class="img-fluid" src="{{ Storage::url($settings->logo) }}" alt="Icon"
+                            style="width: 50px; height: 50px;">
+                    @else
+                        <img class="img-fluid"
+                            src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"
+                            alt="Icon" style="width: 50px; height: 50px;">
+                    @endif
                     {{-- <h1>DeMobil</h1> --}}
                 </div>
-                <h1 class="m-0 text-primary">OtoRent</h1>
+
+                <h1 class="m-0 text-primary">{{ $settings->nama_perusahaan }}</h1>
 
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -75,8 +85,10 @@
                             class="nav-link dropdown-toggle {{ request()->is('daftar-mobil', 'daftar-motor') ? 'active' : '' }}"
                             data-bs-toggle="dropdown">Kendaraan</a>
                         <div class="dropdown-menu">
-                            <a href="{{ url('daftar-mobil') }}" class="dropdown-item {{ request()->is('daftar-mobil') ? 'active' : '' }}">Mobil</a>
-                            <a href="{{ url('daftar-motor') }}" class="dropdown-item {{ request()->is('daftar-motor') ? 'active' : '' }}">Motor</a>
+                            <a href="{{ url('daftar-mobil') }}"
+                                class="dropdown-item {{ request()->is('daftar-mobil') ? 'active' : '' }}">Mobil</a>
+                            <a href="{{ url('daftar-motor') }}"
+                                class="dropdown-item {{ request()->is('daftar-motor') ? 'active' : '' }}">Motor</a>
                         </div>
                     </div>
                     <a href="{{ url('tentang-kami') }}"
@@ -85,7 +97,8 @@
                         class="nav-item nav-link {{ request()->is('kontak') ? 'active' : '' }}">Kontak</a>
                     @auth
                         @if (auth()->user()->is_admin)
-                            <a class="nav-link" href="{{ route('home') }}" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="{{ route('home') }}" role="button" aria-haspopup="true"
+                                aria-expanded="false">
                                 Dashboard
                             </a>
                         @else
@@ -115,16 +128,16 @@
                                     </form>
                                 </div>
                             </div>
-                    {{-- </div> --}}
-                    @endif
-                @else
-                    <!-- Jika pengguna belum login, tampilkan tautan login -->
-                    <div class="align-items-center d-none d-lg-flex">
-                        <a href="{{ route('login') }}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
-                    </div>
-                {{-- </div> --}}
-                @endauth
-            </div>
+                            {{-- </div> --}}
+                        @endif
+                    @else
+                        <!-- Jika pengguna belum login, tampilkan tautan login -->
+                        <div class="align-items-center d-none d-lg-flex">
+                            <a href="{{ route('login') }}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
+                        </div>
+                        {{-- </div> --}}
+                    @endauth
+                </div>
         </nav>
     </div>
     <!-- Navbar End -->
@@ -134,15 +147,27 @@
     @yield('content')
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid bg-dark text-white-50 mt-5 footer wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
-            <div class="row g-5">
-                <div class="col-lg-6 col-md-6">
-                    <h1 class="text-white mb-4">OtoRent</h1>
+            <div class="row">
+
+                <div class="col-lg-3 col-md-4">
+                    @php
+                        $settings = \App\Models\Setting::first();
+                    @endphp
+
+                    @if ($settings && $settings->logo)
+                        <img class="img-fluid" src="{{ Storage::url($settings->logo) }}" alt="Logo" width="100%">
+                    @else
+
+                    @endif
+                </div>
+                <div class="col-lg-7 col-md-4">
+                    <h1 class="text-white mb-4">{{ $setting->nama_perusahaan }}</h1>
                     <p>{{ $setting->footer_description }}</p>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jln. Pemuda No 1</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+628 123 456 789</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>otorent05@gmail.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{ $setting->alamat }}</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>{{ $setting->phone }}</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{ $setting->email }}</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href="{{ $setting->facebook }}"><i
                                 class="fab fa-facebook-f"></i></a>
@@ -154,7 +179,7 @@
                                 class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-2 col-md-4">
                     <h5 class="text-white mb-4">Quick Links</h5>
                     <a class="btn btn-link text-white-50 text-decoration-none" href="">Tentang Kami</a>
                     <a class="btn btn-link text-white-50 text-decoration-none" href="">Kontak</a>
@@ -168,8 +193,9 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">OtoRent</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="#">{{ $setting->nama_perusahaan }}</a>, All Right Reserved.
                         Designed By Ankavi Team
+                        <strong>Kelompok 5 MSIB Fullstack #4</strong>
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">

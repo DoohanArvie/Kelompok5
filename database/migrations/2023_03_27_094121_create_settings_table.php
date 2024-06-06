@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_perusahaan');
+            $table->string('logo');
             $table->string('alamat');
             $table->string('phone');
             $table->string('email');
-            $table->string('footer_description');
-            $table->string('tentang_perusahaan');
-            $table->string('sejarah_perusahaan');
+            $table->text('footer_description');
+            $table->text('tentang_perusahaan');
+            $table->text('sejarah_perusahaan');
+            $table->text('tentang_team');
             $table->string('facebook');
             $table->string('instagram');
             $table->string('twitter');
