@@ -1,104 +1,114 @@
 @extends('frontend.layout')
 
 @section('content')
-    <!-- check_availability.blade.php -->
+    <!-- check_availability -->
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-6 text-center">
-                <img src="{{ Storage::url($vehicle->image1) }}" class="img-fluid" alt="">
-            </div>
-            <div class="col-6">
-                <div class="mb-4">
-                    <h1>Cek Ketersediaan </h1>
-                    @if ($vehicle_type === 'car')
-                        <h4>{{ $vehicle->nama_mobil }} - {{ $vehicle->type->nama }}</h4>
-                    @else
-                        <h4>{{ $vehicle->nama_motor }} - {{ $vehicle->type->nama }}</h4>
-                    @endif
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <img src="{{ Storage::url($vehicle->image1) }}" class="card-img-top img-fluid rounded" alt="">
                 </div>
-                <form
-                    action="{{ route('check_vehicle_availability', ['vehicle_type' => $vehicle_type, 'vehicle_id' => $vehicle->id]) }}"
-                    method="GET">
-                    @csrf
-                    <input type="hidden" name="vehicle_type" value="{{ $vehicle_type }}">
-                    <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}">
-
-                    <div class="mb-3">
-                        <label for="start_date" class="form-label">Tanggal Mulai</label>
-                        <input type="date" class="form-control" name="start_date" id="start_date" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="end_date" class="form-label">Tanggal Selesai</label>
-                        <input type="date" class="form-control" name="end_date" id="end_date" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Menggunakan Driver</label>
-                        <div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-4 text-center">
+                            <h1 class="card-title">Cek Ketersediaan</h1>
                             @if ($vehicle_type === 'car')
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="with_driver" id="with_driver_yes"
-                                        value="1" required>
-                                    <label class="form-check-label" for="with_driver_yes">Ya</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="with_driver" id="with_driver_no"
-                                        value="0" required>
-                                    <label class="form-check-label" for="with_driver_no">Tidak</label>
-                                </div>
+                                <h4 class="card-subtitle">{{ $vehicle->nama_mobil }} - {{ $vehicle->type->nama }}</h4>
                             @else
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="with_driver" id="with_driver_yes"
-                                        value="1" disabled>
-                                    <label class="form-check-label" for="with_driver_yes">Ya</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="with_driver" id="with_driver_no"
-                                        value="0" checked disabled>
-                                    <label class="form-check-label" for="with_driver_no">Tidak</label>
-                                </div>
-                                <input type="hidden" name="with_driver" value="0">
-                                {{-- <p>Tidak</p> --}}
+                                <h4 class="card-subtitle">{{ $vehicle->nama_motor }} - {{ $vehicle->type->nama }}</h4>
                             @endif
                         </div>
-                    </div>
+                        <form
+                            action="{{ route('check_vehicle_availability', ['vehicle_type' => $vehicle_type, 'vehicle_id' => $vehicle->id]) }}"
+                            method="GET">
+                            @csrf
+                            <input type="hidden" name="vehicle_type" value="{{ $vehicle_type }}">
+                            <input type="hidden" name="vehicle_id" value="{{ $vehicle->id }}">
 
-                    <div class="mb-3">
-                        <label class="form-label" for="pickup">Metode Pickup</label>
-                        <select name="pickup" id="pickup" class="form-control" required>
-                            <option value="">Pilih Metode Pickup</option>
-                            <option value="Ambil Sendiri">Ambil Sendiri</option>
-                            <option value="Diantar Sesuai Alamat">Diantar Sesuai Alamat</option>
-                        </select>
-                    </div>
+                            <div class="mb-3">
+                                <label for="start_date" class="form-label">Tanggal Mulai</label>
+                                <input type="date" class="form-control" name="start_date" id="start_date" required>
+                            </div>
 
-                    <button type="submit" class="btn btn-primary">Cek Ketersediaan</button>
-                </form>
+                            <div class="mb-3">
+                                <label for="end_date" class="form-label">Tanggal Selesai</label>
+                                <input type="date" class="form-control" name="end_date" id="end_date" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Menggunakan Driver</label>
+                                <div>
+                                    @if ($vehicle_type === 'car')
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="with_driver" id="with_driver_yes"
+                                                value="1" required>
+                                            <label class="form-check-label" for="with_driver_yes">Ya</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="with_driver" id="with_driver_no"
+                                                value="0" required>
+                                            <label class="form-check-label" for="with_driver_no">Tidak</label>
+                                        </div>
+                                    @else
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="with_driver" id="with_driver_yes"
+                                                value="1" disabled>
+                                            <label class="form-check-label" for="with_driver_yes">Ya</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="with_driver" id="with_driver_no"
+                                                value="0" checked disabled>
+                                            <label class="form-check-label" for="with_driver_no">Tidak</label>
+                                        </div>
+                                        <input type="hidden" name="with_driver" value="0">
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="pickup">Metode Pickup</label>
+                                <select name="pickup" id="pickup" class="form-select" required>
+                                    <option value="">Pilih Metode Pickup</option>
+                                    <option value="Ambil Sendiri">Ambil Sendiri</option>
+                                    <option value="Diantar Sesuai Alamat">Diantar Sesuai Alamat</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Cek Ketersediaan</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+<!-- end check_availability -->
+    
+
 
         <!-- Modal Alert -->
         @if (session('error'))
-            <div class="modal" tabindex="-1" id="errorModal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Kesalahan</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="alert alert-danger" role="alert">
-                                <strong>{{ session('error') }}</strong>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
-                        </div>
-                    </div>
+<div class="modal" tabindex="-1" id="errorModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></i> Kesalahan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" role="alert">
+                    <i class="bi bi-exclamation-octagon-fill"></i> <strong>{{ session('error') }}</strong>
                 </div>
             </div>
-            {{-- @endif --}}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- @endif --}}
+
             <!-- Modal -->
         @elseif ($isAvailable)
             <div class="modal fade" id="availabilityModal" tabindex="-1" aria-labelledby="availabilityModalLabel"
