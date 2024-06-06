@@ -51,7 +51,7 @@
                                                     @if($feedback)
                                                         <button class="btn btn-secondary btn-sm text-center" disabled>Anda sudah memberikan feedback</button>
                                                     @else
-                                                        <button class="btn btn-success btn-sm text-center" data-bs-toggle="modal" data-bs-target="#feedbackModal" data-booking-code="{{ $booking->booking_code }}" data-vehicle-type="{{ $booking->vehicle_type }}" data-vehicle-id="{{ $booking->vehicle_id }}">Beri Feedback</button>
+                                                        <button class="btn btn-danger btn-sm text-center" data-bs-toggle="modal" data-bs-target="#feedbackModal" data-booking-code="{{ $booking->booking_code }}" data-vehicle-type="{{ $booking->vehicle_type }}" data-vehicle-id="{{ $booking->vehicle_id }}">Beri Feedback</button>
                                                     @endif
                                                 @endif
                                             </div>
