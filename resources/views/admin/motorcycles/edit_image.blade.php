@@ -14,12 +14,26 @@
                             </a>
                         </div>
                         <div class="card-body">
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
                             <form method="post" action="{{ route('admin.motorcycles.update_image', ['motorcycle' => $motorcycle->id, 'image' => $image]) }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="{{ $image }}" class="col-sm-2 col-form-label">Gambar {{ $image }}</label>
                                     <div class="col-sm-12">
-                                        <input type="file" name="{{ $image }}" class="form-control">
+                                        <input type="file" name="{{ $image }}" class="form-control @error($image) is-invalid @enderror">
+                                        @error($image)
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-success">Simpan Gambar</button>
