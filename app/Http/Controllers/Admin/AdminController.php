@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Gate;
 
 class AdminController extends Controller
 {
-    //
-
     public function index()
     {
         $admins = User::where('is_admin', 1)->get();
@@ -27,7 +26,6 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'name' => 'required|string|max:255',
@@ -44,7 +42,6 @@ class AdminController extends Controller
             'account_status' => 'Terverifikasi'
         ]);
 
-
         if ($request->hasFile('avatar')) {
             $avatarPath = $request->file('avatar')->store('public/avatars');
             $admin->avatar = basename($avatarPath);
@@ -52,7 +49,7 @@ class AdminController extends Controller
         }
 
         return redirect()->route('admin.admin.index')->with([
-            'message' => 'berhasil di buat',
+            'message' => 'Berhasil dibuat',
             'alert-type' => 'success'
         ]);
     }
@@ -60,13 +57,28 @@ class AdminController extends Controller
     public function edit($id)
     {
         $admin = User::findOrFail($id);
+
+        if (Gate::denies('view', $admin)) {
+            return redirect()->route('admin.admin.index')->with('error', 'Anda tidak memiliki izin untuk mengakses halaman ini.');
+        }
+
         return view('admin.admin.edit', compact('admin'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $admin = User::where('is_admin', 1)->first();
-        
+        $admin = User::findOrFail($id);
+
+        if (Gate::denies('update', $admin)) {
+            return redirect()->route('admin.admin.index')->with('error', 'Anda tidak memiliki izin untuk mengubah data ini.');
+        }
+
+        $request->validate([
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $admin->id,
+        ]);
+
         if ($request->hasFile('avatar')) {
             if ($admin->avatar) {
                 Storage::delete('public/avatars/' . $admin->avatar);
@@ -74,35 +86,31 @@ class AdminController extends Controller
             $avatarPath = $request->file('avatar')->store('public/avatars');
             $admin->avatar = basename($avatarPath);
         }
-        
+
         $admin->update($request->all());
 
         return redirect()->route('admin.admin.index')->with([
-            'message' => 'berhasil di buat',
+            'message' => 'Berhasil diupdate',
             'alert-type' => 'success'
         ]);
     }
 
     public function updatePassword(Request $request)
     {
-        // Validasi input
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Ambil user yang sedang login
         $admin = Auth::user();
 
-        // Cek apakah password saat ini benar
         if (!Hash::check($request->current_password, $admin->password)) {
             return back()->withErrors(['current_password' => 'Password saat ini salah']);
         }
 
-        // Update password
         $admin->password = Hash::make($request->password);
         $admin->save();
 
-        return redirect()->back()->with('status', 'Password berhasil di ubah');
+        return redirect()->back()->with('status', 'Password berhasil diubah');
     }
 }

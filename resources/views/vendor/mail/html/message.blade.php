@@ -2,7 +2,7 @@
 {{-- Header --}}
 <x-slot:header>
 <x-mail::header :url="config('app.url')">
-OtoRent
+<img src="https://i.ibb.co.com/7Vzzfs7/otorent.png" alt="otorent" border="0" style="width:120px;">
 </x-mail::header>
 </x-slot:header>
 
