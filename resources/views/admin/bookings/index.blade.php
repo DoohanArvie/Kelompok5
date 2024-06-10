@@ -110,9 +110,6 @@
                                                 </td>
                                             </tr>
                                         @empty
-                                            <tr>
-                                                <td class="text-center">Data Kosong!</td>
-                                            </tr>
                                         @endforelse
                                     </tbody>
                                 </table>

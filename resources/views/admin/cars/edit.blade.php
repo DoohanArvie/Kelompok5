@@ -16,40 +16,69 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
                             <form method="post" action="{{ route('admin.cars.update', $car) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="nama_mobil" class="col-form-label">Nama Mobil</label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" name="nama_mobil"
+                                        <input type="text" class="form-control @error('nama_mobil') is-invalid @enderror" name="nama_mobil"
                                             value="{{ old('nama_mobil', $car->nama_mobil) }}" id="nama_mobil">
+                                        @error('nama_mobil')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="type_id" class="col-sm-2 col-form-label">Tipe Mobil</label>
                                     <label for="type_id" class="col-form-label">Tipe Mobil</label>
                                     <div class="col-sm-12">
-                                        <select class="form-control" name="type_id" id="type_id">
+                                        <select class="form-control @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
                                             @foreach ($types as $type)
                                                 <option {{ old('type_id', $car->type_id) == $type->id ? 'selected' : null }}
                                                     value="{{ $type->id }}">{{ $type->nama }}</option>
                                             @endforeach
                                         </select>
+                                        @error('type_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="price" class="col-form-label">Harga Sewa</label>
                                     <div class="col-sm-12">
-                                        <input type="number" class="form-control" name="price"
+                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
                                             value="{{ old('price', $car->price) }}" id="price">
+                                        @error('price')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="penumpang" class="col-sm-2 col-form-label">Jumlah Penumpang</label>
                                     <div class="col-sm-12">
-                                        <input type="number" class="form-control" name="penumpang"
+                                        <input type="number" class="form-control @error('penumpang') is-invalid @enderror" name="penumpang"
                                             value="{{ old('penumpang', $car->penumpang) }}" id="penumpang">
+                                        @error('penumpang')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">

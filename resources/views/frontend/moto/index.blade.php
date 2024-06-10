@@ -72,7 +72,7 @@
                                                 <button class="btn btn-outline-primary active w-100" data-bs-toggle="pill"
                                                     data-filter="all">Semua</button>
                                             </li>
-                                            @foreach($types as $type)
+                                            @foreach ($types as $type)
                                                 <li class="nav-item mb-2">
                                                     <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                         data-filter="{{ $type->nama }}">{{ $type->nama }}</button>
@@ -136,8 +136,8 @@
                             <div class="col-lg-3 col-md-6 moto-item" data-category="{{ $moto->type->nama }}"
                                 data-passenger="{{ $moto->penumpang }}">
                                 <div class="property-item rounded overflow-hidden wow fadeInUp"
-                                    data-wow-delay="{{ $loop->iteration * 0.4 }}s">
-                                    <div class="position-relative overflow-hidden">
+                                    data-wow-delay="{{ $loop->iteration * 0.1 }}s">
+                                    <div class="position-relative overflow-hidden image-container">
                                         <img class="img-fluid" src="{{ asset('storage/' . $moto->image1) }}"
                                             alt="gambar-motor">
                                         <div
@@ -149,7 +149,7 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($moto->price) }} /
                                             hari</h5>
                                         <a class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</a>
-                                        <p style="text-align: justify"></i>{{ $moto->description }}</p>
+                                        {{-- <p style="text-align: justify"></i>{{ $moto->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -198,6 +198,24 @@
 
         .property-footer {
             margin-top: auto;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            /* 16:9 aspect ratio (9 / 16 = 0.5625 * 100 = 56.25) */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensures the image covers the container */
         }
     </style>
 @endpush

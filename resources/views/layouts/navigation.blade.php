@@ -146,12 +146,37 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="#pengaturanCollapse" class="nav-link {{ request()->routeIs('admin.settings.*') || request()->routeIs('admin.faqs.*') ? 'active bg-primary text-white' : '' }}" data-bs-toggle="collapse" role="button"
+                    aria-expanded="false" aria-controls="pengaturanCollapse">
+                    <i class="fa-solid fa-gears text-info text-lg opacity-10"></i>
+                    <span class="nav-link-text ms-1">
+                        Pengaturan Web
+                    </span>
+                </a>
+                <div class="collapse mt-1 {{ request()->routeIs('admin.settings.*') || request()->routeIs('admin.faqs.*') ? 'show' : '' }}" id="pengaturanCollapse">
+                    <div class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active bg-primary text-white' : '' }}"
+                            href="{{ route('admin.settings.index') }}">
+                            <i class="fa-solid fa-gears text-warning text-lg opacity-10"></i>
+                            <span class="nav-link-text ms-1">{{ __('Pengaturan Tampilan') }}</span>
+                        </a>
+                    </div>
+                    <div class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('admin.faqs.*') ? 'active bg-primary text-white' : '' }}"
+                        href="{{ route('admin.faqs.index') }}">
+                            <i class="fa-solid fa-question text-info text-lg opacity-10"></i>
+                            <span class="nav-link-text ms-1">Pengaturan FAQ</span>
+                        </a>
+                    </div>
+                </div>
+            {{-- </li>
+            <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.settings.index') }}">
                     <i class="fa-solid fa-gears text-warning text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Pengaturan Web') }}</span>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
     <div class="sidenav-footer">
