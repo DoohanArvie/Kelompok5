@@ -192,8 +192,8 @@
                             <div class="col-lg-3 col-md-6 car-item" data-category="{{ $car->type->nama }}"
                                 data-passenger="{{ $car->penumpang }}">
                                 <div class="property-item rounded overflow-hidden wow fadeInUp"
-                                    data-wow-delay="{{ $loop->iteration * 0.4 }}s">
-                                    <div class="position-relative overflow-hidden">
+                                    data-wow-delay="{{ $loop->iteration * 0.1 }}s">
+                                    <div class="position-relative overflow-hidden image-container">
                                         <img class="img-fluid" src="{{ asset('storage/' . $car->image1) }}"
                                             alt="gambar-mobil">
                                         <div
@@ -205,7 +205,7 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
                                         <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
-                                        <p style="text-align: justify"></i>{{ $car->description }}</p>
+                                        {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -255,6 +255,23 @@
 
         .property-footer {
             margin-top: auto;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            /* 16:9 aspect ratio (9 / 16 = 0.5625 * 100 = 56.25) */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensures the image covers the container */
         }
     </style>
 @endpush

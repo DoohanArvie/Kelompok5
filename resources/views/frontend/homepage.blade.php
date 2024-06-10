@@ -5,7 +5,7 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5 wow fadeInLeft" data-wow-delay="0.1s">
                 <h1 class="display-5 animated fadeIn mb-4>
-                    <span class="text-primary">OtoRent</span>
+                    <span class="text-primary">{{ $setting->nama_perusahaan }}</span>
                     Solusi Perjalanan Anda!
                 </h1>
                 <h5 class="animated fadeIn pb-2">Temukan Mobil dan Motor terbaik untuk setiap perjalanan Anda!</h5>
@@ -86,7 +86,8 @@
                                 </div>
                             </div>
                             <div class="col-md-2 d-flex align-items-end">
-                                <button type="submit" id="searchButton" class="btn btn-dark border-0 w-100 py-3 mt-3 mt-md-0" disabled>Cari</button>
+                                <button type="submit" id="searchButton"
+                                    class="btn btn-dark border-0 w-100 py-3 mt-3 mt-md-0" disabled>Cari</button>
                             </div>
                         </div>
                     </div>
@@ -98,8 +99,8 @@
     <div class="container py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1 class="mb-4"><strong>Kelebihan Jasa di OtoRent Dibandingkan Rental Lainnya</strong></h1>
-                <p class="lead mb-5">Temukan Alasan Mengapa OtoRent Menjadi Pilihan Terbaik Anda</p>
+                <h1 class="mb-4"><strong>Kelebihan Jasa di {{ $setting->nama_perusahaan }} Dibandingkan Rental Lainnya</strong></h1>
+                <p class="lead mb-5">Temukan Alasan Mengapa {{ $setting->nama_perusahaan }} Menjadi Pilihan Terbaik Anda</p>
             </div>
         </div>
         <div class="row text-center">
@@ -149,7 +150,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="mb-4"><strong>Cara Pemesanan</strong></h1>
-                <p class="lead mb-5">Ikuti Langkah Mudah Ini untuk Menyewa di OtoRent</p>
+                <p class="lead mb-5">Ikuti Langkah Mudah Ini untuk Menyewa di {{ $setting->nama_perusahaan }}</p>
             </div>
         </div>
         <div class="row text-center">
@@ -170,8 +171,8 @@
                         'color' => 'text-success',
                     ],
                     [
-                        'title' => 'OtoRent Melakukan Konfirmasi Pesanan',
-                        'description' => 'Tunggu konfirmasi pesanan dari OtoRent melalui email atau pesan singkat.',
+                        'title' => 'Kami Melakukan Konfirmasi Pesanan',
+                        'description' => 'Tunggu konfirmasi pesanan dari kami melalui email atau pesan singkat.',
                         'icon' => 'fas fa-check',
                         'color' => 'text-warning',
                     ],
@@ -210,11 +211,7 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">Dedikasi Kami Untuk Anda</h1>
-                    <p class="mb-4" style="text-align: justify">Kami percaya bahwa perjalanan Anda layak mendapatkan
-                        yang
-                        terbaik. Dengan armada yang berkualitas dan layanan pelanggan yang profesional, kami berkomitmen
-                        untuk menghadirkan pengalaman berkendara yang luar biasa. Nikmati kenyamanan dan kemudahan dalam
-                        setiap perjalanan Anda bersama kami dengan :</p>
+                    <p class="mb-4" style="text-align: justify">{{ $setting->tentang_perusahaan }}</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Kendaraan yang selalu terjaga kebersihannya dan dalam
                         kondisi prima</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Pengemudi yang berpengalaman dan ramah</p>
@@ -250,12 +247,15 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-4">
-                        @foreach ($cars as $car)
+                        @php
+                            $randomCars = $cars->shuffle()->take(6);
+                        @endphp
+                        @foreach ($randomCars as $car)
                             <div class="col-lg-4 col-md-6 car-item" data-category="{{ $car->type->nama }}"
                                 data-passenger="{{ $car->penumpang }}">
                                 <div class="property-item rounded overflow-hidden wow fadeInUp"
                                     data-wow-delay="{{ $loop->iteration * 0.2 }}s">
-                                    <div class="position-relative overflow-hidden">
+                                    <div class="position-relative overflow-hidden image-container">
                                         <img class="img-fluid" src="{{ Storage::url($car->image1) }}"
                                             alt="gambar-mobil">
                                         <div
@@ -267,7 +267,7 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
                                         <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
-                                        <p style="text-align: justify"></i>{{ $car->description }}</p>
+                                        {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -296,12 +296,15 @@
                 </div>
                 <div id="tab-2" class="tab-pane fade show p-0">
                     <div class="row g-4">
-                        @foreach ($motorcycles as $motorcycle)
+                        @php
+                            $randomizedMotorcycles = $motorcycles->shuffle()->take(6);
+                        @endphp
+                        @foreach ($randomizedMotorcycles as $motorcycle)
                             <div class="col-lg-4 col-md-6 car-item" data-category="{{ $motorcycle->type->nama }}"
                                 data-passenger="{{ $motorcycle->penumpang }}">
                                 <div class="property-item rounded overflow-hidden wow fadeInUp"
                                     data-wow-delay="{{ $loop->iteration * 0.2 }}s">
-                                    <div class="position-relative overflow-hidden">
+                                    <div class="position-relative overflow-hidden image-container">
                                         <img class="img-fluid" src="{{ Storage::url($motorcycle->image1) }}"
                                             alt="gambar-mobil">
                                         <div
@@ -313,7 +316,7 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($motorcycle->price) }} /
                                             hari</h5>
                                         <a class="d-block h5 mb-2" href="">{{ $motorcycle->nama_motor }}</a>
-                                        <p style="text-align: justify"></i>{{ $motorcycle->description }}</p>
+                                        {{-- <p style="text-align: justify"></i>{{ $motorcycle->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -345,38 +348,38 @@
                 <p>Dengarkan apa yang pelanggan kami katakan:</p>
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-            @foreach($feedbacks as $feedback)
+                @foreach ($feedbacks as $feedback)
                     <div class="testimonial-item bg-light rounded p-3">
                         <div class="bg-white border rounded p-4">
-                        @if ($feedback->vehicle_type == 'car')
-                            @php
-                                $vehicle = $cars->where('id', $feedback->vehicle_id)->first();
-                            @endphp
-                            @if ($vehicle)
-                                <h3>{{ $vehicle->nama_mobil }} - {{ $vehicle->type->nama }}</h3>
+                            @if ($feedback->vehicle_type == 'car')
+                                @php
+                                    $vehicle = $cars->where('id', $feedback->vehicle_id)->first();
+                                @endphp
+                                @if ($vehicle)
+                                    <h3>{{ $vehicle->nama_mobil }} - {{ $vehicle->type->nama }}</h3>
+                                @endif
+                            @else
+                                @php
+                                    $vehicle = $motorcycles->where('id', $feedback->vehicle_id)->first();
+                                @endphp
+                                @if ($vehicle)
+                                    <h3>{{ $vehicle->nama_motor }} - {{ $vehicle->type->nama }}</h3>
+                                @endif
                             @endif
-                        @else
-                            @php
-                                $vehicle = $motorcycles->where('id', $feedback->vehicle_id)->first();
-                            @endphp
-                            @if ($vehicle)
-                                <h3>{{ $vehicle->nama_motor }} - {{ $vehicle->type->nama }}</h3>
-                            @endif
-                        @endif
                             <p>{{ $feedback->feedback }}</p>
                             <div class="d-flex align-items-center">
-                            <div class="col mb-3">
-                                @for ($i = 0; $i < $feedback->rating; $i++)
-                                    <i class="fas fa-star text-warning"></i>
-                                @endfor
-                                @for ($i = $feedback->rating; $i < 5; $i++)
-                                    <i class="fas fa-star text-secondary"></i>
-                                @endfor
-                                <span class="ms-2">{{ $feedback->rating }}</span>
-                            </div>
+                                <div class="col mb-3">
+                                    @for ($i = 0; $i < $feedback->rating; $i++)
+                                        <i class="fas fa-star text-warning"></i>
+                                    @endfor
+                                    @for ($i = $feedback->rating; $i < 5; $i++)
+                                        <i class="fas fa-star text-secondary"></i>
+                                    @endfor
+                                    <span class="ms-2">{{ $feedback->rating }}</span>
+                                </div>
                                 <img class="img-fluid flex-shrink-0 rounded"
-                                src="{{ asset('storage/avatars/' . $feedback->avatar) }}"
-                                    alt="" style="width: 45px; height: 45px;">
+                                    src="{{ asset('storage/avatars/' . $feedback->avatar) }}" alt=""
+                                    style="width: 45px; height: 45px;">
                                 <div class="ps-3">
                                     <h6 class="fw-bold mb-1">{{ $feedback->user_name }}</h6>
                                     <small>{{ $feedback->created_at->format('M d, Y') }}</small>
@@ -398,149 +401,29 @@
             </div>
             <div class="accordion wow fadeInUp" data-wow-delay="0.1s" id="accordionExample">
                 <!-- Accordion Item 1 -->
-                <div class="accordion-item mb-3">
-                    <div class="accordion-card card shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <span class="accordion-title">1. Bagaimana cara melakukan pemesanan mobil?</span>
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Kunjungi halaman pemesanan kami, Pilih jenis mobil yang diinginkan, pilih tanggal dan waktu
-                                sewa. Setelah mengisi formulir pemesanan, Anda harus membayar biaya sewa dan admin akan
-                                mengkonfirmasi sewa.
+                @foreach ($faqs as $faq)
+                    <div class="accordion-item mb-3">
+                        <div class="accordion-card card shadow-sm">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ $faq->id }}" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    <span class="accordion-title">{{ $loop->iteration }}. {{ $faq->question }}</span>
+                                </button>
+                            </h2>
+                            <div id="collapse{{ $faq->id }}" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    {{ $faq->answer }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Accordion Item 2 -->
-                <div class="accordion-item mb-3">
-                    <div class="accordion-card card shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <span class="accordion-title">2. Apa syarat dan ketentuan untuk menyewa mobil?</span>
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anda harus memiliki usia minimal 21 tahun. Memiliki SIM yang masih berlaku. Menyediakan
-                                identitas yang valid, seperti KTP.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Accordion Item 3 -->
-                <div class="accordion-item mb-3">
-                    <div class="accordion-card card shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <span class="accordion-title">3. Bagaimana metode pembayaran yang diterima?</span>
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Kami menerima pembayaran dengan Transfer Rekening Bank.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Accordion Item 4 -->
-                <div class="accordion-item mb-3">
-                    <div class="accordion-card card shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                <span class="accordion-title">4. Apakah ada biaya tambahan yang harus saya bayar?</span>
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Biaya sewa mobil sudah termasuk dalam harga yang tertera. Namun, biaya seperti, biaya
-                                pengemudi
-                                tambahan dan biaya bahan bakar kendaraan ditanggung penyewa.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Accordion Item 5 -->
-                <div class="accordion-item mb-3">
-                    <div class="accordion-card card shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                <span class="accordion-title">5. Bagaimana kebijakan pembatalan?</span>
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Kebijakan pembatalan dapat bervariasi tergantung pada waktu pembatalan dan tipe penyewaan.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Accordion Item 6 -->
-                <div class="accordion-item mb-3">
-                    <div class="accordion-card card shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                <span class="accordion-title">6. Apakah ada batasan jarak perjalanan?</span>
-                            </button>
-                        </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Biasanya, kami memberikan jarak perjalanan yang tidak terbatas.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Accordion Item 7 -->
-                <div class="accordion-item mb-3">
-                    <div class="accordion-card card shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                <span class="accordion-title">7. Apakah saya dapat mengubah atau membatalkan pemesanan
-                                    saya?</span>
-                            </button>
-                        </h2>
-                        <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Untuk mengubah atau membatalkan pemesanan, silakan hubungi tim dukungan kami melalui email
-                                atau telepon.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Accordion Item 8 -->
-                <div class="accordion-item">
-                    <div class="accordion-card card shadow-sm">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                <span class="accordion-title">8. Bagaimana cara menghubungi tim dukungan pelanggan?</span>
-                            </button>
-                        </h2>
-                        <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anda dapat menghubungi tim dukungan kami melalui nomor telepon atau email yang tercantum di
-                                halaman kontak kami.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
     <!-- Faq End -->
-
-
-
-
 
     <!-- Call to Action Start -->
     <div class="container-xxl py-5">
@@ -585,6 +468,23 @@
 
         .property-footer {
             margin-top: auto;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 @endpush

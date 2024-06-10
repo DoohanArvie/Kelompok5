@@ -25,6 +25,8 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
+    {{-- <link id="pagestyle" href="{{ asset('frontend/css/argon/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" /> --}}
+
 
     <link rel="stylesheet" href="{{ asset('frontend/css/animate/animate.min.css') }}" />
 
@@ -52,12 +54,13 @@
 
     <!-- Navbar Start -->
     <div class="container-fluid nav-bar bg-transparent">
+        {{-- @include('layouts.navbar') --}}
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
             <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center text-center">
                 @php
                     $settings = \App\Models\Setting::first();
                 @endphp
-
+        
                 <div class="p-2 me-2">
                     @if ($settings && $settings->logo)
                         <img class="img-fluid" src="{{ Storage::url($settings->logo) }}" alt="Icon"
@@ -69,17 +72,16 @@
                     @endif
                     {{-- <h1>DeMobil</h1> --}}
                 </div>
-
+        
                 <h1 class="m-0 text-primary">{{ $settings->nama_perusahaan }}</h1>
-
+        
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
-                    <a href="{{ url('/') }}"
-                        class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+                    <a href="{{ url('/') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                     <div class="nav-item dropdown">
                         <a href="#"
                             class="nav-link dropdown-toggle {{ request()->is('daftar-mobil', 'daftar-motor') ? 'active' : '' }}"
@@ -122,8 +124,7 @@
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
@@ -139,6 +140,7 @@
                     @endauth
                 </div>
         </nav>
+        
     </div>
     <!-- Navbar End -->
 
@@ -157,9 +159,9 @@
                     @endphp
 
                     @if ($settings && $settings->logo)
-                        <img class="img-fluid" src="{{ Storage::url($settings->logo) }}" alt="Logo" width="100%">
+                        <img class="img-fluid" src="{{ Storage::url($settings->logo) }}" alt="Logo"
+                            width="100%">
                     @else
-
                     @endif
                 </div>
                 <div class="col-lg-7 col-md-4">
@@ -193,7 +195,8 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">{{ $setting->nama_perusahaan }}</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="#">{{ $setting->nama_perusahaan }}</a>, All Right
+                        Reserved.
                         Designed By Ankavi Team
                         <strong>Kelompok 5 MSIB Fullstack #4</strong>
                     </div>
@@ -217,6 +220,8 @@
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/js/popper.min.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/argon/core/popper.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/argon/core/bootstrap.min.js') }}"></script> --}}
     <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.sticky.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
@@ -233,8 +238,11 @@
     <script src="{{ asset('frontend/js/waypoints/waypoints.min.js') }}"></script>
 
     <script src="{{ asset('frontend/js/owlcarousel/owl.carousel.min.js') }}"></script>
-
+    {{-- <script src="{{ asset('frontend/js/argon/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/argon/plugins/smooth-scrollbar.min.js') }}"></script> --}}
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/argon/argon-dashboard.min.js') }}"></script> --}}
+
     {{-- <script src="https://kit.fontawesome.com/41f5370a51.js" crossorigin="anonymous"></script> --}}
     @stack('script-alt')
     @stack('scripts')

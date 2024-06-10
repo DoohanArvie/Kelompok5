@@ -103,6 +103,7 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('feedbacks', \App\Http\Controllers\Admin\FeedbackController::class);
     Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
     Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
+    Route::resource('faqs', \App\Http\Controllers\Admin\FAQController::class);
     Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);
     Route::resource('bookings', \App\Http\Controllers\Admin\BookingController::class);
     Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class);

@@ -1,86 +1,96 @@
 @extends('layouts.guest')
 
 @section('content')
+    <!-- Main Content -->
 
-    <body class="bg-gray-200">
-        <main class="main-content mt-0">
-            <div class="page-header align-items-start min-vh-100"
-                style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
-                <span class="mask bg-gradient-dark opacity-6"></span>
-                <div class="container my-auto">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-8 col-12 mx-auto">
-                            <div class="card z-index-0 fadeIn3 fadeInBottom">
-                                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                    <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
-                                        <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">
-                                            {{ __('Login') }}
-                                        </h4>
+    <body class="">
+        <main class="main-content  mt-0">
+            <section>
+                <div class="page-header min-vh-100">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+                                <div class="card card-plain">
+                                    <div class="card-header pb-0 text-start">
+                                        <h4 class="font-weight-bolder">Login</h4>
+                                        <p class="mb-0">Masukkan email dan password Anda!</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form role="form" class="text-start" action="{{ route('login') }}"
+                                            method="POST">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <div class="input-group">
+                                                    <input type="email" name="email"
+                                                        class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                                        placeholder="{{ __('Email') }}" required>
+                                                    <span class="input-group-text">
+                                                        <i class="fa-solid fa-envelope text-primary text-lg"></i>
+                                                    </span>
+                                                    @error('email')
+                                                        <span class="error invalid-feedback">
+                                                            {{ $message }}
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="input-group">
+                                                    <input type="password" name="password"
+                                                        class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                                        placeholder="{{ __('Password') }}" required>
+                                                    <span class="input-group-text">
+                                                        <i class="fa-solid fa-lock text-primary text-lg"></i>
+                                                    </span>
+                                                    @error('password')
+                                                        <span class="error invalid-feedback">
+                                                            {{ $message }}
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+                                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">
+                                                    {{ __('Login') }}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                        @if (Route::has('password.request'))
+                                            <p class="mt-4 text-sm text-center">
+                                                Lupa password?
+                                                <a href="{{ route('password.request') }}"
+                                                    class="text-primary font-weight-bold">{{ __('Reset Password') }}</a>
+                                            </p>
+                                        @endif
+                                        <p class="mt-4 text-sm text-center">
+                                            Belum punya akun?
+                                            <a href="{{ route('register') }}"
+                                                class="text-primary font-weight-bold">Daftar Sekarang</a>
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <form role="form" class="text-start" action="{{ route('login') }}" method="POST">
-                                        @csrf
-
-                                        <div class="input-group input-group-outline my-3">
-                                            <input type="email" name="email"
-                                                class="form-control @error('email') is-invalid @enderror"
-                                                placeholder="{{ __('Email') }}" required>
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="fas fa-envelope mx-3"></span>
-                                                </div>
-                                            </div>
-                                            @error('email')
-                                                <span class="error invalid-feedback">
-                                                    {{ $message }}
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="input-group input-group-outline mb-3">
-                                            <input type="password" name="password"
-                                                class="form-control @error('password') is-invalid @enderror"
-                                                placeholder="{{ __('Password') }}" required>
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="fas fa-lock mx-3"></span>
-                                                </div>
-                                            </div>
-                                            @error('password')
-                                                <span class="error invalid-feedback">
-                                                    {{ $message }}
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="form-check form-switch d-flex align-items-center mb-3">
-                                            <input class="form-check-input" type="checkbox" id="remember" name="remember"
-                                                checked />
-                                            <label class="form-check-label mb-0 ms-3" for="remember">
-                                                {{ __('Remember Me') }}
-                                            </label>
-                                            {{-- <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label> --}}
-                                        </div>
-                                        <div class="text-center">
-                                            <button type="submit" class="btn bg-gradient-info w-100 my-4 mb-2">
-                                                {{ __('Login') }}
-                                            </button>
-                                        </div>
-                                    </form>
-                                    @if (Route::has('password.request'))
-                                        <p class="mt-4 text-sm text-center">
-                                            <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
-                                        </p>
-                                    @endif
-                                    <p class="mt-4 text-sm text-center">
-                                        Belum punya akun?
-                                        <a href="{{ route('register') }}"
-                                            "class="text-info text-gradient font-weight-bold">Daftar Sekarang</a>
-                                    </p>
+                            </div>
+                            <div
+                                class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
+                                <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
+                                    style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg'); background-size: cover;">
+                                    <span class="mask bg-gradient-primary opacity-6"></span>
+                                    <h4 class="mt-5 text-white font-weight-bolder position-relative">"Attention is the new
+                                        currency"</h4>
+                                    <p class="text-white position-relative">The more effortless the writing looks, the more
+                                        effort the writer actually put into the process.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
-    @endsection
+    </body>
+@endsection

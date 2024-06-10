@@ -37,7 +37,7 @@
                                                 <th scope="row">{{ $user->id }}</th>
                                                 <td>
                                                     <a href="{{ Storage::url('avatars/' . $user->avatar) }}" target="_blank">
-                                                        <img src="{{ Storage::url('avatars/' . $user->avatar) }}" width="100" alt="{{ $user->name }} Avatar" class="img-fluid">
+                                                        <img src="{{ Storage::url('avatars/' . $user->avatar) }}" width="100" alt="{{ $user->name }} Avatar" class="img-fluid img-thumbnail">
                                                     </a>
                                                 </td>
                                                 <td>{{ $user->name }}</td>
