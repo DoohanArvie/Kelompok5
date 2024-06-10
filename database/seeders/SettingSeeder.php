@@ -29,7 +29,7 @@ class SettingSeeder extends Seeder
             'nama_perusahaan' => 'OtoRent',
             'logo' => $destinationFile,
             'alamat' => 'Jl. Pemuda No. 111, Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah',
-            'phone' => '+62 821 1234 5678',
+            'phone' => '6289679583095',
             'email' => 'otorent@example.com',
             'footer_description' => 'OtoRent - Solusi terpercaya untuk kebutuhan rental mobil dan motor Anda. Dengan pelayanan profesional dan armada kendaraan berkualitas, kami siap menemani perjalanan Anda dengan aman dan nyaman.',
             'tentang_perusahaan' => 'OtoRent adalah penyedia layanan rental mobil dan motor yang berkomitmen untuk memberikan pengalaman perjalanan yang tak terlupakan bagi pelanggan. Dengan berbagai pilihan kendaraan berkualitas mulai dari mobil hingga motor, OtoRent memastikan kebutuhan mobilitas pelanggan terpenuhi dengan pelayanan yang prima. Dengan fokus pada kenyamanan, keamanan, dan keandalan, OtoRent menjadi mitra setia dalam setiap perjalanan, memungkinkan pelanggan untuk menikmati kebebasan menjelajahi kota atau petualangan jauh dengan percaya diri.',
