@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('tentang_perusahaan');
             $table->text('sejarah_perusahaan');
             $table->text('tentang_team');
+            $table->text('hubungi_kami');
             $table->string('facebook');
             $table->string('instagram');
             $table->string('twitter');

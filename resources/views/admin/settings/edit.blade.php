@@ -85,8 +85,34 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                        <div id="phone-error" class="invalid-feedback" style="display: none;">
+                                            Format nomor telepon harus dimulai dengan '62'.
+                                        </div>
                                     </div>
                                 </div>
+                                
+                                <script>
+                                    const phoneInput = document.getElementById('phone');
+                                    const phoneError = document.getElementById('phone-error');
+                                
+                                    phoneInput.addEventListener('input', function () {
+                                        let phoneValue = phoneInput.value;
+                                        phoneValue = phoneValue.replace(/\D/g, '');
+                                
+                                        if (!phoneValue.startsWith('62')) {
+                                            phoneError.style.display = 'block';
+                                        } else {
+                                            phoneError.style.display = 'none';
+                                        }
+                                
+                                        if (!phoneValue.startsWith('62')) {
+                                            phoneValue = '62' + phoneValue;
+                                        }
+                                
+                                        phoneInput.value = phoneValue;
+                                    });
+                                </script>
+                                
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="footer_description" class="col-sm-2 col-form-label">Footer
                                         Description</label>
@@ -128,6 +154,17 @@
                                     <div class="col-sm-12">
                                         <textarea name="tentang_team" id="tentang_team" class="form-control @error('tentang_team') is-invalid @enderror" cols="30" rows="6">{{ old('tentang_team', $setting->tentang_team) }}</textarea>
                                         @error('tentang_team')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="hubungi_kami" class="col-sm-2 col-form-label">Hubungi Kami</label>
+                                    <div class="col-sm-12">
+                                        <textarea name="hubungi_kami" id="hubungi_kami" class="form-control @error('hubungi_kami') is-invalid @enderror" cols="30" rows="6">{{ old('hubungi_kami', $setting->hubungi_kami) }}</textarea>
+                                        @error('hubungi_kami')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

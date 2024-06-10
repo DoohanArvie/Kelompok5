@@ -13,7 +13,7 @@
                 <h4><i class="fa fa-check text-primary me-3"></i>Mudah</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Aman</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Nyaman</h4>
-                <a href="" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Pesan Sekarang</a>
+                <a href="{{ route('car.index') }}" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Pesan Sekarang</a>
             </div>
             <div class="col-md-6 wow fadeInRight" data-wow-delay="0.1s">
                 <div class="owl-carousel header-carousel">
@@ -447,13 +447,11 @@
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="mb-4">
                                 <h1 class="mb-3">Hubungi Kami</h1>
-                                <p style="text-align: justify">Kami siap membantu Anda merencanakan perjalanan dengan
-                                    armada terbaik dan layanan pelanggan yang ramah dan profesional. Nikmati kenyamanan dan
-                                    keamanan dengan kendaraan yang terawat dan pemesanan yang mudah bersama kami.</p>
+                                <p style="text-align: justify">{{ $setting->hubungi_kami }}</p>
                             </div>
-                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i
+                            <a href="https://wa.me/{{ $setting->phone }}" class="btn btn-primary py-3 px-4 me-2"><i
                                     class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
-                            <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat
+                            <a href="{{ route('car.index') }}" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat
                                 Pemesanan</a>
                         </div>
                     </div>
