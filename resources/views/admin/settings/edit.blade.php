@@ -9,7 +9,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Data</h3>
+                            <h3 class="card-title">Edit Pengaturan Tampilan</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -234,7 +234,7 @@
             </div>
             <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.container-fluid -->    
     </section>
     <!-- /.content -->
 @endsection

@@ -30,10 +30,41 @@
                 </div>
             </div>
         </div>
+
+        <div id="barCari">
+            <style>
+                #barCari {
+                height: 80px;
+                /* margin-top: 1000px; Contoh jarak untuk melihat efek scroll */
+            }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Waktu tunggu untuk memastikan elemen telah dimuat
+                    setTimeout(function() {
+                        var element = document.getElementById("barCari");
+                        var offset = 0; // Jarak dari atas halaman
+                        var bodyRect = document.body.getBoundingClientRect().top;
+                        var elementRect = element.getBoundingClientRect().top;
+                        var elementPosition = elementRect - bodyRect;
+                        var offsetPosition = elementPosition - offset;
+        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }, 1000); // Waktu tunggu 1 detik
+                });
+            </script>
+        </div>
+        
     </div>
+    
     <!-- Header End -->
+    
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;">
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;" >
+        
         <div class="container">
             @if (session('status'))
                 <div class="alert alert-success text-center text-white">
@@ -451,7 +482,7 @@
                             </div>
                             <a href="https://wa.me/{{ $setting->phone }}" class="btn btn-primary py-3 px-4 me-2"><i
                                     class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
-                            <a href="{{ route('car.index') }}" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat
+                            <a href="#barCari" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat
                                 Pemesanan</a>
                         </div>
                     </div>
@@ -496,6 +527,7 @@
     </style>
 @endpush
 @push('script-alt')
+    
     <script>
         $(document).ready(function() {
             var kendaraanSelect = $('#kendaraan');
