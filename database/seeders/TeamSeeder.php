@@ -19,33 +19,33 @@ class TeamSeeder extends Seeder
         $teams = [
             [
                 'nama' => 'Nida Aulia Karima',
-                'jabatan' => 'Manager',
+                'jabatan' => 'Chief Executive Officer (CEO)',
                 'photo' => 'team-1.png',
-                'bio' => 'Saya Manager di Perusahaan DeMobil. Bertanggung jawab dari proses pengembangan perusahaan DeMobil'
+                'bio' => 'Nida adalah pemimpin perusahaan yang mengarahkan visi dan strategi bisnis. Dia memastikan semua departemen bekerja menuju tujuan yang sama dan menjaga hubungan baik dengan stakeholder.'
             ],
             [
                 'nama' => 'Kharafi Dwi Andika',
-                'jabatan' => 'Admin-1',
+                'jabatan' => 'Chief Technology Officer (CTO)',
                 'photo' => 'team-2.png',
-                'bio' => 'Saya Admin 1, yang bertanggung jawab atas kinerja karyawan di perusahaan DeMobil'
+                'bio' => 'Kharafi adalah pemimpin teknis yang memastikan semua solusi teknologi sejalan dengan tujuan bisnis perusahaan. Dia bertanggung jawab atas visi teknologi dan memastikan inovasi terus berkembang.'
             ],
             [
                 'nama' => 'Valentino Aldo',
-                'jabatan' => 'Admin-2',
+                'jabatan' => 'Chief Operating Officer (COO)',
                 'photo' => 'team-3.png',
-                'bio' => 'Saya Admin 2, yang membantu admin 1 dan manager dalam menangani setiap masalah yang berkaitan dengan perusahaan.'
+                'bio' => 'Valentino memastikan semua aspek operasional perusahaan berjalan lancar dan efisien. Dia mengkoordinasikan berbagai departemen untuk mencapai tujuan perusahaan.'
             ],
             [
                 'nama' => 'Ahmad Shodiqin',
-                'jabatan' => 'Admin-3',
+                'jabatan' => 'Chief Financial Officer (CFO)',
                 'photo' => 'team-4.png',
-                'bio' => 'Saya Admin 3, yang bertanggung jawab dalam memastikan segala alat perusahaan bekerja dengan semestiya.'
+                'bio' => 'Ahmad mengawasi keuangan perusahaan, memastikan anggaran digunakan dengan efektif dan efisien. Dia juga bertanggung jawab atas laporan keuangan dan strategi keuangan jangka panjang.'
             ],
             [
                 'nama' => 'Avila Difa Adhiguna',
-                'jabatan' => 'Admin-4',
+                'jabatan' => 'Chief Marketing Officer (CMO)',
                 'photo' => 'team-5.png',
-                'bio' => 'Saya Admin 4, yang membantu admin 3 untuk mencatat segala urusan yang berkaitan dengan perusahaan.'
+                'bio' => 'Avila bertanggung jawab atas semua aktivitas pemasaran dan promosi. Dia merancang strategi untuk meningkatkan visibilitas produk dan memastikan pesan perusahaan tersampaikan dengan efektif kepada pelanggan.'
             ],
         ];
 
