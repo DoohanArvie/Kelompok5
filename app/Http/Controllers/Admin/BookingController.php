@@ -73,7 +73,10 @@ class BookingController extends Controller
 
         $booking->update($validatedData);
 
-        return redirect()->route('admin.bookings.index')->with('success', 'Booking updated successfully.');
+        return redirect()->route('admin.bookings.index')->with([
+            'message' => 'Data booking berhasil di update!',
+            'alert-type' => 'success'
+        ]);
     }
 
     /**
@@ -84,7 +87,7 @@ class BookingController extends Controller
         $booking->delete();
 
         return redirect()->back()->with([
-            'message' => 'berhasil di hapus !',
+            'message' => 'Data booking berhasil di hapus!',
             'alert-type' => 'danger'
         ]);
     }

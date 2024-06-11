@@ -42,7 +42,7 @@ class TeamController extends Controller
         }
 
         return redirect()->route('admin.teams.index')->with([
-            'message' => 'berhasil di buat',
+            'message' => 'Data Team berhasil di tambah!',
             'alert-type' => 'success'
         ]);
     }
@@ -81,8 +81,8 @@ class TeamController extends Controller
         }
 
         return redirect()->route('admin.teams.index')->with([
-            'message' => 'berhasil di edit',
-            'alert-type' => 'info'
+            'message' => 'Data team berhasil di update!',
+            'alert-type' => 'success'
         ]);
     }
 
@@ -95,8 +95,8 @@ class TeamController extends Controller
         $team->delete();
 
         return redirect()->back()->with([
-            'message' => 'berhasil di hapus',
-            'alert-type' => 'danger'
+            'message' => 'Data team berhasil di hapus!',
+            'alert-type' => 'success'
         ]);
     }
 }

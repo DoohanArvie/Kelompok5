@@ -49,7 +49,7 @@ class AdminController extends Controller
         }
 
         return redirect()->route('admin.admin.index')->with([
-            'message' => 'Berhasil dibuat',
+            'message' => 'Data admin baru telah ditambahkan!',
             'alert-type' => 'success'
         ]);
     }
@@ -59,7 +59,10 @@ class AdminController extends Controller
         $admin = User::findOrFail($id);
 
         if (Gate::denies('view', $admin)) {
-            return redirect()->route('admin.admin.index')->with('error', 'Anda tidak memiliki izin untuk mengakses halaman ini.');
+            return redirect()->route('admin.admin.index')->with([
+                'message' => 'Anda tidak memiliki izin untuk mengakses halaman ini.',
+                'alert-type' => 'error'
+            ]);
         }
 
         return view('admin.admin.edit', compact('admin'));
@@ -70,7 +73,10 @@ class AdminController extends Controller
         $admin = User::findOrFail($id);
 
         if (Gate::denies('update', $admin)) {
-            return redirect()->route('admin.admin.index')->with('error', 'Anda tidak memiliki izin untuk mengubah data ini.');
+            return redirect()->route('admin.admin.index')->with([
+                'message' => 'Anda tidak memiliki izin untuk mengakses halaman ini.',
+                'alert-type' => 'error'
+            ]);
         }
 
         $request->validate([
@@ -90,7 +96,7 @@ class AdminController extends Controller
         $admin->update($request->all());
 
         return redirect()->route('admin.admin.index')->with([
-            'message' => 'Berhasil diupdate',
+            'message' => 'Data admin telah diperbarui!',
             'alert-type' => 'success'
         ]);
     }
@@ -111,6 +117,10 @@ class AdminController extends Controller
         $admin->password = Hash::make($request->password);
         $admin->save();
 
-        return redirect()->back()->with('status', 'Password berhasil diubah');
+        return redirect()->back()->with([
+            'message' => 'Password akun diperbarui!',
+            'alert-type' => 'success'
+        ]);
+        
     }
 }

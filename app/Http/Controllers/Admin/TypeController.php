@@ -35,7 +35,7 @@ class TypeController extends Controller
         Type::create($request->validated());
 
         return redirect()->route('admin.types.index')->with([
-            'message' => 'berhasil di buat',
+            'message' => 'Data Tipe Mobil berhasil di tambah!',
             'alert-type' => 'success'
         ]);
     }
@@ -64,8 +64,8 @@ class TypeController extends Controller
         $type->update($request->validated());
 
         return redirect()->route('admin.types.index')->with([
-            'message' => 'berhasil di edit',
-            'alert-type' => 'info'
+            'message' => 'Data tipe mobil berhasil di update!',
+            'alert-type' => 'success'
         ]);
     }
 
@@ -77,8 +77,8 @@ class TypeController extends Controller
         $type->delete();
 
         return redirect()->back()->with([
-            'message' => 'berhasil di hapus',
-            'alert-type' => 'danger'
+            'message' => 'Data tipe mobil berhasil di hapus!',
+            'alert-type' => 'success'
         ]);
     }
 }

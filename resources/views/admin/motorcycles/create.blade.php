@@ -29,8 +29,8 @@
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="nama_motor" class="col-sm-2 col-form-label">Nama Motor</label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control @error('nama_motor') is-invalid @enderror name="nama_motor"
-                                            value="{{ old('nama_motor') }}" id="nama_motor">
+                                        <input type="text" class="form-control @error('nama_motor') is-invalid @enderror"
+                                            name="nama_motor" value="{{ old('nama_motor') }}" id="nama_motor" required>
                                         @error('nama_motor')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

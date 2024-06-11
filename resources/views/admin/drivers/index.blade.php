@@ -26,7 +26,7 @@
                                         value="{{ $driver->biaya_driver }}" id="biaya_driver" min="0" required>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                         </form>
                         @empty
                             

@@ -108,9 +108,9 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                            <input type="hidden" name="is_admin" value="1">
+                                            <button type="submit" class="btn btn-success">Tambah Akun</button>
                                     </div>
-                                    <input type="hidden" name="is_admin" value="1">
-                                    <button type="submit" class="btn btn-success">Tambah Akun</button>
                                     </form>
                                 </div>
                             </div>

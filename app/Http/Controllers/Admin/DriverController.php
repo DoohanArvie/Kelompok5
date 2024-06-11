@@ -27,7 +27,7 @@ class DriverController extends Controller
         Driver::create($request->validated());
 
         return redirect()->route('admin.drivers.index')->with([
-            'message' => 'berhasil di tambah',
+            'message' => 'Data biaya driver berhasil di tambah!',
             'alert-type' => 'success'
         ]);
     }
@@ -44,7 +44,7 @@ class DriverController extends Controller
         Driver::create($request->validated());
 
         return redirect()->route('admin.drivers.index')->with([
-            'message' => 'berhasil di edit',
+            'message' => 'Data biaya driver berhasil di tambah!',
             'alert-type' => 'success'
         ]);
     }
@@ -85,7 +85,10 @@ class DriverController extends Controller
         $driver->update($validatedData);
 
         // Redirect atau kembalikan respons sesuai kebutuhan Anda
-        return redirect()->route('admin.drivers.index')->with('success', 'Driver updated successfully.');
+        return redirect()->route('admin.drivers.index')->with([
+            'message' => 'Data biaya driver berhasil diupdate!',
+            'alert-type' => 'success'
+        ]);
     }
 
     /**

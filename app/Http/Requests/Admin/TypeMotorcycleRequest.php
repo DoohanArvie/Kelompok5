@@ -30,7 +30,7 @@ class TypeMotorcycleRequest extends FormRequest
             case 'PUT' :
             case 'PATCH' : {
                 return [
-                    'nama' => ['required', 'max:255', 'unique:type_motorcycles,nama,'. $this->route()->type],
+                    'nama' => ['required', 'max:255', 'unique:type_motorcycles,nama,'. $this->route()->typemotorcycle->id],
                 ];
             }
         }
