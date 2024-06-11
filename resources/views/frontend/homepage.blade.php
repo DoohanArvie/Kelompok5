@@ -34,26 +34,38 @@
         <div id="barCari">
             <style>
                 #barCari {
-                height: 80px;
-                /* margin-top: 1000px; Contoh jarak untuk melihat efek scroll */
+                height: 50px;
+                
             }
             </style>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    // Waktu tunggu untuk memastikan elemen telah dimuat
-                    setTimeout(function() {
-                        var element = document.getElementById("barCari");
-                        var offset = 0; // Jarak dari atas halaman
-                        var bodyRect = document.body.getBoundingClientRect().top;
-                        var elementRect = element.getBoundingClientRect().top;
-                        var elementPosition = elementRect - bodyRect;
-                        var offsetPosition = elementPosition - offset;
-        
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                    }, 1000); // Waktu tunggu 1 detik
+                    // Scroll ke atas halaman saat halaman dimuat
+                    window.scrollTo(0, 0);
+
+                    // Mendapatkan elemen button berdasarkan kelas
+                    var button = document.querySelector('.btn.btn-dark.py-3.px-4');
+
+                    // Menambahkan event listener untuk klik button
+                    button.addEventListener('click', function(event) {
+                        // Mencegah aksi default dari anchor (scroll ke #barCari)
+                        event.preventDefault();
+                        
+                        // Menjalankan script yang diberikan
+                        setTimeout(function() {
+                            var element = document.getElementById("barCari");
+                            var offset = 0; // Jarak dari atas halaman
+                            var bodyRect = document.body.getBoundingClientRect().top;
+                            var elementRect = element.getBoundingClientRect().top;
+                            var elementPosition = elementRect - bodyRect;
+                            var offsetPosition = elementPosition - offset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }, 1000); // Waktu tunggu 1 detik
+                    });
                 });
             </script>
         </div>
@@ -482,8 +494,10 @@
                             </div>
                             <a href="https://wa.me/{{ $setting->phone }}" class="btn btn-primary py-3 px-4 me-2"><i
                                     class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
-                            <a href="#barCari" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat
-                                Pemesanan</a>
+                            <a href="#barCari" class="btn btn-dark py-3 px-4">
+                                <i class="fa fa-calendar-alt me-2"></i>
+                                Buat Pemesanan
+                            </a>
                         </div>
                     </div>
                 </div>
