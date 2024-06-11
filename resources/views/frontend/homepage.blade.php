@@ -64,7 +64,7 @@
                                 top: offsetPosition,
                                 behavior: "smooth"
                             });
-                        }, 1000); // Waktu tunggu 1 detik
+                        }, 100); // Waktu tunggu 1 detik
                     });
                 });
             </script>
