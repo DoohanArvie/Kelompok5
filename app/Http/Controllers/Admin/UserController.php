@@ -21,17 +21,24 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
+
     public function update(User $user, Request $request)
     {
         $user->update($request->all());
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with([
+            'message' => 'Data User berhasil di update!',
+            'alert-type' => 'success'
+        ]);
     }
 
     public function destroy(User $user)
     {
         $user->delete();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with([
+            'message' => 'Data User berhasil di hapus!',
+            'alert-type' => 'success'
+        ]);
     }
 }

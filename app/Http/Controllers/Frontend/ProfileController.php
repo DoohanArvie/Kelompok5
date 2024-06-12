@@ -28,6 +28,19 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
+        $previousStatus = $user->account_status;
+
+        $isAvatarUpdated = false;
+        $isOtherFieldUpdated = false;
+
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar) {
+                Storage::delete('public/avatars/' . $user->avatar);
+            }
+            $avatarPath = $request->file('avatar')->store('public/avatars');
+            $user->avatar = basename($avatarPath);
+            $isAvatarUpdated = true;
+        }
 
         // Update phone and address
         $user->phone = $request->phone;
@@ -41,6 +54,7 @@ class ProfileController extends Controller
                 Storage::delete('public/ktp/' . $user->ktp);
             }
             $user->ktp = basename($ktpPath);
+            $isOtherFieldUpdated = true;
         }
 
         // Handle SIM file upload
@@ -51,15 +65,34 @@ class ProfileController extends Controller
                 Storage::delete('public/sim/' . $user->sim);
             }
             $user->sim = basename($simPath);
+            $isOtherFieldUpdated = true;
         }
 
-        // Save changes
+        if ($user->phone !== $request->phone) {
+            $user->phone = $request->phone;
+            $isOtherFieldUpdated = true;
+        }
+
+        if ($user->address !== $request->address) {
+            $user->address = $request->address;
+            $isOtherFieldUpdated = true;
+        }
+
+        // Update account status to "Menunggu Verifikasi" if other fields are updated
+        if ($isOtherFieldUpdated) {
+            $user->account_status = 'Menunggu Verifikasi';
+        }
+
         $user->save();
 
         Feedback::where('user_id', $user->id)->update(['avatar' => $user->avatar]);
 
-        return redirect()->back()->with('status', 'Profile berhasil diupdate');
+        return redirect()->back()->with([
+            'message' => 'Akun anda telah diperbarui!',
+            'alert-type' => 'success'
+        ])->with('user', $user);
     }
+
 
     public function updateAvatar(Request $request)
     {
@@ -85,6 +118,7 @@ class ProfileController extends Controller
         return response()->json(['success' => true]);
     }
 
+
     public function updatePassword(Request $request)
     {
         $request->validate([
@@ -103,6 +137,9 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->back()->with('status', 'Password berhasil diubah');
+        return redirect()->back()->with([
+            'message' => 'Password akun diperbarui!',
+            'alert-type' => 'success'
+        ]);
     }
 }

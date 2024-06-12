@@ -24,6 +24,9 @@ class FeedbackController extends Controller
     {
         $feedback = Feedback::findorFail($id);
         $feedback->delete();
-        return back();
+        return redirect()->back()->with([
+            'message' => 'Data feedback berhasil di hapus!',
+            'alert-type' => 'success'
+        ]);
     }
 }    

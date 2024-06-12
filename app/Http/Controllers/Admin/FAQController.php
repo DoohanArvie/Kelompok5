@@ -28,7 +28,10 @@ class FAQController extends Controller
         $faq->answer = $request->answer;
         $faq->save();
 
-        return redirect()->route('admin.faqs.index')->with('success', 'FAQ created successfully.');
+        return redirect()->route('admin.faqs.index')->with([
+            'message' => 'Data FAQ berhasil di tambah!',
+            'alert-type' => 'success'
+        ]);
     }
 
     public function create()
@@ -46,7 +49,10 @@ class FAQController extends Controller
         $faq->question = $request->question;
         $faq->answer = $request->answer;
         $faq->save();
-        return redirect()->route('admin.faqs.index')->with('success', 'FAQ updated successfully.');
+        return redirect()->route('admin.faqs.index')->with([
+            'message' => 'Data FAQ berhasil di update!',
+            'alert-type' => 'success'
+        ]);
     }
     public function edit($id)
     {
@@ -58,7 +64,10 @@ class FAQController extends Controller
     {
         $faq = FAQ::find($id);
         $faq->delete(); 
-        return redirect()->route('admin.faqs.index')->with('success', 'FAQ deleted successfully.');
+        return redirect()->route('admin.faqs.index')->with([
+            'message' => 'Data FAQ berhasil di hapus!',
+            'alert-type' => 'success'
+        ]);
     }
 
 }

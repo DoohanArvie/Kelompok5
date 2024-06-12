@@ -35,9 +35,7 @@
                                                 <td>{{ $contact->pesan }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-2">
-                                                        <form onclick="return confirm('are you sure !')"
-                                                            action="{{ route('admin.contacts.destroy', $contact) }}"
-                                                            method="POST">
+                                                        <form action="{{ route('admin.contacts.destroy', $contact) }}" method="POST" class="delete-form">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-danger" contact="submit"><i

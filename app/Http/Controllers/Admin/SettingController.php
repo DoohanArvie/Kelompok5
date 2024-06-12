@@ -40,7 +40,7 @@ class SettingController extends Controller
         Setting::create($request->validated());
 
         return redirect()->route('admin.settings.index')->with([
-            'message' => 'berhasil di buat',
+            'message' => 'Data setting berhasil di tambah!',
             'alert-type' => 'success'
         ]);
     }
@@ -80,8 +80,8 @@ class SettingController extends Controller
         }
 
         return redirect()->route('admin.settings.index')->with([
-            'message' => 'berhasil di edit',
-            'alert-type' => 'info'
+            'message' => 'Data setting berhasil di update!',
+            'alert-type' => 'success'
         ]);
     }
 
@@ -95,8 +95,8 @@ class SettingController extends Controller
         $setting->delete();
 
         return redirect()->back()->with([
-            'message' => 'berhasil di hapus',
-            'alert-type' => 'danger'
+            'message' => 'Data setting berhasil di hapus!',
+            'alert-type' => 'success'
         ]);
     }
 }

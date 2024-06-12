@@ -97,10 +97,7 @@
                                                             class="btn btn-primary">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <form
-                                                            onsubmit="return confirm('Are you sure you want to delete this booking?')"
-                                                            action="{{ route('admin.bookings.destroy', $booking) }}"
-                                                            method="POST">
+                                                        <form action="{{ route('admin.bookings.destroy', $booking) }}" method="POST" class="delete-form">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-danger" type="submit"><i
