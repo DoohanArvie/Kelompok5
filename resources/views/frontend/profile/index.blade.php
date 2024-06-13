@@ -31,21 +31,19 @@
                                 <div class="col-md-5 d-flex flex-column mb-3">
                                     <label for="avatar"
                                         class="form-label font-weight-bold">{{ __('Foto Profil') }}</label>
-                                    @if (Auth::user()->avatar)
-                                        <div>
-                                            @if (in_array(pathinfo(Auth::user()->avatar, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                <img id="existingAvatarPreview" class="img-fluid"
-                                                    src="{{ Storage::url('avatars/' . Auth::user()->avatar) }}"
-                                                    alt="Avatar Preview">
-                                            @endif
-                                        </div>
-                                    @endif
+                                    <div>
+                                        @if (Auth::user()->avatar)
+                                            <img id="existingAvatarPreview" class="img-fluid"
+                                                src="{{ Storage::url('avatars/' . Auth::user()->avatar) }}"
+                                                alt="Avatar Preview">
+                                        @else
+                                            <img id="existingAvatarPreview" class="img-fluid"
+                                                src="{{ asset('default-avatar.png') }}" alt="Avatar Preview">
+                                        @endif
+                                    </div>
                                     <div class="mt-auto">
-                                        <a
-                                            href="{{ Storage::url('avatars/' . Auth::user()->avatar) }}">{{ Auth::user()->avatar }}</a>
                                         <input type="file" id="avatar" name="avatar"
-                                            class="form-control @error('avatar') is-invalid @enderror"
-                                            accept=".pdf,.jpg,.jpeg,.png">
+                                            class="form-control @error('avatar') is-invalid @enderror" accept="image/*">
                                         @error('avatar')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -71,9 +69,7 @@
                                                 @if (!Auth::user()->hasVerifiedEmail())
                                                     <a href="{{ route('verification.notice') }}">Verify Email</a>
                                                 @else
-                                                    <div class="container-fluid"><i
-                                                            class="fas fa-check-circle text-success"></i>
-                                                        Verified</div>
+                                                    <i class="fas fa-check-circle text-success"></i> Verified
                                                 @endif
                                             </span>
                                         </div>
@@ -158,10 +154,10 @@
                                 <div class="input-group">
                                     <input type="password" id="current_password" name="current_password"
                                         class="form-control @error('current_password') is-invalid @enderror" required>
-                                        <span class="input-group-text" onclick="togglePassword(this)"
-                                            style="cursor: pointer;">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </span>
+                                    <span class="input-group-text" onclick="togglePassword(this)"
+                                        style="cursor: pointer;">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </span>
                                     @error('current_password')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -173,7 +169,8 @@
                                 <label for="password"
                                     class="form-label font-weight-bold">{{ __('Password Baru') }}</label>
                                 <div class="input-group">
-                                    <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
+                                    <input type="password" id="password" name="password"
+                                        class="form-control @error('password') is-invalid @enderror" required>
                                     <span class="input-group-text" onclick="togglePassword(this)"
                                         style="cursor: pointer;">
                                         <i class="fas fa-eye-slash"></i>
@@ -191,9 +188,10 @@
                                 <div class="input-group">
                                     <input type="password" id="password_confirmation" name="password_confirmation"
                                         class="form-control @error('password') is-invalid @enderror" required>
-                                        <span class="input-group-text" onclick="togglePassword(this)" style="cursor: pointer;">
-                                            <i class="fas fa-eye-slash"></i>
-                                        </span>
+                                    <span class="input-group-text" onclick="togglePassword(this)"
+                                        style="cursor: pointer;">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </span>
                                     @error('password')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -209,48 +207,108 @@
         </div>
     </div>
 
+    <!-- Modal untuk Crop Gambar -->
+    <div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable"> <!-- Menambahkan kelas modal-dialog-scrollable -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cropModalLabel">Crop Profil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <img id="imageCrop" src="#" alt="Crop Preview" style="max-width: 100%;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button id="cropButton" type="button" class="btn btn-primary">Crop</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     @push('script-alt')
+        <!-- Cropper.js -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
         <script>
-            $(document).ready(function() {
-                $('input[type="number"]').on('keypress', function(event) {
-                    // Prevent "-" from being entered
-                    if (event.which === 45 || event.key === '-') {
-                        event.preventDefault();
+            document.addEventListener('DOMContentLoaded', function() {
+                var avatar = document.getElementById('avatar');
+                var image = document.getElementById('imageCrop');
+                var existingAvatarPreview = document.getElementById('existingAvatarPreview');
+                var cropButton = document.getElementById('cropButton');
+                var cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
+                var cropper;
+
+                avatar.addEventListener('change', function(e) {
+                    var files = e.target.files;
+                    var done = function(url) {
+                        avatar.value = '';
+                        image.src = url;
+                        cropModal.show();
+                        if (cropper) {
+                            cropper.destroy();
+                        }
+                        cropper = new Cropper(image, {
+                            aspectRatio: 1,
+                            viewMode: 1,
+                        });
+                    };
+                    var reader;
+                    var file;
+                    if (files && files.length > 0) {
+                        file = files[0];
+                        if (URL) {
+                            done(URL.createObjectURL(file));
+                        } else if (FileReader) {
+                            reader = new FileReader();
+                            reader.onload = function(e) {
+                                done(reader.result);
+                            };
+                            reader.readAsDataURL(file);
+                        }
                     }
                 });
 
-                $('input[type="number"]').on('input', function() {
-                    // Remove any negative signs that might have been pasted
-                    let value = $(this).val();
-                    if (value.indexOf('-') !== -1) {
-                        $(this).val(value.replace('-', ''));
-                    }
-                });
+                cropButton.addEventListener('click', function() {
+                    if (cropper) {
+                        var canvas = cropper.getCroppedCanvas({
+                            width: 200,
+                            height: 200,
+                        });
+                        canvas.toBlob(function(blob) {
+                            var url = URL.createObjectURL(blob);
+                            var reader = new FileReader();
+                            reader.readAsDataURL(blob);
+                            reader.onloadend = function() {
+                                var base64data = reader.result;
+                                var formData = new FormData();
+                                formData.append('avatar', blob);
+                                formData.append('_token', '{{ csrf_token() }}');
 
-                $('input[type="number"]').on('blur', function() {
-                    // Ensure no negative value remains after input loses focus
-                    let value = $(this).val();
-                    if (value < 0) {
-                        $(this).val(Math.abs(value)); // Convert negative to positive
+                                fetch('{{ route('profile.update.avatar') }}', {
+                                    method: 'POST',
+                                    body: formData,
+                                }).then(response => response.json()).then(data => {
+                                    if (data.success) {
+                                        existingAvatarPreview.src = base64data;
+                                        cropModal.hide();
+                                        alert('Avatar berhasil diperbarui!');
+                                    } else {
+                                        alert('Gagal memperbarui avatar.');
+                                    }
+                                }).catch(error => {
+                                    console.error(error);
+                                    alert('Terjadi kesalahan.');
+                                });
+                            };
+                        });
                     }
                 });
             });
-
-            function togglePassword(element) {
-                const $input = $(element).closest('.input-group').find('input');
-                const $icon = $(element).find('i');
-
-                if ($input.attr('type') === 'password') {
-                    $input.attr('type', 'text');
-                    $icon.removeClass('fa-eye-slash').addClass('fa-eye');
-                } else {
-                    $input.attr('type', 'password');
-                    $icon.removeClass('fa-eye').addClass('fa-eye-slash');
-                }
-            }
         </script>
     @endpush
-
 @endsection
-
-@include('layouts.datatable')

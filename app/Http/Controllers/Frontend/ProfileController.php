@@ -90,6 +90,30 @@ class ProfileController extends Controller
         ])->with('user', $user);
     }
 
+     public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        // Handle avatar file upload
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarPath = $avatar->store('public/avatars');
+            if ($user->avatar) {
+                Storage::delete('public/avatars/' . $user->avatar);
+            }
+            $user->avatar = basename($avatarPath);
+            $user->save();
+
+            Feedback::where('user_id', $user->id)->update(['avatar' => $user->avatar]);
+        }
+
+        return response()->json(['success' => true]);
+    }
+
 
     public function updatePassword(Request $request)
     {

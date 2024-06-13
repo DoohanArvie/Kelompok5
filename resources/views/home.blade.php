@@ -4,7 +4,7 @@
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card d-flex h-100"
+                <div class="card card-information d-flex h-100"
                     onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Menunggu Pembayaran']) }}'">
                     <div class="card-body d-flex flex-column p-3">
                         <div class="row">
@@ -13,11 +13,7 @@
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                         Menunggu Pembayaran
                                     </p>
-                                    <h5 class="font-weight-bolder">{{ $countMenungguPembayaran }}</h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                        since yesterday
-                                    </p>
+                                    <h4 class="font-weight-bolder">{{ $countMenungguPembayaran }}</h4>
                                 </div>
                             </div>
                             <div class="col-4 position-absolute end-0">
@@ -27,11 +23,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <p class="mb-0">
+                                <i
+                                    class="fa fa-arrow-{{ $percentageChangeMenungguPembayaran > 0 ? 'up text-success' : ($percentageChangeMenungguPembayaran < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                                <span class="font-weight-bold">
+                                    @if ($percentageChangeMenungguPembayaran != 0)
+                                        {{ number_format(abs($percentageChangeMenungguPembayaran), 0) }}%
+                                        {{ $percentageChangeMenungguPembayaran > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeMenungguPembayaran, 0) }}%
+                                        sama
+                                    @endif
+                                </span> dibandingkan minggu lalu
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card d-flex h-100"
+                <div class="card card-information d-flex h-100"
                     onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Menunggu Konfirmasi']) }}'">
                     <div class="card-body d-flex flex-column p-3">
                         <div class="row">
@@ -40,11 +51,7 @@
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                         Pembayaran Terkonfirmasi
                                     </p>
-                                    <h5 class="font-weight-bolder">{{ $countPembayaranTerkonfirmasi }}</h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                        since last week
-                                    </p>
+                                    <h4 class="font-weight-bolder">{{ $countPembayaranTerkonfirmasi }}</h4>
                                 </div>
                             </div>
                             <div class="col-4 position-absolute end-0">
@@ -53,11 +60,26 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <p class="mb-0">
+                                <i
+                                    class="fa fa-arrow-{{ $percentageChangePembayaranTerkonfirmasi > 0 ? 'up text-success' : ($percentageChangePembayaranTerkonfirmasi < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                                <span class="font-weight-bold">
+                                    @if ($percentageChangePembayaranTerkonfirmasi != 0)
+                                        {{ number_format(abs($percentageChangePembayaranTerkonfirmasi), 0) }}%
+                                        {{ $percentageChangePembayaranTerkonfirmasi > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangePembayaranTerkonfirmasi, 0) }}%
+                                        sama
+                                    @endif
+                                </span> dibandingkan minggu lalu
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card d-flex h-100"
+                <div class="card card-information d-flex h-100"
                     onclick="location.href='{{ route('admin.bookings.index', ['status' => 'Belum Dikembalikan']) }}'">
                     <div class="card-body d-flex flex-column p-3">
                         <div class="row">
@@ -66,11 +88,7 @@
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                         Belum dikembalikan
                                     </p>
-                                    <h5 class="font-weight-bolder">{{ $countBelumDikembalikan }}</h5>
-                                    <p class="mb-0 mt-auto">
-                                        <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                        since last week
-                                    </p>
+                                    <h4 class="font-weight-bolder">{{ $countBelumDikembalikan }}</h4>
                                 </div>
                             </div>
                             <div class="col-4 position-absolute end-0">
@@ -78,6 +96,21 @@
                                     <i class="fa-solid fa-window-restore text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-12">
+                            <p class="mb-0">
+                                <i
+                                    class="fa fa-arrow-{{ $percentageChangeBelumDikembalikan > 0 ? 'up text-success' : ($percentageChangeBelumDikembalikan < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                                <span class="font-weight-bold">
+                                    @if ($percentageChangeBelumDikembalikan != 0)
+                                        {{ number_format(abs($percentageChangeBelumDikembalikan), 0) }}%
+                                        {{ $percentageChangeBelumDikembalikan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeBelumDikembalikan, 0) }}%
+                                        sama
+                                    @endif
+                                </span> dibandingkan minggu lalu
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -91,11 +124,7 @@
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                         Jenis Kendaraan
                                     </p>
-                                    <h5 class="font-weight-bolder">{{ $countJenisKendaraan }}</h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+5%</span>
-                                        than last month
-                                    </p>
+                                    <h4 class="font-weight-bolder">{{ $countJenisKendaraanSaatIni }}</h4>
                                 </div>
                             </div>
                             <div class="col-4 position-absolute end-0">
@@ -103,6 +132,21 @@
                                     <i class="fa-solid fa-gauge  text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-12">
+                            <p class="mb-0">
+                                <i
+                                    class="fa fa-arrow-{{ $percentageChangeJenisKendaraan > 0 ? 'up text-success' : ($percentageChangeJenisKendaraan < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                                <span class="font-weight-bold">
+                                    @if ($percentageChangeJenisKendaraan != 0)
+                                        {{ number_format(abs($percentageChangeJenisKendaraan), 0) }}%
+                                        {{ $percentageChangeJenisKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeJenisKendaraan, 0) }}%
+                                        sama
+                                    @endif
+                                </span> dibandingkan minggu lalu
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -118,11 +162,7 @@
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                         Jumlah Kendaraan
                                     </p>
-                                    <h5 class="font-weight-bolder">{{ $countJumlahKendaraan }}</h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                        since yesterday
-                                    </p>
+                                    <h4 class="font-weight-bolder">{{ $countJumlahKendaraanSaatIni }}</h4>
                                 </div>
                             </div>
                             <div class="col-4 position-absolute end-0">
@@ -131,11 +171,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <p class="mb-0">
+                                <i
+                                    class="fa fa-arrow-{{ $percentageChangeJumlahKendaraan > 0 ? 'up text-success' : ($percentageChangeJumlahKendaraan < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                                <span class="font-weight-bold">
+                                    @if ($percentageChangeJumlahKendaraan != 0)
+                                        {{ number_format(abs($percentageChangeJumlahKendaraan)), 0 }}%
+                                        {{ $percentageChangeJumlahKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeJumlahKendaraan), 0 }}%
+                                        sama
+                                    @endif
+                                </span> dibandingkan minggu lalu
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card d-flex h-100" onclick="location.href='{{ route('admin.bookings.index') }}'">
+                <div class="card card-information d-flex h-100"
+                    onclick="location.href='{{ route('admin.bookings.index') }}'">
                     <div class="card-body d-flex flex-column p-3">
                         <div class="row">
                             <div class="col-8 d-flex flex-column justify-content-between">
@@ -143,11 +199,7 @@
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                         Total Sewa
                                     </p>
-                                    <h5 class="font-weight-bolder">{{ $countBooking }}</h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                        since last week
-                                    </p>
+                                    <h4 class="font-weight-bolder">{{ $countBooking }}</h4>
                                 </div>
                             </div>
                             <div class="col-4 position-absolute end-0">
@@ -156,11 +208,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <p class="mb-0">
+                                <i
+                                    class="fa fa-arrow-{{ $percentageChangeBooking > 0 ? 'up text-success' : ($percentageChangeBooking < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                                <span class="font-weight-bold">
+                                    @if ($percentageChangeBooking != 0)
+                                        {{ number_format(abs($percentageChangeBooking), 0) }}%
+                                        {{ $percentageChangeBooking > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeBooking), 0 }}%
+                                        sama
+                                    @endif
+                                </span> dibandingkan minggu lalu
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card d-flex h-100" onclick="location.href='{{ route('admin.users.index') }}'">
+                <div class="card card-information d-flex h-100"
+                    onclick="location.href='{{ route('admin.users.index') }}'">
                     <div class="card-body d-flex flex-column p-3">
                         <div class="row">
                             <div class="col-8 d-flex flex-column justify-content-between">
@@ -168,11 +236,7 @@
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                         User
                                     </p>
-                                    <h5 class="font-weight-bolder">{{ $countUser }}</h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                        since last week
-                                    </p>
+                                    <h4 class="font-weight-bolder">{{ $countUser }}</h4>
                                 </div>
                             </div>
                             <div class="col-4 position-absolute end-0">
@@ -181,11 +245,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <p class="mb-0">
+                                <i
+                                    class="fa fa-arrow-{{ $percentageChangeUser > 0 ? 'up text-success' : ($percentageChangeUser < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                                <span class="font-weight-bold">
+                                    @if ($percentageChangeUser != 0)
+                                        {{ number_format(abs($percentageChangeUser), 0) }}%
+                                        {{ $percentageChangeUser > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeUser, 0) }}%
+                                        sama
+                                    @endif
+                                </span> dibandingkan minggu lalu
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card d-flex h-100" onclick="location.href='{{ route('admin.contacts.index') }}'">
+                <div class="card card-information d-flex h-100"
+                    onclick="location.href='{{ route('admin.contacts.index') }}'">
                     <div class="card-body d-flex flex-column p-3">
                         <div class="row">
                             <div class="col-8 d-flex flex-column justify-content-between">
@@ -193,11 +273,7 @@
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">
                                         Pesan
                                     </p>
-                                    <h5 class="font-weight-bolder">{{ $countHubungiKami }}</h5>
-                                    <p class="mb-0">
-                                        <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                        since last week
-                                    </p>
+                                    <h4 class="font-weight-bolder">{{ $countHubungiKami }}</h4>
                                 </div>
                             </div>
                             <div class="col-4 position-absolute end-0">
@@ -205,6 +281,21 @@
                                     <i class="fa-solid fa-envelope text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-12">
+                            <p class="mb-0">
+                                <i
+                                    class="fa fa-arrow-{{ $percentageChangeHubungiKami > 0 ? 'up text-success' : ($percentageChangeHubungiKami < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                                <span class="font-weight-bold">
+                                    @if ($percentageChangeHubungiKami != 0)
+                                        {{ number_format(abs($percentageChangeHubungiKami), 0) }}
+                                        {{ $percentageChangeHubungiKami > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeHubungiKami, 0) }}%
+                                        sama
+                                    @endif
+                                </span> dibandingkan minggu lalu
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -214,15 +305,24 @@
             <div class="col-lg-7 mb-lg-0 mb-4">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h6 class="text-capitalize">Sales overview</h6>
+                        <h4 class="text-capitalize">Total Pendapatan</h4>
                         <p class="text-sm mb-0">
-                            <i class="fa fa-arrow-up text-success"></i>
-                            <span class="font-weight-bold">4% more</span> in 2021
+                            <i
+                                class="fa fa-arrow-{{ $incomePercentageChange > 0 ? 'up text-success' : ($incomePercentageChange < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
+                            <span class="font-weight-bold">
+                                @if ($incomePercentageChange != 0)
+                                    {{ number_format(abs($incomePercentageChange), 0) }}%
+                                    {{ $incomePercentageChange > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                @else
+                                    {{ number_format($incomePercentageChange, 0) }}%
+                                    sama
+                                @endif
+                            </span> dibandingkan bulan lalu
                         </p>
                     </div>
                     <div class="card-body p-3">
                         <div class="chart">
-                            <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+                            <canvas id="chart-income" class="chart-canvas" height="300"></canvas>
                         </div>
                     </div>
                 </div>
@@ -234,9 +334,6 @@
                             <div class="carousel-item h-100 active"
                                 style="background-image: url('https://images.unsplash.com/photo-1605756580041-21312e9fb2bc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                                    </div>
                                     <h5 class="text-white mb-1">OtoRent | Ankavi Team</h5>
                                     <p>
                                         Tempat Persewaan Mobil dan Motor Nyaman, Aman dan Percaya !
@@ -246,9 +343,6 @@
                             <div class="carousel-item h-100"
                                 style="background-image: url('https://images.unsplash.com/photo-1682020245785-4619e7a89d2f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                                    </div>
                                     <h5 class="text-white mb-1">
                                         Persewaan Mobil dan Motor
                                     </h5>
@@ -260,9 +354,6 @@
                             <div class="carousel-item h-100"
                                 style="background-image: url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW90b3JjeWNsZXxlbnwwfHwwfHx8MA%3D%3D'); background-size: cover;">
                                 <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                                        <i class="ni ni-trophy text-dark opacity-10"></i>
-                                    </div>
                                     <h5 class="text-white mb-1">
                                         Persewaan Mobil dan Motor
                                     </h5>
@@ -294,27 +385,23 @@
                             <h6 class="mb-2">Sewa Terbaru</h6>
                         </div>
                     </div>
-                    <div class="table-responsive p-3">
-                        <table class="table align-items-center mb-0" id="data-table">
+                    <div class="table-responsive p-4">
+                        <table id="data-table" class="table table-hover text-nowrap text-center align-middle w-100">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-xs font-weight-bolder">
                                         Nama
                                     </th>
-                                    <th
-                                        class="text-uppercase text-xs font-weight-bolder">
+                                    <th class="text-uppercase text-xs font-weight-bolder">
                                         Unit
                                     </th>
-                                    <th
-                                        class="text-uppercase text-xs font-weight-bolder">
+                                    <th class="text-uppercase text-xs font-weight-bolder">
                                         Durasi
                                     </th>
-                                    <th
-                                        class="text-uppercase text-xs font-weight-bolder">
+                                    <th class="text-uppercase text-xs font-weight-bolder">
                                         Total Biaya
                                     </th>
-                                    <th
-                                        class="text-uppercase text-xs font-weight-bolder">
+                                    <th class="text-uppercase text-xs font-weight-bolder">
                                         Status
                                     </th>
                                 </tr>
@@ -340,8 +427,7 @@
                                             </p>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span
-                                                class="text-xs font-weight-bold">{{ $booking->days_count }}
+                                            <span class="text-xs font-weight-bold">{{ $booking->days_count }}
                                                 Hari</span>
                                         </td>
                                         <td class="align-middle text-center">
@@ -349,8 +435,7 @@
                                                 {{ number_format($booking->total_fee, 0, ',', '.') }}</span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span
-                                                class="text-xs font-weight-bold">{{ $booking->booking_status }}</span>
+                                            <span class="text-xs font-weight-bold">{{ $booking->booking_status }}</span>
                                         </td>
                                     </tr>
                                 @empty
@@ -365,15 +450,14 @@
                     <div class="card-header pb-0 p-3">
                         <h6 class="mb-0">Ulasan terbaru</h6>
                     </div>
-                    <div class="table-responsive p-3">
-                        <table class="table align-items-center mb-0" id="data-table">
+                    <div class="table-responsive p-4">
+                        <table id="data-table" class="table table-hover text-nowrap text-center align-middle w-100">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-xs font-weight-bolder">
                                         Nama
                                     </th>
-                                    <th
-                                        class="text-uppercase text-xs font-weight-bolder">
+                                    <th class="text-uppercase text-xs font-weight-bolder">
                                         Ulasan
                                     </th>
                                 </tr>
@@ -427,3 +511,109 @@
 @endsection
 
 @include('layouts.datatable')
+
+@push('style-alt')
+    <style>
+        .card-information {
+            cursor: pointer;
+        }
+
+        @media (max-width: 991px) {
+            .card.card-carousel {
+                display: none;
+            }
+        }
+    </style>
+@endpush
+
+@push('script-alt')
+    <script src="{{ asset('frontend/js/argon/plugins/chartjs.min.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var chartData = @json(array_values($formattedIncomeData)); // Mengambil data grafik dari controller
+            var chartLabels = @json(array_keys($formattedIncomeData)); // Mengambil label bulan dari controller
+            var incomeData = @json(array_values($formattedIncomeData)); // Mengambil data grafik pendapatan dari controller
+
+            var ctx2 = document.getElementById("chart-income").getContext("2d");
+
+            var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+            gradientStroke2.addColorStop(1, "rgba(94, 114, 228, 0.2)");
+            gradientStroke2.addColorStop(0.2, "rgba(94, 114, 228, 0.2)");
+            gradientStroke2.addColorStop(0, "rgba(94, 114, 228, 0.2)");
+
+            new Chart(ctx2, {
+                type: "bar",
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: "Total Pendapatan Rp ",
+                        tension: 0.4,
+                        borderWidth: 0,
+                        pointRadius: 0,
+                        borderColor: "#5e72e4",
+                        backgroundColor: gradientStroke2,
+                        borderWidth: 3,
+                        fill: true,
+                        data: incomeData,
+                        maxBarThickness: 6,
+                    }, ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: "index",
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: false,
+                                display: true,
+                                drawOnChartArea: true,
+                                drawTicks: false,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                display: true,
+                                padding: 10,
+                                color: "#b2b9bf",
+                                font: {
+                                    size: 11,
+                                    family: "Open Sans",
+                                    style: "normal",
+                                    lineHeight: 2,
+                                },
+                            },
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                display: true,
+                                color: "#ccc",
+                                padding: 20,
+                                font: {
+                                    size: 11,
+                                    family: "Open Sans",
+                                    style: "normal",
+                                    lineHeight: 2,
+                                },
+                            },
+                        },
+                    },
+                },
+            });
+        });
+    </script>
+@endpush

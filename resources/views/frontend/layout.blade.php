@@ -111,7 +111,7 @@
                                     aria-expanded="false">
                                     {{ Auth::user()->name }}
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item {{ Request::is('profile') ? 'active' : '' }}"
                                         href="{{ route('profile.index') }}">
                                         Profile

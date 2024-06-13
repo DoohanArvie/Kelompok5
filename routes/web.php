@@ -74,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/booking-confirmation/{booking_code}/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingConfirmation'])->name('booking_confirmation');
     Route::get('/booking-confirmation/success/{booking_code}', [BookingController::class, 'showBookingSuccess'])->name('booking_success');
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+    Route::post('/profile/update-avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');  // Route untuk update avata
 });
 
 Route::get('password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
