@@ -48,5 +48,8 @@ class Booking extends Model
         return $this->belongsTo(User::class);
     }
     
-    
+    public function cancellation()
+    {
+        return $this->hasOne(Cancellation::class, 'booking_code', 'booking_code');
+    }
 }

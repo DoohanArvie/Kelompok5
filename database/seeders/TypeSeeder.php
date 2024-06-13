@@ -19,18 +19,26 @@ class TypeSeeder extends Seeder
             [
                 'id' => '1',
                 'nama' => 'MPV',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'id' => '2',
                 'nama' => 'SUV',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'id' => '3',
                 'nama' => 'Hatchback',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'id' => '4',
                 'nama' => 'Sedan',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ];
 

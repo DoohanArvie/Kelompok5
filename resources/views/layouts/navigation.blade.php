@@ -16,7 +16,7 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="{{ route('home') }}" target="_blank">
+        <a class="navbar-brand m-0" href="{{ route('home') }}">
             @php
                 $settings = \App\Models\Setting::first();
             @endphp
@@ -110,6 +110,12 @@
                     <span class="nav-link-text ms-1">{{ __('Testimonial') }}</span>
                 </a>
             </li> --}}
+            <div class="nav-item">
+                <a class="nav-link" href="{{ route('admin.cancellations.index') }}">
+                    <i class="fa-solid fa-xmark text-danger text-lg opacity-10"></i>
+                    <span class="nav-link-text ms-1">{{ __('Pembatalan') }}</span>
+                </a>
+            </div>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.feedbacks.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.feedbacks.index') }}">
@@ -131,13 +137,13 @@
                     <span class="nav-link-text ms-1">{{ __('Driver') }}</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.blogs.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.blogs.index') }}">
                     <i class="fa-solid fa-square-rss text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Blog') }}</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.teams.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.teams.index') }}">

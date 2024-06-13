@@ -5,7 +5,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6 mb-4">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm image-container">
                     <img src="{{ Storage::url($vehicle->image1) }}" class="card-img-top img-fluid rounded" alt="">
                 </div>
             </div>
@@ -168,6 +168,28 @@
         @endif
     </div>
 @endsection
+
+@push('style-alt')
+    <style>
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            /* 16:9 aspect ratio (9 / 16 = 0.5625 * 100 = 56.25) */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensures the image covers the container */
+        }
+    </style>
+@endpush
 
 @push('script-alt')
     <script>

@@ -58,6 +58,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
+                                    <label for="tentang_perusahaan" class="col-sm-2 col-form-label">Hubungi
+                                        Kami</label>
+                                    <div class="col-sm-12">
+                                        <textarea name="hubungi_kami" id="hubungi_kami" class="form-control" cols="30" rows="6">{{ old('hubungi_kami') }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row border-bottom pb-4">
                                     <label for="facebook" class="col-sm-2 col-form-label">Facebook</label>
                                     <div class="col-sm-12">
                                         <input type="url" placeholder="https://example.com" pattern="https://.*"

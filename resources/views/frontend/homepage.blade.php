@@ -13,7 +13,7 @@
                 <h4><i class="fa fa-check text-primary me-3"></i>Mudah</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Aman</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Nyaman</h4>
-                <a href="" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Pesan Sekarang</a>
+                <a href="{{ route('car.index') }}" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Pesan Sekarang</a>
             </div>
             <div class="col-md-6 wow fadeInRight" data-wow-delay="0.1s">
                 <div class="owl-carousel header-carousel">
@@ -30,10 +30,53 @@
                 </div>
             </div>
         </div>
+
+        <div id="barCari">
+            <style>
+                #barCari {
+                height: 50px;
+                
+            }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Scroll ke atas halaman saat halaman dimuat
+                    window.scrollTo(0, 0);
+
+                    // Mendapatkan elemen button berdasarkan kelas
+                    var button = document.querySelector('.btn.btn-dark.py-3.px-4');
+
+                    // Menambahkan event listener untuk klik button
+                    button.addEventListener('click', function(event) {
+                        // Mencegah aksi default dari anchor (scroll ke #barCari)
+                        event.preventDefault();
+                        
+                        // Menjalankan script yang diberikan
+                        setTimeout(function() {
+                            var element = document.getElementById("barCari");
+                            var offset = 0; // Jarak dari atas halaman
+                            var bodyRect = document.body.getBoundingClientRect().top;
+                            var elementRect = element.getBoundingClientRect().top;
+                            var elementPosition = elementRect - bodyRect;
+                            var offsetPosition = elementPosition - offset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }, 100); // Waktu tunggu 1 detik
+                    });
+                });
+            </script>
+        </div>
+        
     </div>
+    
     <!-- Header End -->
+    
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;">
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;" >
+        
         <div class="container">
             @if (session('status'))
                 <div class="alert alert-success text-center text-white">
@@ -438,14 +481,14 @@
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="mb-4">
                                 <h1 class="mb-3">Hubungi Kami</h1>
-                                <p style="text-align: justify">Kami siap membantu Anda merencanakan perjalanan dengan
-                                    armada terbaik dan layanan pelanggan yang ramah dan profesional. Nikmati kenyamanan dan
-                                    keamanan dengan kendaraan yang terawat dan pemesanan yang mudah bersama kami.</p>
+                                <p style="text-align: justify">{{ $setting->hubungi_kami }}</p>
                             </div>
-                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i
+                            <a href="https://wa.me/{{ $setting->phone }}" class="btn btn-primary py-3 px-4 me-2"><i
                                     class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
-                            <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat
-                                Pemesanan</a>
+                            <a href="#barCari" class="btn btn-dark py-3 px-4">
+                                <i class="fa fa-calendar-alt me-2"></i>
+                                Buat Pemesanan
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -489,6 +532,7 @@
     </style>
 @endpush
 @push('script-alt')
+    
     <script>
         $(document).ready(function() {
             var kendaraanSelect = $('#kendaraan');

@@ -13,7 +13,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::get();
+        $contacts = Contact::get()
+        ->sortByDesc('created_at');
 
         return view('admin.contacts.index', compact('contacts'));
     }
