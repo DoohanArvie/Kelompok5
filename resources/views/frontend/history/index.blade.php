@@ -2,6 +2,14 @@
 
 @section('content')
     <div class="container mt-5">
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="row justify-content-center g-4">
             <div class="col">
                 <div class="card">
@@ -11,12 +19,12 @@
                         <div class="table-responsive">
                             <table id="data-table"
                                 class="table table-bordered table-striped table-hover text-nowrap table-responsive text-center align-middle w-100">
-                                <thead class="bg-primary text-white">
+                                <thead class="table-primary">
                                     <tr>
                                         <th>No</th>
                                         <th>Kode Booking</th>
                                         <th>Jenis Kendaraan</th>
-                                        {{-- <th>Kendaraan</th> --}}
+                                        <th>Kendaraan</th>
                                         <th>Tanggal Mulai Sewa</th>
                                         <th>Tanggal Selesai Sewa</th>
                                         <th>Metode Pickup</th>
@@ -33,7 +41,7 @@
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $booking->booking_code }}</td>
                                             <td>{{ $booking->vehicle_type == 'car' ? 'Mobil' : 'Motor' }}</td>
-                                            {{-- <td>{{ $booking->vehicle->nama_mobil }}</td> --}}
+                                            <td>{{ $booking->vehicle->nama_mobil ?? $booking->vehicle->nama_motor }}</td>
                                             <td>{{ $booking->start_date }}</td>
                                             <td>{{ $booking->end_date }}</td>
                                             <td>{{ $booking->pickup }}</td>
@@ -42,20 +50,41 @@
                                             <td>Rp {{ number_format($booking->total_fee, 0, ',', '.') }}</td>
                                             <td>{{ $booking->booking_status }}</td>
                                             <td>
-                                            <div class="d-flex justify-content-center">
-                                                <a href="{{ route('booking_confirmation', ['booking_code' => $booking->booking_code, 'vehicle_type' => $booking->vehicle_type, 'vehicle_id' => $booking->vehicle_id]) }}" class="btn btn-primary btn-sm me-2 text-center py-4">Detail</a>
-                                                @if($booking->booking_status == 'Selesai')
-                                                    @php
-                                                        $feedback = \App\Models\Feedback::where('booking_code', $booking->booking_code)->where('user_id', Auth::user()->id)->first();
-                                                    @endphp
-                                                    @if($feedback)
-                                                        <button class="btn btn-secondary btn-sm text-center" disabled>Anda sudah memberikan feedback</button>
-                                                    @else
-                                                        <button class="btn btn-danger btn-sm text-center" data-bs-toggle="modal" data-bs-target="#feedbackModal" data-booking-code="{{ $booking->booking_code }}" data-vehicle-type="{{ $booking->vehicle_type }}" data-vehicle-id="{{ $booking->vehicle_id }}">Beri Feedback</button>
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('booking_confirmation', ['booking_code' => $booking->booking_code, 'vehicle_type' => $booking->vehicle_type, 'vehicle_id' => $booking->vehicle_id]) }}"
+                                                        class="btn btn-primary btn-sm me-2 text-center py-4">Detail</a>
+                                                    @if (!in_array($booking->booking_status, ['Selesai', 'Belum Dikembalikan', 'Menunggu Konfirmasi', 'Dibatalkan']))
+                                                        <button class="btn btn-danger btn-sm text-center"
+                                                            data-bs-toggle="modal" data-bs-target="#batalkanModal"
+                                                            data-booking-code="{{ $booking->booking_code }}"
+                                                            data-booking-status="{{ $booking->booking_status }}"
+                                                            data-vehicle-name="{{ $booking->vehicle->nama_mobil ?? $booking->vehicle->nama_motor }}">
+                                                            Batalkan
+                                                        </button>
                                                     @endif
-                                                @endif
-                                            </div>
-                                        </td>
+                                                    @if ($booking->booking_status == 'Selesai')
+                                                        @php
+                                                            $feedback = \App\Models\Feedback::where(
+                                                                'booking_code',
+                                                                $booking->booking_code,
+                                                            )
+                                                                ->where('user_id', Auth::user()->id)
+                                                                ->first();
+                                                        @endphp
+                                                        @if ($feedback)
+                                                            <button class="btn btn-secondary btn-sm text-center"
+                                                                disabled>Anda sudah memberikan feedback</button>
+                                                        @else
+                                                            <button class="btn btn-success btn-sm text-center"
+                                                                data-bs-toggle="modal" data-bs-target="#feedbackModal"
+                                                                data-booking-code="{{ $booking->booking_code }}"
+                                                                data-vehicle-type="{{ $booking->vehicle_type }}"
+                                                                data-vehicle-id="{{ $booking->vehicle_id }}">Beri
+                                                                Feedback</button>
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </td>
 
                                         </tr>
                                     @endforeach
@@ -63,6 +92,53 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Batalkan Modal -->
+    <div class="modal fade" id="batalkanModal" tabindex="-1" aria-labelledby="batalkanModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="batalkanModalLabel">Batalkan Sewa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('history.cancel') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="booking_code">Kode Booking</label>
+                            <input type="text" class="form-control" name="booking_code" id="booking_code" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="vehicle_name">Nama Kendaraan</label>
+                            <input type="text" class="form-control" name="vehicle_name" id="vehicle_name" readonly>
+                        </div>
+                        <div id="paymentSection" style="display: none;">
+                            <div class="mb-3">
+                                <label for="proof_payment">Bukti Transfer</label>
+                                <input type="file" class="form-control" name="proof_payment" id="proof_payment">
+                            </div>
+                            <div class="mb-3">
+                                <label for="refund_account">Bank dan Nomor Rekening Pengembalian Dana
+                                    <span class="text-danger text-lg">*</span>
+                                </label>
+                                <textarea class="form-control" name="refund_account" id="refund_account"
+                                    rows="2"></textarea>
+                                <p class="text-sm">Contoh: Bank: BRI, Nomor Rekening: 1234567890</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="reason">Alasan Pembatalan</label>
+                            <textarea class="form-control" name="reason" id="reason" rows="3" required></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Batalkan Sewa</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -77,7 +153,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
+
                     <form action="{{ route('feedback.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="avatar" value="{{ Auth::user()->avatar }}">
@@ -102,7 +178,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="user_name">Nama Pengguna</label>
-                            <input type="text" class="form-control" id="user_name" name="user_name" value="{{ Auth::user()->name }}" required>
+                            <input type="text" class="form-control" id="user_name" name="user_name"
+                                value="{{ Auth::user()->name }}" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Kirim Feedback</button>
                     </form>
@@ -113,20 +190,42 @@
 
     <script>
         var feedbackModal = document.getElementById('feedbackModal');
-        feedbackModal.addEventListener('show.bs.modal', function (event) {
+        feedbackModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget;
             var bookingCode = button.getAttribute('data-booking-code');
             var vehicleType = button.getAttribute('data-vehicle-type');
             var vehicleId = button.getAttribute('data-vehicle-id');
-            
+
             var modalBookingCode = feedbackModal.querySelector('#booking_code');
             var modalVehicleType = feedbackModal.querySelector('#vehicle_type');
             var modalVehicleId = feedbackModal.querySelector('#vehicle_id');
-            
+
             modalBookingCode.value = bookingCode;
             modalVehicleType.value = vehicleType;
             modalVehicleId.value = vehicleId;
         });
+
+        var batalkanModal = document.getElementById('batalkanModal');
+        batalkanModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var bookingCode = button.getAttribute('data-booking-code');
+            var vehicleName = button.getAttribute('data-vehicle-name');
+            var bookingStatus = button.getAttribute('data-booking-status');
+
+            var modalBookingCode = batalkanModal.querySelector('#booking_code');
+            var modalVehicleName = batalkanModal.querySelector('#vehicle_name');
+            var paymentSection = batalkanModal.querySelector('#paymentSection');
+
+            modalBookingCode.value = bookingCode;
+            modalVehicleName.value = vehicleName;
+
+            if (bookingStatus === 'Pembayaran Terkonfirmasi') {
+                paymentSection.style.display = 'block';
+            } else {
+                paymentSection.style.display = 'none';
+            }
+        });
+
 
         document.addEventListener("DOMContentLoaded", function() {
             const stars = document.querySelectorAll(".rating-stars .star");

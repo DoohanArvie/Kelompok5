@@ -2,6 +2,14 @@
 
 @section('content')
     <div class="container mt-5">
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h1 class="mb-4">Booking Konfirmasi</h1>
@@ -57,86 +65,125 @@
                 </table>
             </div>
             <div class="col-md-6">
-                <h1>Pembayaran</h1>
                 @if ($booking->booking_status == 'Menunggu Pembayaran')
-                    <p>Silahkan lakukan pembayaran terlebih dahulu!</p>
+                    <h1>Pembayaran</h1>
+                    <h3>Silahkan lakukan pembayaran terlebih dahulu!</h3>
+                    <h5>Pembayaran otomatis batal setelah 24 jam</h5>
+                    <div class="d-flex align-items-center">
+                        <h5 class="me-2">Sisa waktu Pembayaran:</h5>
+                        <h1 id="countdown" class="ms-2"></h1>
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Booking creation time from the server (UTC +0)
+                            const bookingCreatedAtUTC = new Date("{{ $booking->created_at }}").getTime();
+                            // Convert to UTC +7
+                            const bookingCreatedAt = bookingCreatedAtUTC + (7 * 60 * 60 * 1000);
+                            // 24 hours in milliseconds
+                            const countdownDuration = 24 * 60 * 60 * 1000;
+                            const endTime = bookingCreatedAt + countdownDuration;
+
+                            function updateCountdown() {
+                                const now = new Date().getTime();
+                                const distance = endTime - now;
+
+                                if (distance < 0) {
+                                    document.getElementById('countdown').innerHTML = "Pembayaran telah dibatalkan.";
+                                    return;
+                                }
+
+                                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                                document.getElementById('countdown').innerHTML = hours + "h " +
+                                    minutes + "m " + seconds + "s ";
+                            }
+
+                            // Update the countdown every 1 second
+                            setInterval(updateCountdown, 1000);
+
+                            // Initialize the countdown
+                            updateCountdown();
+                        });
+                    </script>
                 @elseif ($booking->booking_status == 'Menunggu Konfirmasi')
-                    <p>Silahkan tunggu konfirmasi dari admin</p>
+                    <h3>Silahkan tunggu konfirmasi dari admin</h3>
                 @elseif ($booking->booking_status == 'Pembayaran Terkonfirmasi')
                     @if ($booking->pickup == 'Ambil Sendiri')
-                        <p>Silahkan ambil kendaraan di lokasi kami</p>
+                        <h3>Silahkan ambil kendaraan di lokasi kami</h3>
                     @else
-                        <p>Silahkan tunggu kendaraan diantar ke lokasi Anda!</p>
+                        <h3>Silahkan tunggu kendaraan diantar ke lokasi Anda!</h3>
                     @endif
                 @elseif ($booking->booking_status == 'Belum Dikembalikan')
-                    <p>Silahkan kembalikan kendaraan maksimal jam 8 malam pada tanggal {{ $booking->end_date }}</p>
+                    <h3>Silahkan kembalikan kendaraan maksimal jam 8 malam pada tanggal {{ $booking->end_date }}</h3>
                 @elseif ($booking->booking_status == 'Selesai')
-                    <p>Terima kasih telah menggunakan sewa kendaraan kami! Sampai jumpa di pemesanan selanjutnya!</p>
-                @elseif ($booking->booking_status == 'Dibatalkan')
-                    <p>Pemesanan Anda telah dibatalkan</p>
-                @endif
-                @if ($booking->booking_status == 'Menunggu Pembayaran')
-                <button type="button" class="btn btn-primary" id="pay-button">
-                    Bayar Sekarang
-                </button>
-                @endif
-                <div class="col-md-12">
-                    <div class="d-flex align-items-center mb-3" data-bs-toggle="collapse" href="#feedbackForm"
-                        aria-expanded="false">
-                        <div style="border-top: 1px solid #000; flex-grow: 1;"></div>
-                        <span class="btn mx-3">Lihat Feedback</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    @foreach ($feedbacks as $feedback)
-                    <div id="feedbackForm" class="collapse">
-                        <h2 class="mt-4">Feedback Anda</h2>
-                        <form action="{{ route('feedback.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="avatar" value="{{ Auth::user()->avatar }}">
-                            <input type="hidden" name="booking_code" value="{{ $booking->booking_code }}">
-                            <input type="hidden" name="vehicle_type" value="{{ $booking->vehicle_type }}">
-                            <input type="hidden" name="vehicle_id" value="{{ $booking->vehicle_id }}">
-                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                            
-                            <div class="mb-3">
-                                <label for="feedback">Feedback</label>
-                                <textarea class="form-control bg-light" id="feedback" name="feedback" rows="3" required disabled>{{ $feedback->feedback }}</textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="rating">Rating</label>
-                                <div class="rating-stars">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    @if ($i <= $feedback->rating)
-                                        <span class="star" data-rating="{{ $i }}"><i class="fas fa-star text-warning"></i></span>
-                                    @else
-                                        <span class="star" data-rating="{{ $i }}"><i class="fas fa-star text-secondary"></i></span>
-                                    @endif
-                                @endfor
-                                </div>
-                                <input type="hidden" name="rating" id="rating-value" value="0" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="user_name">Nama Pengguna</label>
-                                <input type="text" class="form-control bg-light" id="user_name" name="user_name"
-                                    value="{{ Auth::user()->name }}" required disabled>
-                            </div>
-                            @endforeach
+                    <h3>Terima kasih telah menggunakan sewa kendaraan kami! Sampai jumpa di pemesanan selanjutnya!</h3>
+                    <div class="col-md-12">
+                        <div class="d-flex align-items-center mb-3" data-bs-toggle="collapse" href="#feedbackForm"
+                            aria-expanded="false">
+                            <div style="border-top: 1px solid #000; flex-grow: 1;"></div>
+                            <span class="btn mx-3">Lihat Feedback</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        @foreach ($feedbacks as $feedback)
+                            <div id="feedbackForm" class="collapse">
+                                <h3 class="mt-4">Feedback Anda</h3>
+                                <form action="{{ route('feedback.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="avatar" value="{{ Auth::user()->avatar }}">
+                                    <input type="hidden" name="booking_code" value="{{ $booking->booking_code }}">
+                                    <input type="hidden" name="vehicle_type" value="{{ $booking->vehicle_type }}">
+                                    <input type="hidden" name="vehicle_id" value="{{ $booking->vehicle_id }}">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
+                                    <div class="mb-3">
+                                        <label for="feedback">Feedback</label>
+                                        <textarea class="form-control bg-light" id="feedback" name="feedback" rows="3" required disabled>{{ $feedback->feedback }}</textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="rating">Rating</label>
+                                        <div class="rating-stars">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $feedback->rating)
+                                                    <span class="star" data-rating="{{ $i }}"><i
+                                                            class="fas fa-star text-warning"></i></span>
+                                                @else
+                                                    <span class="star" data-rating="{{ $i }}"><i
+                                                            class="fas fa-star text-secondary"></i></span>
+                                                @endif
+                                            @endfor
+                                        </div>
+                                        <input type="hidden" name="rating" id="rating-value" value="0" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="user_name">Nama Pengguna</label>
+                                        <input type="text" class="form-control bg-light" id="user_name" name="user_name"
+                                            value="{{ Auth::user()->name }}" required disabled>
+                                    </div>
+                        @endforeach
                         </form>
                     </div>
-                </div>
-            </div>
-            </div>
+                @elseif ($booking->booking_status == 'Dibatalkan')
+                    <h3>Pemesanan Anda telah dibatalkan</h3>
+                    @if ($booking->cancellation && $booking->cancellation->refund_proof)
+                        <div class="mt-3">
+                            <h4>Bukti Pengembalian Dana</h4>
+                            <img src="{{ Storage::url($booking->cancellation->refund_proof) }}" alt="Bukti Pengembalian"
+                                width="100%">
+                        </div>
+                    @endif
+                @endif
+                @if ($booking->booking_status == 'Menunggu Pembayaran')
+                    <button type="button" class="btn btn-primary" id="pay-button">
+                        Bayar Sekarang
+                    </button>
+                @endif
             </div>
         </div>
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <div class="alert alert-danger text-center" role="alert">
-                    <strong>{{ $error }}</strong>
-                </div>
-            @endforeach
-        @endif
-
     </div>
+    </div>
+
 @endsection
 
 @section('styles')
@@ -163,7 +210,8 @@
 @endsection
 
 @push('scripts')
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.clientKey') }}"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.clientKey') }}">
+    </script>
     <script type="text/javascript">
         document.getElementById('pay-button').onclick = function() {
             // SnapToken acquired from previous step
