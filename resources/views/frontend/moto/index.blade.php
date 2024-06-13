@@ -135,7 +135,7 @@
                         @foreach ($motos as $moto)
                             <div class="col-lg-3 col-md-6 moto-item" data-category="{{ $moto->type->nama }}"
                                 data-passenger="{{ $moto->penumpang }}">
-                                <div class="property-item rounded overflow-hidden wow fadeInUp"
+                                <div class="property-item rounded overflow-hidden wow fadeInUp card-motor"
                                     data-wow-delay="{{ $loop->iteration * 0.1 }}s">
                                     <div class="position-relative overflow-hidden image-container">
                                         <img class="img-fluid" src="{{ asset('storage/' . $moto->image1) }}"
@@ -149,23 +149,13 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($moto->price) }} /
                                             hari</h5>
                                         <a class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</a>
-                                        {{-- <p style="text-align: justify"></i>{{ $moto->description }}</p> --}}
+                                        
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
                                             <a href="{{ route('moto.show', $moto->id) }}"
                                                 class="btn btn-primary btn-pesan btn-lg mb-3">Pesan</a>
                                         </div>
-                                        {{-- <div class="d-flex border-top mt-3">
-                                        <div class="flex-fill text-center border-end py-3">
-                                            <i class="fa-solid fa-person text-primary me-2"></i>{{ $moto->penumpang }}
-                                            Penumpang
-                                        </div>
-                                        {{-- <div class="flex-fill text-center py-3">
-                                            <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $car->pintu }}
-                                            Pintu
-                                        </div> --}}
-                                        {{-- </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -222,6 +212,11 @@
 @push('script-alt')
     <script>
         $(document).ready(function() {
+
+            $('.card-motor div').click(function(e) {
+                e.preventDefault(); // Menghentikan aksi default, jika ada
+                e.stopPropagation(); // Menghentikan propagasi event
+            });
 
             $('.btn-pesan').click(function(e) {
                 e.stopPropagation();
