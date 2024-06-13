@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/password-update', [ProfileController::class, 'updatePassword'])->name('password.update.custom');
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+    Route::post('/booking/cancel', [BookingController::class, 'cancelBooking'])->name('history.cancel');
     Route::get('/check-availability/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showAvailabilityForm'])->name('check_availability');
     Route::get('/check-vehicle-availability/{vehicle_type}/{vehicle_id}', [BookingController::class, 'checkVehicleAvailability'])->name('check_vehicle_availability');
     Route::get('/booking-form/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingForm'])->name('booking_form');
@@ -107,6 +108,7 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('faqs', \App\Http\Controllers\Admin\FAQController::class);
     Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);
     Route::resource('bookings', \App\Http\Controllers\Admin\BookingController::class);
+    Route::resource('cancellations', \App\Http\Controllers\Admin\CancellationController::class);
     Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class);
     Route::resource('drivers', \App\Http\Controllers\Admin\DriverController::class);
     Route::get('/bookings/cetak/pdf', [AdminBookingController::class, 'generatePdf'])->name('bookings.pdf');

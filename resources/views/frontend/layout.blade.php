@@ -25,7 +25,7 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
-    {{-- <link id="pagestyle" href="{{ asset('frontend/css/argon/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" /> --}}
+    <link id="pagestyle" href="{{ asset('frontend/css/argon/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 
 
     <link rel="stylesheet" href="{{ asset('frontend/css/animate/animate.min.css') }}" />
@@ -54,92 +54,8 @@
 
     <!-- Navbar Start -->
     <div class="container-fluid nav-bar bg-transparent">
-        {{-- @include('layouts.navbar') --}}
-        <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-            <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center text-center">
-                @php
-                    $settings = \App\Models\Setting::first();
-                @endphp
+        @include('layouts.navbar')
         
-                <div class="p-2 me-2">
-                    @if ($settings && $settings->logo)
-                        <img class="img-fluid" src="{{ Storage::url($settings->logo) }}" alt="Icon"
-                            style="width: 50px; height: 50px;">
-                    @else
-                        <img class="img-fluid"
-                            src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png"
-                            alt="Icon" style="width: 50px; height: 50px;">
-                    @endif
-                    {{-- <h1>DeMobil</h1> --}}
-                </div>
-        
-                <h1 class="m-0 text-primary">{{ $settings->nama_perusahaan }}</h1>
-        
-            </a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav ms-auto">
-                    <a href="{{ url('/') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
-                    <div class="nav-item dropdown">
-                        <a href="#"
-                            class="nav-link dropdown-toggle {{ request()->is('daftar-mobil', 'daftar-motor') ? 'active' : '' }}"
-                            data-bs-toggle="dropdown">Kendaraan</a>
-                        <div class="dropdown-menu">
-                            <a href="{{ url('daftar-mobil') }}"
-                                class="dropdown-item {{ request()->is('daftar-mobil') ? 'active' : '' }}">Mobil</a>
-                            <a href="{{ url('daftar-motor') }}"
-                                class="dropdown-item {{ request()->is('daftar-motor') ? 'active' : '' }}">Motor</a>
-                        </div>
-                    </div>
-                    <a href="{{ url('tentang-kami') }}"
-                        class="nav-item nav-link {{ request()->is('tentang-kami') ? 'active' : '' }}">Tentang Kami</a>
-                    <a href="{{ url('kontak') }}"
-                        class="nav-item nav-link {{ request()->is('kontak') ? 'active' : '' }}">Kontak</a>
-                    @auth
-                        @if (auth()->user()->is_admin)
-                            <a class="nav-link" href="{{ route('home') }}" role="button" aria-haspopup="true"
-                                aria-expanded="false">
-                                Dashboard
-                            </a>
-                        @else
-                            <!-- Jika pengguna bukan admin, tampilkan dropdown dengan tautan ke halaman profil dan opsi logout -->
-                            <div class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle {{ Request::is('profile', 'history') ? 'active' : '' }}"
-                                    href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item {{ Request::is('profile') ? 'active' : '' }}"
-                                        href="{{ route('profile.index') }}">
-                                        Profile
-                                    </a>
-                                    <a class="dropdown-item {{ Request::is('history') ? 'active' : '' }}"
-                                        href="{{ route('history.index') }}">
-                                        Riwayat Sewa
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </div>
-                            {{-- </div> --}}
-                        @endif
-                    @else
-                        <!-- Jika pengguna belum login, tampilkan tautan login -->
-                        <div class="align-items-center d-none d-lg-flex">
-                            <a href="{{ route('login') }}" class="btn btn-primary px-3 d-none d-lg-flex">Login</a>
-                        </div>
-                        {{-- </div> --}}
-                    @endauth
-                </div>
-        </nav>
         
     </div>
     <!-- Navbar End -->
@@ -218,10 +134,10 @@
     {{-- </div> --}}
 
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/popper.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-    {{-- <script src="{{ asset('frontend/js/argon/core/popper.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/argon/core/bootstrap.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('frontend/js/popper.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script> --}}
+    <script src="{{ asset('frontend/js/argon/core/popper.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/argon/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.sticky.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
@@ -253,7 +169,7 @@
                               (session('alert-type') == 'info' ? 'Berhasil!' : '')) }}',
                     text: '{{ session('message') }}',
                     icon: '{{ session('alert-type') }}',
-                    confirmButtonColor: '#0d6efd',
+                    confirmButtonColor: '#5e72e4',
                     confirmButtonText: 'OK',
                     timer: 1500
                 });

@@ -110,6 +110,12 @@
                     <span class="nav-link-text ms-1">{{ __('Testimonial') }}</span>
                 </a>
             </li> --}}
+            <div class="nav-item">
+                <a class="nav-link" href="{{ route('admin.cancellations.index') }}">
+                    <i class="fa-solid fa-xmark text-danger text-lg opacity-10"></i>
+                    <span class="nav-link-text ms-1">{{ __('Pembatalan') }}</span>
+                </a>
+            </div>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.feedbacks.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.feedbacks.index') }}">

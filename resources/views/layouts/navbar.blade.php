@@ -23,16 +23,16 @@
     <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav navbar-nav-hover ms-auto">
             <div class="row">
-                <div class="col-auto m-auto mx-2">
-                    <a href="{{ url('/') }}" class=" {{ request()->is('/') ? 'active' : '' }}">Home</a>
+                <div class="col-auto m-auto mx-3">
+                    <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Home</a>
                 </div>
-                <div class="col-auto m-auto mx-2">
+                <div class="col-auto m-auto mx-3">
                     <div class="dropdown">
-                        <a class="cursor-pointer dropdown-toggle" type="button" id="dropdownMenuButton"
+                        <a class="{{ request()->is('daftar-mobil', 'daftar-motor') ? 'active' : '' }} cursor-pointer dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             Kendaraan
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-right px-2 py-3 ms-n4"
+                        <ul class="dropdown-menu dropdown-menu-end px-2 py-3 ms-n4"
                             aria-labelledby="dropdownMenuButton">
                             <a href="{{ url('daftar-mobil') }}"
                                 class="dropdown-item {{ request()->is('daftar-mobil') ? 'active' : '' }}">Mobil</a>
@@ -41,14 +41,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-auto m-auto mx-2">
+                <div class="col-auto m-auto mx-3">
                     <a href="{{ url('tentang-kami') }}"
                         class=" {{ request()->is('tentang-kami') ? 'active' : '' }}">Tentang Kami</a>
                 </div>
                 <div class="col-auto m-auto mx-3">
                     <a href="{{ url('kontak') }}" class=" {{ request()->is('kontak') ? 'active' : '' }}">Kontak</a>
                 </div>
-                <div class="col-auto m-auto mx-2">
+                <div class="col-auto m-auto mx-3">
                     @auth
                         @if (auth()->user()->is_admin)
                             <a href="{{ route('home') }}">
@@ -62,7 +62,7 @@
                                     aria-expanded="false">
                                     {{ Auth::user()->name }}
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-right px-2 py-3 ms-n4"
+                                <ul class="dropdown-menu dropdown-menu-end px-2 py-3 ms-n4"
                                     aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item {{ Request::is('profile') ? 'active' : '' }}"
                                         href="{{ route('profile.index') }}">
