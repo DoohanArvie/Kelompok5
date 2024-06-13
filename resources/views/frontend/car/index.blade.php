@@ -102,11 +102,11 @@
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="2">4 Penumpang</button>
+                                                    data-passenger="4">4 Penumpang</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="4">6 Penumpang</button>
+                                                    data-passenger="6">6 Penumpang</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
@@ -191,8 +191,8 @@
                         @foreach ($cars as $car)
                             <div class="col-lg-3 col-md-6 car-item" data-category="{{ $car->type->nama }}"
                                 data-passenger="{{ $car->penumpang }}">
-                                <div class="property-item rounded overflow-hidden wow fadeInUp"
-                                    data-wow-delay="{{ $loop->iteration * 0.01 }}s">
+                                <div class="property-item rounded overflow-hidden wow fadeInUp card-mobil"
+                                    data-wow-delay="{{ $loop->iteration * 0.1 }}s">
                                     <div class="position-relative overflow-hidden image-container">
                                         <img class="img-fluid" src="{{ asset('storage/' . $car->image1) }}"
                                             alt="gambar-mobil">
@@ -204,7 +204,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
+                                        <label class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</label>
                                         {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
@@ -212,7 +212,7 @@
                                             <a href="{{ route('car.show', $car->id) }}"
                                                 class="btn btn-primary btn-pesan">Pesan</a>
                                         </div>
-                                        <div class="d-flex border-top mt-3">
+                                        <div class="d-flex border-top mt-3 penumpang-container">
                                             <div class="flex-fill text-center border-end py-3">
                                                 <i class="fa-solid fa-person text-primary me-2"></i>{{ $car->penumpang }}
                                                 Penumpang
@@ -278,6 +278,11 @@
 @push('script-alt')
     <script>
         $(document).ready(function() {
+
+            $('.card-mobil div').click(function(e) {
+                e.preventDefault(); // Menghentikan aksi default, jika ada
+                e.stopPropagation(); // Menghentikan propagasi event
+            });
 
             $('.btn-pesan').click(function(e) {
                 e.stopPropagation();
