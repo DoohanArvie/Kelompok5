@@ -45,9 +45,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center gap-2">
-                                                        <form onclick="return confirm('are you sure !')"
-                                                            action="{{ route('admin.feedbacks.destroy', $feedback) }}"
-                                                            method="POST">
+                                                        <form action="{{ route('admin.feedbacks.destroy', $feedback) }}" method="POST" class="delete-form">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-sm btn-danger" test$feedback="submit"><i

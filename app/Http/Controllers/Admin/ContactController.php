@@ -66,8 +66,8 @@ class ContactController extends Controller
         $contact->delete();
 
         return redirect()->back()->with([
-            'message' => 'berhasil di hapus !',
-            'alert-type' => 'danger'
+            'message' => 'Data pesan berhasil di hapus!',
+            'alert-type' => 'success'
         ]);
     }
 }

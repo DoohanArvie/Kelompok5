@@ -53,9 +53,7 @@
                                                             class="btn btn-primary">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <form onclick="return confirm('are you sure !')"
-                                                            action="{{ route('admin.cars.destroy', $cars) }}"
-                                                            method="POST">
+                                                        <form action="{{ route('admin.cars.destroy', $cars) }}" method="POST" class="delete-form">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-danger" type="submit"><i

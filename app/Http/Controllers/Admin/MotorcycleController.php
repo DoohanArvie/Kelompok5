@@ -60,7 +60,10 @@ class MotorcycleController extends Controller
         $motorcycle->status = $request->status;
         $motorcycle->save();
 
-        return redirect()->route('admin.motorcycles.index')->with('success', 'Motorcycle created successfully.');
+        return redirect()->route('admin.motorcycles.index')->with([
+            'message' => 'Data motor berhasil di tambah!',
+            'alert-type' => 'success'
+        ]);
     }
 
     public function show($id)
@@ -124,7 +127,10 @@ class MotorcycleController extends Controller
         $motorcycle->status = $request->status;
         $motorcycle->save();
 
-        return redirect()->route('admin.motorcycles.index')->with('success', 'Motorcycle updated successfully.');
+        return redirect()->route('admin.motorcycles.index')->with([
+            'message' => 'Data motor berhasil diperbarui!',
+            'alert-type' => 'success'
+        ]);
     }
     public function editImage($id, $image)
     {
@@ -149,7 +155,10 @@ class MotorcycleController extends Controller
 
         $motorcycle->save();
 
-        return redirect()->route('admin.motorcycles.edit', $motorcycle)->with('success', 'Gambar berhasil diperbarui.');
+        return redirect()->route('admin.motorcycles.edit', $motorcycle)->with([
+            'message' => 'Data motor berhasil diperbarui!',
+            'alert-type' => 'success'
+        ]);
     }
 
     public function destroy(Motorcycle $motorcycle)
@@ -169,6 +178,9 @@ class MotorcycleController extends Controller
 
         $motorcycle->delete();
 
-        return redirect()->back()->with('success', 'Motorcycle deleted successfully.');
+        return redirect()->back()->with([
+            'message' => 'Data motor berhasil di hapus!',
+            'alert-type' => 'success'
+        ]);
     }
 }

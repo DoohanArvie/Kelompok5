@@ -367,16 +367,7 @@
                                                 class="btn btn-primary btn-pesan btn-lg">Pesan</a>
                                         </div>
                                         <div class="d-flex border-top mt-3">
-                                            <div class="flex-fill text-center border-end py-3">
-                                                <i
-                                                    class="fa-solid fa-person text-primary me-2"></i>{{ $motorcycle->penumpang }}
-                                                Penumpang
-                                            </div>
-                                            <div class="flex-fill text-center py-3">
-                                                <i
-                                                    class="fa-solid fa-door-closed text-primary me-2"></i>{{ $motorcycle->pintu }}
-                                                Pintu
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>

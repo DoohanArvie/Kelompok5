@@ -71,7 +71,9 @@
                                                 @if (!Auth::user()->hasVerifiedEmail())
                                                     <a href="{{ route('verification.notice') }}">Verify Email</a>
                                                 @else
-                                                    <i class="fas fa-check-circle text-success"></i> Verified
+                                                    <div class="container-fluid"><i
+                                                            class="fas fa-check-circle text-success"></i>
+                                                        Verified</div>
                                                 @endif
                                             </span>
                                         </div>

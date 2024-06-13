@@ -33,12 +33,18 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
+        $previousStatus = $user->account_status;
+
+        $isAvatarUpdated = false;
+        $isOtherFieldUpdated = false;
+
         if ($request->hasFile('avatar')) {
             if ($user->avatar) {
                 Storage::delete('public/avatars/' . $user->avatar);
             }
             $avatarPath = $request->file('avatar')->store('public/avatars');
             $user->avatar = basename($avatarPath);
+            $isAvatarUpdated = true;
         }
 
         if ($request->hasFile('ktp')) {
@@ -47,6 +53,7 @@ class ProfileController extends Controller
             }
             $ktpPath = $request->file('ktp')->store('public/ktp');
             $user->ktp = basename($ktpPath);
+            $isOtherFieldUpdated = true;
         }
 
         if ($request->hasFile('sim')) {
@@ -55,18 +62,34 @@ class ProfileController extends Controller
             }
             $simPath = $request->file('sim')->store('public/sim');
             $user->sim = basename($simPath);
+            $isOtherFieldUpdated = true;
         }
 
+        if ($user->phone !== $request->phone) {
+            $user->phone = $request->phone;
+            $isOtherFieldUpdated = true;
+        }
 
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->account_status = 'Menunggu Verifikasi';
+        if ($user->address !== $request->address) {
+            $user->address = $request->address;
+            $isOtherFieldUpdated = true;
+        }
+
+        // Update account status to "Menunggu Verifikasi" if other fields are updated
+        if ($isOtherFieldUpdated) {
+            $user->account_status = 'Menunggu Verifikasi';
+        }
+
         $user->save();
 
         Feedback::where('user_id', $user->id)->update(['avatar' => $user->avatar]);
 
-        return redirect()->back()->with('status', 'Profile berhasil di update')->with('user', $user);
+        return redirect()->back()->with([
+            'message' => 'Akun anda telah diperbarui!',
+            'alert-type' => 'success'
+        ])->with('user', $user);
     }
+
 
     public function updatePassword(Request $request)
     {
@@ -88,6 +111,9 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->back()->with('status', 'Password berhasil di ubah');
+        return redirect()->back()->with([
+            'message' => 'Password akun diperbarui!',
+            'alert-type' => 'success'
+        ]);
     }
 }

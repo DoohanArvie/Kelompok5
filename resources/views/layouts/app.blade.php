@@ -260,6 +260,44 @@
     <script src="{{ asset('frontend/js/argon/plugins/smooth-scrollbar.min.js') }}"></script>
     <script src="{{ asset('frontend/js/argon/plugins/chartjs.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.delete-form').forEach(form => {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Data yang dihapus tidak dapat dikembalikan!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#5e72e4',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Hapus!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    @if (session('message'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: '{{ session('alert-type') == 'success' ? 'Berhasil!' : 
+                              (session('alert-type') == 'danger' ? 'Terhapus!' : 
+                              (session('alert-type') == 'info' ? 'Berhasil!' : '')) }}',
+                    text: '{{ session('message') }}',
+                    icon: '{{ session('alert-type') }}',
+                    confirmButtonText: 'OK',
+                    timer: 1500
+                });
+            });
+        </script>
+    @endif
     {{-- @vite('resources/js/app.js') --}}
     @stack('script-alt')
     <script>

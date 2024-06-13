@@ -243,6 +243,23 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     {{-- <script src="{{ asset('frontend/js/argon/argon-dashboard.min.js') }}"></script> --}}
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('message'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: '{{ session('alert-type') == 'success' ? 'Berhasil!' : 
+                              (session('alert-type') == 'error' ? 'Gagal!' : 
+                              (session('alert-type') == 'info' ? 'Berhasil!' : '')) }}',
+                    text: '{{ session('message') }}',
+                    icon: '{{ session('alert-type') }}',
+                    confirmButtonColor: '#0d6efd',
+                    confirmButtonText: 'OK',
+                    timer: 1500
+                });
+            });
+        </script>
+    @endif
     {{-- <script src="https://kit.fontawesome.com/41f5370a51.js" crossorigin="anonymous"></script> --}}
     @stack('script-alt')
     @stack('scripts')
