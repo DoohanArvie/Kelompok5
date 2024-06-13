@@ -7,43 +7,37 @@ use Illuminate\Database\Seeder;
 
 class FAQSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
+
     public function run(): void
     {
         $faqs = [
             [
-                'question' => 'Bagaimana cara melakukan pemesanan mobil?', 
-                'answer' => 'Kunjungi halaman pemesanan kami, Pilih jenis mobil yang diinginkan, pilih tanggal dan waktu sewa. Setelah mengisi formulir pemesanan, Anda harus membayar biaya sewa dan admin akan mengkonfirmasi sewa.'
+                'question' => 'Bagaimana cara melakukan pemesanan mobil?',
+                'answer' => 'Kunjungi halaman pemesanan, pilih mobil dan waktu sewa, lalu isi formulir dan lakukan pembayaran. Admin akan mengonfirmasi penyewaan Anda.'
             ],
             [
                 'question' => 'Apa syarat dan ketentuan untuk menyewa mobil?',
-                'answer'=> 'Anda harus memiliki usia minimal 21 tahun. Memiliki SIM yang masih berlaku. Menyediakan identitas yang valid, seperti KTP.'
+                'answer' => 'Anda harus memiliki usia minimal 17 tahun. Memiliki SIM yang masih berlaku. Menyediakan identitas yang valid, seperti KTP.'
             ],
             [
-                'question' => 'Bagaimana metode pembayaran yang diterima?', 
-                'answer' => 'Kami menerima pembayaran dengan Transfer Rekening Bank.'
+                'question' => 'Bagaimana metode pembayaran yang diterima?',
+                'answer' => 'Kami menerima pembayaran melalui transfer bank dan dompet digital.'
             ],
             [
-                'question' => 'Apakah ada biaya tambahan yang harus saya bayar?', 
-                'answer' => 'Biaya sewa mobil sudah termasuk dalam harga yang tertera. Namun, biaya seperti, biaya pengemudi tambahan dan biaya bahan bakar kendaraan ditanggung penyewa.'
+                'question' => 'Apakah ada biaya tambahan yang harus saya bayar?',
+                'answer' => 'Biaya sewa mobil sudah termasuk dalam harga yang tertera. Namun, biaya seperti pengemudi tambahan dan bahan bakar ditanggung oleh penyewa.'
             ],
             [
-                'question' => 'Bagaimana kebijakan pembatalan?', 
-                'answer' => 'Kebijakan pembatalan dapat bervariasi tergantung pada waktu pembatalan dan tipe penyewaan.'
+                'question' => 'Bagaimana kebijakan pembatalan?',
+                'answer' => 'Jika pembayaran belum diterima dalam 1 hari, penyewaan otomatis dibatalkan.'
             ],
             [
-                'question' => 'Apakah ada batasan jarak perjalanan?', 
-                'answer' => 'Biasanya, kami memberikan jarak perjalanan yang tidak terbatas.'
+                'question' => 'Apakah ada batasan jarak perjalanan?',
+                'answer' => 'Kami memberikan jarak perjalanan yang tidak terbatas.'
             ],
             [
-                'question' => 'Apakah saya dapat mengubah atau membatalkan pemesanan saya?', 
-                'answer' => 'Untuk mengubah atau membatalkan pemesanan, silakan hubungi tim dukungan kami melalui email atau telepon.'
-            ],
-            [
-                'question' => 'Bagaimana cara menghubungi tim dukungan pelanggan?', 
-                'answer' => 'Anda dapat menghubungi tim dukungan kami melalui nomor telepon atau email yang tercantum di halaman kontak kami.'
+                'question' => 'Bagaimana cara menghubungi Pihak OtoRent?',
+                'answer' => 'Anda dapat menghubungi tim dukungan kami melalui nomor telepon atau email yang tertera di halaman kontak kami.'
             ],
         ];
 
