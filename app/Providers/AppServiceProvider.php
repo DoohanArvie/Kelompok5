@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Paginator::useBootstrap();
+        Paginator::useBootstrap();
 
-        // // Komentari kode ini sementara
-        // $setting = Setting::first();
-        // View::share('setting', $setting);
+        // Komentari kode ini sementara
+        $setting = Setting::first();
+        View::share('setting', $setting);
     }
 }
