@@ -176,13 +176,14 @@
                                 <i
                                     class="fa fa-arrow-{{ $percentageChangeJumlahKendaraan > 0 ? 'up text-success' : ($percentageChangeJumlahKendaraan < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
                                 <span class="font-weight-bold">
-                                    @if ($percentageChangeJumlahKendaraan != 0)
-                                        {{ number_format(abs($percentageChangeJumlahKendaraan)), 0 }}%
-                                        {{ $percentageChangeJumlahKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
-                                    @else
-                                        {{ number_format($percentageChangeJumlahKendaraan), 0 }}%
-                                        sama
-                                    @endif
+                                @if ($percentageChangeJumlahKendaraan != 0)
+                                    {{ number_format(abs($percentageChangeJumlahKendaraan), 0) }}%
+                                    {{ $percentageChangeJumlahKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                @else
+                                    {{ number_format($percentageChangeJumlahKendaraan, 0) }}%
+                                    sama
+                                @endif
+
                                 </span> dibandingkan minggu lalu
                             </p>
                         </div>
@@ -213,13 +214,13 @@
                                 <i
                                     class="fa fa-arrow-{{ $percentageChangeBooking > 0 ? 'up text-success' : ($percentageChangeBooking < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
                                 <span class="font-weight-bold">
-                                    @if ($percentageChangeBooking != 0)
-                                        {{ number_format(abs($percentageChangeBooking), 0) }}%
-                                        {{ $percentageChangeBooking > 0 ? 'lebih banyak' : 'lebih sedikit' }}
-                                    @else
-                                        {{ number_format($percentageChangeBooking), 0 }}%
-                                        sama
-                                    @endif
+                                @if ($percentageChangeJumlahKendaraan != 0)
+                                    {{ number_format(abs($percentageChangeJumlahKendaraan), 0) }}%
+                                    {{ $percentageChangeJumlahKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                @else
+                                    {{ number_format($percentageChangeJumlahKendaraan, 0) }}%
+                                    sama
+                                @endif
                                 </span> dibandingkan minggu lalu
                             </p>
                         </div>
