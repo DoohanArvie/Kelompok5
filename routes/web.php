@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomepageController;
@@ -11,7 +10,6 @@ use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Frontend\ProfileController;
-use App\Models\Motorcycle;
 use App\Http\Controllers\Frontend\FeedbackController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\DriverController;
@@ -21,36 +19,23 @@ use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\SearchController;
 use App\Models\Type;
 use App\Models\TypeMotorcycle;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 Route::get('/cari-kendaraan', [SearchController::class, 'cari'])->name('cari-kendaraan');
 
-Route::get('car/categories', function() {
+Route::get('car/categories', function () {
     return Type::all(['id', 'nama'])->toArray();
 })->name('car.categories');
 
-Route::get('motor/categories', function() {
+Route::get('motor/categories', function () {
     return TypeMotorcycle::all(['id', 'nama'])->toArray();
 })->name('motor.categories');
-
-
-// Route::get('/daftar-mobil', [SearchController::class, 'daftarMobil'])->name('daftar-mobil');
-// Route::get('/daftar-motor', [SearchController::class, 'daftarMotor'])->name('daftar-motor');
 
 // mobil
 Route::get('daftar-mobil', [CarController::class, 'index'])->name('car.index');
 Route::get('/daftar-mobil/{car}', [CarController::class, 'show'])->name('car.show');
+
 // motor
 Route::get('daftar-motor', [MotoController::class, 'index'])->name('moto.index');
 Route::get('/daftar-motor/{moto}', [MotoController::class, 'show'])->name('moto.show');
@@ -74,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/booking-confirmation/{booking_code}/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingConfirmation'])->name('booking_confirmation');
     Route::get('/booking-confirmation/success/{booking_code}', [BookingController::class, 'showBookingSuccess'])->name('booking_success');
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
-    Route::post('/profile/update-avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');  // Route untuk update avata
+    Route::post('/profile/update-avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');  // Route untuk update avatar
 });
 
 Route::get('password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -87,7 +72,6 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('is_admin');
 
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    // Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::resource('admin', \App\Http\Controllers\Admin\AdminController::class);
     Route::post('/password-update', [\App\Http\Controllers\Admin\AdminController::class, 'updatePassword'])->name('password.update.custom');
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
@@ -111,4 +95,3 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('drivers', \App\Http\Controllers\Admin\DriverController::class);
     Route::get('/bookings/cetak/pdf', [AdminBookingController::class, 'generatePdf'])->name('bookings.pdf');
 });
-// Route::get('/bookings/pdf', [AdminBookingController::class, 'generatePdf'])->name('admin.bookings.pdf');

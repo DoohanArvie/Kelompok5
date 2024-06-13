@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\Vehicle;
-use App\Models\Feedback;
 use Illuminate\Support\Facades\Storage;
-
 
 class ProfileController extends Controller
 {
@@ -25,7 +21,6 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'phone' => 'required|string|max:15',
             'address' => 'required|string|max:255',
             'ktp' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
@@ -47,20 +42,28 @@ class ProfileController extends Controller
             $isAvatarUpdated = true;
         }
 
+        // Update phone and address
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+
+        // Handle KTP file upload
         if ($request->hasFile('ktp')) {
+            $ktp = $request->file('ktp');
+            $ktpPath = $ktp->store('public/ktp');
             if ($user->ktp) {
                 Storage::delete('public/ktp/' . $user->ktp);
             }
-            $ktpPath = $request->file('ktp')->store('public/ktp');
             $user->ktp = basename($ktpPath);
             $isOtherFieldUpdated = true;
         }
 
+        // Handle SIM file upload
         if ($request->hasFile('sim')) {
+            $sim = $request->file('sim');
+            $simPath = $sim->store('public/sim');
             if ($user->sim) {
                 Storage::delete('public/sim/' . $user->sim);
             }
-            $simPath = $request->file('sim')->store('public/sim');
             $user->sim = basename($simPath);
             $isOtherFieldUpdated = true;
         }
@@ -115,18 +118,41 @@ class ProfileController extends Controller
     }
 
 
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        // Handle avatar file upload
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarPath = $avatar->store('public/avatars');
+            if ($user->avatar) {
+                Storage::delete('public/avatars/' . $user->avatar);
+            }
+            $user->avatar = basename($avatarPath);
+            $user->save();
+
+            Feedback::where('user_id', $user->id)->update(['avatar' => $user->avatar]);
+        }
+
+        return response()->json(['success' => true]);
+    }
+
+
     public function updatePassword(Request $request)
     {
-        // Validasi input
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Ambil user yang sedang login
         $user = Auth::user();
 
-        // Cek apakah password saat ini benar
+        // Check current password
         if (!Hash::check($request->current_password, $user->password)) {
             return back()->withErrors(['current_password' => 'Password saat ini salah']);
         }
