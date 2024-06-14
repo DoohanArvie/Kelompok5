@@ -13,7 +13,7 @@
                 <h4><i class="fa fa-check text-primary me-3"></i>Mudah</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Aman</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Nyaman</h4>
-                <a href="{{ route('car.index') }}" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Pesan Sekarang</a>
+                <a href="{{ route('car.index') }}" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Selengkapnya</a>
             </div>
             <div class="col-md-6 wow fadeInRight" data-wow-delay="0.1s">
                 <div class="owl-carousel header-carousel">
@@ -142,8 +142,8 @@
     <div class="container py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1 class="mb-4"><strong>Kelebihan Jasa di {{ $setting->nama_perusahaan }} Dibandingkan Rental Lainnya</strong></h1>
-                <p class="lead mb-5">Temukan Alasan Mengapa {{ $setting->nama_perusahaan }} Menjadi Pilihan Terbaik Anda</p>
+                <h1 class="mb-4"><strong>Kenapa Harus di{{ $setting->nama_perusahaan }} ?</strong></h1>
+                <p class="lead mb-5">Berikut Alasan Mengapa {{ $setting->nama_perusahaan }} Menjadi Pilihan Terbaik Anda</p>
             </div>
         </div>
         <div class="row text-center">
@@ -187,7 +187,7 @@
             @endforeach
         </div>
     </div>
-    <!--End Kelebihan-->
+    <!--End  Mengapa-->
     <!-- Cara Pemesanan -->
     <div class="container py-5">
         <div class="row justify-content-center">
@@ -259,13 +259,11 @@
                         kondisi prima</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Pengemudi yang berpengalaman dan ramah</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Sistem pemesanan yang mudah dan cepat</p>
-                    <a class="btn btn-primary py-3 px-5 mt-3" href="">Pesan Sekarang</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- About End -->
-
     <!-- Property List Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -366,8 +364,7 @@
                                             <a href="{{ route('moto.show', $motorcycle->id) }}"
                                                 class="btn btn-primary btn-pesan btn-lg">Pesan</a>
                                         </div>
-                                        <div class="d-flex border-top mt-3">
-                                            
+                                        <div class="d-flex border-top mt-3">  
                                         </div>
                                     </div>
                                 </div>
@@ -382,7 +379,6 @@
         </div>
     </div>
     <!-- Property List End -->
-
     <!-- Testimonial Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -485,10 +481,7 @@
                             </div>
                             <a href="https://wa.me/{{ $setting->phone }}" class="btn btn-primary py-3 px-4 me-2"><i
                                     class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
-                            <a href="#barCari" class="btn btn-dark py-3 px-4">
-                                <i class="fa fa-calendar-alt me-2"></i>
-                                Buat Pemesanan
-                            </a>
+                            
                         </div>
                     </div>
                 </div>

@@ -24,8 +24,7 @@
                         {{ __('Profile Settings') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data"
-                            id="profileForm">
+                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" id="profileForm">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5 d-flex flex-column mb-3">
@@ -216,29 +215,27 @@
         </div>
     </div>
 
-
-
 <style>
-        .img-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 90vh;
-            overflow: hidden;
-        }
-        #imageCrop {
-            max-width: 100%;
-            max-height: 100%;
-        }
-    </style>
+    .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        overflow: hidden;
+    }
+    #imageCrop {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
 
-    @push('script-alt')
-        <!-- Cropper.js -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+@push('script-alt')
+    <!-- Cropper.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             var avatar = document.getElementById('avatar');
             var image = document.getElementById('imageCrop');
             var existingAvatarPreview = document.getElementById('existingAvatarPreview');
@@ -320,6 +317,20 @@
                 }
             });
         });
-        </script>
-    @endpush
+
+        function togglePassword(element) {
+            var input = element.parentNode.querySelector('input');
+            var icon = element.querySelector('i');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
+@endpush
 @endsection
