@@ -348,7 +348,7 @@ class CarSeeder extends Seeder
         ];
 
 
-        foreach ($cars as &$car) {
+        foreach ($cars as $car) {
             // Iterate over each image
             for ($i = 1; $i <= 4; $i++) {
                 $imageKey = 'image' . $i;

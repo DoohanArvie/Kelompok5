@@ -36,7 +36,10 @@ class FeedbackController extends Controller
             'booking_code' => $bookingCode,
             'vehicle_type' => $vehicleType,
             'vehicle_id' => $vehicleId
-        ])->with('success', 'Feedback berhasil disimpan.');
+        ])->with([
+            'message' => 'Berhasil memberikan Feedback.',
+            'alert-type' => 'success'
+        ]);
     }
 
 }

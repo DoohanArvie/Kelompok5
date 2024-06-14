@@ -57,7 +57,7 @@
                         </div>
                         <div class="accordion" id="accordionFilters">
                             <!-- Filter motor -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingType">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseType" aria-expanded="true" aria-controls="collapseType">
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <!-- Filter Rentang Harga -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingPrice">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsePrice" aria-expanded="false" aria-controls="collapsePrice">
@@ -154,7 +154,7 @@
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
                                             <a href="{{ route('moto.show', $moto->id) }}"
-                                                class="btn btn-primary btn-pesan btn-lg mb-3">Pesan</a>
+                                                class="btn btn-primary btn-pesan mb-3">Pesan</a>
                                         </div>
                                     </div>
                                 </div>

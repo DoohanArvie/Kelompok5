@@ -13,8 +13,11 @@ class HistoryController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $bookings = Booking::where('user_id', $user->id)->get();
+        $bookings = Booking::where('user_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->get();
 
         return view('frontend.history.index', compact('user', 'bookings'));
     }
+
 }

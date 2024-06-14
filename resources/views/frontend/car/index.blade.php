@@ -58,7 +58,7 @@
                         </div>
                         <div class="accordion" id="accordionFilters">
                             <!-- Filter Mobil -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingType">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseType" aria-expanded="true" aria-controls="collapseType">
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <!-- Filter Penumpang -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingPassenger">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsePassenger" aria-expanded="false"
@@ -133,7 +133,7 @@
                                 </div>
                             </div>
                             <!-- Filter Rentang Harga -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingPrice">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsePrice" aria-expanded="false"
@@ -210,7 +210,7 @@
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
                                             <a href="{{ route('car.show', $car->id) }}"
-                                                class="btn btn-primary btn-pesan btn-lg">Pesan</a>
+                                                class="btn btn-primary btn-pesan">Pesan</a>
                                         </div>
                                         <div class="d-flex border-top mt-3 penumpang-container">
                                             <div class="flex-fill text-center border-end py-3">
