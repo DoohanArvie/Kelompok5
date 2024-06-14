@@ -15,20 +15,23 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/fonts/flaticon/font/flaticon.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/aos.css') }}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
     <link id="pagestyle" href="{{ asset('frontend/css/argon/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('frontend/css/animate/animate.min.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+        rel="stylesheet">
     @stack('style-alt')
     @stack('styles')
 </head>
 
 <body>
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -45,7 +48,8 @@
         <div class="container">
             <div class="row gx-5">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <div class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+                    <div
+                        class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
                         @php
                             $settings = \App\Models\Setting::first();
                         @endphp
@@ -71,43 +75,37 @@
                                 <i class="bi bi-telephone text-primary me-2"></i>
                                 <p class="mb-0">{{ $settings->phone }}</p>
                             </div>
-                            <div class="d-flex mt-4">
-                                <a class="btn btn-social btn-primary me-2" href="https://web.facebook.com/Kharafi911?_rdc=1&_rdr" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-social btn-primary me-2" href="https://www.instagram.com/niddaaul/" target="_blank"><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-social btn-primary me-2" href="https://x.com/KharafiA" target="_blank"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-social btn-primary" href="https://www.linkedin.com/in/nidaauliaakarima/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Kenal Kami</h3>
-                            </div>
-                            <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" href="/Beranda"><i class="bi bi-arrow-right text-primary me-2"></i>Beranda</a>
-                                <a class="text-light mb-2" href="/tentang-kami"><i class="bi bi-arrow-right text-primary me-2"></i>Tentang Kami</a>
-                                <a class="text-light mb-2" href="/"><i class="bi bi-arrow-right text-primary me-2"></i>Tim Kami</a>
-                                <a class="text-light" href="/kontak"><i class="bi bi-arrow-right text-primary me-2"></i>Kontak</a>
-                            </div>
                         </div>
                         <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
                                 <h3 class="text-light mb-0">Link Cepat</h3>
                             </div>
                             <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" href="#TentangKami"><i class="bi bi-arrow-right text-primary me-2"></i>Tentang Kami</a>
-                                <a class="text-light mb-2" href="#Kontak"><i class="bi bi-arrow-right text-primary me-2"></i>Kontak</a>
-                                <a class="text-light mb-2" href="#FAQs"><i class="bi bi-arrow-right text-primary me-2"></i>FAQs</a>
+                                <a class="text-light mb-2" href={{ url('/') }}><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Beranda</a>
+                                <a class="text-light mb-2" href={{ url('/tentang-kami') }}><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Tentang Kami</a>
+                                <a class="text-light mb-2" href={{ url('/kontak') }}><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>Kontak</a>
+                                <a class="text-light" href="#faqs"><i
+                                        class="bi bi-arrow-right text-primary me-2"></i>FAQs</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="container-fluid text-white" style="background: #061429;">
-                    <div class="container text-center">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-12">
-                                <div class="footer-bottom d-flex align-items-center justify-content-center" style="height: 50px;">
-                                    <p class="mb-0">&copy; OtoRent. All Rights Reserved. Designed by <a class="text-white border-bottom" href="#">Ankavi Team</a></p>
-                                </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Sosial Media</h3>
+                            </div>
+                            <div class="d-flex mt-4">
+                                <a class="btn btn-social btn-primary me-2"
+                                    href="https://web.facebook.com/Kharafi911?_rdc=1&_rdr" target="_blank"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-social btn-primary me-2" href="https://www.instagram.com/niddaaul/"
+                                    target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-social btn-primary me-2" href="https://x.com/KharafiA"
+                                    target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-social btn-primary"
+                                    href="https://www.linkedin.com/in/nidaauliaakarima/" target="_blank"><i
+                                        class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>
@@ -115,7 +113,23 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid text-white" style="background: #061429;">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-6">
+                    <div class="footer-bottom d-flex align-items-center justify-content-center w-100"
+                        style="height: 75px;">
+                        <p class="mb-0">&copy; OtoRent. All Rights Reserved. Designed by <a>Ankavi Team</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
     <!-- Footer End -->
+
 
     <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/js/argon/core/popper.min.js') }}"></script>
@@ -135,20 +149,24 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('message'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: '{{ session('alert-type') == 'success' ? 'Berhasil!' : 
-                          (session('alert-type') == 'error' ? 'Gagal!' : 
-                          (session('alert-type') == 'info' ? 'Berhasil!' : '')) }}',
-                text: '{{ session('message') }}',
-                icon: '{{ session('alert-type') }}',
-                confirmButtonColor: '#5e72e4',
-                confirmButtonText: 'OK',
-                timer: 1500
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: '{{ session('alert-type') == 'success'
+                        ? 'Berhasil!'
+                        : (session('alert-type') == 'error'
+                            ? 'Gagal!'
+                            : (session('alert-type') == 'info'
+                                ? 'Berhasil!'
+                                : '')) }}',
+                    text: '{{ session('message') }}',
+                    icon: '{{ session('alert-type') }}',
+                    confirmButtonColor: '#5e72e4',
+                    confirmButtonText: 'OK',
+                    timer: 1500
+                });
             });
-        });
-    </script>
+        </script>
     @endif
     @stack('script-alt')
     @stack('scripts')

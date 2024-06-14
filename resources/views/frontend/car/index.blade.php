@@ -8,7 +8,7 @@
                 <h1 class="display-5 animated fadeIn mb-4">Daftar Mobil</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Daftar Mobil</li>
                     </ol>
                 </nav>
@@ -73,7 +73,7 @@
                                                 <button class="btn btn-outline-primary active w-100" data-bs-toggle="pill"
                                                     data-filter="all">Semua</button>
                                             </li>
-                                            @foreach($types as $type)
+                                            @foreach ($types as $type)
                                                 <li class="nav-item mb-2">
                                                     <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                         data-filter="{{ $type->nama }}">{{ $type->nama }}</button>
@@ -256,6 +256,7 @@
         .property-footer {
             margin-top: auto;
         }
+
         .image-container {
             position: relative;
             width: 100%;

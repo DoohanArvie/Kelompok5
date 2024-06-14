@@ -125,8 +125,7 @@
                                 <label for="refund_account">Bank dan Nomor Rekening Pengembalian Dana
                                     <span class="text-danger text-lg">*</span>
                                 </label>
-                                <textarea class="form-control" name="refund_account" id="refund_account"
-                                    rows="2"></textarea>
+                                <textarea class="form-control" name="refund_account" id="refund_account" rows="2"></textarea>
                                 <p class="text-sm">Contoh: Bank: BRI, Nomor Rekening: 1234567890</p>
                             </div>
                         </div>

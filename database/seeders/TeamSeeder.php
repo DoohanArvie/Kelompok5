@@ -20,31 +20,31 @@ class TeamSeeder extends Seeder
             [
                 'nama' => 'Nida Aulia Karima',
                 'jabatan' => 'Chief Executive Officer (CEO)',
-                'photo' => 'team-1.png',
+                'photo' => 'team-1.jpg',
                 'bio' => 'Nida adalah pemimpin perusahaan yang mengarahkan visi dan strategi bisnis. Dia memastikan semua departemen bekerja menuju tujuan yang sama dan menjaga hubungan baik dengan stakeholder.'
             ],
             [
                 'nama' => 'Kharafi Dwi Andika',
                 'jabatan' => 'Chief Technology Officer (CTO)',
-                'photo' => 'team-2.png',
+                'photo' => 'team-2.jpg',
                 'bio' => 'Kharafi adalah pemimpin teknis yang memastikan semua solusi teknologi sejalan dengan tujuan bisnis perusahaan. Dia bertanggung jawab atas visi teknologi dan memastikan inovasi terus berkembang.'
             ],
             [
                 'nama' => 'Valentino Aldo',
                 'jabatan' => 'Chief Operating Officer (COO)',
-                'photo' => 'team-3.png',
+                'photo' => 'team-3.jpg',
                 'bio' => 'Valentino memastikan semua aspek operasional perusahaan berjalan lancar dan efisien. Dia mengkoordinasikan berbagai departemen untuk mencapai tujuan perusahaan.'
             ],
             [
                 'nama' => 'Ahmad Shodiqin',
                 'jabatan' => 'Chief Financial Officer (CFO)',
-                'photo' => 'team-4.png',
+                'photo' => 'team-4.jpg',
                 'bio' => 'Ahmad mengawasi keuangan perusahaan, memastikan anggaran digunakan dengan efektif dan efisien. Dia juga bertanggung jawab atas laporan keuangan dan strategi keuangan jangka panjang.'
             ],
             [
                 'nama' => 'Avila Difa Adhiguna',
                 'jabatan' => 'Chief Marketing Officer (CMO)',
-                'photo' => 'team-5.png',
+                'photo' => 'team-5.jpg',
                 'bio' => 'Avila bertanggung jawab atas semua aktivitas pemasaran dan promosi. Dia merancang strategi untuk meningkatkan visibilitas produk dan memastikan pesan perusahaan tersampaikan dengan efektif kepada pelanggan.'
             ],
         ];

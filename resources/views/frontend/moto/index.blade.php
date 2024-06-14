@@ -8,7 +8,7 @@
                 <h1 class="display-5 animated fadeIn mb-4">Daftar motor</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Daftar motor</li>
                     </ol>
                 </nav>
@@ -149,7 +149,7 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($moto->price) }} /
                                             hari</h5>
                                         <a class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</a>
-                                        
+
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
