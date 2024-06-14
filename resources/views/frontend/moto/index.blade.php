@@ -148,13 +148,8 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($moto->price) }} /
                                             hari</h5>
-<<<<<<< HEAD
-                                        <label class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</label>
+                                        <p class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</p>
                                         
-=======
-                                        <a class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</a>
-
->>>>>>> origin/branch_NidaAuliaKarima
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">

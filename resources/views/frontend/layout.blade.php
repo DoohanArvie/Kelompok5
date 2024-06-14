@@ -44,76 +44,77 @@
     @yield('content')
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row gx-5">
-                <div class="col-lg-4 col-md-6 footer-about">
-                    <div
-                        class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
-                        @php
-                            $settings = \App\Models\Setting::first();
-                        @endphp
-                        <h1 class="m-0 text-white mt-3">{{ $settings->nama_perusahaan }}</h1>
-                        <p class="mt-3 mb-4">{{ $settings->footer_description }}</p>
+    @if (url()->current() == url('/'))
+        <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="row gx-5">
+                    <div class="col-lg-4 col-md-6 footer-about">
+                        <div
+                            class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary p-4">
+                            @php
+                                $settings = \App\Models\Setting::first();
+                            @endphp
+                            <h1 class="m-0 text-white mt-3">{{ $settings->nama_perusahaan }}</h1>
+                            <p class="mt-3 mb-4">{{ $settings->footer_description }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-8 col-md-6">
-                    <div class="row gx-5">
-                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
-                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Hubungi Kami</h3>
+                    <div class="col-lg-8 col-md-6">
+                        <div class="row gx-5">
+                            <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                                <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                    <h3 class="text-light mb-0">Hubungi Kami</h3>
+                                </div>
+                                <div class="d-flex mb-2">
+                                    <i class="bi bi-geo-alt text-primary me-2"></i>
+                                    <p class="mb-0">{{ $settings->alamat }}</p>
+                                </div>
+                                <div class="d-flex mb-2">
+                                    <i class="bi bi-envelope-open text-primary me-2"></i>
+                                    <p class="mb-0">{{ $settings->email }}</p>
+                                </div>
+                                <div class="d-flex mb-2">
+                                    <i class="bi bi-telephone text-primary me-2"></i>
+                                    <p class="mb-0">{{ $settings->phone }}</p>
+                                </div>
                             </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-geo-alt text-primary me-2"></i>
-                                <p class="mb-0">{{ $settings->alamat }}</p>
+                            <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                                <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                    <h3 class="text-light mb-0">Link Cepat</h3>
+                                </div>
+                                <div class="link-animated d-flex flex-column justify-content-start">
+                                    <a class="text-light mb-2" href={{ url('/') }}><i
+                                            class="bi bi-arrow-right text-primary me-2"></i>Beranda</a>
+                                    <a class="text-light mb-2" href={{ url('/tentang-kami') }}><i
+                                            class="bi bi-arrow-right text-primary me-2"></i>Tentang Kami</a>
+                                    <a class="text-light mb-2" href={{ url('/kontak') }}><i
+                                            class="bi bi-arrow-right text-primary me-2"></i>Kontak</a>
+                                    <a class="text-light" href="#faqs"><i
+                                            class="bi bi-arrow-right text-primary me-2"></i>FAQs</a>
+                                </div>
                             </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-envelope-open text-primary me-2"></i>
-                                <p class="mb-0">{{ $settings->email }}</p>
-                            </div>
-                            <div class="d-flex mb-2">
-                                <i class="bi bi-telephone text-primary me-2"></i>
-                                <p class="mb-0">{{ $settings->phone }}</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Link Cepat</h3>
-                            </div>
-                            <div class="link-animated d-flex flex-column justify-content-start">
-                                <a class="text-light mb-2" href={{ url('/') }}><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Beranda</a>
-                                <a class="text-light mb-2" href={{ url('/tentang-kami') }}><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Tentang Kami</a>
-                                <a class="text-light mb-2" href={{ url('/kontak') }}><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>Kontak</a>
-                                <a class="text-light" href="#faqs"><i
-                                        class="bi bi-arrow-right text-primary me-2"></i>FAQs</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                                <h3 class="text-light mb-0">Sosial Media</h3>
-                            </div>
-                            <div class="d-flex mt-4">
-                                <a class="btn btn-social btn-primary me-2"
-                                    href="https://web.facebook.com/Kharafi911?_rdc=1&_rdr" target="_blank"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-social btn-primary me-2" href="https://www.instagram.com/niddaaul/"
-                                    target="_blank"><i class="fab fa-instagram"></i></a>
-                                <a class="btn btn-social btn-primary me-2" href="https://x.com/KharafiA"
-                                    target="_blank"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-social btn-primary"
-                                    href="https://www.linkedin.com/in/nidaauliaakarima/" target="_blank"><i
-                                        class="fab fa-linkedin-in"></i></a>
+                            <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                                <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                    <h3 class="text-light mb-0">Sosial Media</h3>
+                                </div>
+                                <div class="d-flex mt-4">
+                                    <a class="btn btn-social btn-primary me-2" href="{{ $settings->facebook }}"
+                                        target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-social btn-primary me-2" href="{{ $settings->instagram }}"
+                                        target="_blank"><i class="fab fa-instagram"></i></a>
+                                    <a class="btn btn-social btn-primary me-2" href="{{ $settings->twitter }}"
+                                        target="_blank"><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-social btn-primary" href="{{ $settings->linkedin }}"
+                                        target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid text-white" style="background: #061429;">
+    @endif
+    <div class="container-fluid text-white @if (url()->current() !== url('/')) mt-5 @endif"
+        style="background: #061429;">
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-6">
@@ -125,8 +126,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <!-- Footer End -->
 

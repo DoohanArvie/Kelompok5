@@ -38,10 +38,10 @@ class SettingSeeder extends Seeder
             'tentang_team' => 'OtoRent menciptakan pengalaman digital yang luar biasa di dunia otomatif. Dengan tim ahli yang berpengalaman dan berdidikasi, kami menghadirkan teknologi persewaan rental, desain website menarik, dan konten informatif untuk memenuhi kebutuhan Anda. Kami berkomitmen untuk terus berinovasi dan memberikan solusi terbaik bagi Anda. Mari berkenalan dengan Tim Pengembang Website OtoRent',
             'hubungi_kami' => 'Kami siap membantu Anda merencanakan perjalanan dengan armada terbaik dan layanan pelanggan yang ramah dan profesional. Nikmati kenyamanan dan keamanan dengan kendaraan yang terawat dan pemesanan yang mudah bersama kami.',
             'maps' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5647.815947689952!2d110.40922178236494!3d-6.984059781375486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708bbd7f1a5095%3A0xf65ef341c1525c5a!2sTugu%20Muda%20Semarang!5e0!3m2!1sid!2sid!4v1718334488887!5m2!1sid!2sid',
-            'facebook' => 'https://www.facebook.com/',
-            'instagram' => 'https://www.instagram.com/',
-            'linkedin' => 'https://www.linkedin.com/',
-            'twitter' => 'https://www.twitter.com/',
+            'facebook' => 'https://web.facebook.com/Kharafi911?_rdc=1&_rdr',
+            'instagram' => 'https://www.instagram.com/niddaaul/',
+            'linkedin' => 'https://www.linkedin.com/in/nidaauliaakarima/',
+            'twitter' => 'https://x.com/KharafiA',
         ];
 
         Setting::create($settings);

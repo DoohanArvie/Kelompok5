@@ -101,7 +101,7 @@
     <div class="container py-5 wow fadeInUp" data-wow-delay="0.1s" id="more">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1 class="mb-4"><strong>Kenapa Harus di{{ $setting->nama_perusahaan }} ?</strong></h1>
+                <h1 class="mb-4"><strong>Kenapa Harus di {{ $setting->nama_perusahaan }} ?</strong></h1>
                 <p class="lead mb-5">Berikut Alasan Mengapa {{ $setting->nama_perusahaan }} Menjadi Pilihan Terbaik Anda</p>
             </div>
         </div>
@@ -266,7 +266,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
+                                        <p class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</p>
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -314,7 +314,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($motorcycle->price) }} /
                                             hari</h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $motorcycle->nama_motor }}</a>
+                                        <p class="d-block h5 mb-2" href="">{{ $motorcycle->nama_motor }}</p>
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">

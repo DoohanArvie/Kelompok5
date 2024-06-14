@@ -204,7 +204,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
-                                        <label class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</label>
+                                        <p class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</p>
                                         {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
