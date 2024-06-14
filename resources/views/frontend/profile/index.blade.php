@@ -24,8 +24,7 @@
                         {{ __('Profile Settings') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data"
-                            id="profileForm">
+                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" id="profileForm">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5 d-flex flex-column mb-3">
@@ -193,109 +192,145 @@
             </div>
         </div>
     </div>
-
     <!-- Modal untuk Crop Gambar -->
     <div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-scrollable"> <!-- Menambahkan kelas modal-dialog-scrollable -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="cropModalLabel">Crop Profil</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="img-container">
-                    <img id="imageCrop" src="#" alt="Crop Preview" style="max-width: 100%;">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title" id="cropModalLabel">Crop Profil</h5>
+                        <p class="text-muted">Pilih area yang ingin di-crop dan klik tombol "Crop".</p>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button id="cropButton" type="button" class="btn btn-primary">Crop</button>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <img id="imageCrop" src="#" alt="Crop Preview">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button id="cropButton" type="button" class="btn btn-primary">Crop</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+<style>
+    .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        overflow: hidden;
+    }
+    #imageCrop {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
 
-    @push('script-alt')
-        <!-- Cropper.js -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+@push('script-alt')
+    <!-- Cropper.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var avatar = document.getElementById('avatar');
-                var image = document.getElementById('imageCrop');
-                var existingAvatarPreview = document.getElementById('existingAvatarPreview');
-                var cropButton = document.getElementById('cropButton');
-                var cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
-                var cropper;
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var avatar = document.getElementById('avatar');
+            var image = document.getElementById('imageCrop');
+            var existingAvatarPreview = document.getElementById('existingAvatarPreview');
+            var cropButton = document.getElementById('cropButton');
+            var cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
+            var cropper;
 
-                avatar.addEventListener('change', function (e) {
-                    var files = e.target.files;
-                    var done = function (url) {
-                        avatar.value = '';
-                        image.src = url;
-                        cropModal.show();
-                        if (cropper) {
-                            cropper.destroy();
-                        }
-                        cropper = new Cropper(image, {
-                            aspectRatio: 1,
-                            viewMode: 1,
-                        });
-                    };
-                    var reader;
-                    var file;
-                    if (files && files.length > 0) {
-                        file = files[0];
-                        if (URL) {
-                            done(URL.createObjectURL(file));
-                        } else if (FileReader) {
-                            reader = new FileReader();
-                            reader.onload = function (e) {
-                                done(reader.result);
-                            };
-                            reader.readAsDataURL(file);
-                        }
-                    }
-                });
-
-                cropButton.addEventListener('click', function () {
+            avatar.addEventListener('change', function (e) {
+                var files = e.target.files;
+                var done = function (url) {
+                    avatar.value = '';
+                    image.src = url;
+                    cropModal.show();
                     if (cropper) {
-                        var canvas = cropper.getCroppedCanvas({
-                            width: 200,
-                            height: 200,
-                        });
-                        canvas.toBlob(function (blob) {
-                            var url = URL.createObjectURL(blob);
-                            var reader = new FileReader();
-                            reader.readAsDataURL(blob);
-                            reader.onloadend = function () {
-                                var base64data = reader.result;
-                                var formData = new FormData();
-                                formData.append('avatar', blob);
-                                formData.append('_token', '{{ csrf_token() }}');
-
-                                fetch('{{ route("profile.update.avatar") }}', {
-                                    method: 'POST',
-                                    body: formData,
-                                }).then(response => response.json()).then(data => {
-                                    if (data.success) {
-                                        existingAvatarPreview.src = base64data;
-                                        cropModal.hide();
-                                        alert('Avatar berhasil diperbarui!');
-                                    } else {
-                                        alert('Gagal memperbarui avatar.');
-                                    }
-                                }).catch(error => {
-                                    console.error(error);
-                                    alert('Terjadi kesalahan.');
-                                });
-                            };
-                        });
+                        cropper.destroy();
                     }
-                });
+                    cropper = new Cropper(image, {
+                        aspectRatio: 1,
+                        viewMode: 1,
+                        dragMode: 'move',
+                        autoCropArea: 1, // Perbesar area crop
+                        responsive: true,
+                        scalable: true,
+                        zoomable: true,
+                        zoomOnWheel: true, // Allow zooming with mouse wheel
+                        minContainerWidth: 800, // Set minimum container width for the cropper
+                        minContainerHeight: 600, // Set minimum container height for the cropper
+                    });
+                };
+                var reader;
+                var file;
+                if (files && files.length > 0) {
+                    file = files[0];
+                    if (URL) {
+                        done(URL.createObjectURL(file));
+                    } else if (FileReader) {
+                        reader = new FileReader();
+                        reader.onload = function (e) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
             });
-        </script>
-    @endpush
+
+            cropButton.addEventListener('click', function () {
+                if (cropper) {
+                    var canvas = cropper.getCroppedCanvas({
+                        width: 200,
+                        height: 200,
+                    });
+                    canvas.toBlob(function (blob) {
+                        var url = URL.createObjectURL(blob);
+                        var reader = new FileReader();
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = function () {
+                            var base64data = reader.result;
+                            var formData = new FormData();
+                            formData.append('avatar', blob);
+                            formData.append('_token', '{{ csrf_token() }}');
+
+                            fetch('{{ route("profile.update.avatar") }}', {
+                                method: 'POST',
+                                body: formData,
+                            }).then(response => response.json()).then(data => {
+                                if (data.success) {
+                                    existingAvatarPreview.src = base64data;
+                                    cropModal.hide();
+                                    alert('Avatar berhasil diperbarui!');
+                                } else {
+                                    alert('Gagal memperbarui avatar.');
+                                }
+                            }).catch(error => {
+                                console.error(error);
+                                alert('Terjadi kesalahan.');
+                            });
+                        };
+                    });
+                }
+            });
+        });
+
+        function togglePassword(element) {
+            var input = element.parentNode.querySelector('input');
+            var icon = element.querySelector('i');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
+@endpush
 @endsection

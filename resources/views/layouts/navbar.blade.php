@@ -24,7 +24,7 @@
         <ul class="navbar-nav navbar-nav-hover ms-auto">
             <div class="row">
                 <div class="col-auto m-auto mx-3">
-                    <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Home</a>
+                    <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Beranda</a>
                 </div>
                 <div class="col-auto m-auto mx-3">
                     <div class="dropdown">
