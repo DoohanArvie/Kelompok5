@@ -8,7 +8,7 @@
                 <h1 class="display-5 animated fadeIn mb-4">Daftar Mobil</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Daftar Mobil</li>
                     </ol>
                 </nav>
@@ -40,7 +40,7 @@
             @if ($cars->isEmpty())
                 <div class="col-lg-12 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="alert alert-danger" role="alert">
-                        <h2>Maaf, mobil tidak tersedia saat ini!</h2>
+                        <h2 class="text-white">Maaf, mobil tidak tersedia saat ini!</h2>
                     </div>
                 </div>
                 @if ($isFiltered)

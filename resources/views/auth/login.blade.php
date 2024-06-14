@@ -22,7 +22,7 @@
                                             <div class="input-group">
                                                 <input type="email" name="email"
                                                     class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                                    placeholder="{{ __('Masukan Email Anda') }}" required>
+                                                    placeholder="{{ __('Masukan Email Anda') }}" required autocomplete="email">
                                                 <span class="input-group-text">
                                                     <i class="fa-solid fa-envelope text-primary text-lg"></i>
                                                 </span>
@@ -37,7 +37,7 @@
                                             <div class="input-group">
                                                 <input type="password" id="password" name="password"
                                                     class="form-control form-control-lg @error('password') is-invalid @enderror"
-                                                    placeholder="{{ __('Masukan Password Anda') }}" required>
+                                                    placeholder="{{ __('Masukan Password Anda') }}" required autocomplete="current-password">
                                                 <span class="input-group-text">
                                                     <i class="fa-solid fa-eye-slash text-primary text-lg" id="togglePassword" style="cursor: pointer;"></i>
                                                 </span>

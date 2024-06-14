@@ -8,7 +8,7 @@
                 <h1 class="display-5 animated fadeIn mb-4">Tentang Kami</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Home</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Tentang Kami</li>
                     </ol>
                 </nav>
@@ -67,7 +67,7 @@
                             <div class="container-fluid text-center p-4 mt-3">
                                 <h5 class="fw-bold mb-3">{{ $team->nama }}</h5>
                                 <h6 class="mb-2"><i>{{ $team->jabatan }}</i></h6>
-                                <p class="fw-bold mb-3">{{ $team->bio }}</p>
+                                <p class="fw-bold">{{ $team->bio }}</p>
                             </div>
                         </div>
                     </div>

@@ -114,6 +114,18 @@
                                 </script>
                                 
                                 <div class="form-group row border-bottom pb-4">
+                                    <label for="jam_buka" class="col-sm-2 col-form-label">Jam buka</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control @error('jam_buka') is-invalid @enderror" name="jam_buka"
+                                            value="{{ old('jam_buka', $setting->jam_buka) }}" id="jam_buka">
+                                        @error('jam_buka')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row border-bottom pb-4">
                                     <label for="footer_description" class="col-sm-2 col-form-label">Footer
                                         Description</label>
                                     <div class="col-sm-12">
@@ -165,6 +177,17 @@
                                     <div class="col-sm-12">
                                         <textarea name="hubungi_kami" id="hubungi_kami" class="form-control @error('hubungi_kami') is-invalid @enderror" cols="30" rows="6">{{ old('hubungi_kami', $setting->hubungi_kami) }}</textarea>
                                         @error('hubungi_kami')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row border-bottom pb-4">
+                                    <label for="maps" class="col-sm-3 col-form-label">Link Peta Google Maps</label>
+                                    <div class="col-sm-12">
+                                        <textarea name="maps" id="maps" class="form-control @error('maps') is-invalid @enderror" cols="30" rows="6">{{ old('maps', $setting->maps) }}</textarea>
+                                        @error('maps')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>

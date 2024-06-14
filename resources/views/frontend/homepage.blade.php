@@ -29,47 +29,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div id="barCari">
-            <style>
-                #barCari {
-                height: 50px;
-                
-            }
-            </style>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    // Scroll ke atas halaman saat halaman dimuat
-                    window.scrollTo(0, 0);
-
-                    // Mendapatkan elemen button berdasarkan kelas
-                    var button = document.querySelector('.btn.btn-dark.py-3.px-4');
-
-                    // Menambahkan event listener untuk klik button
-                    button.addEventListener('click', function(event) {
-                        // Mencegah aksi default dari anchor (scroll ke #barCari)
-                        event.preventDefault();
-                        
-                        // Menjalankan script yang diberikan
-                        setTimeout(function() {
-                            var element = document.getElementById("barCari");
-                            var offset = 0; // Jarak dari atas halaman
-                            var bodyRect = document.body.getBoundingClientRect().top;
-                            var elementRect = element.getBoundingClientRect().top;
-                            var elementPosition = elementRect - bodyRect;
-                            var offsetPosition = elementPosition - offset;
-
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth"
-                            });
-                        }, 100); // Waktu tunggu 1 detik
-                    });
-                });
-            </script>
-        </div>
-        
+        </div>        
     </div>
     
     <!-- Header End -->
@@ -438,7 +398,7 @@
 
     <!-- Faq Start -->
     <div class="container-xxl py-5">
-        <div class="container">
+        <div class="container" id="faq">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="mb-3">Pertanyaan Umum</h1>
             </div>

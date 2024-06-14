@@ -51,7 +51,8 @@
                                             <td>{{ $booking->booking_status }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-center">
-                                                    <a href="{{ route('booking_confirmation', ['booking_code' => $booking->booking_code, 'vehicle_type' => $booking->vehicle_type, 'vehicle_id' => $booking->vehicle_id]) }}"
+                                                    {{-- <a href="{{ route('booking_confirmation', ['booking_code' => $booking->booking_code, 'vehicle_type' => $booking->vehicle_type, 'vehicle_id' => $booking->vehicle_id]) }}" --}}
+                                                    <a href="{{ route('booking_detail', ['booking_code' => $booking->booking_code]) }}"
                                                         class="btn btn-primary btn-sm me-2 text-center py-4">Detail</a>
                                                     @if (!in_array($booking->booking_status, ['Selesai', 'Belum Dikembalikan', 'Menunggu Konfirmasi', 'Dibatalkan']))
                                                         <button class="btn btn-danger btn-sm text-center"

@@ -206,12 +206,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">
                     <i class="fa-solid fa-arrow-right-from-bracket text-danger text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Keluar') }}</span>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form-2" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
+                    
                 </form>
             </li>
         </ul>
