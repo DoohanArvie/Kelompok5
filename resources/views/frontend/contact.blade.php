@@ -1,7 +1,6 @@
 @extends('frontend.layout')
 
 @section('content')
-
     <div class="container-fluid header bg-white p-0">
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">

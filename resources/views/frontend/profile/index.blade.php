@@ -24,8 +24,7 @@
                         {{ __('Profile Settings') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data"
-                            id="profileForm">
+                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" id="profileForm">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5 d-flex flex-column mb-3">
@@ -253,10 +252,10 @@
         }
     </style>
 
-    @push('script-alt')
-        <!-- Cropper.js -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+@push('script-alt')
+    <!-- Cropper.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {

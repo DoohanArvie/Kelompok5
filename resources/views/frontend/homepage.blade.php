@@ -5,7 +5,8 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5 wow fadeInLeft" data-wow-delay="0.1s">
                 <h1 class="display-5 animated fadeIn mb-4>
-                    <span class="text-primary">{{ $setting->nama_perusahaan }}</span>
+                    <span class="text-primary">
+                    {{ $setting->nama_perusahaan }}</span>
                     Solusi Perjalanan Anda!
                 </h1>
                 <h5 class="animated fadeIn pb-2">Temukan Mobil dan Motor terbaik untuk setiap perjalanan Anda!</h5>
@@ -13,7 +14,7 @@
                 <h4><i class="fa fa-check text-primary me-3"></i>Mudah</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Aman</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Nyaman</h4>
-                <a href="{{ route('car.index') }}" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Pesan Sekarang</a>
+                <a href="#more" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Selengkapnya</a>
             </div>
             <div class="col-md-6 wow fadeInRight" data-wow-delay="0.1s">
                 <div class="owl-carousel header-carousel">
@@ -31,12 +32,12 @@
             </div>
         </div>        
     </div>
-    
+
     <!-- Header End -->
-    
+
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;" >
-        
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;">
+
         <div class="container">
             @if (session('status'))
                 <div class="alert alert-success text-center text-white">
@@ -76,14 +77,12 @@
                                         <h5 class="text-white mb-3">Kategori</h5>
                                         <select name="category_id" id="category_id" class="form-select border-0 py-3">
                                             <option value="" hidden>Pilih Kategori</option>
-                                            <!-- Options akan diisi oleh JavaScript -->
                                         </select>
                                     </div>
                                     <div class="col-md-3 mr-2">
                                         <h5 class="text-white mb-3">Jumlah Penumpang</h5>
                                         <select name="penumpang" class="form-select border-0 py-3">
                                             <option value="" hidden>Pilih Jumlah Penumpang</option>
-                                            <!-- Options akan diisi oleh JavaScript -->
                                         </select>
                                     </div>
                                 </div>
@@ -98,12 +97,12 @@
             </form>
         </div>
     </div>
-    <!-- Kelebihan Jasa di OtoRent -->
-    <div class="container py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <!-- Kenapa harus di OtoRent -->
+    <div class="container py-5 wow fadeInUp" data-wow-delay="0.1s" id="more">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1 class="mb-4"><strong>Kelebihan Jasa di {{ $setting->nama_perusahaan }} Dibandingkan Rental Lainnya</strong></h1>
-                <p class="lead mb-5">Temukan Alasan Mengapa {{ $setting->nama_perusahaan }} Menjadi Pilihan Terbaik Anda</p>
+                <h1 class="mb-4"><strong>Kenapa Harus di{{ $setting->nama_perusahaan }} ?</strong></h1>
+                <p class="lead mb-5">Berikut Alasan Mengapa {{ $setting->nama_perusahaan }} Menjadi Pilihan Terbaik Anda</p>
             </div>
         </div>
         <div class="row text-center">
@@ -147,7 +146,7 @@
             @endforeach
         </div>
     </div>
-    <!--End Kelebihan-->
+    <!--End  Mengapa-->
     <!-- Cara Pemesanan -->
     <div class="container py-5">
         <div class="row justify-content-center">
@@ -213,19 +212,17 @@
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="mb-4">Dedikasi Kami Untuk Anda</h1>
+                    <h1 class="mb-4">Tentang Kami</h1>
                     <p class="mb-4" style="text-align: justify">{{ $setting->tentang_perusahaan }}</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Kendaraan yang selalu terjaga kebersihannya dan dalam
                         kondisi prima</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Pengemudi yang berpengalaman dan ramah</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Sistem pemesanan yang mudah dan cepat</p>
-                    <a class="btn btn-primary py-3 px-5 mt-3" href="">Pesan Sekarang</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- About End -->
-
     <!-- Property List Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -270,7 +267,6 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
                                         <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
-                                        {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -319,7 +315,6 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($motorcycle->price) }} /
                                             hari</h5>
                                         <a class="d-block h5 mb-2" href="">{{ $motorcycle->nama_motor }}</a>
-                                        {{-- <p style="text-align: justify"></i>{{ $motorcycle->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -327,7 +322,6 @@
                                                 class="btn btn-primary btn-pesan btn-lg">Pesan</a>
                                         </div>
                                         <div class="d-flex border-top mt-3">
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -342,7 +336,6 @@
         </div>
     </div>
     <!-- Property List End -->
-
     <!-- Testimonial Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -398,7 +391,7 @@
 
     <!-- Faq Start -->
     <div class="container-xxl py-5">
-        <div class="container" id="faq">
+        <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="mb-3">Pertanyaan Umum</h1>
             </div>
@@ -427,7 +420,6 @@
         </div>
     </div>
     <!-- Faq End -->
-
     <!-- Call to Action Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -445,10 +437,6 @@
                             </div>
                             <a href="https://wa.me/{{ $setting->phone }}" class="btn btn-primary py-3 px-4 me-2"><i
                                     class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
-                            <a href="#barCari" class="btn btn-dark py-3 px-4">
-                                <i class="fa fa-calendar-alt me-2"></i>
-                                Buat Pemesanan
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -492,7 +480,6 @@
     </style>
 @endpush
 @push('script-alt')
-    
     <script>
         $(document).ready(function() {
             var kendaraanSelect = $('#kendaraan');

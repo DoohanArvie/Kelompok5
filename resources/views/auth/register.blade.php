@@ -113,6 +113,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const togglePassword = document.getElementById('togglePassword');
             const togglePasswordConfirmation = document.getElementById('togglePasswordConfirmation');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.getElementById('togglePassword');
+            const togglePasswordConfirmation = document.getElementById('togglePasswordConfirmation');
 
             togglePassword.addEventListener('click', function(e) {
                 const passwordInput = document.getElementById('password');
@@ -121,7 +125,24 @@
                 this.classList.toggle('fa-eye');
                 this.classList.toggle('fa-eye-slash');
             });
+            togglePassword.addEventListener('click', function(e) {
+                const passwordInput = document.getElementById('password');
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
 
+            togglePasswordConfirmation.addEventListener('click', function(e) {
+                const passwordConfirmationInput = document.getElementById('password_confirmation');
+                const type = passwordConfirmationInput.getAttribute('type') === 'password' ? 'text' :
+                    'password';
+                passwordConfirmationInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
             togglePasswordConfirmation.addEventListener('click', function(e) {
                 const passwordConfirmationInput = document.getElementById('password_confirmation');
                 const type = passwordConfirmationInput.getAttribute('type') === 'password' ? 'text' :

@@ -16,7 +16,7 @@ class SettingSeeder extends Seeder
         $sourcePath = public_path('frontend/img/logo/');
         $destinationPath = 'public/frontend/img/logo/';
 
-        $logoFileName = 'otorent.png';
+        $logoFileName = 'logo-OtoRent.jpg';
         $sourceFile = $sourcePath . $logoFileName;
         $destinationFile = $destinationPath . $logoFileName;
 
@@ -29,11 +29,11 @@ class SettingSeeder extends Seeder
             'nama_perusahaan' => 'OtoRent',
             'logo' => $destinationFile,
             'alamat' => 'Jl. Pemuda No. 111, Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah',
-            'phone' => '6289619636519',
+            'phone' => '+62-896-1963-6519',
             'email' => 'otorent@example.com',
             'jam_buka' => 'Setiap hari jam 07.00 - 17.00 WIB',
             'footer_description' => 'OtoRent - Solusi terpercaya untuk kebutuhan rental mobil dan motor Anda. Dengan pelayanan profesional dan armada kendaraan berkualitas, kami siap menemani perjalanan Anda dengan aman dan nyaman.',
-            'tentang_perusahaan' => 'OtoRent adalah penyedia layanan rental mobil dan motor yang berkomitmen untuk memberikan pengalaman perjalanan yang tak terlupakan bagi pelanggan. Dengan berbagai pilihan kendaraan berkualitas mulai dari mobil hingga motor, OtoRent memastikan kebutuhan mobilitas pelanggan terpenuhi dengan pelayanan yang prima. Dengan fokus pada kenyamanan, keamanan, dan keandalan, OtoRent menjadi mitra setia dalam setiap perjalanan, memungkinkan pelanggan untuk menikmati kebebasan menjelajahi kota atau petualangan jauh dengan percaya diri.',
+            'tentang_perusahaan' => 'OtoRent menyediakan layanan rental mobil dan motor berkualitas untuk pengalaman perjalanan yang tak terlupakan. Kami menawarkan berbagai pilihan kendaraan yang memenuhi kebutuhan mobilitas Anda dengan pelayanan prima. Fokus pada kenyamanan, keamanan, dan keandalan membuat OtoRent menjadi mitra setia dalam setiap perjalanan, memungkinkan Anda menjelajahi kota atau petualangan jauh dengan percaya diri.',
             'sejarah_perusahaan' => 'OtoRent berdiri sejak 2024 dengan tujuan memberikan layanan rental mobil dan motor yang terpercaya dan berkualitas tinggi. Sejak awal berdirinya, OtoRent berkomitmen untuk memenuhi kebutuhan transportasi pelanggan dengan menyediakan berbagai pilihan kendaraan yang terawat dan nyaman. Dalam perjalanannya, OtoRent terus berkembang dan memperluas jangkauan layanan, selalu mengutamakan kepuasan dan kenyamanan pelanggan dalam setiap aspek pelayanan.',
             'tentang_team' => 'OtoRent menciptakan pengalaman digital yang luar biasa di dunia otomatif. Dengan tim ahli yang berpengalaman dan berdidikasi, kami menghadirkan teknologi persewaan rental, desain website menarik, dan konten informatif untuk memenuhi kebutuhan Anda. Kami berkomitmen untuk terus berinovasi dan memberikan solusi terbaik bagi Anda. Mari berkenalan dengan Tim Pengembang Website OtoRent',
             'hubungi_kami' => 'Kami siap membantu Anda merencanakan perjalanan dengan armada terbaik dan layanan pelanggan yang ramah dan profesional. Nikmati kenyamanan dan keamanan dengan kendaraan yang terawat dan pemesanan yang mudah bersama kami.',
