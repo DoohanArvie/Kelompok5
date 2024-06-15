@@ -51,8 +51,27 @@ class BookingController extends Controller
         $today = (new \DateTime())->format('Y-m-d');
         $maxStartDate = (new \DateTime())->modify('+60 days')->format('Y-m-d');
 
-        if ($startDate > $maxStartDate || $startDate < $today || $endDate < $startDate) {
-            return redirect()->back()->with('error', 'Tanggal yang dipilih tidak valid!');
+        // if ($startDate > $maxStartDate || $startDate < $today || $endDate < $startDate) {
+        //     return redirect()->back()->with('error', 'Tanggal yang dipilih tidak valid!');
+        // }
+
+        if ($startDate > $maxStartDate) {
+            return redirect()->back()->with('error', 'Maksimal tanggal mulai sewa adalah 60 hari kedepan!');
+        }
+
+        if ($startDate < $today) {
+            return redirect()->back()->with('error', 'Tanggal mulai tidak boleh berada di masa lalu!');
+        }
+
+        if ($endDate < $startDate) {
+            return redirect()->back()->with('error', 'Tanggal selesai tidak boleh sebelum tanggal mulai!');
+        }
+
+        $startDateTime = new \DateTime($startDate);
+        $endDateTime = new \DateTime($endDate);
+        $dateInterval = $startDateTime->diff($endDateTime)->days;
+        if ($dateInterval > 6) {
+            return redirect()->back()->with('error', 'Durasi maksimal sewa adalah 7 hari!');
         }
 
         $isAvailable = Booking::where('vehicle_id', $vehicle_id)
@@ -186,6 +205,9 @@ class BookingController extends Controller
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         $booking->snap_token = $snapToken;
         $booking->save();
+
+        session()->flash('message', 'Pemesanan berhasil! Silakan lakukan pembayaran.');
+        session()->flash('alert-type', 'success');
 
         return view('frontend.vehicle.booking_confirmation', compact('booking', 'vehicle', 'feedbacks', 'user'));
     }

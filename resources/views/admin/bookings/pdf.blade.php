@@ -57,9 +57,11 @@
                     $totalPendapatan = 0;
                 @endphp
                 @foreach ($bookings as $booking)
-                    @php
-                        $totalPendapatan += $booking->total_fee;
-                    @endphp
+                    @if ($booking->booking_status == 'Selesai')
+                        @php
+                            $totalPendapatan += $booking->total_fee;
+                        @endphp
+                    @endif
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $booking->user->name }}</td>

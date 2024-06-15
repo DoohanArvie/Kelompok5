@@ -5,7 +5,7 @@
         @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                    <li class="text-white">{{ $error }}</li>
                 @endforeach
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -100,7 +100,7 @@
 
     <!-- Batalkan Modal -->
     <div class="modal fade" id="batalkanModal" tabindex="-1" aria-labelledby="batalkanModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="batalkanModalLabel">Batalkan Sewa</h5>
@@ -120,7 +120,7 @@
                         <div id="paymentSection" style="display: none;">
                             <div class="mb-3">
                                 <label for="proof_payment">Bukti Transfer</label>
-                                <input type="file" class="form-control" name="proof_payment" id="proof_payment">
+                                <input type="file" class="form-control" name="proof_payment" id="proof_payment" accept="image/*">
                             </div>
                             <div class="mb-3">
                                 <label for="refund_account">Bank dan Nomor Rekening Pengembalian Dana
@@ -146,7 +146,7 @@
 
     <!-- Feedback Modal -->
     <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="feedbackModalLabel">Form Feedback</h5>

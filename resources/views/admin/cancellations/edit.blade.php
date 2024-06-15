@@ -39,13 +39,13 @@
                                             <label for="reason" class="col-form-label">Alasan Pembatalan</label>
                                             <div class="col-sm-12">
                                                 <input type="text" class="form-control" name="reason"
-                                                    value="{{ old('reason', $cancellation->reason) }}" id="email" readonly>
+                                                    value="{{ old('reason', $cancellation->reason) }}" id="reason" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row pb-4">
                                             <label for="refund_account" class="col-form-label">Rekening Pengembalian</label>
                                             <div class="col-sm-12">
-                                                <input type="text" class="form-control" name="refund_account"
+                                                <input type="text" class="form-control" name="refund_account" id="refund_account"
                                                     value="{{ old('refund_account', $cancellation->refund_account) }}" id="refund_account" readonly>
                                             </div>
                                         </div>
@@ -54,7 +54,7 @@
                                         <div class="form-group row pb-4">
                                             <div class="col-sm-12">
                                                 <label for="proof_payment" class="col-form-label">Bukti Pembayaran</label>
-                                                <input type="hidden" name="proof_payment" value="{{ $cancellation->proof_payment }}"><br>
+                                                <input type="hidden" name="proof_payment" id="proof_payment" value="{{ $cancellation->proof_payment }}"><br>
                                                 <a href="{{ Storage::url($cancellation->proof_payment) }}" target="_blank">
                                                     <img src="{{ Storage::url($cancellation->proof_payment) }}" width="100%"
                                                         alt="{{ $cancellation->user->name }} Bukti Pembayaran">
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="refund_proof">Upload Bukti Pengembalian Dana</label>
-                                    <input type="file" class="form-control" name="refund_proof">
+                                    <input type="file" class="form-control" name="refund_proof" id="refund_proof">
                                 </div>
                                 
                                 <button type="submit" class="btn btn-success">Simpan</button>

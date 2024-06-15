@@ -114,7 +114,7 @@
     @elseif ($isAvailable)
         <div class="modal fade" id="availabilityModal" tabindex="-1" aria-labelledby="availabilityModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title" id="availabilityModalLabel"><strong>Kendaraan Tersedia</strong></h3>

@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="yharga_sewa" class="col-form-label">Harga Sewa Mobil
+                                        <label for="harga_sewa" class="col-form-label">Harga Sewa Mobil
                                             <strong>({{ $booking->days_count }} Hari)</strong></label>
                                         <input type="text" class="form-control" id="harga_sewa"
                                             value="Rp {{ number_format($booking->booking_fee, 0, ',', '.') }}" readonly>
