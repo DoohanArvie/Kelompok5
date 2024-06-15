@@ -112,22 +112,6 @@
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                     data-passenger="8">8 Penumpang</button>
                                             </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="10">10 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="12">12 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="14">14 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="16">16 Penumpang</button>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -151,33 +135,23 @@
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="300000" data-price-max="400000">Rp. 300.000 -
-                                                    400.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="400000" data-price-max="500000">Rp. 400.000 -
+                                                    data-price-min="300000" data-price-max="500000">Rp. 300.000 -
                                                     500.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="600000" data-price-max="700000">Rp. 600.000 -
+                                                    data-price-min="500000" data-price-max="700000">Rp. 500.000 -
                                                     700.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="700000" data-price-max="800000">Rp. 700.000 -
-                                                    800.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="800000" data-price-max="1000000">Rp. 800.000 -
+                                                    data-price-min="700000" data-price-max="1000000">Rp. 700.000 -
                                                     1.000.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="1000000" data-price-max="1500000">Rp. 1.000.000
-                                                    - 1.500.000</button>
+                                                    data-price-min="1000000" data-price-max="1500000">Rp. 1.000.000 -
+                                                    1.500.000</button>
                                             </li>
                                         </ul>
                                     </div>

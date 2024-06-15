@@ -522,28 +522,16 @@
 
                 if (kendaraan === 'Mobil') {
                     hargaOptions = [{
-                            value: '300000-400000',
-                            text: 'Rp. 300.000 - Rp. 400.000'
+                            value: '300000-500000',
+                            text: 'Rp. 300.000 - Rp. 500.000'
                         },
                         {
-                            value: '400000-500000',
-                            text: 'Rp. 400.000 - Rp. 500.000'
+                            value: '500000-700000',
+                            text: 'Rp. 500.000 - Rp. 700.000'
                         },
                         {
-                            value: '500000-600000',
-                            text: 'Rp. 500.000 - Rp. 600.000'
-                        },
-                        {
-                            value: '600000-700000',
-                            text: 'Rp. 600.000 - Rp. 700.000'
-                        },
-                        {
-                            value: '700000-800000',
-                            text: 'Rp. 700.000 - Rp. 800.000'
-                        },
-                        {
-                            value: '800000-1000000',
-                            text: 'Rp. 800.000 - Rp. 1.000.000'
+                            value: '700000-1000000',
+                            text: 'Rp. 700.000 - Rp. 1.000.000'
                         },
                         {
                             value: '1000000-1500000',
@@ -552,8 +540,8 @@
                     ];
                 } else if (kendaraan === 'Motor') {
                     hargaOptions = [{
-                            value: '0-100000',
-                            text: 'Rp. 0 - Rp. 100.000'
+                            value: '60000-100000',
+                            text: 'Rp. 60.000 - Rp. 100.000'
                         },
                         {
                             value: '100000-200000',
@@ -592,23 +580,7 @@
                         {
                             value: '8',
                             text: '8 Penumpang'
-                        },
-                        {
-                            value: '10',
-                            text: '10 Penumpang'
-                        },
-                        {
-                            value: '12',
-                            text: '12 Penumpang'
-                        },
-                        {
-                            value: '14',
-                            text: '14 Penumpang'
-                        },
-                        {
-                            value: '16',
-                            text: '16 Penumpang'
-                        }
+                        } 
                     ];
                 }
 
