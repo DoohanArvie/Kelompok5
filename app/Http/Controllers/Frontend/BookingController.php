@@ -157,7 +157,10 @@ class BookingController extends Controller
 
         // Ensure the booking belongs to the logged-in user
         if (Gate::denies('view', $booking) && !$user->is_admin) {
-            return redirect()->route('homepage')->with('error', 'Anda tidak memiliki akses ke pemesanan ini.');
+            return redirect()->route('homepage')->with([
+                'message' => 'Anda tidak memiliki akses ke pemesanan ini.',
+                'alert-type' => 'error',
+            ]);
         }
 
         $feedbacks = Feedback::where('booking_code', $booking_code)->get();
@@ -185,6 +188,26 @@ class BookingController extends Controller
         $booking->save();
 
         return view('frontend.vehicle.booking_confirmation', compact('booking', 'vehicle', 'feedbacks', 'user'));
+    }
+
+
+    public function showDetails($booking_code)
+    {
+        $this->cancelExpiredBookings(); // Call to cancel expired bookings
+
+        $user = Auth::user();
+        $booking = Booking::where('booking_code', $booking_code)->with('user', 'cancellation')->firstOrFail();
+        if (Gate::denies('view', $booking) && !$user->is_admin) {
+            return redirect()->route('homepage')->with([
+                'message' => 'Anda tidak memiliki akses ke pemesanan ini.',
+                'alert-type' => 'error',
+            ]);
+        }
+
+        $feedbacks = Feedback::where('booking_code', $booking_code)->get();
+
+        $booking = Booking::where('booking_code', $booking_code)->firstOrFail();
+        return view('frontend.vehicle.booking_confirmation', compact('booking', 'feedbacks', 'user'));
     }
 
 

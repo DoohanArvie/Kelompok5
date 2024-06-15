@@ -8,7 +8,7 @@
                 <h1 class="display-5 animated fadeIn mb-4">Daftar Mobil</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Daftar Mobil</li>
                     </ol>
                 </nav>
@@ -40,7 +40,7 @@
             @if ($cars->isEmpty())
                 <div class="col-lg-12 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="alert alert-danger" role="alert">
-                        <h2>Maaf, mobil tidak tersedia saat ini!</h2>
+                        <h2 class="text-white">Maaf, mobil tidak tersedia saat ini!</h2>
                     </div>
                 </div>
                 @if ($isFiltered)
@@ -73,7 +73,7 @@
                                                 <button class="btn btn-outline-primary active w-100" data-bs-toggle="pill"
                                                     data-filter="all">Semua</button>
                                             </li>
-                                            @foreach($types as $type)
+                                            @foreach ($types as $type)
                                                 <li class="nav-item mb-2">
                                                     <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                         data-filter="{{ $type->nama }}">{{ $type->nama }}</button>
@@ -204,7 +204,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
-                                        <label class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</label>
+                                        <p class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</p>
                                         {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
@@ -256,6 +256,7 @@
         .property-footer {
             margin-top: auto;
         }
+
         .image-container {
             position: relative;
             width: 100%;

@@ -117,6 +117,16 @@
                                         <div class="card-body">
                                             <form method="post" action="{{ route('password.update.custom') }}">
                                                 @csrf
+                                                <!-- Hidden Username Field for Accessibility -->
+                                                <div class="form-group row" style="display: none;">
+                                                    <label for="username"
+                                                        class="col-form-label">{{ __('Username') }}</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="text" id="username" name="username"
+                                                            class="form-control" value="{{ $admin->username }}"
+                                                            autocomplete="username">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group row border-bottom pb-4">
                                                     <label for="current_password"
                                                         class="col-form-label">{{ __('Password Sekarang') }}</label>
@@ -125,7 +135,7 @@
                                                             <input type="password" id="current_password"
                                                                 name="current_password"
                                                                 class="form-control @error('password') is-invalid @enderror"
-                                                                required>
+                                                                required autocomplete="current-password">
                                                             <span class="input-group-text" onclick="togglePassword(this)"
                                                                 style="cursor: pointer;">
                                                                 <i class="fas fa-eye-slash"></i>
@@ -145,7 +155,7 @@
                                                         <div class="input-group">
                                                             <input type="password" id="password" name="password"
                                                                 class="form-control @error('password') is-invalid @enderror"
-                                                                required>
+                                                                required autocomplete="new-password">
                                                             <span class="input-group-text" onclick="togglePassword(this)"
                                                                 style="cursor: pointer;">
                                                                 <i class="fas fa-eye-slash"></i>
@@ -166,7 +176,7 @@
                                                             <input type="password" id="password_confirmation"
                                                                 name="password_confirmation"
                                                                 class="form-control @error('password') is-invalid @enderror"
-                                                                required>
+                                                                required autocomplete="new-password">
 
                                                             <span class="input-group-text" onclick="togglePassword(this)"
                                                                 style="cursor: pointer;">

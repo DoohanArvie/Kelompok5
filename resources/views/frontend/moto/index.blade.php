@@ -8,7 +8,7 @@
                 <h1 class="display-5 animated fadeIn mb-4">Daftar motor</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Daftar motor</li>
                     </ol>
                 </nav>
@@ -39,7 +39,7 @@
             @if ($motos->isEmpty())
                 <div class="col-lg-12 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="alert alert-danger" role="alert">
-                        <h2>Maaf, motor tidak tersedia saat ini!</h2>
+                        <h2 class="text-white">Maaf, motor tidak tersedia saat ini!</h2>
                     </div>
                 </div>
                 @if ($isFiltered)
@@ -148,7 +148,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($moto->price) }} /
                                             hari</h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</a>
+                                        <p class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</p>
                                         
                                     </div>
                                     <div class="property-footer">
