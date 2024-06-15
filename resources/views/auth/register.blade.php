@@ -7,7 +7,7 @@
             <div class="page-header min-vh-100">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-7 d-flex align-items-center justify-content-center">
+                        <div class="col-xl-6 col-lg-6 col-md-6 d-flex flex-column mx-lg-0 mx-auto">
                             <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
                                 style="background-image: url('https://images.unsplash.com/photo-1562369413-43fc1abcf07c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover;">
                                 <span class="mask bg-gradient-primary opacity-6"></span>
@@ -16,7 +16,7 @@
                                     Terbaik</p>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+                        <div class="col-xl-6 col-lg-6 col-md-6 d-flex flex-column mx-lg-0 mx-auto">
                             <div class="card card-plain">
                                 <div class="card-header pb-0 text-start">
                                     <h4 class="font-weight-bolder">Register</h4>
@@ -102,7 +102,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2"></div>
                     </div>
                 </div>
             </div>

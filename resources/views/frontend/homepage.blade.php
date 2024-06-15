@@ -59,29 +59,29 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="row g-2">
-                                    <div class="col-md-3 mr-2">
+                                    <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Kendaraan</h5>
-                                        <select id="kendaraan" name="kendaraan" class="form-select border-0 py-3">
+                                        <select id="kendaraan" name="kendaraan" class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Kendaraan</option>
                                             <option value="Mobil">Mobil</option>
                                             <option value="Motor">Motor</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 mr-2">
+                                    <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Rentang Harga</h5>
-                                        <select id="harga" name="harga" class="form-select border-0 py-3">
+                                        <select id="harga" name="harga" class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Rentang Harga</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 mr-2">
+                                    <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Kategori</h5>
-                                        <select name="category_id" id="category_id" class="form-select border-0 py-3">
+                                        <select name="category_id" id="category_id" class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Kategori</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 mr-2">
+                                    <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Jumlah Penumpang</h5>
-                                        <select name="penumpang" class="form-select border-0 py-3">
+                                        <select name="penumpang" class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Jumlah Penumpang</option>
                                         </select>
                                     </div>
