@@ -208,14 +208,13 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="frontend/img/assets/assets-dedikasi.jpg">
+                        <img class="img-fluid w-100" src="{{ asset('frontend/img/header/aboutus1.jpg') }}">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">Tentang Kami</h1>
                     <p class="mb-4" style="text-align: justify">{{ $setting->tentang_perusahaan }}</p>
-                    <p><i class="fa fa-check text-primary me-3"></i>Kendaraan yang selalu terjaga kebersihannya dan dalam
-                        kondisi prima</p>
+                    <p><i class="fa fa-check text-primary me-3"></i>Kendaraan yang selalu terjaga kebersihannya</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Pengemudi yang berpengalaman dan ramah</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Sistem pemesanan yang mudah dan cepat</p>
                 </div>

@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-6 wow slideInRight" data-wow-delay="0.3s">
                 <img class="img-fluid" style="width: 100%; align-items:center"
-                    src="{{ asset('frontend/img/header/header-3.jpg') }}" alt="">
+                    src="{{ asset('frontend/img/header/contactAfter.jpg') }}" alt="">
             </div>
             <hr>
         </div>
