@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white">
+<nav class="navbar navbar-expand-lg bg-white p-0">
     <div class="container-fluid">
         @php
             $settings = \App\Models\Setting::first();
@@ -37,8 +37,10 @@
                         Kendaraan
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item {{ Request::is('daftar-mobil') ? 'active' : '' }}" href="{{ url('daftar-mobil') }}">Mobil</a></li>
-                        <li><a class="dropdown-item {{ Request::is('daftar-motor') ? 'active' : '' }}" href="{{ url('daftar-motor') }}">Motor</a></li>
+                        <li><a class="dropdown-item {{ Request::is('daftar-mobil') ? 'active' : '' }}"
+                                href="{{ url('daftar-mobil') }}">Mobil</a></li>
+                        <li><a class="dropdown-item {{ Request::is('daftar-motor') ? 'active' : '' }}"
+                                href="{{ url('daftar-motor') }}">Motor</a></li>
                     </ul>
                 </li>
                 <li class="nav-item me-3">

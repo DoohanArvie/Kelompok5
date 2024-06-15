@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-6 wow slideInRight" data-wow-delay="0.3s">
                 <img class="img-fluid" style="width: 100%; align-items:center"
-                    src="{{ asset('frontend/img/header/AboutUs2.jpg') }}" alt="">
+                    src="{{ asset('frontend/img/header/about-us-2.jpg') }}" alt="">
             </div>
             <hr>
         </div>
@@ -28,7 +28,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{{ asset('frontend/img/header/aboutus1.jpg') }}">
+                        <img class="img-fluid w-100" src="{{ asset('frontend/img/header/about-us-1.jpg') }}">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">

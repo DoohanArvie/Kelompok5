@@ -1,5 +1,9 @@
 @extends('frontend.layout')
-
+@php
+    use Carbon\Carbon;
+    $timezone = 'Asia/Jakarta';
+    $now = Carbon::now($timezone);
+@endphp
 @section('content')
     <div class="container mt-5">
         @if ($errors->any())
@@ -113,12 +117,36 @@
                     <h3>Silahkan tunggu konfirmasi dari admin</h3>
                 @elseif ($booking->booking_status == 'Pembayaran Terkonfirmasi')
                     @if ($booking->pickup == 'Ambil Sendiri')
+                        <!--warning user untuk pengembalian-->
                         <h3>Silahkan ambil kendaraan di lokasi kami</h3>
+                        <h4>Jika Anda mengembalikan kendaraan melebihi waktu sewa. Maka akan dikenakan denda sebesar 20%
+                            dari harga sewa anda</h4>
                     @else
+                        <!--warning user untuk pengembalian-->
                         <h3>Silahkan tunggu kendaraan diantar ke lokasi Anda!</h3>
+
+                        <h4>Jika Anda mengembalikan kendaraan melebihi waktu sewa. Maka akan dikenakan denda sebesar 20%
+                            dari harga
+                            sewa anda</h4>
                     @endif
                 @elseif ($booking->booking_status == 'Belum Dikembalikan')
-                    <h3>Silahkan kembalikan kendaraan maksimal jam 8 malam pada tanggal {{ $booking->end_date }}</h3>
+                    <!--warning user untuk pengembalian-->
+                    <h3>Silahkan kembalikan kendaraan maksimal jam 12 malam pada tanggal {{ $booking->end_date }}</h3>
+                    @php
+                        $endDate = Carbon::parse($booking->end_date)
+                            ->addDays()
+                            ->startOfDay(); // Start of the end_date for comparison
+                    @endphp
+                    @if ($now->lessThan($endDate))
+                        <p>Jika Anda melebihi batas sewa maka dikenakan denda.</p>
+                    @else
+                        @php
+                            $lateDays = $now->diffInDays($endDate) + 1;
+                            $lateFee = $booking->total_fee * 0.2 * $lateDays;
+                        @endphp
+                        <p>Anda melebihi sewa selama {{ $lateDays }} hari</p>
+                        <p>Anda dikenakan denda sebesar: Rp {{ number_format($lateFee, 0, ',', '.') }}</p>
+                    @endif
                 @elseif ($booking->booking_status == 'Selesai')
                     <h3>Terima kasih telah menggunakan sewa kendaraan kami! Sampai jumpa di pemesanan selanjutnya!</h3>
                     <div class="col-md-12">
