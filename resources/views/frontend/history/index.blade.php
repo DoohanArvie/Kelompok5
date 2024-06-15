@@ -120,18 +120,23 @@
                         <div id="paymentSection" style="display: none;">
                             <div class="mb-3">
                                 <label for="proof_payment">Bukti Transfer</label>
-                                <input type="file" class="form-control" name="proof_payment" id="proof_payment" accept="image/*">
+                                <input type="file" class="form-control" name="proof_payment" id="proof_payment"
+                                    accept="image/*">
                             </div>
                             <div class="mb-3">
-                                <label for="refund_account">Bank dan Nomor Rekening Pengembalian Dana
+                                <label for="refund_account">Rekening Bank atau Dompet Digital
                                     <span class="text-danger text-lg">*</span>
                                 </label>
-                                <textarea class="form-control" name="refund_account" id="refund_account" rows="2"></textarea>
-                                <p class="text-sm">Contoh: Bank: BRI, Nomor Rekening: 1234567890</p>
+                                <textarea class="form-control" name="refund_account" id="refund_account" rows="2"
+                                    placeholder="Contoh: BRI 1234567890 atau OVO 081234567890"></textarea>
+                                <p class="text-sm">Contoh: BRI 1234567890 atau OVO 081234567890</p>
                             </div>
+
                         </div>
                         <div class="mb-3">
-                            <label for="reason">Alasan Pembatalan</label>
+                            <label for="reason">Alasan Pembatalan
+                                <span class="text-danger text-lg">*</span>
+                            </label>
                             <textarea class="form-control" name="reason" id="reason" rows="3" required></textarea>
                         </div>
                         <div class="modal-footer">

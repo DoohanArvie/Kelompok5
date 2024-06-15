@@ -208,7 +208,7 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{{ asset('frontend/img/header/aboutus1.jpg') }}">
+                        <img class="img-fluid w-100" src="{{ asset('frontend/img/header/about-us-1.jpg') }}">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -419,6 +419,31 @@
         </div>
     </div>
     <!-- Faq End -->
+
+    <!-- CSS untuk warna abu-abu -->
+    <style>
+        .clicked {
+            background-color: #e0e0e0;
+        }
+    </style>
+
+    <!-- JavaScript untuk menambahkan kelas 'clicked' -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var accordionButtons = document.querySelectorAll('.accordion-button');
+            accordionButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    // Remove 'clicked' class from all buttons
+                    accordionButtons.forEach(function(btn) {
+                        btn.classList.remove('clicked');
+                    });
+                    // Add 'clicked' class to the clicked button
+                    button.classList.add('clicked');
+                });
+            });
+        });
+    </script>
+
     <!-- Call to Action Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -427,7 +452,7 @@
                     <div class="row g-5 align-items-center">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                             <img class="img-fluid rounded w-100"
-                                src="{{ asset('frontend/img/assets/assets-contact.jpg') }}" alt="">
+                                src="{{ asset('frontend/img/assets/contact-after.jpg') }}" alt="">
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="mb-4">
@@ -579,7 +604,7 @@
                         {
                             value: '8',
                             text: '8 Penumpang'
-                        } 
+                        }
                     ];
                 }
 
