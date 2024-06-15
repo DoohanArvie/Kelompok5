@@ -19,6 +19,8 @@ use App\Http\Controllers\Admin\BookingController as AdminBookingController;
 use App\Http\Controllers\SearchController;
 use App\Models\Type;
 use App\Models\TypeMotorcycle;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\AdminController;
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
@@ -58,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/booking-form/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingForm'])->name('booking_form');
     Route::post('/book-vehicle/{vehicle_type}/{vehicle_id}', [BookingController::class, 'bookVehicle'])->name('book_vehicle');
     Route::get('/booking-confirmation/{booking_code}/{vehicle_type}/{vehicle_id}', [BookingController::class, 'showBookingConfirmation'])->name('booking_confirmation');
+    Route::get('/booking-confirmation/{booking_code}', [BookingController::class, 'showDetails'])->name('booking_detail');
     Route::get('/booking-confirmation/success/{booking_code}', [BookingController::class, 'showBookingSuccess'])->name('booking_success');
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
     Route::post('/profile/update-avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');  // Route untuk update avatar
@@ -73,8 +76,9 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('is_admin');
 
 Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::resource('admin', \App\Http\Controllers\Admin\AdminController::class);
-    Route::post('/password-update', [\App\Http\Controllers\Admin\AdminController::class, 'updatePassword'])->name('password.update.custom');
+    Route::resource('admin', AdminController::class);
+    Route::post('/update-avatar', [AdminController::class, 'updateAvatar'])->name('settings.updateAvatar');
+    Route::post('/password-update', [AdminController::class, 'updatePassword'])->name('password.update.custom');
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('cars', \App\Http\Controllers\Admin\CarController::class);
     Route::resource('motorcycles', \App\Http\Controllers\Admin\MotorcycleController::class);
@@ -88,7 +92,8 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
     Route::resource('feedbacks', \App\Http\Controllers\Admin\FeedbackController::class);
     Route::resource('teams', \App\Http\Controllers\Admin\TeamController::class);
-    Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
+    Route::resource('settings', SettingController::class);
+    Route::post('/settings/update-logo', [SettingController::class, 'updateLogo'])->name('settings.updateLogo');
     Route::resource('faqs', \App\Http\Controllers\Admin\FAQController::class);
     Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);
     Route::resource('bookings', \App\Http\Controllers\Admin\BookingController::class);

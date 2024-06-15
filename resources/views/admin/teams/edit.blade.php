@@ -56,7 +56,7 @@
                                     <label for="photo" class="col-sm-2 col-form-label">Photo</label>
                                     <div class="col-sm-12">
                                         <input type="file" class="form-control @error('photo') is-invalid @enderror" name="photo"
-                                            value="{{ old('photo') }}" id="photo">
+                                            value="{{ old('photo') }}" id="photo" accept="image/*">
                                         @error('photo')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

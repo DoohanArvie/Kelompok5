@@ -69,7 +69,7 @@
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="image1" class="col-sm-2 col-form-label">Gambar-1</label>
                                     <div class="col-sm-12">
-                                        <input type="file" class="form-control @error('image1') is-invalid @enderror id="image1" name="image1" required>
+                                        <input type="file" class="form-control @error('image1') is-invalid @enderror id="image1" name="image1" accept="image/*" required>
                                         @error('image1')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -80,7 +80,7 @@
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="image2" class="col-sm-2 col-form-label">Gambar-2</label>
                                     <div class="col-sm-12">
-                                        <input type="file" class="form-control @error('image2') is-invalid @enderror" id="image2" name="image2" required>
+                                        <input type="file" class="form-control @error('image2') is-invalid @enderror" id="image2" name="image2" accept="image/*" required>
                                     </div>
                                     @error('image2')
                                         <div class="invalid-feedback">
@@ -92,7 +92,7 @@
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="image3" class="col-sm-2 col-form-label">Gambar-3</label>
                                     <div class="col-sm-12">
-                                        <input type="file" class="form-control @error('image3') is-invalid @enderror id="image3" name="image3" required>
+                                        <input type="file" class="form-control @error('image3') is-invalid @enderror id="image3" name="image3" accept="image/*" required>
                                         @error('image3')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -104,7 +104,7 @@
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="image4" class="col-sm-2 col-form-label">Gambar-4</label>
                                     <div class="col-sm-12">
-                                        <input type="file" class="form-control @error('image4') is-invalid @enderror" id="image4" name="image4" required>
+                                        <input type="file" class="form-control @error('image4') is-invalid @enderror" id="image4" name="image4" accept="image/*" required>
                                         @error('image4')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

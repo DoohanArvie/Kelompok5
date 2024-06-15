@@ -32,7 +32,7 @@
                                         {{ $image }}</label>
                                     <div class="col-sm-12">
                                         <input type="file" name="{{ $image }}"
-                                            class="form-control @error('{{ $image }}') is-invalid @enderror">
+                                            class="form-control @error('{{ $image }}') is-invalid @enderror" accept="image/*">
                                         @error('{{ $image }}')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

@@ -4083,7 +4083,7 @@ fieldset:disabled .btn {
   --bs-dropdown-link-color: #67748e;
   --bs-dropdown-link-hover-color: #344767;
   --bs-dropdown-link-hover-bg: #e9ecef;
-  --bs-dropdown-link-active-color: #67748e;
+  --bs-dropdown-link-active-color: #5e72e4;
   --bs-dropdown-link-active-bg: transparent;
   --bs-dropdown-link-disabled-color: #6c757d;
   --bs-dropdown-item-padding-x: 1rem;
@@ -4647,9 +4647,9 @@ fieldset:disabled .btn {
   --bs-navbar-padding-x: 1rem;
   --bs-navbar-padding-y: 0.5rem;
   --bs-navbar-color: #344767;
-  --bs-navbar-hover-color: rgba(52, 71, 103, 0.7);
+  --bs-navbar-hover-color: #5e72e4;
   --bs-navbar-disabled-color: rgba(52, 71, 103, 0.3);
-  --bs-navbar-active-color: rgba(52, 71, 103, 0.9);
+  --bs-navbar-active-color: #5e72e4;
   --bs-navbar-brand-padding-y: 0.40625rem;
   --bs-navbar-brand-margin-end: 1rem;
   --bs-navbar-brand-font-size: 1.125rem;
@@ -21114,9 +21114,6 @@ fieldset:disabled .btn {
     height: 100%;
   }
 
-  .dropdown:not(.dropdown-hover) .dropdown-menu {
-    margin-top: 40px !important;
-  }
 
   .dropdown .dropdown-menu:before {
     font-family: "FontAwesome";
@@ -21211,9 +21208,6 @@ fieldset:disabled .btn {
     transition: top 0.35s ease;
   }
 
-  .dropdown:not(.dropdown-hover) .dropdown-menu {
-    margin-top: 40px !important;
-  }
 
   .dropdown .dropdown-menu.show {
     opacity: 1;
@@ -22370,9 +22364,9 @@ hr.horizontal.gray-light {
   box-shadow: none;
 }
 
-.navbar-toggler .navbar-toggler-icon {
+/* .navbar-toggler .navbar-toggler-icon {
   background-image: none;
-}
+} */
 
 .navbar-toggler .navbar-toggler-icon .navbar-toggler-bar {
   display: block;

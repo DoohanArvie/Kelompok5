@@ -51,8 +51,27 @@ class BookingController extends Controller
         $today = (new \DateTime())->format('Y-m-d');
         $maxStartDate = (new \DateTime())->modify('+60 days')->format('Y-m-d');
 
-        if ($startDate > $maxStartDate || $startDate < $today || $endDate < $startDate) {
-            return redirect()->back()->with('error', 'Tanggal yang dipilih tidak valid!');
+        // if ($startDate > $maxStartDate || $startDate < $today || $endDate < $startDate) {
+        //     return redirect()->back()->with('error', 'Tanggal yang dipilih tidak valid!');
+        // }
+
+        if ($startDate > $maxStartDate) {
+            return redirect()->back()->with('error', 'Maksimal tanggal mulai sewa adalah 60 hari kedepan!');
+        }
+
+        if ($startDate < $today) {
+            return redirect()->back()->with('error', 'Tanggal mulai tidak boleh berada di masa lalu!');
+        }
+
+        if ($endDate < $startDate) {
+            return redirect()->back()->with('error', 'Tanggal selesai tidak boleh sebelum tanggal mulai!');
+        }
+
+        $startDateTime = new \DateTime($startDate);
+        $endDateTime = new \DateTime($endDate);
+        $dateInterval = $startDateTime->diff($endDateTime)->days;
+        if ($dateInterval > 6) {
+            return redirect()->back()->with('error', 'Durasi maksimal sewa adalah 7 hari!');
         }
 
         $isAvailable = Booking::where('vehicle_id', $vehicle_id)
@@ -157,7 +176,10 @@ class BookingController extends Controller
 
         // Ensure the booking belongs to the logged-in user
         if (Gate::denies('view', $booking) && !$user->is_admin) {
-            return redirect()->route('homepage')->with('error', 'Anda tidak memiliki akses ke pemesanan ini.');
+            return redirect()->route('homepage')->with([
+                'message' => 'Anda tidak memiliki akses ke pemesanan ini.',
+                'alert-type' => 'error',
+            ]);
         }
 
         $feedbacks = Feedback::where('booking_code', $booking_code)->get();
@@ -184,7 +206,30 @@ class BookingController extends Controller
         $booking->snap_token = $snapToken;
         $booking->save();
 
+        session()->flash('message', 'Pemesanan berhasil! Silakan lakukan pembayaran.');
+        session()->flash('alert-type', 'success');
+
         return view('frontend.vehicle.booking_confirmation', compact('booking', 'vehicle', 'feedbacks', 'user'));
+    }
+
+
+    public function showDetails($booking_code)
+    {
+        $this->cancelExpiredBookings(); // Call to cancel expired bookings
+
+        $user = Auth::user();
+        $booking = Booking::where('booking_code', $booking_code)->with('user', 'cancellation')->firstOrFail();
+        if (Gate::denies('view', $booking) && !$user->is_admin) {
+            return redirect()->route('homepage')->with([
+                'message' => 'Anda tidak memiliki akses ke pemesanan ini.',
+                'alert-type' => 'error',
+            ]);
+        }
+
+        $feedbacks = Feedback::where('booking_code', $booking_code)->get();
+
+        $booking = Booking::where('booking_code', $booking_code)->firstOrFail();
+        return view('frontend.vehicle.booking_confirmation', compact('booking', 'feedbacks', 'user'));
     }
 
 

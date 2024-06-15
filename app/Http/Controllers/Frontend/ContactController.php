@@ -19,7 +19,7 @@ class ContactController extends Controller
         Contact::create($request->validated());
 
         return redirect()->back()->with([
-            'message' => 'pesan anda berhasil dikirim !',
+            'message' => 'Pesan anda berhasil dikirim!',
             'alert-type' => 'success'
         ]);
     }

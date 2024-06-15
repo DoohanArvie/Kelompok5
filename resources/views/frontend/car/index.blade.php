@@ -8,7 +8,7 @@
                 <h1 class="display-5 animated fadeIn mb-4">Daftar Mobil</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Daftar Mobil</li>
                     </ol>
                 </nav>
@@ -40,7 +40,7 @@
             @if ($cars->isEmpty())
                 <div class="col-lg-12 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="alert alert-danger" role="alert">
-                        <h2>Maaf, mobil tidak tersedia saat ini!</h2>
+                        <h2 class="text-white">Maaf, mobil tidak tersedia saat ini!</h2>
                     </div>
                 </div>
                 @if ($isFiltered)
@@ -73,7 +73,7 @@
                                                 <button class="btn btn-outline-primary active w-100" data-bs-toggle="pill"
                                                     data-filter="all">Semua</button>
                                             </li>
-                                            @foreach($types as $type)
+                                            @foreach ($types as $type)
                                                 <li class="nav-item mb-2">
                                                     <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                         data-filter="{{ $type->nama }}">{{ $type->nama }}</button>
@@ -112,22 +112,6 @@
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                     data-passenger="8">8 Penumpang</button>
                                             </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="10">10 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="12">12 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="14">14 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="16">16 Penumpang</button>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -151,33 +135,23 @@
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="300000" data-price-max="400000">Rp. 300.000 -
-                                                    400.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="400000" data-price-max="500000">Rp. 400.000 -
+                                                    data-price-min="300000" data-price-max="500000">Rp. 300.000 -
                                                     500.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="600000" data-price-max="700000">Rp. 600.000 -
+                                                    data-price-min="500000" data-price-max="700000">Rp. 500.000 -
                                                     700.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="700000" data-price-max="800000">Rp. 700.000 -
-                                                    800.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="800000" data-price-max="1000000">Rp. 800.000 -
+                                                    data-price-min="700000" data-price-max="1000000">Rp. 700.000 -
                                                     1.000.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="1000000" data-price-max="1500000">Rp. 1.000.000
-                                                    - 1.500.000</button>
+                                                    data-price-min="1000000" data-price-max="1500000">Rp. 1.000.000 -
+                                                    1.500.000</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -204,7 +178,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
-                                        <label class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</label>
+                                        <p class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</p>
                                         {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
@@ -256,6 +230,7 @@
         .property-footer {
             margin-top: auto;
         }
+
         .image-container {
             position: relative;
             width: 100%;

@@ -55,10 +55,10 @@
                                     </li>
                                     <li class="mb-2">
                                         <a href="{{ route('logout') }}" class="dropdown-item border-radius-md"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            onclick="event.preventDefault(); document.getElementById('logout-form-1').submit();">
                                             Keluar
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        <form id="logout-form-1" action="{{ route('logout') }}" method="POST"
                                             style="display: none;">
                                             @csrf
                                         </form>
