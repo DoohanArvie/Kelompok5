@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="refund_proof">Upload Bukti Pengembalian Dana</label>
-                                    <input type="file" class="form-control" name="refund_proof" id="refund_proof">
+                                    <input type="file" class="form-control" name="refund_proof" id="refund_proof" accept="image/*">
                                 </div>
                                 
                                 <button type="submit" class="btn btn-success">Simpan</button>

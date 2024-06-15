@@ -60,7 +60,7 @@
                                                                 @endif
                                                                 <div class="form-group row border-bottom pb-4">
                                                                     <div class="mt-auto">
-                                                                        <input type="file" id="avatar" name="avatar" class="form-control @error('avatar') is-invalid @enderror" accept=".jpg,.jpeg,.png">
+                                                                        <input type="file" id="avatar" name="avatar" class="form-control @error('avatar') is-invalid @enderror mt-3" accept=".jpg,.jpeg,.png">
                                                                         @error('avatar')
                                                                             <div class="invalid-feedback">
                                                                                 {{ $message }}
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scalable: true,
                 zoomable: true,
                 zoomOnWheel: true,
-                minContainerWidth: 800,
+                minContainerWidth: 300,
                 minContainerHeight: 600,
             });
         };
@@ -313,8 +313,8 @@ document.addEventListener('DOMContentLoaded', function () {
     cropButton.addEventListener('click', function () {
         if (cropper) {
             var canvas = cropper.getCroppedCanvas({
-                width: 200,
-                height: 200,
+                width: 500,
+                height: 500,
             });
             canvas.toBlob(function (blob) {
                 var url = URL.createObjectURL(blob);
@@ -332,14 +332,39 @@ document.addEventListener('DOMContentLoaded', function () {
                     }).then(response => response.json()).then(data => {
                         if (data.success) {
                             cropModal.hide();
-                            alert('Avatar berhasil diperbarui!');
-                            location.reload();
+                            existingAvatarPreview.src = base64data;
+                            // alert('Avatar berhasil diperbarui!');
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: 'Avatar berhasil diperbarui!',
+                                icon: 'success',
+                                confirmButtonColor: '#5e72e4',
+                                confirmButtonText: 'OK',
+                                timer: 1500
+                            });
+                            // location.reload();
                         } else {
-                            alert('Gagal memperbarui avatar.');
+                            // alert('Gagal memperbarui avatar.');
+                            Swal.fire({
+                                title: 'Gagal!',
+                                text: 'Gagal memperbarui avatar.',
+                                icon: 'error',
+                                confirmButtonColor: '#5e72e4',
+                                confirmButtonText: 'OK',
+                                timer: 1500
+                            });
                         }
                     }).catch(error => {
                         console.error(error);
-                        alert('Terjadi kesalahan.');
+                        // alert('Terjadi kesalahan.');
+                        Swal.fire({
+                            title: 'Gagal!',
+                            text: 'Terjadi kesalahan.',
+                            icon: 'error',
+                            confirmButtonColor: '#5e72e4',
+                            confirmButtonText: 'OK',
+                            timer: 1500
+                        });
                     });
                 };
             });
