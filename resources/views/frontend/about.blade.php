@@ -65,7 +65,7 @@
                             <div class="container-fluid text-center p-4 mt-3">
                                 <h5 class="fw-bold mb-3">{{ $team->nama }}</h5>
                                 <h6 class="mb-2"><i>{{ $team->jabatan }}</i></h6>
-                                <!-- <p class="fw-bold">{{ $team->bio }}</p>-->
+                                {{-- <p class="fw-bold">{{ $team->bio }}</p> --}}
                             </div>
                         </div>
                     </div>
