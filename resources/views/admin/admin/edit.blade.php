@@ -14,6 +14,13 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show text-white" role="alert">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
                             @if ($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show text-white" role="alert">
                                     @foreach ($errors->all() as $error)
@@ -96,7 +103,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-success">Update
+                                                        <button type="submit" class="btn btn-success mb-3">Update
                                                             Profile</button>
                                                     </div>
                                                 </div>

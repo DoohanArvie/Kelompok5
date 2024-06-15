@@ -10,8 +10,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Semua Data</h3>
-                            <a href="{{ route('admin.teams.create') }}" class="btn btn-success shadow-sm float-right"> <i
-                                    class="fa fa-plus"></i> Tambah </a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -61,9 +59,7 @@
                                                             class="btn btn-primary">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <form onclick="return confirm('are you sure !')"
-                                                            action="{{ route('admin.users.destroy', $user) }}"
-                                                            method="POST">
+                                                        <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="delete-form">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-danger" type="submit"><i

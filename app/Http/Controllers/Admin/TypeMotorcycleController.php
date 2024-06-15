@@ -26,7 +26,7 @@ class TypeMotorcycleController extends Controller
         TypeMotorcycle::create($request->validated());
 
         return redirect()->route('admin.typemotorcycles.index')->with([
-            'message' => 'berhasil di buat',
+            'message' => 'Data tipe motor berhasil di tambah!',
             'alert-type' => 'success'
         ]);
     }
@@ -41,8 +41,8 @@ class TypeMotorcycleController extends Controller
         $typemotorcycle->update($request->validated());
 
         return redirect()->route('admin.typemotorcycles.index')->with([
-            'message' => 'berhasil di edit',
-            'alert-type' => 'info'
+            'message' => 'Data tipe motor berhasil di update!',
+            'alert-type' => 'success'
         ]);
     }
 
@@ -51,8 +51,8 @@ class TypeMotorcycleController extends Controller
         $typemotorcycle->delete();
 
         return redirect()->back()->with([
-            'message' => 'berhasil di hapus',
-            'alert-type' => 'danger'
+            'message' => 'Data tipe motor berhasil di hapus!',
+            'alert-type' => 'success'
         ]);
     }
 }

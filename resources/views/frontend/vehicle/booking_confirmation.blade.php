@@ -55,6 +55,9 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="col-md-6">
+                <h1>Pembayaran</h1>
                 @if ($booking->booking_status == 'Menunggu Pembayaran')
                     <p>Silahkan lakukan pembayaran terlebih dahulu!</p>
                 @elseif ($booking->booking_status == 'Menunggu Konfirmasi')
@@ -66,21 +69,16 @@
                         <p>Silahkan tunggu kendaraan diantar ke lokasi Anda!</p>
                     @endif
                 @elseif ($booking->booking_status == 'Belum Dikembalikan')
-                    <p>Silahkan kembalikan kendaraan maksimal jam 8 malam pada tanggal selesai sewa</p>
+                    <p>Silahkan kembalikan kendaraan maksimal jam 8 malam pada tanggal {{ $booking->end_date }}</p>
                 @elseif ($booking->booking_status == 'Selesai')
                     <p>Terima kasih telah menggunakan sewa kendaraan kami! Sampai jumpa di pemesanan selanjutnya!</p>
                 @elseif ($booking->booking_status == 'Dibatalkan')
                     <p>Pemesanan Anda telah dibatalkan</p>
                 @endif
-            </div>
-            <div class="col-md-6">
-                <h1>Pembayaran</h1>
                 @if ($booking->booking_status == 'Menunggu Pembayaran')
                 <button type="button" class="btn btn-primary" id="pay-button">
                     Bayar Sekarang
                 </button>
-                @else
-                <p class="lead mb-5">Terima Kasih Telah Memesan Kendaraan Kami!</p>
                 @endif
                 <div class="col-md-12">
                     <div class="d-flex align-items-center mb-3" data-bs-toggle="collapse" href="#feedbackForm"

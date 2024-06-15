@@ -75,7 +75,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success">Save</button>
+                                <button type="submit" class="btn btn-success">Simpan</button>
                             </form>
                         </div>
                         <!-- /.card-body -->
