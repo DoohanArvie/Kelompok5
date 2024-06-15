@@ -16,7 +16,7 @@ class SettingSeeder extends Seeder
         $sourcePath = public_path('frontend/img/logo/');
         $destinationPath = 'public/frontend/img/logo/';
 
-        $logoFileName = 'logo-OtoRent.jpg';
+        $logoFileName = 'logo-OtoRent.png';
         $sourceFile = $sourcePath . $logoFileName;
         $destinationFile = $destinationPath . $logoFileName;
 
