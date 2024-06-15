@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="yharga_sewa" class="col-form-label">Harga Sewa Mobil
+                                        <label for="harga_sewa" class="col-form-label">Harga Sewa Mobil
                                             <strong>({{ $booking->days_count }} Hari)</strong></label>
                                         <input type="text" class="form-control" id="harga_sewa"
                                             value="Rp {{ number_format($booking->booking_fee, 0, ',', '.') }}" readonly>
@@ -79,22 +79,23 @@
                                         <div class="mb-3">
                                             <label for="booking_status" class="col-form-label">Status:</label>
                                             <select name="booking_status" id="booking_status" class="form-control">
-                                                <option value="Menunggu Pembayaran"
-                                                    {{ $booking->status == 'Menunggu Pembayaran' ? 'selected' : '' }}>
-                                                    Menunggu Pembayaran</option>
-                                                <option value="Menunggu Konfirmasi"
-                                                    {{ $booking->status == 'Menunggu Konfirmasi' ? 'selected' : '' }}>
-                                                    Menunggu Konfirmasi</option>
-                                                <option value="Pembayaran Terkonfirmasi"
-                                                    {{ $booking->status == 'Pembayaran Terkonfirmasi' ? 'selected' : '' }}>
-                                                    Pembayaran Terkonfirmasi</option>
-                                                <option value="Belum Dikembalikan"
-                                                    {{ $booking->status == 'Belum Dikembalikan' ? 'selected' : '' }}>Belum
-                                                    Dikembalikan</option>
-                                                <option value="Selesai"
-                                                    {{ $booking->status == 'Selesai' ? 'selected' : '' }}>Selesai</option>
-                                                <option value="Dibatalkan"
-                                                    {{ $booking->status == 'Dibatalkan' ? 'selected' : '' }}>Dibatalkan
+                                                <option value="Menunggu Pembayaran" {{ $booking->booking_status == 'Menunggu Pembayaran' ? 'selected' : '' }}>
+                                                    Menunggu Pembayaran
+                                                </option>
+                                                <option value="Menunggu Konfirmasi" {{ $booking->booking_status == 'Menunggu Konfirmasi' ? 'selected' : '' }}>
+                                                    Menunggu Konfirmasi
+                                                </option>
+                                                <option value="Pembayaran Terkonfirmasi" {{ $booking->booking_status == 'Pembayaran Terkonfirmasi' ? 'selected' : '' }}>
+                                                    Pembayaran Terkonfirmasi
+                                                </option>
+                                                <option value="Belum Dikembalikan" {{ $booking->booking_status == 'Belum Dikembalikan' ? 'selected' : '' }}>
+                                                    Belum Dikembalikan
+                                                </option>
+                                                <option value="Selesai" {{ $booking->booking_status == 'Selesai' ? 'selected' : '' }}>
+                                                    Selesai
+                                                </option>
+                                                <option value="Dibatalkan" {{ $booking->booking_status == 'Dibatalkan' ? 'selected' : '' }}>
+                                                    Dibatalkan
                                                 </option>
                                             </select>
                                         </div>

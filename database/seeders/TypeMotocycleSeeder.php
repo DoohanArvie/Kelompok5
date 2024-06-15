@@ -19,14 +19,20 @@ class TypeMotocycleSeeder extends Seeder
             [
                 'id' => '1',
                 'nama' => 'Matic',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'id' => '2',
                 'nama' => 'Bebek',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'id' => '3',
                 'nama' => 'Sport',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ];
 

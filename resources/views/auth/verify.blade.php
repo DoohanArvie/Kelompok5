@@ -11,12 +11,12 @@
                     <div class="card-body login-card-body">
                         @if (session('resent'))
                             <div class="alert alert-success" role="alert">
-                                {{ __('Tautan verifikasi baru telah dikirim ke alamat email Anda.') }}
+                                {{ __('Silahkan verifikasi alamat email Anda.') }}
                             </div>
                         @endif
 
-                        <p>{{ __('Sebelum melanjutkan, harap periksa email Anda untuk tautan verifikasi.') }}</p>
-                        <p>{{ __('Jika Anda tidak menerima email') }},</p>
+                        <p>{{ __('Agar Anda dapat menyewa kendaraan Kami.') }}</p>
+                        <p>{{ __('Klik tombol dibawah ini.') }}</p>
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
                             <div class="row">
@@ -45,7 +45,7 @@
                     countdown--;
                 } else {
                     clearInterval(countdownInterval);
-                    resendButton.textContent = 'Klik di sini untuk meminta yang lain';
+                    resendButton.textContent = 'Klik di sini untuk meminta email verifikasi';
                     resendButton.disabled = false;
                 }
             }, 1000); // Interval set to 1 second

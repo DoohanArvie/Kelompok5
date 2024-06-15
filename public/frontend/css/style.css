@@ -2315,7 +2315,7 @@ h5,
 }
 /********** Template CSS **********/
 :root {
-    --primary: #0d6efd;
+    --primary: #5e72e4;
     --secondary: #ff6922;
     --light: #effdf5;
     --dark: #0e2e50;
@@ -2571,7 +2571,7 @@ h5,
     color: var(--dark);
 }
 
-.nav-pills .nav-item .btn:hover,
+.nav-pills .nav-item,
 .nav-pills .nav-item .btn.active {
     color: #ffffff;
 }

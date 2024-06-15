@@ -5,7 +5,8 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5 wow fadeInLeft" data-wow-delay="0.1s">
                 <h1 class="display-5 animated fadeIn mb-4>
-                    <span class="text-primary">{{ $setting->nama_perusahaan }}</span>
+                    <span class="text-primary">
+                    {{ $setting->nama_perusahaan }}</span>
                     Solusi Perjalanan Anda!
                 </h1>
                 <h5 class="animated fadeIn pb-2">Temukan Mobil dan Motor terbaik untuk setiap perjalanan Anda!</h5>
@@ -13,7 +14,7 @@
                 <h4><i class="fa fa-check text-primary me-3"></i>Mudah</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Aman</h4>
                 <h4><i class="fa fa-check text-primary me-3"></i>Nyaman</h4>
-                <a href="" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Pesan Sekarang</a>
+                <a href="#more" class="btn btn-primary mt-3 py-3 px-5 me-3 animated fadeIn">Selengkapnya</a>
             </div>
             <div class="col-md-6 wow fadeInRight" data-wow-delay="0.1s">
                 <div class="owl-carousel header-carousel">
@@ -21,19 +22,21 @@
                         <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-1.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-calya.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-2.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-innova.jpg') }}"
-                            alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-3.jpg') }}" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Header End -->
+
     <!-- Search Start -->
     <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.3s" style="padding: 35px;">
+
         <div class="container">
             @if (session('status'))
                 <div class="alert alert-success text-center text-white">
@@ -73,14 +76,12 @@
                                         <h5 class="text-white mb-3">Kategori</h5>
                                         <select name="category_id" id="category_id" class="form-select border-0 py-3">
                                             <option value="" hidden>Pilih Kategori</option>
-                                            <!-- Options akan diisi oleh JavaScript -->
                                         </select>
                                     </div>
                                     <div class="col-md-3 mr-2">
                                         <h5 class="text-white mb-3">Jumlah Penumpang</h5>
                                         <select name="penumpang" class="form-select border-0 py-3">
                                             <option value="" hidden>Pilih Jumlah Penumpang</option>
-                                            <!-- Options akan diisi oleh JavaScript -->
                                         </select>
                                     </div>
                                 </div>
@@ -95,23 +96,23 @@
             </form>
         </div>
     </div>
-    <!-- Kelebihan Jasa di OtoRent -->
-    <div class="container py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <!-- Kenapa harus di OtoRent -->
+    <div class="container py-5 wow fadeInUp" data-wow-delay="0.1s" id="more">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1 class="mb-4"><strong>Kelebihan Jasa di {{ $setting->nama_perusahaan }} Dibandingkan Rental Lainnya</strong></h1>
-                <p class="lead mb-5">Temukan Alasan Mengapa {{ $setting->nama_perusahaan }} Menjadi Pilihan Terbaik Anda</p>
+                <h1 class="mb-4"><strong>Kenapa Harus di {{ $setting->nama_perusahaan }} ?</strong></h1>
+                <p class="lead mb-5">Berikut Alasan Mengapa {{ $setting->nama_perusahaan }} Menjadi Pilihan Terbaik Anda</p>
             </div>
         </div>
         <div class="row text-center">
             @php
                 $advantages = [
                     [
-                        'title' => 'Murah, Aman dan Nyaman',
+                        'title' => 'Mudah, Aman dan Nyaman',
                         'icon' => 'fas fa-shield-alt',
                     ],
                     [
-                        'title' => 'Proses Mudah dan Cepat',
+                        'title' => 'Proses Cepat dan Praktis',
                         'icon' => 'fas fa-tachometer-alt',
                     ],
                     [
@@ -144,7 +145,7 @@
             @endforeach
         </div>
     </div>
-    <!--End Kelebihan-->
+    <!--End  Mengapa-->
     <!-- Cara Pemesanan -->
     <div class="container py-5">
         <div class="row justify-content-center">
@@ -157,13 +158,6 @@
             @php
                 $steps = [
                     [
-                        'title' => 'Pilih Layanan dan Jadwal Rental',
-                        'description' =>
-                            'Pilih layanan yang Anda inginkan dan tentukan jadwal rental yang sesuai dengan kebutuhan Anda.',
-                        'icon' => 'fas fa-car',
-                        'color' => 'text-primary',
-                    ],
-                    [
                         'title' => 'Melengkapi Data Diri',
                         'description' =>
                             'Isi formulir dengan data diri lengkap dan informasi yang diperlukan untuk proses pemesanan.',
@@ -171,14 +165,22 @@
                         'color' => 'text-success',
                     ],
                     [
-                        'title' => 'Kami Melakukan Konfirmasi Pesanan',
-                        'description' => 'Tunggu konfirmasi pesanan dari kami melalui email atau pesan singkat.',
+                        'title' => 'Memilih Kendaraan',
+                        'description' =>
+                            'Pilih kendaraan yang Anda inginkan dan tentukan jadwal rental yang sesuai dengan kebutuhan Anda.',
+                        'icon' => 'fas fa-tachometer-alt',
+                        'color' => 'text-primary',
+                    ],
+                    [
+                        'title' => 'Melakukan Pembayaran',
+                        'description' =>
+                            'Kami telah menyediakan proses pembayaran melalui transfer bank dan dompet digital',
                         'icon' => 'fas fa-check',
                         'color' => 'text-warning',
                     ],
                     [
-                        'title' => 'Layanan Siap Digunakan Sesuai Jadwal',
-                        'description' => 'Nikmati layanan rental sesuai dengan jadwal yang telah Anda tentukan.',
+                        'title' => 'Kendaraan Siap Pakai',
+                        'description' => 'Nikmati kendaraan rental sesuai dengan jadwal yang telah Anda tentukan.',
                         'icon' => 'fas fa-clock',
                         'color' => 'text-danger',
                     ],
@@ -206,23 +208,20 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="frontend/img/assets/assets-dedikasi.jpg">
+                        <img class="img-fluid w-100" src="{{ asset('frontend/img/header/about-us-1.jpg') }}">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="mb-4">Dedikasi Kami Untuk Anda</h1>
+                    <h1 class="mb-4">Tentang Kami</h1>
                     <p class="mb-4" style="text-align: justify">{{ $setting->tentang_perusahaan }}</p>
-                    <p><i class="fa fa-check text-primary me-3"></i>Kendaraan yang selalu terjaga kebersihannya dan dalam
-                        kondisi prima</p>
+                    <p><i class="fa fa-check text-primary me-3"></i>Kendaraan yang selalu terjaga kebersihannya</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Pengemudi yang berpengalaman dan ramah</p>
                     <p><i class="fa fa-check text-primary me-3"></i>Sistem pemesanan yang mudah dan cepat</p>
-                    <a class="btn btn-primary py-3 px-5 mt-3" href="">Pesan Sekarang</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- About End -->
-
     <!-- Property List Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -266,8 +265,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
-                                        {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
+                                        <p class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</p>
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -315,8 +313,7 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($motorcycle->price) }} /
                                             hari</h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $motorcycle->nama_motor }}</a>
-                                        {{-- <p style="text-align: justify"></i>{{ $motorcycle->description }}</p> --}}
+                                        <p class="d-block h5 mb-2" href="">{{ $motorcycle->nama_motor }}</p>
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
@@ -324,7 +321,6 @@
                                                 class="btn btn-primary btn-pesan btn-lg">Pesan</a>
                                         </div>
                                         <div class="d-flex border-top mt-3">
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -339,7 +335,6 @@
         </div>
     </div>
     <!-- Property List End -->
-
     <!-- Testimonial Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -425,6 +420,30 @@
     </div>
     <!-- Faq End -->
 
+    <!-- CSS untuk warna abu-abu -->
+    <style>
+        .clicked {
+            background-color: #e0e0e0;
+        }
+    </style>
+
+    <!-- JavaScript untuk menambahkan kelas 'clicked' -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var accordionButtons = document.querySelectorAll('.accordion-button');
+            accordionButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    // Remove 'clicked' class from all buttons
+                    accordionButtons.forEach(function(btn) {
+                        btn.classList.remove('clicked');
+                    });
+                    // Add 'clicked' class to the clicked button
+                    button.classList.add('clicked');
+                });
+            });
+        });
+    </script>
+
     <!-- Call to Action Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -433,19 +452,15 @@
                     <div class="row g-5 align-items-center">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                             <img class="img-fluid rounded w-100"
-                                src="{{ asset('frontend/img/assets/assets-contact.jpg') }}" alt="">
+                                src="{{ asset('frontend/img/assets/contact-after.jpg') }}" alt="">
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="mb-4">
                                 <h1 class="mb-3">Hubungi Kami</h1>
-                                <p style="text-align: justify">Kami siap membantu Anda merencanakan perjalanan dengan
-                                    armada terbaik dan layanan pelanggan yang ramah dan profesional. Nikmati kenyamanan dan
-                                    keamanan dengan kendaraan yang terawat dan pemesanan yang mudah bersama kami.</p>
+                                <p style="text-align: justify">{{ $setting->hubungi_kami }}</p>
                             </div>
-                            <a href="" class="btn btn-primary py-3 px-4 me-2"><i
+                            <a href="https://wa.me/{{ $setting->phone }}" class="btn btn-primary py-3 px-4 me-2"><i
                                     class="fa fa-phone-alt me-2"></i>Telepon Kami</a>
-                            <a href="" class="btn btn-dark py-3 px-4"><i class="fa fa-calendar-alt me-2"></i>Buat
-                                Pemesanan</a>
                         </div>
                     </div>
                 </div>
@@ -531,28 +546,16 @@
 
                 if (kendaraan === 'Mobil') {
                     hargaOptions = [{
-                            value: '300000-400000',
-                            text: 'Rp. 300.000 - Rp. 400.000'
+                            value: '300000-500000',
+                            text: 'Rp. 300.000 - Rp. 500.000'
                         },
                         {
-                            value: '400000-500000',
-                            text: 'Rp. 400.000 - Rp. 500.000'
+                            value: '500000-700000',
+                            text: 'Rp. 500.000 - Rp. 700.000'
                         },
                         {
-                            value: '500000-600000',
-                            text: 'Rp. 500.000 - Rp. 600.000'
-                        },
-                        {
-                            value: '600000-700000',
-                            text: 'Rp. 600.000 - Rp. 700.000'
-                        },
-                        {
-                            value: '700000-800000',
-                            text: 'Rp. 700.000 - Rp. 800.000'
-                        },
-                        {
-                            value: '800000-1000000',
-                            text: 'Rp. 800.000 - Rp. 1.000.000'
+                            value: '700000-1000000',
+                            text: 'Rp. 700.000 - Rp. 1.000.000'
                         },
                         {
                             value: '1000000-1500000',
@@ -561,8 +564,8 @@
                     ];
                 } else if (kendaraan === 'Motor') {
                     hargaOptions = [{
-                            value: '0-100000',
-                            text: 'Rp. 0 - Rp. 100.000'
+                            value: '60000-100000',
+                            text: 'Rp. 60.000 - Rp. 100.000'
                         },
                         {
                             value: '100000-200000',
@@ -601,22 +604,6 @@
                         {
                             value: '8',
                             text: '8 Penumpang'
-                        },
-                        {
-                            value: '10',
-                            text: '10 Penumpang'
-                        },
-                        {
-                            value: '12',
-                            text: '12 Penumpang'
-                        },
-                        {
-                            value: '14',
-                            text: '14 Penumpang'
-                        },
-                        {
-                            value: '16',
-                            text: '16 Penumpang'
                         }
                     ];
                 }

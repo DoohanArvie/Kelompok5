@@ -16,7 +16,7 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="{{ route('home') }}" target="_blank">
+        <a class="navbar-brand m-0" href="{{ route('home') }}">
             @php
                 $settings = \App\Models\Setting::first();
             @endphp
@@ -48,14 +48,18 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#kategoriCollapse" class="nav-link {{ request()->routeIs('admin.types.*') || request()->routeIs('admin.typemotorcycles.*') ? 'active bg-primary text-white' : '' }}" data-bs-toggle="collapse" role="button"
-                    aria-expanded="{{ request()->routeIs('admin.types.*') || request()->routeIs('admin.typemotorcycles.*') ? 'true' : 'false' }}" aria-controls="kategoriCollapse">
+                <a href="#kategoriCollapse"
+                    class="nav-link {{ request()->routeIs('admin.types.*') || request()->routeIs('admin.typemotorcycles.*') ? 'active bg-primary text-white' : '' }}"
+                    data-bs-toggle="collapse" role="button"
+                    aria-expanded="{{ request()->routeIs('admin.types.*') || request()->routeIs('admin.typemotorcycles.*') ? 'true' : 'false' }}"
+                    aria-controls="kategoriCollapse">
                     <i class="fa-solid fa-list text-success text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">
                         {{ __('Kategori') }}
                     </span>
                 </a>
-                <div class="collapse mt-1 {{ request()->routeIs('admin.types.*') || request()->routeIs('admin.typemotorcycles.*') ? 'show' : '' }}" id="kategoriCollapse">
+                <div class="collapse mt-1 {{ request()->routeIs('admin.types.*') || request()->routeIs('admin.typemotorcycles.*') ? 'show' : '' }}"
+                    id="kategoriCollapse">
                     <div class="nav-item">
                         <a href="{{ route('admin.typemotorcycles.index') }}"
                             class="nav-link {{ request()->routeIs('admin.typemotorcycles.*') ? 'active bg-primary text-white' : '' }}">
@@ -71,16 +75,18 @@
                         </a>
                     </div>
                 </div>
-            </li>            
+            </li>
             <li class="nav-item">
-                <a href="#kendaraanCollapse" class="nav-link {{ request()->routeIs('admin.motorcycles.*') || request()->routeIs('admin.cars.*') ? 'active bg-primary text-white' : '' }}" data-bs-toggle="collapse" role="button"
-                    aria-expanded="false" aria-controls="kendaraanCollapse">
+                <a href="#kendaraanCollapse"
+                    class="nav-link {{ request()->routeIs('admin.motorcycles.*') || request()->routeIs('admin.cars.*') ? 'active bg-primary text-white' : '' }}"
+                    data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="kendaraanCollapse">
                     <i class="fa-solid fa-ring text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">
                         Kendaraan
                     </span>
                 </a>
-                <div class="collapse mt-1 {{ request()->routeIs('admin.motorcycles.*') || request()->routeIs('admin.cars.*') ? 'show' : '' }}" id="kendaraanCollapse">
+                <div class="collapse mt-1 {{ request()->routeIs('admin.motorcycles.*') || request()->routeIs('admin.cars.*') ? 'show' : '' }}"
+                    id="kendaraanCollapse">
                     <div class="nav-item">
                         <a href="{{ route('admin.motorcycles.index') }}"
                             class="nav-link {{ request()->routeIs('admin.motorcycles.*') ? 'active bg-primary text-white' : '' }}">
@@ -110,6 +116,12 @@
                     <span class="nav-link-text ms-1">{{ __('Testimonial') }}</span>
                 </a>
             </li> --}}
+            <div class="nav-item">
+                <a class="nav-link {{ request()->routeIs('admin.cancellations.*') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.cancellations.index') }}">
+                    <i class="fa-solid fa-xmark text-danger text-lg opacity-10"></i>
+                    <span class="nav-link-text ms-1">{{ __('Pembatalan') }}</span>
+                </a>
+            </div>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.feedbacks.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.feedbacks.index') }}">
@@ -131,13 +143,13 @@
                     <span class="nav-link-text ms-1">{{ __('Driver') }}</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.blogs.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.blogs.index') }}">
                     <i class="fa-solid fa-square-rss text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Blog') }}</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.teams.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.teams.index') }}">
@@ -146,14 +158,17 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#pengaturanCollapse" class="nav-link {{ request()->routeIs('admin.settings.*') || request()->routeIs('admin.faqs.*') ? 'active bg-primary text-white' : '' }}" data-bs-toggle="collapse" role="button"
-                    aria-expanded="false" aria-controls="pengaturanCollapse">
+                <a href="#pengaturanCollapse"
+                    class="nav-link {{ request()->routeIs('admin.settings.*') || request()->routeIs('admin.faqs.*') ? 'active bg-primary text-white' : '' }}"
+                    data-bs-toggle="collapse" role="button" aria-expanded="false"
+                    aria-controls="pengaturanCollapse">
                     <i class="fa-solid fa-gears text-info text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">
                         Pengaturan Web
                     </span>
                 </a>
-                <div class="collapse mt-1 {{ request()->routeIs('admin.settings.*') || request()->routeIs('admin.faqs.*') ? 'show' : '' }}" id="pengaturanCollapse">
+                <div class="collapse mt-1 {{ request()->routeIs('admin.settings.*') || request()->routeIs('admin.faqs.*') ? 'show' : '' }}"
+                    id="pengaturanCollapse">
                     <div class="nav-item">
                         <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active bg-primary text-white' : '' }}"
                             href="{{ route('admin.settings.index') }}">
@@ -163,13 +178,13 @@
                     </div>
                     <div class="nav-item">
                         <a class="nav-link {{ request()->routeIs('admin.faqs.*') ? 'active bg-primary text-white' : '' }}"
-                        href="{{ route('admin.faqs.index') }}">
+                            href="{{ route('admin.faqs.index') }}">
                             <i class="fa-solid fa-question text-info text-lg opacity-10"></i>
                             <span class="nav-link-text ms-1">Pengaturan FAQ</span>
                         </a>
                     </div>
                 </div>
-            {{-- </li>
+                {{-- </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active bg-primary text-white' : '' }}"
                     href="{{ route('admin.settings.index') }}">
@@ -187,25 +202,28 @@
                 </h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.admin.edit') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.admin.edit', Auth::user()->id) }}">
+                <a class="nav-link {{ request()->routeIs('admin.admin.edit') ? 'active bg-primary text-white' : '' }}"
+                    href="{{ route('admin.admin.edit', Auth::user()->id) }}">
                     <i class="fa-solid fa-user text-dark text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ Auth::user()->name }}</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('admin.admin.index') ? 'active bg-primary text-white' : '' }}" href="{{ route('admin.admin.index') }}">
+                <a class="nav-link {{ request()->routeIs('admin.admin.index') ? 'active bg-primary text-white' : '' }}"
+                    href="{{ route('admin.admin.index') }}">
                     <i class="fa-solid fa-address-book text-success text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Daftar Admin') }}</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    onclick="event.preventDefault(); document.getElementById('logout-form-2').submit();">
                     <i class="fa-solid fa-arrow-right-from-bracket text-danger text-lg opacity-10"></i>
                     <span class="nav-link-text ms-1">{{ __('Keluar') }}</span>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form-2" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
+
                 </form>
             </li>
         </ul>
@@ -227,3 +245,12 @@
             pro</a> --}}
     </div>
 </aside>
+@push('script-alt')
+    <script>
+        document.querySelectorAll('.nav-link').forEach(function(element) {
+            element.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+@endpush

@@ -18,10 +18,13 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('phone');
             $table->string('email');
+            $table->text('jam_buka');
             $table->text('footer_description');
             $table->text('tentang_perusahaan');
             $table->text('sejarah_perusahaan');
             $table->text('tentang_team');
+            $table->text('hubungi_kami');
+            $table->text('maps');
             $table->string('facebook');
             $table->string('instagram');
             $table->string('twitter');

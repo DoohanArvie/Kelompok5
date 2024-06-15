@@ -8,14 +8,14 @@
                 <h1 class="display-5 animated fadeIn mb-4">Daftar motor</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Daftar motor</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-6 wow slideInRight" data-wow-delay="0.3s">
                 <img class="img-fluid" style="width: 100%; align-items:center"
-                    src="{{ asset('frontend/img/header/header-3.jpg') }}" alt="">
+                    src="{{ asset('frontend/img/carousel/carousel-3.jpg') }}" alt="">
             </div>
             <hr>
         </div>
@@ -39,7 +39,7 @@
             @if ($motos->isEmpty())
                 <div class="col-lg-12 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="alert alert-danger" role="alert">
-                        <h2>Maaf, motor tidak tersedia saat ini!</h2>
+                        <h2 class="text-white">Maaf, motor tidak tersedia saat ini!</h2>
                     </div>
                 </div>
                 @if ($isFiltered)
@@ -57,7 +57,7 @@
                         </div>
                         <div class="accordion" id="accordionFilters">
                             <!-- Filter motor -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingType">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseType" aria-expanded="true" aria-controls="collapseType">
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <!-- Filter Rentang Harga -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingPrice">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsePrice" aria-expanded="false" aria-controls="collapsePrice">
@@ -100,7 +100,7 @@
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="0" data-price-max="100000">Rp. 0 -
+                                                    data-price-min="60000" data-price-max="100000">Rp. 60000 -
                                                     100.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
@@ -112,16 +112,6 @@
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                     data-price-min="200000" data-price-max="300000">Rp. 200.000 -
                                                     300.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="300000" data-price-max="400000">Rp. 300.000 -
-                                                    400.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="400000" data-price-max="500000">Rp. 400.000 -
-                                                    500.000</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -135,7 +125,7 @@
                         @foreach ($motos as $moto)
                             <div class="col-lg-3 col-md-6 moto-item" data-category="{{ $moto->type->nama }}"
                                 data-passenger="{{ $moto->penumpang }}">
-                                <div class="property-item rounded overflow-hidden wow fadeInUp"
+                                <div class="property-item rounded overflow-hidden wow fadeInUp card-motor"
                                     data-wow-delay="{{ $loop->iteration * 0.1 }}s">
                                     <div class="position-relative overflow-hidden image-container">
                                         <img class="img-fluid" src="{{ asset('storage/' . $moto->image1) }}"
@@ -148,24 +138,14 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($moto->price) }} /
                                             hari</h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</a>
-                                        {{-- <p style="text-align: justify"></i>{{ $moto->description }}</p> --}}
+                                        <p class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</p>
+                                        
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
                                             <a href="{{ route('moto.show', $moto->id) }}"
-                                                class="btn btn-primary btn-pesan btn-lg mb-3">Pesan</a>
+                                                class="btn btn-primary btn-pesan mb-3">Pesan</a>
                                         </div>
-                                        {{-- <div class="d-flex border-top mt-3">
-                                        <div class="flex-fill text-center border-end py-3">
-                                            <i class="fa-solid fa-person text-primary me-2"></i>{{ $moto->penumpang }}
-                                            Penumpang
-                                        </div>
-                                        {{-- <div class="flex-fill text-center py-3">
-                                            <i class="fa-solid fa-door-closed text-primary me-2"></i>{{ $car->pintu }}
-                                            Pintu
-                                        </div> --}}
-                                        {{-- </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -222,6 +202,11 @@
 @push('script-alt')
     <script>
         $(document).ready(function() {
+
+            $('.card-motor div').click(function(e) {
+                e.preventDefault(); // Menghentikan aksi default, jika ada
+                e.stopPropagation(); // Menghentikan propagasi event
+            });
 
             $('.btn-pesan').click(function(e) {
                 e.stopPropagation();

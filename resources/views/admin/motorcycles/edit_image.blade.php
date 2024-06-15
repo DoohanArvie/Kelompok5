@@ -28,7 +28,7 @@
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="{{ $image }}" class="col-sm-2 col-form-label">Gambar {{ $image }}</label>
                                     <div class="col-sm-12">
-                                        <input type="file" name="{{ $image }}" class="form-control @error($image) is-invalid @enderror">
+                                        <input type="file" name="{{ $image }}" class="form-control @error($image) is-invalid @enderror" accept="image/*">
                                         @error($image)
                                             <div class="invalid-feedback">
                                                 {{ $message }}

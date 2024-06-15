@@ -19,9 +19,11 @@ class BookingController extends Controller
         $status = $request->input('status');
 
         if ($status) {
-            $bookings = Booking::where('booking_status', $status)->get();
+            $bookings = Booking::where('booking_status', $status)
+            ->orderByDesc('created_at')
+            ->get();
         } else {
-            $bookings = Booking::all();
+            $bookings = Booking::orderByDesc('created_at')->get();
         }
 
         return view('admin.bookings.index', compact('bookings'));

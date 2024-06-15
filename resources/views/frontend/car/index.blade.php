@@ -8,14 +8,14 @@
                 <h1 class="display-5 animated fadeIn mb-4">Daftar Mobil</h1>
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
                         <li class="breadcrumb-item text-body active" aria-current="page">Daftar Mobil</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-6 wow slideInRight" data-wow-delay="0.3s">
                 <img class="img-fluid" style="width: 100%; align-items:center"
-                    src="{{ asset('frontend/img/header/header-3.jpg') }}" alt="">
+                    src="{{ asset('frontend/img/carousel/carousel-2.jpg') }}" alt="">
             </div>
             <hr>
         </div>
@@ -40,7 +40,7 @@
             @if ($cars->isEmpty())
                 <div class="col-lg-12 text-center wow fadeInUp" data-wow-delay="0.2s">
                     <div class="alert alert-danger" role="alert">
-                        <h2>Maaf, mobil tidak tersedia saat ini!</h2>
+                        <h2 class="text-white">Maaf, mobil tidak tersedia saat ini!</h2>
                     </div>
                 </div>
                 @if ($isFiltered)
@@ -58,7 +58,7 @@
                         </div>
                         <div class="accordion" id="accordionFilters">
                             <!-- Filter Mobil -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingType">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseType" aria-expanded="true" aria-controls="collapseType">
@@ -73,7 +73,7 @@
                                                 <button class="btn btn-outline-primary active w-100" data-bs-toggle="pill"
                                                     data-filter="all">Semua</button>
                                             </li>
-                                            @foreach($types as $type)
+                                            @foreach ($types as $type)
                                                 <li class="nav-item mb-2">
                                                     <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                         data-filter="{{ $type->nama }}">{{ $type->nama }}</button>
@@ -84,7 +84,7 @@
                                 </div>
                             </div>
                             <!-- Filter Penumpang -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingPassenger">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsePassenger" aria-expanded="false"
@@ -102,38 +102,22 @@
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="2">4 Penumpang</button>
+                                                    data-passenger="4">4 Penumpang</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="4">6 Penumpang</button>
+                                                    data-passenger="6">6 Penumpang</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                     data-passenger="8">8 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="10">10 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="12">12 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="14">14 Penumpang</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-passenger="16">16 Penumpang</button>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <!-- Filter Rentang Harga -->
-                            <div class="accordion-item">
+                            <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingPrice">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsePrice" aria-expanded="false"
@@ -151,33 +135,23 @@
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="300000" data-price-max="400000">Rp. 300.000 -
-                                                    400.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="400000" data-price-max="500000">Rp. 400.000 -
+                                                    data-price-min="300000" data-price-max="500000">Rp. 300.000 -
                                                     500.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="600000" data-price-max="700000">Rp. 600.000 -
+                                                    data-price-min="500000" data-price-max="700000">Rp. 500.000 -
                                                     700.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="700000" data-price-max="800000">Rp. 700.000 -
-                                                    800.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="800000" data-price-max="1000000">Rp. 800.000 -
+                                                    data-price-min="700000" data-price-max="1000000">Rp. 700.000 -
                                                     1.000.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="1000000" data-price-max="1500000">Rp. 1.000.000
-                                                    - 1.500.000</button>
+                                                    data-price-min="1000000" data-price-max="1500000">Rp. 1.000.000 -
+                                                    1.500.000</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -191,7 +165,7 @@
                         @foreach ($cars as $car)
                             <div class="col-lg-3 col-md-6 car-item" data-category="{{ $car->type->nama }}"
                                 data-passenger="{{ $car->penumpang }}">
-                                <div class="property-item rounded overflow-hidden wow fadeInUp"
+                                <div class="property-item rounded overflow-hidden wow fadeInUp card-mobil"
                                     data-wow-delay="{{ $loop->iteration * 0.1 }}s">
                                     <div class="position-relative overflow-hidden image-container">
                                         <img class="img-fluid" src="{{ asset('storage/' . $car->image1) }}"
@@ -204,15 +178,15 @@
                                     <div class="p-4 property-content">
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($car->price) }} / hari
                                         </h5>
-                                        <a class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</a>
+                                        <p class="d-block h5 mb-2" href="">{{ $car->nama_mobil }}</p>
                                         {{-- <p style="text-align: justify"></i>{{ $car->description }}</p> --}}
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">
                                             <a href="{{ route('car.show', $car->id) }}"
-                                                class="btn btn-primary btn-pesan btn-lg">Pesan</a>
+                                                class="btn btn-primary btn-pesan">Pesan</a>
                                         </div>
-                                        <div class="d-flex border-top mt-3">
+                                        <div class="d-flex border-top mt-3 penumpang-container">
                                             <div class="flex-fill text-center border-end py-3">
                                                 <i class="fa-solid fa-person text-primary me-2"></i>{{ $car->penumpang }}
                                                 Penumpang
@@ -256,6 +230,7 @@
         .property-footer {
             margin-top: auto;
         }
+
         .image-container {
             position: relative;
             width: 100%;
@@ -278,6 +253,11 @@
 @push('script-alt')
     <script>
         $(document).ready(function() {
+
+            $('.card-mobil div').click(function(e) {
+                e.preventDefault(); // Menghentikan aksi default, jika ada
+                e.stopPropagation(); // Menghentikan propagasi event
+            });
 
             $('.btn-pesan').click(function(e) {
                 e.stopPropagation();
