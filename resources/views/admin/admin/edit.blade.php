@@ -58,17 +58,15 @@
                                                                         @endif
                                                                     </div>
                                                                 @endif
-                                                                <div class="mt-auto">
-                                                                    <a
-                                                                        href="{{ Storage::url('avatars/' . $admin->avatar) }}">{{ $admin->avatar }}</a>
-                                                                    <input type="file" id="avatar" name="avatar"
-                                                                        class="form-control @error('avatar') is-invalid @enderror"
-                                                                        accept=".jpg,.jpeg,.png">
-                                                                    @error('avatar')
-                                                                        <div class="invalid-feedback">
-                                                                            {{ $message }}
-                                                                        </div>
-                                                                    @enderror
+                                                                <div class="form-group row border-bottom pb-4">
+                                                                    <div class="mt-auto">
+                                                                        <input type="file" id="avatar" name="avatar" class="form-control @error('avatar') is-invalid @enderror" accept=".jpg,.jpeg,.png">
+                                                                        @error('avatar')
+                                                                            <div class="invalid-feedback">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -212,8 +210,44 @@
         <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    <div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="cropModalLabel">Crop Avatar</h5>
+                    <p class="text-muted">Pilih area yang ingin di-crop dan klik tombol "Crop".</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <img id="imageCrop" src="#" alt="Crop Preview">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button id="cropButton" type="button" class="btn btn-primary">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
+<style>
+    .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        overflow: hidden;
+    }
+    #imageCrop {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
 @push('script-alt')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <script>
         function togglePassword(element) {
             const $input = $(element).closest('.input-group').find('input');
@@ -227,5 +261,91 @@
                 $icon.removeClass('fa-eye').addClass('fa-eye-slash');
             }
         }
+        
     </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    var avatarInput = document.getElementById('avatar');
+    var image = document.getElementById('imageCrop');
+    var cropButton = document.getElementById('cropButton');
+    var cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
+    var deleteAvatarButton = document.getElementById('deleteAvatarButton');
+    var cropper;
+
+    avatarInput.addEventListener('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            avatarInput.value = '';
+            image.src = url;
+            cropModal.show();
+            if (cropper) {
+                cropper.destroy();
+            }
+            cropper = new Cropper(image, {
+                aspectRatio: 1,
+                viewMode: 1,
+                dragMode: 'move',
+                autoCropArea: 1,
+                responsive: true,
+                scalable: true,
+                zoomable: true,
+                zoomOnWheel: true,
+                minContainerWidth: 800,
+                minContainerHeight: 600,
+            });
+        };
+        var reader;
+        var file;
+        if (files && files.length > 0) {
+            file = files[0];
+            if (URL) {
+                done(URL.createObjectURL(file));
+            } else if (FileReader) {
+                reader = new FileReader();
+                reader.onload = function (e) {
+                    done(reader.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+
+    cropButton.addEventListener('click', function () {
+        if (cropper) {
+            var canvas = cropper.getCroppedCanvas({
+                width: 200,
+                height: 200,
+            });
+            canvas.toBlob(function (blob) {
+                var url = URL.createObjectURL(blob);
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = function () {
+                    var base64data = reader.result;
+                    var formData = new FormData();
+                    formData.append('avatar', blob);
+                    formData.append('_token', '{{ csrf_token() }}');
+
+                    fetch('{{ route("admin.settings.updateAvatar") }}', {
+                        method: 'POST',
+                        body: formData,
+                    }).then(response => response.json()).then(data => {
+                        if (data.success) {
+                            cropModal.hide();
+                            alert('Avatar berhasil diperbarui!');
+                            location.reload();
+                        } else {
+                            alert('Gagal memperbarui avatar.');
+                        }
+                    }).catch(error => {
+                        console.error(error);
+                        alert('Terjadi kesalahan.');
+                    });
+                };
+            });
+        }
+    });
+});
+</script>
+
 @endpush

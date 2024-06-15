@@ -42,8 +42,21 @@
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
                                     <label for="logo" class="col-sm-2 col-form-label">Logo</label>
-                                    <div class="col-sm-12">
+                                    @if ($setting->logo)
+                                    <div>
+                                       @if (in_array(pathinfo($setting->logo, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                        <img id="existingLogoPreview"
+                                        class="img-fluid"
+                                        src="{{ Storage::url($setting->logo) }}"
+                                        style="width: 100px;">
+                                        @endif
+                                    </div>
+                                @endif
+                                    <div class="mt-auto">
                                         <input type="file" class="form-control @error('logo') is-invalid @enderror" name="logo" id="logo">
+                                            <div class="mb-3" id="logo-section">
+                                                
+                                            </div>
                                         @error('logo')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -260,4 +273,128 @@
         <!-- /.container-fluid -->    
     </section>
     <!-- /.content -->
+     <!-- Modal untuk Crop Gambar -->
+<div class="modal fade" id="cropModal" tabindex="-1" aria-labelledby="cropModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="cropModalLabel">Crop Logo</h5>
+                    <p class="text-muted">Pilih area yang ingin di-crop dan klik tombol "Crop".</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <img id="imageCrop" src="#" alt="Crop Preview">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button id="cropButton" type="button" class="btn btn-primary">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        overflow: hidden;
+    }
+    #imageCrop {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+@push('script-alt')
+    <!-- Cropper.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    var logoInput = document.getElementById('logo');
+    var image = document.getElementById('imageCrop');
+    var cropButton = document.getElementById('cropButton');
+    var cropModal = new bootstrap.Modal(document.getElementById('cropModal'));
+    var cropper;
+
+    logoInput.addEventListener('change', function (e) {
+        var files = e.target.files;
+        var done = function (url) {
+            logoInput.value = '';
+            image.src = url;
+            cropModal.show();
+            if (cropper) {
+                cropper.destroy();
+            }
+            cropper = new Cropper(image, {
+                aspectRatio: 1,
+                viewMode: 1,
+                dragMode: 'move',
+                autoCropArea: 1,
+                responsive: true,
+                scalable: true,
+                zoomable: true,
+                zoomOnWheel: true,
+                minContainerWidth: 800,
+                minContainerHeight: 600,
+            });
+        };
+        var reader;
+        var file;
+        if (files && files.length > 0) {
+            file = files[0];
+            if (URL) {
+                done(URL.createObjectURL(file));
+            } else if (FileReader) {
+                reader = new FileReader();
+                reader.onload = function (e) {
+                    done(reader.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+
+    cropButton.addEventListener('click', function () {
+        if (cropper) {
+            var canvas = cropper.getCroppedCanvas({
+                width: 200,
+                height: 200,
+            });
+            canvas.toBlob(function (blob) {
+                var url = URL.createObjectURL(blob);
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = function () {
+                    var base64data = reader.result;
+                    var formData = new FormData();
+                    formData.append('logo', blob);
+                    formData.append('_token', '{{ csrf_token() }}');
+
+                    fetch('{{ route("admin.settings.updateLogo") }}', {
+                        method: 'POST',
+                        body: formData,
+                    }).then(response => response.json()).then(data => {
+                        if (data.success) {
+                            cropModal.hide();
+                            alert('Logo berhasil diperbarui!');
+                        } else {
+                            alert('Gagal memperbarui logo.');
+                        }
+                    }).catch(error => {
+                        console.error(error);
+                        alert('Terjadi kesalahan.');
+                    });
+                };
+            });
+        }
+    });
+});
+
+    </script>
+@endpush
 @endsection
