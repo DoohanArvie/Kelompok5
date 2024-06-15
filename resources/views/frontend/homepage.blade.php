@@ -22,15 +22,14 @@
                         <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-1.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-calya.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-2.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-innova.jpg') }}"
-                            alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-3.jpg') }}" alt="">
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 
     <!-- Header End -->
@@ -109,11 +108,11 @@
             @php
                 $advantages = [
                     [
-                        'title' => 'Murah, Aman dan Nyaman',
+                        'title' => 'Mudah, Aman dan Nyaman',
                         'icon' => 'fas fa-shield-alt',
                     ],
                     [
-                        'title' => 'Proses Mudah dan Cepat',
+                        'title' => 'Proses Cepat dan Praktis',
                         'icon' => 'fas fa-tachometer-alt',
                     ],
                     [
@@ -159,13 +158,6 @@
             @php
                 $steps = [
                     [
-                        'title' => 'Pilih Layanan dan Jadwal Rental',
-                        'description' =>
-                            'Pilih layanan yang Anda inginkan dan tentukan jadwal rental yang sesuai dengan kebutuhan Anda.',
-                        'icon' => 'fas fa-car',
-                        'color' => 'text-primary',
-                    ],
-                    [
                         'title' => 'Melengkapi Data Diri',
                         'description' =>
                             'Isi formulir dengan data diri lengkap dan informasi yang diperlukan untuk proses pemesanan.',
@@ -173,14 +165,22 @@
                         'color' => 'text-success',
                     ],
                     [
-                        'title' => 'Kami Melakukan Konfirmasi Pesanan',
-                        'description' => 'Tunggu konfirmasi pesanan dari kami melalui email atau pesan singkat.',
+                        'title' => 'Memilih Kendaraan',
+                        'description' =>
+                            'Pilih kendaraan yang Anda inginkan dan tentukan jadwal rental yang sesuai dengan kebutuhan Anda.',
+                        'icon' => 'fas fa-tachometer-alt',
+                        'color' => 'text-primary',
+                    ],
+                    [
+                        'title' => 'Melakukan Pembayaran',
+                        'description' =>
+                            'Kami telah menyediakan proses pembayaran melalui transfer bank dan dompet digital',
                         'icon' => 'fas fa-check',
                         'color' => 'text-warning',
                     ],
                     [
-                        'title' => 'Layanan Siap Digunakan Sesuai Jadwal',
-                        'description' => 'Nikmati layanan rental sesuai dengan jadwal yang telah Anda tentukan.',
+                        'title' => 'Kendaraan Siap Pakai',
+                        'description' => 'Nikmati kendaraan rental sesuai dengan jadwal yang telah Anda tentukan.',
                         'icon' => 'fas fa-clock',
                         'color' => 'text-danger',
                     ],
