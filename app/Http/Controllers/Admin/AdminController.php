@@ -100,6 +100,27 @@ class AdminController extends Controller
             'alert-type' => 'success'
         ]);
     }
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $admin = Auth::user();
+
+        // Delete old avatar if it exists
+        if ($admin->avatar) {
+            Storage::delete('public/avatars/' . $admin->avatar);
+        }
+
+        // Store new avatar
+        $avatarPath = $request->file('avatar')->store('public/avatars');
+        $admin->avatar = basename($avatarPath);
+        $admin->save();
+
+        return response()->json(['success' => true]);
+    }
+
 
     public function updatePassword(Request $request)
     {
