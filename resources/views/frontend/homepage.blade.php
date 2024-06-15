@@ -22,15 +22,14 @@
                         <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-1.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-calya.jpg') }}" alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-2.jpg') }}" alt="">
                     </div>
                     <div class="owl-carousel-item">
-                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-innova.jpg') }}"
-                            alt="">
+                        <img class="img-fluid" src="{{ asset('frontend/img/carousel/carousel-3.jpg') }}" alt="">
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 
     <!-- Header End -->
@@ -109,11 +108,11 @@
             @php
                 $advantages = [
                     [
-                        'title' => 'Murah, Aman dan Nyaman',
+                        'title' => 'Mudah, Aman dan Nyaman',
                         'icon' => 'fas fa-shield-alt',
                     ],
                     [
-                        'title' => 'Proses Mudah dan Cepat',
+                        'title' => 'Proses Cepat dan Praktis',
                         'icon' => 'fas fa-tachometer-alt',
                     ],
                     [
@@ -159,13 +158,6 @@
             @php
                 $steps = [
                     [
-                        'title' => 'Pilih Layanan dan Jadwal Rental',
-                        'description' =>
-                            'Pilih layanan yang Anda inginkan dan tentukan jadwal rental yang sesuai dengan kebutuhan Anda.',
-                        'icon' => 'fas fa-car',
-                        'color' => 'text-primary',
-                    ],
-                    [
                         'title' => 'Melengkapi Data Diri',
                         'description' =>
                             'Isi formulir dengan data diri lengkap dan informasi yang diperlukan untuk proses pemesanan.',
@@ -173,14 +165,22 @@
                         'color' => 'text-success',
                     ],
                     [
-                        'title' => 'Kami Melakukan Konfirmasi Pesanan',
-                        'description' => 'Tunggu konfirmasi pesanan dari kami melalui email atau pesan singkat.',
+                        'title' => 'Memilih Kendaraan',
+                        'description' =>
+                            'Pilih kendaraan yang Anda inginkan dan tentukan jadwal rental yang sesuai dengan kebutuhan Anda.',
+                        'icon' => 'fas fa-tachometer-alt',
+                        'color' => 'text-primary',
+                    ],
+                    [
+                        'title' => 'Melakukan Pembayaran',
+                        'description' =>
+                            'Kami telah menyediakan proses pembayaran melalui transfer bank dan dompet digital',
                         'icon' => 'fas fa-check',
                         'color' => 'text-warning',
                     ],
                     [
-                        'title' => 'Layanan Siap Digunakan Sesuai Jadwal',
-                        'description' => 'Nikmati layanan rental sesuai dengan jadwal yang telah Anda tentukan.',
+                        'title' => 'Kendaraan Siap Pakai',
+                        'description' => 'Nikmati kendaraan rental sesuai dengan jadwal yang telah Anda tentukan.',
                         'icon' => 'fas fa-clock',
                         'color' => 'text-danger',
                     ],
@@ -522,28 +522,16 @@
 
                 if (kendaraan === 'Mobil') {
                     hargaOptions = [{
-                            value: '300000-400000',
-                            text: 'Rp. 300.000 - Rp. 400.000'
+                            value: '300000-500000',
+                            text: 'Rp. 300.000 - Rp. 500.000'
                         },
                         {
-                            value: '400000-500000',
-                            text: 'Rp. 400.000 - Rp. 500.000'
+                            value: '500000-700000',
+                            text: 'Rp. 500.000 - Rp. 700.000'
                         },
                         {
-                            value: '500000-600000',
-                            text: 'Rp. 500.000 - Rp. 600.000'
-                        },
-                        {
-                            value: '600000-700000',
-                            text: 'Rp. 600.000 - Rp. 700.000'
-                        },
-                        {
-                            value: '700000-800000',
-                            text: 'Rp. 700.000 - Rp. 800.000'
-                        },
-                        {
-                            value: '800000-1000000',
-                            text: 'Rp. 800.000 - Rp. 1.000.000'
+                            value: '700000-1000000',
+                            text: 'Rp. 700.000 - Rp. 1.000.000'
                         },
                         {
                             value: '1000000-1500000',
@@ -552,8 +540,8 @@
                     ];
                 } else if (kendaraan === 'Motor') {
                     hargaOptions = [{
-                            value: '0-100000',
-                            text: 'Rp. 0 - Rp. 100.000'
+                            value: '60000-100000',
+                            text: 'Rp. 60.000 - Rp. 100.000'
                         },
                         {
                             value: '100000-200000',
@@ -592,23 +580,7 @@
                         {
                             value: '8',
                             text: '8 Penumpang'
-                        },
-                        {
-                            value: '10',
-                            text: '10 Penumpang'
-                        },
-                        {
-                            value: '12',
-                            text: '12 Penumpang'
-                        },
-                        {
-                            value: '14',
-                            text: '14 Penumpang'
-                        },
-                        {
-                            value: '16',
-                            text: '16 Penumpang'
-                        }
+                        } 
                     ];
                 }
 

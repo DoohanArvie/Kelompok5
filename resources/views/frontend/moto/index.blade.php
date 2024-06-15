@@ -100,7 +100,7 @@
                                             </li>
                                             <li class="nav-item mb-2">
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="0" data-price-max="100000">Rp. 0 -
+                                                    data-price-min="60000" data-price-max="100000">Rp. 60000 -
                                                     100.000</button>
                                             </li>
                                             <li class="nav-item mb-2">
@@ -112,16 +112,6 @@
                                                 <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
                                                     data-price-min="200000" data-price-max="300000">Rp. 200.000 -
                                                     300.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="300000" data-price-max="400000">Rp. 300.000 -
-                                                    400.000</button>
-                                            </li>
-                                            <li class="nav-item mb-2">
-                                                <button class="btn btn-outline-primary w-100" data-bs-toggle="pill"
-                                                    data-price-min="400000" data-price-max="500000">Rp. 400.000 -
-                                                    500.000</button>
                                             </li>
                                         </ul>
                                     </div>
