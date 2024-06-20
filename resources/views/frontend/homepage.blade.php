@@ -288,7 +288,7 @@
                             </div>
                         @endforeach
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="btn btn-primary py-3 px-5" href="">Cari Mobil Lainnya</a>
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('daftar-mobil') }}">Cari Mobil Lainnya</a>
                         </div>
                     </div>
                 </div>
@@ -327,7 +327,7 @@
                             </div>
                         @endforeach
                         <div class="col-12 text-center" data-wow-delay="0.1s">
-                            <a class="btn btn-primary py-3 px-5" href="">Cari Motor Lainnya</a>
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('daftar-motor') }}">Cari Motor Lainnya</a>
                         </div>
                     </div>
                 </div>
@@ -419,31 +419,6 @@
         </div>
     </div>
     <!-- Faq End -->
-
-    <!-- CSS untuk warna abu-abu -->
-    <style>
-        .clicked {
-            background-color: #e0e0e0;
-        }
-    </style>
-
-    <!-- JavaScript untuk menambahkan kelas 'clicked' -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var accordionButtons = document.querySelectorAll('.accordion-button');
-            accordionButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    // Remove 'clicked' class from all buttons
-                    accordionButtons.forEach(function(btn) {
-                        btn.classList.remove('clicked');
-                    });
-                    // Add 'clicked' class to the clicked button
-                    button.classList.add('clicked');
-                });
-            });
-        });
-    </script>
-
     <!-- Call to Action Start -->
     <div class="container-xxl py-5">
         <div class="container">
