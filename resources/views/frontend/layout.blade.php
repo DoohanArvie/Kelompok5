@@ -122,14 +122,14 @@
                 <div class="col-lg-8 col-md-6">
                     <div class="footer-bottom d-flex align-items-center justify-content-center w-100"
                         style="height: 75px;">
-                        <p class="mb-0">&copy; OtoRent. All Rights Reserved. Designed by <a>Ankavi Team</a>
+                        <p class="mb-0">&copy; 2024 OtoRent. All Rights Reserved. Designed by <a>Ankavi Team</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Footer End -->
 
 

@@ -206,8 +206,8 @@ class BookingController extends Controller
         $booking->snap_token = $snapToken;
         $booking->save();
 
-        session()->flash('message', 'Pemesanan berhasil! Silakan lakukan pembayaran.');
-        session()->flash('alert-type', 'success');
+        // session()->flash('message', 'Pemesanan berhasil! Silakan lakukan pembayaran.');
+        // session()->flash('alert-type', 'success');
 
         return view('frontend.vehicle.booking_confirmation', compact('booking', 'vehicle', 'feedbacks', 'user'));
     }
