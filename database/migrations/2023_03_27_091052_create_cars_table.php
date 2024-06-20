@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_mobil');
             $table->string('slug');
+            $table->string('plat_nomor');
             $table->foreignId('type_id');
             $table->decimal('price', 15, 2);
             $table->integer('pintu');

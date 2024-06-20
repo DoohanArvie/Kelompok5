@@ -27,6 +27,7 @@ class MotorcycleController extends Controller
     {
         $request->validate([
             'nama_motor' => 'required|string|max:255',
+            'plat_nomor' => 'required|string|max:10',
             'type_id' => 'required|integer',
             'price' => 'required|numeric',
             'image1' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -39,6 +40,7 @@ class MotorcycleController extends Controller
 
         $motorcycle = new Motorcycle();
         $motorcycle->nama_motor = $request->nama_motor;
+        $motorcycle->plat_nomor = $request->plat_nomor;
         $motorcycle->type_id = $request->type_id;
         $motorcycle->price = $request->price;
         $motorcycle->slug = Str::slug($request->nama_motor, '-');
@@ -83,6 +85,7 @@ class MotorcycleController extends Controller
     {
         $request->validate([
             'nama_motor' => 'required|string|max:255',
+            'plat_nomor' => 'required|string|max:10',
             'type_id' => 'required|integer',
             'price' => 'required|numeric',
             'image1' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -94,6 +97,7 @@ class MotorcycleController extends Controller
         ]);
 
         $motorcycle->nama_motor = $request->nama_motor;
+        $motorcycle->plat_nomor = $request->plat_nomor;
         $motorcycle->type_id = $request->type_id;
         $motorcycle->price = $request->price;
         $motorcycle->slug = Str::slug($request->nama_motor, '-');

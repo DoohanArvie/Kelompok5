@@ -25,6 +25,7 @@
                                         <th>Kode Booking</th>
                                         <th>Jenis Kendaraan</th>
                                         <th>Kendaraan</th>
+                                        <th>Plat Nomor</th>
                                         <th>Tanggal Mulai Sewa</th>
                                         <th>Tanggal Selesai Sewa</th>
                                         <th>Metode Pickup</th>
@@ -42,6 +43,7 @@
                                             <td>{{ $booking->booking_code }}</td>
                                             <td>{{ $booking->vehicle_type == 'car' ? 'Mobil' : 'Motor' }}</td>
                                             <td>{{ $booking->vehicle->nama_mobil ?? $booking->vehicle->nama_motor }}</td>
+                                            <td>{{ $booking->vehicle->plat_nomor }}</td>
                                             <td>{{ $booking->start_date }}</td>
                                             <td>{{ $booking->end_date }}</td>
                                             <td>{{ $booking->pickup }}</td>

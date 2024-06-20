@@ -38,6 +38,7 @@
             <div class="col-lg-5 mt-3">
                 <div class="card p-4 wow slideInRight" data-wow-delay="0.1s">
                     <h1>{{ $motos->nama_motor }}</h1>
+                    <h5>{{ $motos->plat_nomor }}</h5>
                     <div class="row">
                         <div class="col">
                             <p class="lead mb-0">Rp. {{ number_format($motos->price) }} / hari</p>

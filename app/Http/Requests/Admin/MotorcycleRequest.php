@@ -21,6 +21,7 @@ class MotorcycleRequest extends FormRequest
     {
         return [
             'nama_motor' => 'required|string|max:255',
+            'plat_nomor' => 'required|string|max:10',
             'type_id' => 'required|exists:type_motorcycles,id',
             'price' => 'required|numeric',
             'image1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
