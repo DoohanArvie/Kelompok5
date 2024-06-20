@@ -6,12 +6,8 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
                 <h1 class="display-5 animated fadeIn mb-4">Tentang Kami</h1>
-                <nav aria-label="breadcrumb animated fadeIn">
-                    <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
-                        <li class="breadcrumb-item text-body active" aria-current="page">Tentang Kami</li>
-                    </ol>
-                </nav>
+                <p class="lead animated fadeIn mb-4">Mari mengenal kami lebih lanjut melalui artikel dibawah ini, yang
+                    memberikan gambaran singkat tentang perusahaan dan anggota tim kami.</p>
             </div>
             <div class="col-md-6 wow slideInRight" data-wow-delay="0.3s">
                 <img class="img-fluid" style="width: 100%; align-items:center"
@@ -21,7 +17,6 @@
         </div>
     </div>
     <!-- Header End -->
-
     <!-- About Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -44,7 +39,6 @@
         </div>
     </div>
     <!-- About End -->
-
     <!-- Team Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -73,6 +67,5 @@
             </div>
         </div>
     </div>
-
     <!-- Team End -->
 @endsection

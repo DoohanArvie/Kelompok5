@@ -21,7 +21,7 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow">
                     <div class="card-header bg-primary text-white font-weight-bold">
-                        {{ __('Profile Settings') }}
+                        {{ __('Ubah Profil') }}
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data"
@@ -190,7 +190,7 @@
                                     <p><strong>Akun Anda telah Terverifikasi</strong></p>
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Perbarui Profil') }}</button>
                         </form>
                     </div>
                 </div>
@@ -199,7 +199,7 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow">
                     <div class="card-header bg-primary text-white font-weight-bold">
-                        {{ __('Update Password') }}
+                        {{ __('Ubah Password') }}
                     </div>
                     <div class="card-body">
                         <form action="{{ route('password.update.custom') }}" method="POST">
@@ -265,7 +265,7 @@
                                 </div>
                                 <p class="text-danger mt-3">* Wajib diisi</p>
                             </div>
-                            <button type="submit" class="btn btn-primary">{{ __('Update Password') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Perbarui Password') }}</button>
                         </form>
                     </div>
                 </div>

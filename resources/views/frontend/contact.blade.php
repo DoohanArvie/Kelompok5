@@ -5,12 +5,8 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
                 <h1 class="display-5 animated fadeIn mb-4">Kontak Kami</h1>
-                <nav aria-label="breadcrumb animated fadeIn">
-                    <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
-                        <li class="breadcrumb-item text-body active" aria-current="page">Kontak Kami</li>
-                    </ol>
-                </nav>
+                <p class="lead animated fadeIn mb-4">Untuk informasi lebih lanjut, silakan hubungi kami melalui kontak yang
+                    tersedia di halaman Kontak Kami.</p>
             </div>
             <div class="col-md-6 wow slideInRight" data-wow-delay="0.3s">
                 <img class="img-fluid" style="width: 100%; align-items:center"
@@ -32,17 +28,16 @@
                     <div class="container mt-5">
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-12 d-flex">
-                                <div class="card flex-fill text-center border hover-bg-enlarge">
+                                <div class="card flex-fill text-center border">
                                     <div class="card-body">
                                         <span class="d-block mb-2"><i class="fas fa-phone fs-2"></i></span>
                                         <h3 class="h5 mb-2">Nomor Telepon</h3>
-                                        <a href="https://wa.me/{{ $setting->phone }}"
-                                            class="text-decoration-none text-primary">{{ $setting->phone ?? '-' }}</a>
+                                        <p class="text-decoration-none text-primary">{{ $setting->phone ?? '-' }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-12 d-flex">
-                                <div class="card flex-fill text-center border hover-bg-enlarge">
+                                <div class="card flex-fill text-center border">
                                     <div class="card-body">
                                         <span class="d-block mb-2"><i class="fas fa-envelope fs-2"></i></span>
                                         <h3 class="h5 mb-2">Email</h3>
@@ -51,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-12 d-flex">
-                                <div class="card flex-fill text-center border hover-bg-enlarge">
+                                <div class="card flex-fill text-center border">
                                     <div class="card-body">
                                         <span class="d-block mb-2"><i class="fas fa-map-marker-alt fs-2"></i></span>
                                         <h3 class="h5 mb-2">Lokasi</h3>
@@ -60,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-12 d-flex">
-                                <div class="card flex-fill text-center border hover-bg-enlarge">
+                                <div class="card flex-fill text-center border ">
                                     <div class="card-body">
                                         <span class="d-block mb-2"><i class="fas fa-clock fs-2"></i></span>
                                         <h3 class="h5 mb-2">Jam Buka</h3>
