@@ -30,11 +30,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="tanggal_mulai" class="form-label">Tanggal Mulai Sewa:</label>
-                            <input type="text" class="form-control" id="tanggal_mulai" value="{{ $startDate }}" name="start_date" readonly>
+                            <input type="text" class="form-control" id="tanggal_mulai" value="{{ $formattedStartDate }}" name="start_date" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="tanggal_selesai" class="form-label">Tanggal Selesai Sewa:</label>
-                            <input type="text" class="form-control" id="tanggal_selesai" value="{{ $endDate }}" name="end_date" readonly>
+                            <input type="text" class="form-control" id="tanggal_selesai" value="{{ $formattedEndDate }}" name="end_date" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="total_hari" class="form-label">Total Hari:</label>

@@ -55,11 +55,11 @@
                             </tr>
                             <tr>
                                 <th scope="row">Mulai Sewa</th>
-                                <td>{{ $booking->start_date }}</td>
+                                <td>{{ \Carbon\Carbon::parse($booking->start_date)->translatedFormat('j F Y') }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Selesai Sewa</th>
-                                <td>{{ $booking->end_date }}</td>
+                                <td>{{ \Carbon\Carbon::parse($booking->end_date)->translatedFormat('j F Y') }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Biaya Sewa {{ $booking->vehicle_type == 'car' ? 'Mobil' : 'Motor' }}

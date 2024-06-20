@@ -85,7 +85,7 @@
                                                 <td>{{ $booking->vehicle_type == 'car' ? $booking->vehicle->nama_mobil : $booking->vehicle->nama_motor }}
                                                 </td>
                                                 {{-- <td>{{ $booking->vehicle_type == 'car' ? $booking->vehicle->nama_mobil : $booking->vehicle->nama_motor }} - {{ $booking->vehicle->type->nama }}</td> --}}
-                                                <td>{{ $booking->start_date }}</td>
+                                                <td>{{ $booking->start_date->format('d M y') }}</td>
                                                 <td>{{ $booking->end_date }}</td>
                                                 <td>{{ $booking->days_count }} Hari</td>
                                                 <td>{{ $booking->pickup }}</td>
