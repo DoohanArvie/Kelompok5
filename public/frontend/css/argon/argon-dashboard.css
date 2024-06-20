@@ -21114,6 +21114,9 @@ fieldset:disabled .btn {
     height: 100%;
   }
 
+.dropdown:not(.dropdown-hover) .dropdown-menu {
+    margin-top: 30px !important;
+}
 
   .dropdown .dropdown-menu:before {
     font-family: "FontAwesome";
@@ -21475,12 +21478,12 @@ fieldset:disabled .btn {
 }
 
 .input-group .form-control:not(:first-child) {
-  border-left: 0;
+  /* border-left: 0; */
   padding-left: 0;
 }
 
 .input-group .form-control:not(:last-child) {
-  border-right: 0;
+  /* border-right: 0; */
   padding-right: 0;
 }
 

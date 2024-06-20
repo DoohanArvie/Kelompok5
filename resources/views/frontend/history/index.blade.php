@@ -111,17 +111,21 @@
                         @csrf
                         <div class="mb-3">
                             <label for="booking_code">Kode Booking</label>
+                            <span class="text-danger text-lg">*</span>
                             <input type="text" class="form-control" name="booking_code" id="booking_code" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="vehicle_name">Nama Kendaraan</label>
+                            <span class="text-danger text-lg">*</span>
                             <input type="text" class="form-control" name="vehicle_name" id="vehicle_name" readonly>
                         </div>
                         <div id="paymentSection" style="display: none;">
                             <div class="mb-3">
                                 <label for="proof_payment">Bukti Transfer</label>
+                                <span class="text-danger text-lg">*</span>
                                 <input type="file" class="form-control" name="proof_payment" id="proof_payment"
                                     accept="image/*">
+                                <p class="text-sm mt-1">Maksimal 2 MB</p>
                             </div>
                             <div class="mb-3">
                                 <label for="refund_account">Rekening Bank atau Dompet Digital
@@ -137,8 +141,9 @@
                             <label for="reason">Alasan Pembatalan
                                 <span class="text-danger text-lg">*</span>
                             </label>
-                            <textarea class="form-control" name="reason" id="reason" rows="3" required></textarea>
+                            <textarea class="form-control" name="reason" id="reason" rows="3" placeholder="Alasan pembatalan" required></textarea>
                         </div>
+                        <p class="text-danger mt-3">* Wajib diisi</p>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger">Batalkan Sewa</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
@@ -168,10 +173,12 @@
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <div class="mb-3">
                             <label for="feedback">Feedback</label>
+                            <span class="text-danger text-lg">*</span>
                             <textarea class="form-control" id="feedback" name="feedback" rows="3" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="rating">Rating</label>
+                            <span class="text-danger text-lg">*</span>
                             <div class="rating-stars">
                                 <span class="star" data-rating="1"><i class="fas fa-star text-secondary"></i></span>
                                 <span class="star" data-rating="2"><i class="fas fa-star text-secondary"></i></span>
@@ -183,9 +190,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="user_name">Nama Pengguna</label>
+                            <span class="text-danger text-lg">*</span>
                             <input type="text" class="form-control" id="user_name" name="user_name"
                                 value="{{ Auth::user()->name }}" required>
                         </div>
+                        <p class="text-danger">* Wajib diisi</p>
                         <button type="submit" class="btn btn-primary">Kirim Feedback</button>
                     </form>
                 </div>
