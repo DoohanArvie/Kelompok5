@@ -6,12 +6,8 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
                 <h1 class="display-5 animated fadeIn mb-4">Daftar motor</h1>
-                <nav aria-label="breadcrumb animated fadeIn">
-                    <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
-                        <li class="breadcrumb-item text-body active" aria-current="page">Daftar motor</li>
-                    </ol>
-                </nav>
+                <p class="lead animated fadeIn mb-4">Temukan motor ideal Anda, dengan pilihan kategori dan rentang harga yang
+                    telah kami sediakan !</p>
             </div>
             <div class="col-md-6 wow slideInRight" data-wow-delay="0.3s">
                 <img class="img-fluid" style="width: 100%; align-items:center"
@@ -27,7 +23,7 @@
         <div class="row g-0 gx-5 align-items-end">
             <div class="col-lg-6">
                 <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                    <h1 class="mb-3">Motor</h1>
+                    <h1 class="mb-3">Daftar Motor</h1>
                     <p>Temukan motor yang sesuai dengan kebutuhan dan preferensi Anda!</p>
                 </div>
             </div>
@@ -139,7 +135,7 @@
                                         <h5 class="text-primary mb-3 price">Rp. {{ number_format($moto->price) }} /
                                             hari</h5>
                                         <p class="d-block h5 mb-2" href="">{{ $moto->nama_motor }}</p>
-                                        
+
                                     </div>
                                     <div class="property-footer">
                                         <div class="d-flex justify-content-end p-4 pb-0">

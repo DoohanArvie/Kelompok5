@@ -21,10 +21,11 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow">
                     <div class="card-header bg-primary text-white font-weight-bold">
-                        {{ __('Profile Settings') }}
+                        {{ __('Ubah Profil') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" id="profileForm">
+                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data"
+                            id="profileForm">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5 d-flex flex-column mb-3">
@@ -134,7 +135,7 @@
                                     <p><strong>Akun Anda telah Terverifikasi</strong></p>
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Perbarui Profil') }}</button>
                         </form>
                     </div>
                 </div>
@@ -143,7 +144,7 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow">
                     <div class="card-header bg-primary text-white font-weight-bold">
-                        {{ __('Update Password') }}
+                        {{ __('Ubah Password') }}
                     </div>
                     <div class="card-body">
                         <form action="{{ route('password.update.custom') }}" method="POST">
@@ -205,7 +206,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">{{ __('Update Password') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Perbarui Password') }}</button>
                         </form>
                     </div>
                 </div>
@@ -252,10 +253,10 @@
         }
     </style>
 
-@push('script-alt')
-    <!-- Cropper.js -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    @push('script-alt')
+        <!-- Cropper.js -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
