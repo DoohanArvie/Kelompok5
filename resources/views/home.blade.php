@@ -242,7 +242,7 @@
                             </div>
                             <div class="col-4 position-absolute end-0">
                                 <div class="icon icon-shape bg-gradient-danger shadow-primary text-center rounded-circle">
-                                    <i class="fa-solid fa-rectangle-list text-lg opacity-10" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-user text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -289,7 +289,7 @@
                                     class="fa fa-arrow-{{ $percentageChangeHubungiKami > 0 ? 'up text-success' : ($percentageChangeHubungiKami < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
                                 <span class="font-weight-bold">
                                     @if ($percentageChangeHubungiKami != 0)
-                                        {{ number_format(abs($percentageChangeHubungiKami), 0) }}
+                                        {{ number_format(abs($percentageChangeHubungiKami), 0) }}%
                                         {{ $percentageChangeHubungiKami > 0 ? 'lebih banyak' : 'lebih sedikit' }}
                                     @else
                                         {{ number_format($percentageChangeHubungiKami, 0) }}%

@@ -24,7 +24,8 @@
                         {{ __('Profile Settings') }}
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" id="profileForm">
+                        <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data"
+                            id="profileForm">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5 d-flex flex-column mb-3">
@@ -41,22 +42,39 @@
                                         @endif
                                     </div>
                                     <div class="mt-auto">
-                                        <input type="file" id="avatar" name="avatar"
-                                            class="form-control @error('avatar') is-invalid @enderror mt-3"
-                                            accept="image/*">
-                                        @error('avatar')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                        <div class="input-group mt-3">
+                                            <input type="file" id="avatar" name="avatar"
+                                                class="form-control @error('avatar') is-invalid @enderror" accept="image/*">
+                                            <span class="input-group-text">
+                                                <i class="fa-solid fa-upload text-lg text-primary"></i>
+                                                <span class="text-danger text-lg">*</span>
+                                            </span>
+                                            @error('avatar')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-7 d-flex flex-column">
                                     <div class="mb-3">
                                         <label for="name"
                                             class="form-label font-weight-bold">{{ __('Nama') }}</label>
-                                        <input type="text" id="name" name="name" class="form-control bg-light"
-                                            value="{{ Auth::user()->name }}" required disabled>
+                                        <div class="input-group">
+                                            <input type="text" id="name" name="name"
+                                                class="form-control bg-light" value="{{ Auth::user()->name }}" required
+                                                disabled>
+                                            <span class="input-group-text">
+                                                <i class="fa-solid fa-user text-primary text-lg"></i>
+                                                <span class="text-danger text-lg">*</span>
+                                            </span>
+                                            @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="email"
@@ -77,14 +95,31 @@
                                     <div class="mb-3">
                                         <label for="phone"
                                             class="form-label font-weight-bold">{{ __('Nomor Handphone') }}</label>
-                                        <input type="number" id="phone" name="phone" class="form-control"
-                                            value="{{ $user->phone ?? '' }}">
+                                        <div class="input-group">
+                                            <input type="number" id="phone" name="phone" class="form-control"
+                                                placeholder="Nomor Handphone Anda" value="{{ $user->phone ?? '' }}">
+                                            <span class="input-group-text">
+                                                <i class="fa-solid fa-phone text-primary text-lg"></i>
+                                                <span class="text-danger text-lg">*</span>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label font-weight-bold">{{ __('Alamat') }}</label>
-                                <textarea id="address" name="address" class="form-control" rows="4" required>{{ $user->address ?? '' }}</textarea>
+                                <div class="input-group">
+                                    <textarea id="address" name="address" class="form-control" rows="4" placeholder="Masukkan Alamat Anda" required>{{ $user->address ?? '' }}</textarea>
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-location-dot text-primary text-lg"></i>
+                                        <span class="text-danger text-lg">*</span>
+                                    </span>
+                                    @error('address')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <div class="row">
@@ -100,9 +135,19 @@
                                             </div>
                                         @endif
                                         <div class="mt-auto">
-                                            <a href="{{ Storage::url('ktp/' . $user->ktp) }}">{{ $user->ktp }}</a>
-                                            <input type="file" id="ktp" name="ktp" class="form-control"
-                                                accept=".pdf,.jpg,.jpeg,.png">
+                                            <div class="input-group mt-3">
+                                                <input type="file" id="ktp" name="ktp" class="form-control @error('ktp') is-invalid @enderror"
+                                                    accept=".pdf,.jpg,.jpeg,.png">
+                                                <span class="input-group-text">
+                                                    <i class="fa-solid fa-upload text-primary text-lg"></i>
+                                                    <span class="text-danger text-lg">*</span>
+                                                </span>
+                                                @error('ktp')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-6 d-flex flex-column">
@@ -117,12 +162,23 @@
                                             </div>
                                         @endif
                                         <div class="mt-auto">
-                                            <a href="{{ Storage::url('sim/' . $user->sim) }}">{{ $user->sim }}</a>
-                                            <input type="file" id="sim" name="sim" class="form-control"
-                                                accept=".pdf,.jpg,.jpeg,.png">
+                                            <div class="input-group mt-3">
+                                                <input type="file" id="sim" name="sim" class="form-control @error('sim') is-invalid @enderror"
+                                                    accept=".pdf,.jpg,.jpeg,.png">
+                                                <span class="input-group-text">
+                                                    <i class="fa-solid fa-upload text-primary text-lg"></i>
+                                                    <span class="text-danger text-lg">*</span>
+                                                </span>
+                                                @error('sim')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <p class="text-danger mt-3">* Wajib diisi</p>
                             </div>
                             <div class="mb-3">
                                 <p>{{ __('Status Akun') }} : <strong>{{ $user->account_status }}</strong></p>
@@ -154,9 +210,10 @@
                             <div class="mb-3">
                                 <label for="current_password"
                                     class="form-label font-weight-bold">{{ __('Password Sekarang') }}</label>
+                                    <span class="text-danger text-lg">*</span>
                                 <div class="input-group">
                                     <input type="password" id="current_password" name="current_password"
-                                        class="form-control @error('current_password') is-invalid @enderror" required
+                                        class="form-control @error('current_password') is-invalid @enderror" placeholder="{{ __('Masukan Password Sekarang') }}" required
                                         autocomplete="current-password">
                                     <span class="input-group-text" onclick="togglePassword(this)"
                                         style="cursor: pointer;">
@@ -172,9 +229,10 @@
                             <div class="mb-3">
                                 <label for="password"
                                     class="form-label font-weight-bold">{{ __('Password Baru') }}</label>
+                                    <span class="text-danger text-lg">*</span>
                                 <div class="input-group">
                                     <input type="password" id="password" name="password"
-                                        class="form-control @error('password') is-invalid @enderror" required
+                                        class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('Masukan Password Baru') }}" required
                                         autocomplete="new-password">
                                     <span class="input-group-text" onclick="togglePassword(this)"
                                         style="cursor: pointer;">
@@ -189,10 +247,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="password_confirmation"
-                                    class="form-label font-weight-bold">{{ __('Konfirmasi Password') }}</label>
+                                    class="form-label font-weight-bold">{{ __('Konfirmasi Password Baru') }}</label>
+                                    <span class="text-danger text-lg">*</span>
                                 <div class="input-group">
                                     <input type="password" id="password_confirmation" name="password_confirmation"
-                                        class="form-control @error('password') is-invalid @enderror" required
+                                        class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('Konfirmasi Password Baru') }}" required
                                         autocomplete="new-password">
                                     <span class="input-group-text" onclick="togglePassword(this)"
                                         style="cursor: pointer;">
@@ -204,6 +263,7 @@
                                         </div>
                                     @enderror
                                 </div>
+                                <p class="text-danger mt-3">* Wajib diisi</p>
                             </div>
                             <button type="submit" class="btn btn-primary">{{ __('Update Password') }}</button>
                         </form>
@@ -252,10 +312,10 @@
         }
     </style>
 
-@push('script-alt')
-    <!-- Cropper.js -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    @push('script-alt')
+        <!-- Cropper.js -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
