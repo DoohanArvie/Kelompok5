@@ -30,13 +30,13 @@
                             <div class="mb-3">
                                 <label for="start_date" class="form-label">Tanggal Mulai</label>
                                 <span class="text-danger text-lg">*</span>
-                                <input type="date" class="form-control" name="start_date" id="start_date" required>
+                                <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Pilih Tanggal Mulai" required>
                             </div>
-
+                    
                             <div class="mb-3">
                                 <label for="end_date" class="form-label">Tanggal Selesai</label>
                                 <span class="text-danger text-lg">*</span>
-                                <input type="date" class="form-control" name="end_date" id="end_date" required>
+                                <input type="text" class="form-control" name="end_date" id="end_date" placeholder="Pilih Tanggal Selesai" required>
                             </div>
 
                             <div class="mb-3">
@@ -198,6 +198,42 @@
 @endpush
 
 @push('script-alt')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <style>
+            .flatpickr-calendar {
+                z-index: 10000; /* Mengatasi masalah tumpang tindih dengan elemen lain */
+            }
+        </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            flatpickr("#start_date", {
+                dateFormat: "d F Y",
+                altInput: true,
+                altFormat: "d F Y",
+                onChange: function (selectedDates, dateStr, instance) {
+                    document.querySelector("#start_date").value = instance.formatDate(selectedDates[0], "Y-m-d");
+                }
+            });
+
+            flatpickr("#end_date", {
+                dateFormat: "d F Y",
+                altInput: true,
+                altFormat: "d F Y",
+                onChange: function (selectedDates, dateStr, instance) {
+                    document.querySelector("#end_date").value = instance.formatDate(selectedDates[0], "Y-m-d");
+                }
+            });
+
+            document.querySelector("#bookingForm").addEventListener("submit", function () {
+                const startDateInput = document.querySelector("#start_date")._flatpickr;
+                const endDateInput = document.querySelector("#end_date")._flatpickr;
+
+                document.querySelector("#start_date").value = startDateInput.formatDate(startDateInput.selectedDates[0], "Y-m-d");
+                document.querySelector("#end_date").value = endDateInput.formatDate(endDateInput.selectedDates[0], "Y-m-d");
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             @if (session('error'))

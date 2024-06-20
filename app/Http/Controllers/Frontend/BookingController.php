@@ -29,7 +29,7 @@ class BookingController extends Controller
     public function checkVehicleAvailability(Request $request, $vehicle_type, $vehicle_id)
     {
         $user = Auth::user();
-
+    
         // Check if user is verified
         if ($user->account_status !== 'Terverifikasi' && is_null($user->email_verified_at)) {
             return redirect()->back()->with('error', 'Akun harus terverifikasi dan email harus sudah diverifikasi agar bisa sewa!');
@@ -38,7 +38,7 @@ class BookingController extends Controller
         } elseif (is_null($user->email_verified_at)) {
             return redirect()->back()->with('error', 'Email harus sudah diverifikasi agar bisa sewa!');
         }
-
+    
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
         $formattedStartDate = Carbon::parse($startDate)->translatedFormat('j F Y');
@@ -46,30 +46,30 @@ class BookingController extends Controller
         $with_driver = $request->input('with_driver', false);
         $pickup = $request->input('pickup', false);
         $vehicle = $this->getVehicleByType($vehicle_type, $vehicle_id);
-
+    
         // Additional date validations
         $today = (new \DateTime())->format('Y-m-d');
         $maxStartDate = (new \DateTime())->modify('+60 days')->format('Y-m-d');
-
+    
         if ($startDate > $maxStartDate) {
             return redirect()->back()->with('error', 'Maksimal tanggal mulai sewa adalah 60 hari kedepan!');
         }
-
+    
         if ($startDate < $today) {
             return redirect()->back()->with('error', 'Tanggal mulai tidak boleh berada di masa lalu!');
         }
-
+    
         if ($endDate < $startDate) {
             return redirect()->back()->with('error', 'Tanggal selesai tidak boleh sebelum tanggal mulai!');
         }
-
+    
         $startDateTime = new \DateTime($startDate);
         $endDateTime = new \DateTime($endDate);
         $dateInterval = $startDateTime->diff($endDateTime)->days;
         if ($dateInterval > 6) {
             return redirect()->back()->with('error', 'Durasi maksimal sewa adalah 7 hari!');
         }
-
+    
         $isAvailable = Booking::where('vehicle_id', $vehicle_id)
             ->where('vehicle_type', $vehicle_type)
             ->whereNotIn('booking_status', ['Dibatalkan', 'Selesai'])
@@ -79,13 +79,14 @@ class BookingController extends Controller
                     ->orWhereRaw('? BETWEEN start_date AND end_date', [$startDate])
                     ->orWhereRaw('? BETWEEN start_date AND end_date', [$endDate]);
             })->doesntExist();
-
+    
         if (!$isAvailable) {
             return redirect()->back()->with('error', 'Kendaraan tidak tersedia pada tanggal yang dipilih!');
         }
-
-        return view('frontend.vehicle.check_availability', compact('isAvailable', 'startDate', 'endDate', 'with_driver', 'pickup', 'vehicle', 'vehicle_type', 'user'));
+    
+        return view('frontend.vehicle.check_availability', compact('isAvailable', 'startDate', 'endDate', 'formattedStartDate', 'formattedEndDate', 'with_driver', 'pickup', 'vehicle', 'vehicle_type', 'user'));
     }
+    
 
     public function showBookingForm(Request $request, $vehicle_type, $vehicle_id)
     {
@@ -114,7 +115,21 @@ class BookingController extends Controller
         $driverFee = $with_driver ? ($daysCount * $driver->biaya_driver) : 0;
         $totalFee = $bookingFee + $driverFee;
 
-        return view('frontend.vehicle.booking_form', compact('vehicle', 'vehicle_type', 'user', 'formattedStartDate', 'formattedEndDate', 'daysCount', 'bookingFee', 'with_driver', 'pickup', 'driverFee', 'totalFee', 'user'));
+        return view('frontend.vehicle.booking_form', compact(
+            'vehicle',
+            'vehicle_type',
+            'user',
+            'startDate',
+            'endDate',
+            'formattedStartDate',
+            'formattedEndDate',
+            'daysCount',
+            'bookingFee',
+            'with_driver',
+            'pickup',
+            'driverFee',
+            'totalFee'
+        ));
     }
 
     public function bookVehicle(Request $request, $vehicle_type, $vehicle_id)
