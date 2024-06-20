@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('motorcycles', function (Blueprint $table) {
             $table->id();
             $table->string('nama_motor');
+            $table->string('plat_nomor');
             $table->string('slug');
             $table->foreignId('type_id');
             $table->decimal('price', 15, 2);

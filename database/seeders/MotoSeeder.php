@@ -21,6 +21,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '1',
                 'nama_motor' => 'Honda Beat',
+                'plat_nomor'  => 'AD 2345 VW',
                 'slug' => 'honda-beat',
                 'type_id' => '1',
                 'price' => '70000',
@@ -36,6 +37,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '2',
                 'nama_motor' => 'Honda Beat',
+                'plat_nomor'  => 'AD 2346 VW',
                 'slug' => 'honda-beat',
                 'type_id' => '1',
                 'price' => '70000',
@@ -51,6 +53,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '3',
                 'nama_motor' => 'Honda Beat',
+                'plat_nomor'  => 'AD 2347 VW',
                 'slug' => 'honda-beat',
                 'type_id' => '1',
                 'price' => '70000',
@@ -66,6 +69,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '4',
                 'nama_motor' => 'Honda Vario',
+                'plat_nomor'  => 'AD 2348 VW',
                 'slug' => 'honda-vario',
                 'type_id' => '1',
                 'price' => '80000',
@@ -81,6 +85,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '5',
                 'nama_motor' => 'Yamaha Lexi',
+                'plat_nomor'  => 'AD 2349 VW',
                 'slug' => 'yamaha-lexi',
                 'type_id' => '1',
                 'price' => '105000',
@@ -96,6 +101,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '6',
                 'nama_motor' => 'Yamaha Nmax',
+                'plat_nomor'  => 'AD 2350 VW',
                 'slug' => 'yamaha-nmax',
                 'type_id' => '1',
                 'price' => '150000',
@@ -111,6 +117,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '7',
                 'nama_motor' => 'Honda PCX',
+                'plat_nomor'  => 'AD 2351 VW',
                 'slug' => 'honda-pcx',
                 'type_id' => '1',
                 'price' => '135000',
@@ -126,6 +133,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '8',
                 'nama_motor' => 'Honda Vario',
+                'plat_nomor'  => 'AD 2352 VW',
                 'slug' => 'honda-vario',
                 'type_id' => '1',
                 'price' => '80000',
@@ -141,6 +149,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '9',
                 'nama_motor' => 'Honda Revo',
+                'plat_nomor'  => 'AD 2353 VW',
                 'slug' => 'honda-revo',
                 'type_id' => '2',
                 'price' => '100000',
@@ -156,6 +165,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '10',
                 'nama_motor' => 'Honda Supra',
+                'plat_nomor'  => 'AD 2354 VW',
                 'slug' => 'honda-supra',
                 'type_id' => '2',
                 'price' => '70000',
@@ -171,6 +181,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '11',
                 'nama_motor' => 'Honda Supra X',
+                'plat_nomor'  => 'AD 2355 VW',
                 'slug' => 'honda-supra-x',
                 'type_id' => '2',
                 'price' => '70000',
@@ -186,6 +197,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '12',
                 'nama_motor' => 'Honda Supra X',
+                'plat_nomor'  => 'AD 2356 VW',
                 'slug' => 'honda-supra-x',
                 'type_id' => '2',
                 'price' => '70000',
@@ -201,6 +213,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '13',
                 'nama_motor' => 'Yamaha R15',
+                'plat_nomor'  => 'AD 2357 VW',
                 'slug' => 'yamaha-r15',
                 'type_id' => '3',
                 'price' => '200000',
@@ -216,6 +229,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '14',
                 'nama_motor' => 'Honda CBR',
+                'plat_nomor'  => 'AD 2358 VW',
                 'slug' => 'honda-cbr',
                 'type_id' => '3',
                 'price' => '200000',
@@ -231,6 +245,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '15',
                 'nama_motor' => 'Honda CBR',
+                'plat_nomor'  => 'AD 2359 VW',
                 'slug' => 'honda-cbr',
                 'type_id' => '3',
                 'price' => '200000',
@@ -246,6 +261,7 @@ class MotoSeeder extends Seeder
             [
                 'id' => '16',
                 'nama_motor' => 'Suzuki GSX',
+                'plat_nomor'  => 'H 6754 VW',
                 'slug' => 'suzuki-gsx',
                 'type_id' => '3',
                 'price' => '200000',

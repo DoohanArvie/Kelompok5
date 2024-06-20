@@ -21,6 +21,7 @@ class CarRequest extends FormRequest
     {
         return [
             'nama_mobil' => 'required|string|max:255',
+            'plat_nomor' => 'required|string|max:10',
             'type_id' => 'required|exists:cars,id',
             'price' => 'required|numeric',
             'penumpang' => 'required|integer',

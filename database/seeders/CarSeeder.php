@@ -24,6 +24,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '1',
                 'nama_mobil' => 'Suzuki Ertiga',
+                'plat_nomor'  => 'H 28 YT',
                 'slug' => 'suzuki-ertiga',
                 'type_id' => '1',
                 'price' => '300000',
@@ -41,6 +42,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '2',
                 'nama_mobil' => 'Toyota Calya',
+                'plat_nomor'  => 'H 29 YT',
                 'slug' => 'toyota-calya',
                 'type_id' => '1',
                 'price' => '300000',
@@ -58,6 +60,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '3',
                 'nama_mobil' => 'Toyota Innova',
+                'plat_nomor'  => 'H 30 YT',
                 'slug' => 'toyota-innova',
                 'type_id' => '1',
                 'price' => '900000',
@@ -75,6 +78,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '4',
                 'nama_mobil' => 'Toyota Innova',
+                'plat_nomor'  => 'H 31 YT',
                 'slug' => 'toyota-innova',
                 'type_id' => '1',
                 'price' => '1100000',
@@ -92,6 +96,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '5',
                 'nama_mobil' => 'Toyota Venturer',
+                'plat_nomor'  => 'H 32 YT',
                 'slug' => 'toyota-venturer',
                 'type_id' => '1',
                 'price' => '700000',
@@ -109,6 +114,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '6',
                 'nama_mobil' => 'Toyota Venturer',
+                'plat_nomor'  => 'H 33 YT',
                 'slug' => 'toyota-venturer',
                 'type_id' => '1',
                 'price' => '500000',
@@ -126,6 +132,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '7',
                 'nama_mobil' => 'Daihatsu Terios',
+                'plat_nomor'  => 'H 34 YT',
                 'slug' => 'daihatsu-terios',
                 'type_id' => '2',
                 'price' => '500000',
@@ -143,6 +150,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '8',
                 'nama_mobil' => 'Honda BRV',
+                'plat_nomor'  => 'H 35 YT',
                 'slug' => 'honda-brv',
                 'type_id' => '2',
                 'price' => '800000',
@@ -160,6 +168,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '9',
                 'nama_mobil' => 'Honda BRV',
+                'plat_nomor'  => 'H 36 YT',
                 'slug' => 'honda-brv',
                 'type_id' => '2',
                 'price' => '500000',
@@ -177,6 +186,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '10',
                 'nama_mobil' => 'Honda CRV',
+                'plat_nomor'  => 'H 37 YT',
                 'slug' => 'honda-crv',
                 'type_id' => '2',
                 'price' => '500000',
@@ -194,6 +204,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '11',
                 'nama_mobil' => 'Honda HRV',
+                'plat_nomor'  => 'H 38 YT',
                 'slug' => 'honda-hrv',
                 'type_id' => '2',
                 'price' => '400000',
@@ -211,6 +222,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '12',
                 'nama_mobil' => 'Honda WRV',
+                'plat_nomor'  => 'H 39 YT',
                 'slug' => 'honda-wrv',
                 'type_id' => '2',
                 'price' => '500000',
@@ -228,6 +240,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '13',
                 'nama_mobil' => 'Honda CRV',
+                'plat_nomor'  => 'H 40 YT',
                 'slug' => 'honda-crv',
                 'type_id' => '2',
                 'price' => '500000',
@@ -245,6 +258,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '14',
                 'nama_mobil' => 'Mitsubishi Xpander',
+                'plat_nomor'  => 'H 41 YT',
                 'slug' => 'mitsubishi-xpander',
                 'type_id' => '2',
                 'price' => '500000',
@@ -262,6 +276,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '15',
                 'nama_mobil' => 'Toyota Fortuner',
+                'plat_nomor'  => 'H 42 YT',
                 'slug' => 'toyota-fortuner',
                 'type_id' => '2',
                 'price' => '1400000',
@@ -279,6 +294,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '16',
                 'nama_mobil' => 'Honda Jazz',
+                'plat_nomor'  => 'H 43 YT',
                 'slug' => 'honda-jazz',
                 'type_id' => '3',
                 'price' => '400000',
@@ -296,6 +312,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '17',
                 'nama_mobil' => 'Honda Accord',
+                'plat_nomor'  => 'H 44 YT',
                 'slug' => 'honda-accord',
                 'type_id' => '4',
                 'price' => '1000000',
@@ -313,6 +330,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '18',
                 'nama_mobil' => 'Honda City',
+                'plat_nomor'  => 'H 45 YT',
                 'slug' => 'honda-city',
                 'type_id' => '4',
                 'price' => '400000',
@@ -330,6 +348,7 @@ class CarSeeder extends Seeder
             [
                 'id' => '19',
                 'nama_mobil' => 'Toyota Camry',
+                'plat_nomor'  => 'H 46 YT',
                 'slug' => 'toyota-camry',
                 'type_id' => '4',
                 'price' => '700000',

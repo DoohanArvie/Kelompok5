@@ -34,6 +34,18 @@
                                     - {{ $booking->vehicle->type->nama }}</td>
                             </tr>
                             <tr>
+                                <th scope="row">Plat Nomor</th>
+                                <td>
+                                    @if ($booking->vehicle_type == 'car')
+                                        {{ $booking->vehicle->plat_nomor }}
+                                    @elseif ($booking->vehicle_type == 'motorcycle')
+                                        {{ $booking->vehicle->plat_nomor }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
                                 <th scope="row">Metode Pickup</th>
                                 <td>{{ $booking->pickup }}</td>
                             </tr>

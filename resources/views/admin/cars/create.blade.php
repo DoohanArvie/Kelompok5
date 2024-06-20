@@ -39,6 +39,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group row border-bottom pb-4">
+                                    <label for="plat_nomor" class="col-sm-2 col-form-label">Plat Nomor</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control @error('nama_mobil') is-invalid @enderror"
+                                            name="plat_nomor" value="{{ old('plat_nomor') }}" id="plat_nomor" required>
+                                        @error('plat_nomor')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row border-bottom pb-4">
                                     <label for="type_id" class="col-sm-2 col-form-label">Tipe Mobil</label>
                                     <div class="col-sm-12">
                                         <select class="form-control @error('type_id') is-invalid @enderror" name="type_id"
