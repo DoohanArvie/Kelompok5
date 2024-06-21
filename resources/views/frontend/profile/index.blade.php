@@ -97,7 +97,8 @@
                                             class="form-label font-weight-bold">{{ __('Nomor Handphone') }}</label>
                                         <div class="input-group">
                                             <input type="number" id="phone" name="phone" class="form-control"
-                                                placeholder="Nomor Handphone Anda" value="{{ $user->phone ?? '' }}">
+                                                required placeholder="Nomor Handphone Anda"
+                                                value="{{ $user->phone ?? '' }}">
                                             <span class="input-group-text">
                                                 <i class="fa-solid fa-phone text-primary text-lg"></i>
                                                 <span class="text-danger text-lg">*</span>
@@ -136,8 +137,14 @@
                                         @endif
                                         <div class="mt-auto">
                                             <div class="input-group mt-3">
-                                                <input type="file" id="ktp" name="ktp" class="form-control @error('ktp') is-invalid @enderror"
-                                                    accept=".pdf,.jpg,.jpeg,.png">
+                                                <input type="file" id="ktp" name="ktp"
+                                                    class="form-control @error('ktp') is-invalid @enderror"
+                                                    @if (!$user->ktp)
+                                                        required
+                                                    @else
+                                                        data-default-file="{{ Storage::url('ktp/' . $user->ktp) }}" 
+                                                    @endif
+                                                    accept="image/*">
                                                 <span class="input-group-text">
                                                     <i class="fa-solid fa-upload text-primary text-lg"></i>
                                                     <span class="text-danger text-lg">*</span>
@@ -163,8 +170,14 @@
                                         @endif
                                         <div class="mt-auto">
                                             <div class="input-group mt-3">
-                                                <input type="file" id="sim" name="sim" class="form-control @error('sim') is-invalid @enderror"
-                                                    accept=".pdf,.jpg,.jpeg,.png">
+                                                <input type="file" id="sim" name="sim"
+                                                    class="form-control @error('sim') is-invalid @enderror"
+                                                    @if (!$user->sim)
+                                                        required
+                                                    @else
+                                                        data-default-file="{{ Storage::url('sim/' . $user->sim) }}" 
+                                                    @endif
+                                                    accept="image/*">
                                                 <span class="input-group-text">
                                                     <i class="fa-solid fa-upload text-primary text-lg"></i>
                                                     <span class="text-danger text-lg">*</span>
@@ -210,10 +223,11 @@
                             <div class="mb-3">
                                 <label for="current_password"
                                     class="form-label font-weight-bold">{{ __('Password Sekarang') }}</label>
-                                    <span class="text-danger text-lg">*</span>
+                                <span class="text-danger text-lg">*</span>
                                 <div class="input-group">
                                     <input type="password" id="current_password" name="current_password"
-                                        class="form-control @error('current_password') is-invalid @enderror" placeholder="{{ __('Masukan Password Sekarang') }}" required
+                                        class="form-control @error('current_password') is-invalid @enderror"
+                                        placeholder="{{ __('Masukan Password Sekarang') }}" required
                                         autocomplete="current-password">
                                     <span class="input-group-text" onclick="togglePassword(this)"
                                         style="cursor: pointer;">
@@ -229,10 +243,11 @@
                             <div class="mb-3">
                                 <label for="password"
                                     class="form-label font-weight-bold">{{ __('Password Baru') }}</label>
-                                    <span class="text-danger text-lg">*</span>
+                                <span class="text-danger text-lg">*</span>
                                 <div class="input-group">
                                     <input type="password" id="password" name="password"
-                                        class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('Masukan Password Baru') }}" required
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="{{ __('Masukan Password Baru') }}" required
                                         autocomplete="new-password">
                                     <span class="input-group-text" onclick="togglePassword(this)"
                                         style="cursor: pointer;">
@@ -248,10 +263,11 @@
                             <div class="mb-3">
                                 <label for="password_confirmation"
                                     class="form-label font-weight-bold">{{ __('Konfirmasi Password Baru') }}</label>
-                                    <span class="text-danger text-lg">*</span>
+                                <span class="text-danger text-lg">*</span>
                                 <div class="input-group">
                                     <input type="password" id="password_confirmation" name="password_confirmation"
-                                        class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('Konfirmasi Password Baru') }}" required
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="{{ __('Konfirmasi Password Baru') }}" required
                                         autocomplete="new-password">
                                     <span class="input-group-text" onclick="togglePassword(this)"
                                         style="cursor: pointer;">
