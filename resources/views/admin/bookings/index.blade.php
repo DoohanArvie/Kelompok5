@@ -85,8 +85,8 @@
                                                 <td>{{ $booking->vehicle_type == 'car' ? $booking->vehicle->nama_mobil : $booking->vehicle->nama_motor }}
                                                 </td>
                                                 {{-- <td>{{ $booking->vehicle_type == 'car' ? $booking->vehicle->nama_mobil : $booking->vehicle->nama_motor }} - {{ $booking->vehicle->type->nama }}</td> --}}
-                                                <td>{{ $booking->start_date->format('d M y') }}</td>
-                                                <td>{{ $booking->end_date }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($booking->start_date)->translatedFormat('j F Y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($booking->end_date)->translatedFormat('j F Y') }}</td>
                                                 <td>{{ $booking->days_count }} Hari</td>
                                                 <td>{{ $booking->pickup }}</td>
                                                 <td>Rp {{ number_format($booking->total_fee, 0, ',', '.') }}</td>
