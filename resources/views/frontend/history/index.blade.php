@@ -44,8 +44,8 @@
                                             <td>{{ $booking->vehicle_type == 'car' ? 'Mobil' : 'Motor' }}</td>
                                             <td>{{ $booking->vehicle->nama_mobil ?? $booking->vehicle->nama_motor }}</td>
                                             <td>{{ $booking->vehicle->plat_nomor }}</td>
-                                            <td>{{ $booking->start_date }}</td>
-                                            <td>{{ $booking->end_date }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($booking->start_date)->translatedFormat('j F Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($booking->end_date)->translatedFormat('j F Y') }}</td>
                                             <td>{{ $booking->pickup }}</td>
                                             <td>{{ $booking->days_count }} Hari</td>
                                             <td>{{ $booking->with_driver ? 'Ya' : 'Tidak' }}</td>

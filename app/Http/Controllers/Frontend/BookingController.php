@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Frontend;
 
-
 use App\Models\Car;
 use App\Models\Motorcycle;
 use App\Models\Booking;
@@ -14,8 +13,7 @@ use Illuminate\Support\Str;
 use App\Models\Feedback;
 use App\Models\Cancellation;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Carbon;
-
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
@@ -43,6 +41,8 @@ class BookingController extends Controller
 
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
+        $formattedStartDate = Carbon::parse($startDate)->translatedFormat('j F Y');
+        $formattedEndDate = Carbon::parse($endDate)->translatedFormat('j F Y');
         $with_driver = $request->input('with_driver', false);
         $pickup = $request->input('pickup', false);
         $vehicle = $this->getVehicleByType($vehicle_type, $vehicle_id);
@@ -50,10 +50,6 @@ class BookingController extends Controller
         // Additional date validations
         $today = (new \DateTime('now', new \DateTimeZone('GMT+7')))->format('Y-m-d');
         $maxStartDate = (new \DateTime())->modify('+60 days')->format('Y-m-d');
-
-        // if ($startDate > $maxStartDate || $startDate < $today || $endDate < $startDate) {
-        //     return redirect()->back()->with('error', 'Tanggal yang dipilih tidak valid!');
-        // }
 
         if ($startDate > $maxStartDate) {
             return redirect()->back()->with('error', 'Maksimal tanggal mulai sewa adalah 60 hari kedepan!');
@@ -84,15 +80,12 @@ class BookingController extends Controller
                     ->orWhereRaw('? BETWEEN start_date AND end_date', [$endDate]);
             })->doesntExist();
 
-
         if (!$isAvailable) {
             return redirect()->back()->with('error', 'Kendaraan tidak tersedia pada tanggal yang dipilih!');
         }
 
         return view('frontend.vehicle.check_availability', compact('isAvailable', 'startDate', 'endDate', 'with_driver', 'pickup', 'vehicle', 'vehicle_type', 'user'));
     }
-
-
 
     public function showBookingForm(Request $request, $vehicle_type, $vehicle_id)
     {
@@ -108,6 +101,9 @@ class BookingController extends Controller
 
         $startDate = $request->start_date;
         $endDate = $request->end_date;
+        $formattedStartDate = Carbon::parse($startDate)->translatedFormat('j F Y');
+        $formattedEndDate = Carbon::parse($endDate)->translatedFormat('j F Y');
+
         $daysCount = (new \DateTime($endDate))->diff(new \DateTime($startDate))->days + 1;
         $bookingFeePerDay = $vehicle->price;
         $bookingFee = $daysCount * $bookingFeePerDay;
@@ -118,13 +114,11 @@ class BookingController extends Controller
         $driverFee = $with_driver ? ($daysCount * $driver->biaya_driver) : 0;
         $totalFee = $bookingFee + $driverFee;
 
-        return view('frontend.vehicle.booking_form', compact('vehicle', 'vehicle_type', 'user', 'startDate', 'endDate', 'daysCount', 'bookingFee', 'with_driver', 'pickup', 'driverFee', 'totalFee', 'user'));
+        return view('frontend.vehicle.booking_form', compact('vehicle', 'vehicle_type', 'user', 'formattedStartDate', 'formattedEndDate', 'daysCount', 'bookingFee', 'with_driver', 'pickup', 'driverFee', 'totalFee', 'user'));
     }
 
     public function bookVehicle(Request $request, $vehicle_type, $vehicle_id)
     {
-
-
         $user = Auth::user();
 
         if (!$user) {
@@ -132,8 +126,8 @@ class BookingController extends Controller
         }
 
         $vehicle = $this->getVehicleByType($vehicle_type, $vehicle_id);
-        $startDate = $request->start_date;
-        $endDate = $request->end_date;
+        $startDate = Carbon::parse($request->start_date)->format('Y-m-d');
+        $endDate = Carbon::parse($request->end_date)->format('Y-m-d');
         $daysCount = (new \DateTime($endDate))->diff(new \DateTime($startDate))->days + 1;
         $bookingFeePerDay = $vehicle->price;
         $bookingFee = $daysCount * $bookingFeePerDay;
@@ -166,7 +160,6 @@ class BookingController extends Controller
         return redirect()->route('booking_confirmation', ['booking_code' => $bookingCode, 'vehicle_type' => $vehicle_type, 'vehicle_id' => $vehicle_id]);
     }
 
-
     public function showBookingConfirmation($booking_code)
     {
         $this->cancelExpiredBookings(); // Call to cancel expired bookings
@@ -191,6 +184,7 @@ class BookingController extends Controller
         \Midtrans\Config::$isSanitized = true;
         \Midtrans\Config::$is3ds = true;
 
+        // Populate transaction details
         $params = [
             'transaction_details' => [
                 'order_id' => rand(),
@@ -199,6 +193,7 @@ class BookingController extends Controller
             'customer_details' => [
                 'first_name' => $booking->user->name,
                 'email' => $booking->user->email,
+                'phone' => $booking->user->phone,
             ],
         ];
 
@@ -230,8 +225,9 @@ class BookingController extends Controller
 
         $booking = Booking::where('booking_code', $booking_code)->firstOrFail();
         return view('frontend.vehicle.booking_confirmation', compact('booking', 'feedbacks', 'user'));
-    }
 
+        return view('frontend.vehicle.booking_confirmation', compact('booking', 'feedbacks', 'user', 'snapToken', 'vehicle'));
+    }
 
     private function getVehicleByType($vehicle_type, $vehicle_id)
     {
