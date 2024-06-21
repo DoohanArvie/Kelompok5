@@ -74,7 +74,8 @@
                                     </div>
                                     <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Kategori</h5>
-                                        <select name="category_id" id="category_id" class="form-select border-0 py-3 mt-auto">
+                                        <select name="category_id" id="category_id"
+                                            class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Kategori</option>
                                         </select>
                                     </div>
@@ -390,7 +391,7 @@
 
     <!-- Faq Start -->
     <div class="container-xxl py-5">
-        <div class="container">
+        <div class="container" id="faqs">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="mb-3">Pertanyaan Umum</h1>
             </div>
