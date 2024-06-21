@@ -48,7 +48,7 @@ class BookingController extends Controller
         $vehicle = $this->getVehicleByType($vehicle_type, $vehicle_id);
     
         // Additional date validations
-        $today = (new \DateTime())->format('Y-m-d');
+        $today = (new \DateTime('now', new \DateTimeZone('GMT+7')))->format('Y-m-d');
         $maxStartDate = (new \DateTime())->modify('+60 days')->format('Y-m-d');
     
         if ($startDate > $maxStartDate) {
