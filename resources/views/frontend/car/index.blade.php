@@ -6,12 +6,8 @@
         <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
             <div class="col-md-6 p-5 mt-lg-5">
                 <h1 class="display-5 animated fadeIn mb-4">Daftar Mobil</h1>
-                <nav aria-label="breadcrumb animated fadeIn">
-                    <ol class="breadcrumb text-uppercase">
-                        <li class="breadcrumb-item"><a href="{{ route('homepage') }}">Beranda</a></li>
-                        <li class="breadcrumb-item text-body active" aria-current="page">Daftar Mobil</li>
-                    </ol>
-                </nav>
+                <p class="lead animated fadeIn mb-4">Temukan mobil ideal Anda dengan pilihan kategori, rentang harga, dan
+                    kapasitas penumpang yang telah kami sediakan !</p>
             </div>
             <div class="col-md-6 wow slideInRight" data-wow-delay="0.3s">
                 <img class="img-fluid" style="width: 100%; align-items:center"
@@ -27,7 +23,7 @@
         <div class="row g-0 gx-5 align-items-end">
             <div class="col-lg-6">
                 <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                    <h1 class="mb-3">Mobil</h1>
+                    <h1 class="mb-3">Daftar Mobil</h1>
                     <p>Temukan Mobil yang sesuai dengan kebutuhan dan preferensi Anda!</p>
                 </div>
             </div>
@@ -89,7 +85,7 @@
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapsePassenger" aria-expanded="false"
                                         aria-controls="collapsePassenger">
-                                        Seat Penumpang
+                                        Kapasitas Penumpang
                                     </button>
                                 </h2>
                                 <div id="collapsePassenger" class="accordion-collapse collapse"
@@ -120,13 +116,12 @@
                             <div class="accordion-item shadow-sm">
                                 <h2 class="accordion-header" id="headingPrice">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapsePrice" aria-expanded="false"
-                                        aria-controls="collapsePrice">
+                                        data-bs-target="#collapsePrice" aria-expanded="false" aria-controls="collapsePrice">
                                         Rentang Harga
                                     </button>
                                 </h2>
-                                <div id="collapsePrice" class="accordion-collapse collapse"
-                                    aria-labelledby="headingPrice" data-bs-parent="#accordionFilters">
+                                <div id="collapsePrice" class="accordion-collapse collapse" aria-labelledby="headingPrice"
+                                    data-bs-parent="#accordionFilters">
                                     <div class="accordion-body">
                                         <ul class="nav nav-pills flex-column mb-5">
                                             <li class="nav-item mb-2">

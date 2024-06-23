@@ -29,18 +29,21 @@
 
                             <div class="mb-3">
                                 <label for="start_date" class="form-label">Tanggal Mulai</label>
-                                <input type="date" class="form-control" name="start_date" id="start_date" required>
+                                <span class="text-danger text-lg">*</span>
+                                <input type="text" class="form-control" name="start_date" id="start_date" placeholder="Pilih Tanggal Mulai" required>
                             </div>
-
+                    
                             <div class="mb-3">
                                 <label for="end_date" class="form-label">Tanggal Selesai</label>
-                                <input type="date" class="form-control" name="end_date" id="end_date" required>
+                                <span class="text-danger text-lg">*</span>
+                                <input type="text" class="form-control" name="end_date" id="end_date" placeholder="Pilih Tanggal Selesai" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Menggunakan Driver</label>
-                                <div>
-                                    @if ($vehicle_type === 'car')
+                                @if ($vehicle_type === 'car')
+                                    <label class="form-label">Menggunakan Driver</label>
+                                    <span class="text-danger text-lg">*</span>
+                                    <div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="with_driver"
                                                 id="with_driver_yes" value="1" required>
@@ -52,36 +55,39 @@
                                             <label class="form-check-label" for="with_driver_no">Tidak</label>
                                         </div>
                                     @else
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="with_driver"
-                                                id="with_driver_yes" value="1" disabled>
-                                            <label class="form-check-label" for="with_driver_yes">Ya</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="with_driver"
-                                                id="with_driver_no" value="0" checked disabled>
-                                            <label class="form-check-label" for="with_driver_no">Tidak</label>
-                                        </div>
-                                        <input type="hidden" name="with_driver" value="0">
-                                    @endif
-                                </div>
+                                        <label class="form-label">Menggunakan Driver</label>
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="with_driver"
+                                                    id="with_driver_yes" value="1" disabled>
+                                                <label class="form-check-label" for="with_driver_yes">Ya</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="with_driver"
+                                                    id="with_driver_no" value="0" checked disabled>
+                                                <label class="form-check-label" for="with_driver_no">Tidak</label>
+                                            </div>
+                                            <input type="hidden" name="with_driver" value="0">
+                                @endif
                             </div>
-
-                            <div class="mb-3">
-                                <label class="form-label" for="pickup">Metode Pickup</label>
-                                <select name="pickup" id="pickup" class="form-select" required>
-                                    <option value="">Pilih Metode Pickup</option>
-                                    <option value="Ambil Sendiri">Ambil Sendiri</option>
-                                    <option value="Diantar Sesuai Alamat">Diantar Sesuai Alamat</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary w-100">Cek Ketersediaan</button>
-                        </form>
                     </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="pickup">Metode Pickup</label>
+                        <span class="text-danger text-lg">*</span>
+                        <select name="pickup" id="pickup" class="form-select" required>
+                            <option value="">Pilih Metode Pickup</option>
+                            <option value="Ambil Sendiri">Ambil Sendiri</option>
+                            <option value="Diantar Sesuai Alamat">Diantar Sesuai Alamat</option>
+                        </select>
+                    </div>
+                    <p class="text-danger">* Wajib diisi</p>
+                    <button type="submit" class="btn btn-primary w-100">Cek Ketersediaan</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- end check_availability -->
 
@@ -192,6 +198,42 @@
 @endpush
 
 @push('script-alt')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <style>
+            .flatpickr-calendar {
+                z-index: 10000; /* Mengatasi masalah tumpang tindih dengan elemen lain */
+            }
+        </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            flatpickr("#start_date", {
+                dateFormat: "d F Y",
+                altInput: true,
+                altFormat: "d F Y",
+                onChange: function (selectedDates, dateStr, instance) {
+                    document.querySelector("#start_date").value = instance.formatDate(selectedDates[0], "Y-m-d");
+                }
+            });
+
+            flatpickr("#end_date", {
+                dateFormat: "d F Y",
+                altInput: true,
+                altFormat: "d F Y",
+                onChange: function (selectedDates, dateStr, instance) {
+                    document.querySelector("#end_date").value = instance.formatDate(selectedDates[0], "Y-m-d");
+                }
+            });
+
+            document.querySelector("#bookingForm").addEventListener("submit", function () {
+                const startDateInput = document.querySelector("#start_date")._flatpickr;
+                const endDateInput = document.querySelector("#end_date")._flatpickr;
+
+                document.querySelector("#start_date").value = startDateInput.formatDate(startDateInput.selectedDates[0], "Y-m-d");
+                document.querySelector("#end_date").value = endDateInput.formatDate(endDateInput.selectedDates[0], "Y-m-d");
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             @if (session('error'))

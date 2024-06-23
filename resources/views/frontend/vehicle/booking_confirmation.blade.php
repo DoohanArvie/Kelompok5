@@ -34,6 +34,18 @@
                                     - {{ $booking->vehicle->type->nama }}</td>
                             </tr>
                             <tr>
+                                <th scope="row">Plat Nomor</th>
+                                <td>
+                                    @if ($booking->vehicle_type == 'car')
+                                        {{ $booking->vehicle->plat_nomor }}
+                                    @elseif ($booking->vehicle_type == 'motorcycle')
+                                        {{ $booking->vehicle->plat_nomor }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
                                 <th scope="row">Metode Pickup</th>
                                 <td>{{ $booking->pickup }}</td>
                             </tr>
@@ -43,11 +55,11 @@
                             </tr>
                             <tr>
                                 <th scope="row">Mulai Sewa</th>
-                                <td>{{ $booking->start_date }}</td>
+                                <td>{{ \Carbon\Carbon::parse($booking->start_date)->translatedFormat('j F Y') }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Selesai Sewa</th>
-                                <td>{{ $booking->end_date }}</td>
+                                <td>{{ \Carbon\Carbon::parse($booking->end_date)->translatedFormat('j F Y') }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Biaya Sewa {{ $booking->vehicle_type == 'car' ? 'Mobil' : 'Motor' }}
@@ -92,12 +104,10 @@
                             function updateCountdown() {
                                 const now = new Date().getTime();
                                 const distance = endTime - now;
-
                                 if (distance < 0) {
                                     document.getElementById('countdown').innerHTML = "Pembayaran telah dibatalkan.";
                                     return;
                                 }
-
                                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -105,10 +115,8 @@
                                 document.getElementById('countdown').innerHTML = hours + "h " +
                                     minutes + "m " + seconds + "s ";
                             }
-
                             // Update the countdown every 1 second
                             setInterval(updateCountdown, 1000);
-
                             // Initialize the countdown
                             updateCountdown();
                         });
@@ -119,15 +127,13 @@
                     @if ($booking->pickup == 'Ambil Sendiri')
                         <!--warning user untuk pengembalian-->
                         <h3>Silahkan ambil kendaraan di lokasi kami</h3>
-                        <h4>Jika Anda mengembalikan kendaraan melebihi waktu sewa. Maka akan dikenakan denda sebesar 20%
-                            dari harga sewa anda</h4>
+                        <h4>Jika Anda mengembalikan kendaraan melebihi waktu sewa. Maka akan dikenakan denda sebesar 1 hari
+                            sewa</h4>
                     @else
                         <!--warning user untuk pengembalian-->
                         <h3>Silahkan tunggu kendaraan diantar ke lokasi Anda!</h3>
-
-                        <h4>Jika Anda mengembalikan kendaraan melebihi waktu sewa. Maka akan dikenakan denda sebesar 20%
-                            dari harga
-                            sewa anda</h4>
+                        <h4>Jika Anda mengembalikan kendaraan melebihi waktu sewa. Maka akan dikenakan denda sebesar 1 hari
+                            sewa</h4>
                     @endif
                 @elseif ($booking->booking_status == 'Belum Dikembalikan')
                     <!--warning user untuk pengembalian-->
@@ -135,14 +141,14 @@
                     @php
                         $endDate = Carbon::parse($booking->end_date)
                             ->addDays()
-                            ->startOfDay(); // Start of the end_date for comparison
+                            ->startOfDay();
                     @endphp
                     @if ($now->lessThan($endDate))
                         <p>Jika Anda melebihi batas sewa maka dikenakan denda.</p>
                     @else
                         @php
                             $lateDays = $now->diffInDays($endDate) + 1;
-                            $lateFee = $booking->total_fee * 0.2 * $lateDays;
+                            $lateFee = $booking->total_fee * $lateDays;
                         @endphp
                         <p>Anda melebihi sewa selama {{ $lateDays }} hari</p>
                         <p>Anda dikenakan denda sebesar: Rp {{ number_format($lateFee, 0, ',', '.') }}</p>

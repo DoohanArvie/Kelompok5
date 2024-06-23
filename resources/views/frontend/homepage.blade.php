@@ -58,29 +58,30 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="row g-2">
-                                    <div class="col-md-3 mr-2">
+                                    <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Kendaraan</h5>
-                                        <select id="kendaraan" name="kendaraan" class="form-select border-0 py-3">
+                                        <select id="kendaraan" name="kendaraan" class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Kendaraan</option>
                                             <option value="Mobil">Mobil</option>
                                             <option value="Motor">Motor</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 mr-2">
+                                    <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Rentang Harga</h5>
-                                        <select id="harga" name="harga" class="form-select border-0 py-3">
+                                        <select id="harga" name="harga" class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Rentang Harga</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 mr-2">
+                                    <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Kategori</h5>
-                                        <select name="category_id" id="category_id" class="form-select border-0 py-3">
+                                        <select name="category_id" id="category_id"
+                                            class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Kategori</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 mr-2">
+                                    <div class="col-xl-3 col-md-6 mr-2">
                                         <h5 class="text-white mb-3">Jumlah Penumpang</h5>
-                                        <select name="penumpang" class="form-select border-0 py-3">
+                                        <select name="penumpang" class="form-select border-0 py-3 mt-auto">
                                             <option value="" hidden>Pilih Jumlah Penumpang</option>
                                         </select>
                                     </div>
@@ -288,7 +289,7 @@
                             </div>
                         @endforeach
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="btn btn-primary py-3 px-5" href="">Cari Mobil Lainnya</a>
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('daftar-mobil') }}">Cari Mobil Lainnya</a>
                         </div>
                     </div>
                 </div>
@@ -327,7 +328,7 @@
                             </div>
                         @endforeach
                         <div class="col-12 text-center" data-wow-delay="0.1s">
-                            <a class="btn btn-primary py-3 px-5" href="">Cari Motor Lainnya</a>
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('daftar-motor') }}">Cari Motor Lainnya</a>
                         </div>
                     </div>
                 </div>
@@ -390,7 +391,7 @@
 
     <!-- Faq Start -->
     <div class="container-xxl py-5">
-        <div class="container">
+        <div class="container" id="faqs">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="mb-3">Pertanyaan Umum</h1>
             </div>
@@ -419,31 +420,6 @@
         </div>
     </div>
     <!-- Faq End -->
-
-    <!-- CSS untuk warna abu-abu -->
-    <style>
-        .clicked {
-            background-color: #e0e0e0;
-        }
-    </style>
-
-    <!-- JavaScript untuk menambahkan kelas 'clicked' -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var accordionButtons = document.querySelectorAll('.accordion-button');
-            accordionButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    // Remove 'clicked' class from all buttons
-                    accordionButtons.forEach(function(btn) {
-                        btn.classList.remove('clicked');
-                    });
-                    // Add 'clicked' class to the clicked button
-                    button.classList.add('clicked');
-                });
-            });
-        });
-    </script>
-
     <!-- Call to Action Start -->
     <div class="container-xxl py-5">
         <div class="container">

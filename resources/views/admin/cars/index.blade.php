@@ -22,6 +22,7 @@
                                             <th>No</th>
                                             <th>Gambar</th>
                                             <th>Nama</th>
+                                            <th>Plat Nomor</th>
                                             <th>Type Mobil</th>
                                             <th>Harga Sewa</th>
                                             <th>Jumlah Penumpang</th>
@@ -38,6 +39,7 @@
                                                     <img src="{{ asset('storage/' . $cars->image1) }}" alt="image" class="img-fluid" width="100">
                                                 </td>
                                                 <td>{{ $cars->nama_mobil }}</td>
+                                                <td>{{ $cars->plat_nomor }}</td>
                                                 <td>
                                                     <span class="badge bg-primary">
                                                         {{ $cars->type->nama }}

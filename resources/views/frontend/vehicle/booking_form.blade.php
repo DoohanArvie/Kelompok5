@@ -5,7 +5,7 @@
 <div class="container mt-5">
     <div class="text-center">
         <h1>Booking {{ $vehicle_type == 'car' ? 'Mobil' : 'Motor' }}</h1>
-        <h2>{{ $vehicle_type == 'car' ? $vehicle->nama_mobil : $vehicle->nama_motor }} - {{ $vehicle->type->nama }}</h2>
+        <h2>{{ $vehicle_type == 'car' ? $vehicle->nama_mobil : $vehicle->nama_motor }} - {{ $vehicle->type->nama }} - {{ $vehicle->plat_nomor }}</h2>
     </div>
     <hr>
     <div class="container">
@@ -26,15 +26,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="vehicle" class="form-label">Kendaraan:</label>
-                            <input type="text" class="form-control" id="vehicle" value="{{ $vehicle_type == 'car' ? $vehicle->nama_mobil : $vehicle->nama_motor }} - {{ $vehicle->type->nama }}" readonly>
+                            <input type="text" class="form-control" id="vehicle" value="{{ $vehicle_type == 'car' ? $vehicle->nama_mobil : $vehicle->nama_motor }} - {{ $vehicle->type->nama }} - {{ $vehicle->plat_nomor }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="tanggal_mulai" class="form-label">Tanggal Mulai Sewa:</label>
-                            <input type="text" class="form-control" id="tanggal_mulai" value="{{ $startDate }}" name="start_date" readonly>
+                            <input type="text" class="form-control" id="tanggal_mulai" value="{{ $formattedStartDate }}" name="start_date" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="tanggal_selesai" class="form-label">Tanggal Selesai Sewa:</label>
-                            <input type="text" class="form-control" id="tanggal_selesai" value="{{ $endDate }}" name="end_date" readonly>
+                            <input type="text" class="form-control" id="tanggal_selesai" value="{{ $formattedEndDate }}" name="end_date" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="total_hari" class="form-label">Total Hari:</label>

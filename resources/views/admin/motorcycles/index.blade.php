@@ -22,6 +22,7 @@
                                             <th>No</th>
                                             <th>Gambar</th>
                                             <th>Nama</th>
+                                            <th>Plat Nomor</th>
                                             <th>Type Motor</th>
                                             <th>Harga sewa</th>                   
                                             <th>Status</th>
@@ -36,6 +37,7 @@
                                                     <img src="{{ asset('storage/' . $motorcycle->image1) }}" alt="image" class="img-fluid" width="100">
                                                 </td>
                                                 <td>{{ $motorcycle->nama_motor }}</td>
+                                                <td>{{ $motorcycle->plat_nomor }}</td>
                                                 <td>
                                                     <span class="badge bg-primary">
                                                         {{ $motorcycle->type->nama }}

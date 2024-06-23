@@ -176,13 +176,13 @@
                                 <i
                                     class="fa fa-arrow-{{ $percentageChangeJumlahKendaraan > 0 ? 'up text-success' : ($percentageChangeJumlahKendaraan < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
                                 <span class="font-weight-bold">
-                                @if ($percentageChangeJumlahKendaraan != 0)
-                                    {{ number_format(abs($percentageChangeJumlahKendaraan), 0) }}%
-                                    {{ $percentageChangeJumlahKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
-                                @else
-                                    {{ number_format($percentageChangeJumlahKendaraan, 0) }}%
-                                    sama
-                                @endif
+                                    @if ($percentageChangeJumlahKendaraan != 0)
+                                        {{ number_format(abs($percentageChangeJumlahKendaraan), 0) }}%
+                                        {{ $percentageChangeJumlahKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeJumlahKendaraan, 0) }}%
+                                        sama
+                                    @endif
 
                                 </span> dibandingkan minggu lalu
                             </p>
@@ -214,13 +214,13 @@
                                 <i
                                     class="fa fa-arrow-{{ $percentageChangeBooking > 0 ? 'up text-success' : ($percentageChangeBooking < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
                                 <span class="font-weight-bold">
-                                @if ($percentageChangeJumlahKendaraan != 0)
-                                    {{ number_format(abs($percentageChangeJumlahKendaraan), 0) }}%
-                                    {{ $percentageChangeJumlahKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
-                                @else
-                                    {{ number_format($percentageChangeJumlahKendaraan, 0) }}%
-                                    sama
-                                @endif
+                                    @if ($percentageChangeJumlahKendaraan != 0)
+                                        {{ number_format(abs($percentageChangeJumlahKendaraan), 0) }}%
+                                        {{ $percentageChangeJumlahKendaraan > 0 ? 'lebih banyak' : 'lebih sedikit' }}
+                                    @else
+                                        {{ number_format($percentageChangeJumlahKendaraan, 0) }}%
+                                        sama
+                                    @endif
                                 </span> dibandingkan minggu lalu
                             </p>
                         </div>
@@ -242,7 +242,7 @@
                             </div>
                             <div class="col-4 position-absolute end-0">
                                 <div class="icon icon-shape bg-gradient-danger shadow-primary text-center rounded-circle">
-                                    <i class="fa-solid fa-rectangle-list text-lg opacity-10" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-user text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
@@ -289,7 +289,7 @@
                                     class="fa fa-arrow-{{ $percentageChangeHubungiKami > 0 ? 'up text-success' : ($percentageChangeHubungiKami < 0 ? 'down text-danger' : 'right text-warning') }}"></i>
                                 <span class="font-weight-bold">
                                     @if ($percentageChangeHubungiKami != 0)
-                                        {{ number_format(abs($percentageChangeHubungiKami), 0) }}
+                                        {{ number_format(abs($percentageChangeHubungiKami), 0) }}%
                                         {{ $percentageChangeHubungiKami > 0 ? 'lebih banyak' : 'lebih sedikit' }}
                                     @else
                                         {{ number_format($percentageChangeHubungiKami, 0) }}%
@@ -498,9 +498,7 @@
                     <div class="col-lg-6 mb-lg-0 mb-4">
                         <div class="copyright text-center text-sm text-muted text-lg-start">
                             ©
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>
+                            <span id="currentYear"></span>
                             <a href="{{ url('tentang-kami') }}" class="font-weight-bold" target="_blank">ANKAVI TEAM</a>
                             Kelompok 5 MSIB Fullstack #4
                         </div>
@@ -528,6 +526,16 @@
 @endpush
 
 @push('script-alt')
+    <script>
+        // Mendapatkan elemen dengan id "currentYear"
+        var currentYearElement = document.getElementById('currentYear');
+
+        // Memastikan elemen tersebut ada sebelum mengakses propertinya
+        if (currentYearElement) {
+            // Mengatur teks dari elemen tersebut menjadi tahun saat ini
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+    </script>
     <script src="{{ asset('frontend/js/argon/plugins/chartjs.min.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

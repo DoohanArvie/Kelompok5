@@ -12,11 +12,11 @@ class FAQSeeder extends Seeder
     {
         $faqs = [
             [
-                'question' => 'Bagaimana cara melakukan pemesanan mobil?',
+                'question' => 'Bagaimana cara melakukan pemesanan Kendaraan di OtoRent?',
                 'answer' => 'Kunjungi halaman pemesanan, pilih mobil dan waktu sewa, lalu isi formulir dan lakukan pembayaran. Admin akan mengonfirmasi penyewaan Anda.'
             ],
             [
-                'question' => 'Apa syarat dan ketentuan untuk menyewa mobil?',
+                'question' => 'Apa syarat dan ketentuan untuk menyewa Kendaraan di OtoRent?',
                 'answer' => 'Anda harus memiliki usia minimal 17 tahun. Memiliki SIM yang masih berlaku. Menyediakan identitas yang valid, seperti KTP.'
             ],
             [
@@ -30,6 +30,10 @@ class FAQSeeder extends Seeder
             [
                 'question' => 'Bagaimana kebijakan pembatalan?',
                 'answer' => 'Jika pembayaran belum diterima dalam 1 hari, penyewaan otomatis dibatalkan.'
+            ],
+            [
+                'question' => 'Bagaimana kebijakan Denda di OtoRent?',
+                'answer' => 'Jika penyewa melebihi masa sewa, maka akan dikenakan denda sebesar biaya sewa per-hari'
             ],
             [
                 'question' => 'Apakah ada batasan jarak perjalanan?',
